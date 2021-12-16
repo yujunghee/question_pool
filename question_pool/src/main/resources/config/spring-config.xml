@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+				http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	<!-- 컴퍼넌트 스캔 -->
+	<context:component-scan base-package="main"/>
+	<!-- 어노테이션 활성화 -->
+	<mvc:annotation-driven/>
+	<!-- default servlet -->
+	<mvc:default-servlet-handler/>
+	<!-- viewresolver -->
+	<mvc:view-resolvers>
+		<mvc:jsp prefix="/WEB-INF/view/"/>
+		<mvc:jsp suffix=".jsp"/>
+	</mvc:view-resolvers>
+	
+<!-- 코드입력해야함 db코드 -->
+	
+	<!-- 정적페이지 -->
+	<mvc:view-controller path="/admin/index.do"/>
+	<mvc:view-controller path="/admin/board/index.do"/>
+	<mvc:view-controller path="/admin/board/view.do"/>
+	<mvc:view-controller path="/admin/board/write.do"/>
+</beans>
