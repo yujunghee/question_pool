@@ -6,14 +6,14 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
 function loginCheck(){
-	if ( $("#email").val().length < 1 ) {
+	if ( $("#admin_email").val().length < 1 ) {
 		alert("이메일을 입력해주세요.");
-		$("#email").val().focus();
+		$("#admin_email").val().focus();
 		return false;
 	}
-	if ( $("#password").val().length < 1 ) {
+	if ( $("#admin_pwd").val().length < 1 ) {
 		alert("비밀번호를 입력해주세요.");
-		$("#password").val().focus();
+		$("#admin_pwd").val().focus();
 		return false;
 	}
 	var f = document.board;
@@ -68,10 +68,10 @@ function CookieVal(cookieName) {
 				<div class="infoBox">
 					<dl>
 						<dt>
-							<label for="eamil"><strong>이메일</strong></label>
+							<label for="admin_eamil"><strong>이메일</strong></label>
 						</dt>
 						<dd>
-							<input type="text" id="email" name="email" value="" title="이메일을 입력해주세요." style="ime-mode:inactive"/>
+							<input type="text" id="admin_email" name="admin_email" value="" title="이메일을 입력해주세요." style="ime-mode:inactive"/>
 						</dd>
 					</dl>
 					<dl>
@@ -79,7 +79,7 @@ function CookieVal(cookieName) {
 							<label for="password"><strong>비밀번호</strong></label>
 						</dt>
 						<dd>
-							<input type="password" id="password" name="password" value="" title="비밀번호를 입력해주세요." />
+							<input type="password" id="admin_pwd" name="admin_pwd" value="" title="비밀번호를 입력해주세요." />
 						</dd>
 					</dl>
 				</div>
