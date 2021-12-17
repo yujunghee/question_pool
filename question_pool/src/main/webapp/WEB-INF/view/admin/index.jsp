@@ -56,7 +56,7 @@ function CookieVal(cookieName) {
 <body onload="userid_chk();">
 <div id="login">
 	<div class="title">
-		<h1>SAMPLE <span>신기하다앙아아</span></h1>
+		<h1>아무거나 <span>신기하다앙아아</span></h1>
 		<p>관리자 로그인 후 이용가능합니다.</p>
 	</div>
 	<div class="login"> 
