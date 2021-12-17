@@ -9,7 +9,6 @@
 <div id="wrap">
 	<div id="canvas">
 		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
-		
 		<div id="container">
 			<form name="frm" id="frm" action="insert.do" method="post" enctype="multipart/form-data">
 				<div id="content">
@@ -34,7 +33,6 @@
 							<input type="text" name="example_content" style="width:500px;"><br><br>
 						</div>
 					</div>
-						
 				</div>
 			</form>
 		</div>
