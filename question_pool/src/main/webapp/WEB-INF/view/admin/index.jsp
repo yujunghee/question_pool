@@ -3,6 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 </head>
 <body>
 <%@ include file="/WEB-INF/view/admin/include/top.jsp" %>

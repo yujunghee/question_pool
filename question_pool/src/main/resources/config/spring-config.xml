@@ -7,7 +7,7 @@
 				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 				http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	<!-- 컴퍼넌트 스캔 -->
-	<context:component-scan base-package="main,admin"/>
+	<context:component-scan base-package="admin"/>
 	<!-- 어노테이션 활성화 -->
 	<mvc:annotation-driven/>
 	<!-- default servlet -->
@@ -27,9 +27,10 @@
 		<property name="password" value="1234"/>
 	</bean>
 	
-	<!-- SqlSessionFactory -->
+	
+	<!-- SqpSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/> <!-- 참조(ref)하는것은 위 DBCP의 bean id -->
+		<property name="dataSource" ref="dataSource"/>
 		<property name="mapperLocations" value="classpath:/mapper/**/*.xml"/>
 	</bean>
 	
@@ -42,17 +43,6 @@
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="UTF-8"/>
 		<property name="maxUploadSize" value="10000000"/>
-	</bean>
-	
-	<!-- SqpSessionFactory -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="mapperLocations" value="classpath:/mapper/**/*.xml"/>
-	</bean>
-	
-	<!-- dao에서 주입받을 객체 -->
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="sqlSessionFactory"/>
 	</bean>
 	<!-- 정적페이지 -->
 	<mvc:view-controller path="/admin/index.do"/>
