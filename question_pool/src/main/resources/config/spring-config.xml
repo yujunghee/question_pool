@@ -19,7 +19,23 @@
 	</mvc:view-resolvers>
 	
 	<!-- TODO 코드입력해야함 db코드 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/question_pool"/>
+		<property name="username" value="question_poold"/>
+		<property name="password" value="1234"/>
+	</bean>
 	
+	<!-- SqpSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations" value="classpath:/mapper/**/*.xml"/>
+	</bean>
+	
+	<!-- dao에서 주입받을 객체 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"/>
+	</bean>
 	<!-- 정적페이지 -->
 	<mvc:view-controller path="/admin/index.do"/>
 	<mvc:view-controller path="/admin/board/index.do"/>
