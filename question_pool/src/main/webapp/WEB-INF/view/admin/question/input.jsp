@@ -34,6 +34,7 @@
 						</div>
 					</div>
 				</div>
+				<input type="button" value="등록">
 			</form>
 		</div>
 	</div>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="question"><!-- mapper파일의 이름 -->
+
+	<insert id="insert" parameterType="">
+		INSERT INTO question (question_ref, passage, question_content, answer, explanation, exam_no, admin_no) 
+		VALUES (#{question_ref}, #{passage}, #{question_content}, #{answer}, #{explanation}, #{exam_no}, #{admin_no})	
+	</insert>	
+	
+</mapper>

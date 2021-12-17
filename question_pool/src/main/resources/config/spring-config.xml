@@ -18,12 +18,30 @@
 		<mvc:jsp suffix=".jsp"/>
 	</mvc:view-resolvers>
 	
-	<!-- TODO 코드입력해야함 db코드 -->
+	
+	<!-- DBCP 빈등록 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306/question_pool"/>
-		<property name="username" value="question_poold"/>
+		<property name="username" value="question_pool"/>
 		<property name="password" value="1234"/>
+	</bean>
+	
+	<!-- SqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/> <!-- 참조(ref)하는것은 위 DBCP의 bean id -->
+		<property name="mapperLocations" value="classpath:/mapper/**/*.xml"/>
+	</bean>
+	
+	<!-- dao에서 주입받을 객체 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<!-- 파일 업로드 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="maxUploadSize" value="10000000"/>
 	</bean>
 	
 	<!-- SqpSessionFactory -->
