@@ -70,16 +70,20 @@ $(window).load(function(){
 		<div id="menu">
   			<ul class="menu">
   				<li><a href="<%=request.getContextPath()%>/admin/member/index.do" class="parent"><span>회원관리</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/product/index.do" class="parent"><span>상품관리</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/board/index.do" class="parent"><span>게시판</span></a>
+  				<li><a href="<%=request.getContextPath()%>/admin/question/school.do" class="parent"><span>학교등록</span></a></li>
+				<li><a href="<%=request.getContextPath()%>/admin/question/pool.do" class="parent"><span>문제등록/수정</span></a></li>
+				<li><a href="<%=request.getContextPath()%>/admin/board/notice.do" class="parent"><span>게시판</span></a>
 					<div class="standard_left">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>공지사항</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>Q&A</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/board/notice.do"><span>공지사항</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/board/qa.do"><span>Q&A</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/board/testdate.do"><span>시험일정</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/board/community.do"><span>커뮤니티</span></a></li>
 					</ul>
 					</div>
 				</li>
 				<li><a href="<%=request.getContextPath()%>/admin/admin/index.do" class="parent"><span>관리자관리</span></a></li>
+				<li><a href="<%=request.getContextPath()%>/admin/payment/index.do" class="parent"><span>결제관리</span></a></li>
 			</ul>
 		</div>
 		<!--//gnb-->

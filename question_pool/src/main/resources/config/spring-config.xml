@@ -18,7 +18,7 @@
 		<mvc:jsp suffix=".jsp"/>
 	</mvc:view-resolvers>
 	
-<!-- 코드입력해야함 db코드 -->
+	<!-- TODO 코드입력해야함 db코드 -->
 	
 	<!-- 정적페이지 -->
 	<mvc:view-controller path="/admin/index.do"/>
