@@ -1,5 +1,8 @@
 package question;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class QuestionController {
 	
 	@Autowired
-	
+	QuestionService questionService;
 	
 	@GetMapping("/admin/question/pool.do")
 	public String pool() {
@@ -16,16 +19,15 @@ public class QuestionController {
 	}
 	
 	@RequestMapping("/admin/question/insert.do")
-	public String insert() {
+	public String insert(QuestionVo vo, HttpServletRequest req) {
 		
-		int r = boardService.insert(vo);
+		int r = questionService.insert(vo);
 		
 		if(r > 0) {
 			req.setAttribute("msg", "정상적으로 등록되었습니다.");
-			req.setAttribute("url", "index.do");
+			req.setAttribute("url", "/question_pool/admin/question/input.do");
 		} else {
-			req.setAttribute("msg", "등록 오류"); //r=0일때 오류안뜨게 try-catch해주기(dao에서)
-			req.setAttribute("url", "write.do");
+			req.setAttribute("msg", "등록 오류"); 
 		}
 		return "admin/include/return";
 	}
