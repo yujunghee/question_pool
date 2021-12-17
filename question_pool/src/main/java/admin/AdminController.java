@@ -12,6 +12,10 @@ public class AdminController {
 	
 	@GetMapping("/admin/login.do")
 	public String adminlogin() {
+		return "admin/login";
+	}
+	@GetMapping("/admin/index.do")
+	public String adminmainpage() {
 		return "admin/index";
 	}
 	
