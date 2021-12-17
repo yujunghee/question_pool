@@ -25,5 +25,6 @@
 	<mvc:view-controller path="/admin/board/index.do"/>
 	<mvc:view-controller path="/admin/board/view.do"/>
 	<mvc:view-controller path="/admin/board/write.do"/>
+	
 	<mvc:view-controller path="/admin/question/input.do"/>
 </beans>

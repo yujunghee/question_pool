@@ -10,7 +10,7 @@
 	<div id="canvas">
 		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 		
-		<div id="container" style="width:1200px;">
+		<div id="container">
 			<form name="frm" id="frm" action="insert.do" method="post" enctype="multipart/form-data">
 				<div id="content">
 					<div class="con_tit">

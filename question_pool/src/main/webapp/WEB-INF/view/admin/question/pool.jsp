@@ -11,7 +11,6 @@
 		<!-- S T A R T :: headerArea-->
 		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 		<!-- E N D :: headerArea--> 
-		
 		<!-- 학교/연도/회차 선택 페이지 -->
 		
 	</div>
