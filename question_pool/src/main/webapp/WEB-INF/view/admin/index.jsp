@@ -6,9 +6,9 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
 function loginCheck(){
-	if ( $("#id").val().length < 1 ) {
-		alert("아이디를 입력해주세요.");
-		$("#id").val().focus();
+	if ( $("#email").val().length < 1 ) {
+		alert("이메일을 입력해주세요.");
+		$("#email").val().focus();
 		return false;
 	}
 	if ( $("#password").val().length < 1 ) {
@@ -24,6 +24,7 @@ function loginCheck(){
 	   document.cookie = "cookie_userid=null;path=/;expires="+now;
 	}
 	return true;
+	
 }
 
 function userid_chk() {
@@ -56,7 +57,7 @@ function CookieVal(cookieName) {
 <body onload="userid_chk();">
 <div id="login">
 	<div class="title">
-		<h1>SAMPLE <span>신기하다앙아아</span></h1>
+		<h1><span>This Is The Admin Page</span></h1>
 		<p>관리자 로그인 후 이용가능합니다.</p>
 	</div>
 	<div class="login"> 
@@ -67,10 +68,10 @@ function CookieVal(cookieName) {
 				<div class="infoBox">
 					<dl>
 						<dt>
-							<label for="id"><strong>아이디</strong></label>
+							<label for="eamil"><strong>이메일</strong></label>
 						</dt>
 						<dd>
-							<input type="text" id="id" name="id" value="" title="아이디를 입력해주세요." style="ime-mode:inactive"/>
+							<input type="text" id="email" name="email" value="" title="이메일을 입력해주세요." style="ime-mode:inactive"/>
 						</dd>
 					</dl>
 					<dl>
