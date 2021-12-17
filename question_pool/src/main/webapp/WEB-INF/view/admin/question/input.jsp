@@ -16,11 +16,12 @@
 						<h2>문제등록/수정</h2>
 					</div>
 					<div class="con">
-						지문<textarea name="question" id="question" rows="20" cols="70"></textarea>
-						참조번호<textarea name="refno" id="refno" rows="5" cols="10"></textarea><br>
-						문제<textarea name=question id=question rows="20" cols="70"></textarea>
-						<div class="ex" style="float:right;">
-							보기<br><br>
+						지문<textarea name="passage" id="passage	" rows="20" cols="70"></textarea>
+						참조번호<textarea name="question_ref" id="question_ref" rows="5" cols="10"></textarea><br>
+						문제<textarea name="question_content" id="question_content" rows="20" cols="70"></textarea>
+						해설<textarea name="explanation" id="explanation" rows="20" cols="70"></textarea><br>
+						<div class="ex">
+							<br><br>
 							<input type="RADIO" name="exmaple" value="A">&nbsp;&nbsp;&nbsp;
 							<input type="text" name="example_content" style="width:500px;"><br><br>
 							<input type="RADIO" name="exmaple" value="B">&nbsp;&nbsp;&nbsp;
@@ -34,7 +35,7 @@
 						</div>
 					</div>
 				</div>
-				<input type="button" value="등록">
+				<input type="submit" value="등록" style="width:150px;height:30px;float:right;">
 			</form>
 		</div>
 	</div>
