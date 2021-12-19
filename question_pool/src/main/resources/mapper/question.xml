@@ -7,4 +7,6 @@
 		VALUES (#{question_ref}, #{passage}, #{question_content}, #{explanation})	
 	</insert>	
 	
+	<insert id="schoolinsert" parameterType="question.QuestionVo">
+	</insert>
 </mapper>

@@ -31,4 +31,9 @@ public class QuestionController {
 		}
 		return "admin/include/return";
 	}
+	
+	@GetMapping("/admin/question/school.do")
+	public String school() {
+		return "admin/question/school"; //학교등록페이지로 이동
+	}
 }

@@ -24,12 +24,12 @@ public class AdminController {
 	}
 	
 	@PostMapping("/admin/login.do")
-	public String adminlogin(AdminVo vo, HttpSession sess, Model model) {
+	public String adminloginprocess(AdminVo vo, HttpSession sess, Model model) {
 		if(service.login(vo, sess)) {
-			return "redirect:/admin/index.do";
+			return "redirect:index.do";
 		}else {
 			model.addAttribute("msg","이메일, 비밀번호를 확인해주세요");
-		return "include/return";
+		return "admin/include/return";
 		}
 	}
 	
