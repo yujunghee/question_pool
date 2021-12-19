@@ -21,13 +21,7 @@ public class AdminController {
 	@GetMapping("/admin/index.do")
 	public String adminmainpage() {
 		return "admin/index";
-	}
-	
-	@GetMapping("/admin/board/notice.do")
-	public String adminNotice() {
-		return "admin/board/notice";
-	}
-	
+	}	
 	
 	@PostMapping("/admin/login.do")
 	public String adminloginprocess(AdminVo vo, HttpSession sess, Model model) {
@@ -37,6 +31,11 @@ public class AdminController {
 			model.addAttribute("msg","이메일, 비밀번호를 확인해주세요");
 		return "admin/include/return";
 		}
+	}
+	
+	@GetMapping("/admin/board/index.do")
+	public String adminBoardMain() {
+		return "admin/board/index";
 	}
 	
 }
