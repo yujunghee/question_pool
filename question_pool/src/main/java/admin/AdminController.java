@@ -23,6 +23,12 @@ public class AdminController {
 		return "admin/index";
 	}
 	
+	@GetMapping("/admin/board/notice.do")
+	public String adminNotice() {
+		return "admin/board/notice";
+	}
+	
+	
 	@PostMapping("/admin/login.do")
 	public String adminloginprocess(AdminVo vo, HttpSession sess, Model model) {
 		if(service.login(vo, sess)) {
