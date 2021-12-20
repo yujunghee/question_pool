@@ -10,8 +10,8 @@ public class QuestionServiceImple implements QuestionService {
 	QuestionDao dao;
 	
 	@Override
-	public int insert(QuestionVo vo) {
-		return dao.insert(vo);
+	public int insert(QuestionVo qv,ExampleVo ev) {
+		return dao.insert(qv, ev);
 	}
 
 }

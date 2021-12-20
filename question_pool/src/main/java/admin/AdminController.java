@@ -33,9 +33,4 @@ public class AdminController {
 		}
 	}
 	
-	
-	@GetMapping("/admin/question/pool.do")
-	public String pool() {
-		return "admin/question/pool"; //문제등록(학교/연도/회차선택창으로 이동)
-	}
 }

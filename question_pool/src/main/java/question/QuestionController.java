@@ -18,12 +18,17 @@ public class QuestionController {
 		return "admin/question/pool"; //문제등록(학교/연도/회차선택창으로 이동)
 	}
 	
+	@GetMapping("/admin/question/input.do")
+	public String input() {
+		return "admin/question/input";
+	}
+	
 	@RequestMapping("/admin/question/insert.do")
-	public String insert(QuestionVo vo, HttpServletRequest req) {
+	public String insert(QuestionVo qv, ExampleVo ev, HttpServletRequest req) {
 		
-		int r = questionService.insert(vo);
+		int r = questionService.insert(qv, ev);
 		
-		if(r > 0) {
+		if(r > 1) {
 			req.setAttribute("msg", "정상적으로 등록되었습니다.");
 			req.setAttribute("url", "/question_pool/admin/question/input.do");
 		} else {
