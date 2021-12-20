@@ -50,18 +50,17 @@ function CookieVal(cookieName) {
 	}
 	return "null" ;
 }
-//-->
 
 </script>
 </head>
 <body onload="userid_chk();">
 <div id="login">
 	<div class="title">
-		<h1>누나 이건 내가 바꿔보는거다아아아 <span>신기하다앙아아</span></h1>
+		<h1><span>관리자페이지입니다</span></h1>
 		<p>관리자 로그인 후 이용가능합니다.</p>
 	</div>
 	<div class="login"> 
-	<form name="board" id="board" method="post" action="" onsubmit="return loginCheck();">
+	<form name="board" id="board" method="post" action="login.do" onsubmit="return loginCheck();">
 		<fieldset>
 			<legend>관리자모드 로그인</legend>
 			<div class="bgBox">
@@ -84,7 +83,7 @@ function CookieVal(cookieName) {
 					</dl>
 				</div>
 				<!-- //infoBox -->
-				<input type="image" src="<%=request.getContextPath()%>/img/admin/member_login_btn.gif" alt="로그인" class="loginBtn" title="" />
+				<input type="image" src="<%=request.getContextPath()%>/img/admin/member_login_btn.gif" alt="로그인" class="loginBtn" />
 			</div>
 			<!-- //bgBox -->
 			<div class="joinList">
