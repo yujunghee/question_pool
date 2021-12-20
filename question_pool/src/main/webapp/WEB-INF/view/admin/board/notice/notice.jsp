@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -61,6 +63,7 @@
 			                                    <a href="view.do?notice_no=${vo.notice_no }">${vo.notice_writer }</a>
 			                                </td>
 			                                <td class="date">${vo.notice_date }</td>
+			                                <td class="date">${vo.notice_readcount }</td>
 			                            </tr>
 			                            </c:forEach>
 			                         </c:if>
