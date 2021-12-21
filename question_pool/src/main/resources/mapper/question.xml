@@ -13,6 +13,5 @@
 				('c', #{example_c}),
 				('d', #{example_d})
 	</insert>
-	<insert id="schoolinsert" parameterType="question.QuestionVo">
-	</insert>
+	
 </mapper>
