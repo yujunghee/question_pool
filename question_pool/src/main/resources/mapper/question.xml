@@ -2,11 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="question"><!-- mapper파일의 이름 -->
 
-	<insert id="insert" parameterType="question.QuestionVo">
+	<insert id="insert_question" parameterType="question.QuestionVo">
 		INSERT INTO question (question_ref, passage, question_content, explanation) 
 		VALUES (#{question_ref}, #{passage}, #{question_content}, #{explanation})	
 	</insert>	
-	
-	<insert id="schoolinsert" parameterType="question.QuestionVo">
+	<insert id="insert_example" parameterType="question.ExampleVo">
+		INSERT INTO example(example, example_content)
+		VALUES 	('a', #{example_a}),
+				('b', #{example_b}),
+				('c', #{example_c}),
+				('d', #{example_d})
 	</insert>
+	
 </mapper>

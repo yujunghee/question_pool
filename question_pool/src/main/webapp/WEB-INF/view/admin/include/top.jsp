@@ -61,7 +61,7 @@ $(window).load(function(){
 		<!-- util : s -->
 		<div class="util">
 			<ul>
-				<li class="frist"><a href="#" onclick="">Home</a></li>
+				<li class="frist"><a href="/question_pool/admin/index.do">Home</a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/logout.do">LogOut</a></li>
 			</ul>
 		</div>
@@ -72,10 +72,10 @@ $(window).load(function(){
   				<li><a href="<%=request.getContextPath()%>/admin/member/index.do" class="parent"><span>회원관리</span></a></li>
   				<li><a href="<%=request.getContextPath()%>/admin/question/school.do" class="parent"><span>학교등록</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/question/pool.do" class="parent"><span>문제등록/수정</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/board/notice.do" class="parent"><span>게시판</span></a>
+				<li><a href="<%=request.getContextPath()%>/admin/board/index.do" class="parent"><span>게시판</span></a>
 					<div class="standard_left">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/admin/board/notice.do"><span>공지사항</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/board/notice/notice.do"><span>공지사항</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/admin/board/qa.do"><span>Q&A</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/admin/board/testdate.do"><span>시험일정</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/admin/board/community.do"><span>커뮤니티</span></a></li>

@@ -10,10 +10,34 @@ public class QuestionVo {
 	private String explanation;
 	private int exam_no;
 	private int admin_no;
-	
+
 	private int school_no;
 	private String school_name;
 	
+	private int year;
+	private int number_of_questions;
+	private int exam_time;
+	
+	
+	
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
+	public int getNumber_of_questions() {
+		return number_of_questions;
+	}
+	public void setNumber_of_questions(int number_of_questions) {
+		this.number_of_questions = number_of_questions;
+	}
+	public int getExam_time() {
+		return exam_time;
+	}
+	public void setExam_time(int exam_time) {
+		this.exam_time = exam_time;
+	}
 	public int getSchool_no() {
 		return school_no;
 	}

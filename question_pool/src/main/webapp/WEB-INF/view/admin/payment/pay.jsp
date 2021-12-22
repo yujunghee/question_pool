@@ -67,12 +67,14 @@
         <ul class="">  
             <li>
                 <ul class="">
-                    <li>홍길동</li>
-                    <li>aaa@gmail.com</li>
-                    <li>30일권</li>
-                    <li>30000</li>
-                    <li>2021-12-30</li>
-                    <li><input class="submit" type="submit" value="환불 요청" ></li>
+                	<c:forEach var="vo" items="${data}">
+                    <li>${vo.user_name }</li> 
+                    <li>${vo.user_email }</li>
+                    <li>${vo.category }</li>
+                    <li>${vo.price }</li>
+                    <li>${vo.pay_date }</li>
+                    <li><input class="submit" type="submit" value="환불 요청" ></li> 
+                    </c:forEach>
                 </ul>  
             </li>
         </ul>

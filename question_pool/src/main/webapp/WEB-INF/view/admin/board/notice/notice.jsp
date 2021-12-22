@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -16,14 +18,14 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>학교목록</h2>
+					<h2>공지사항 - [목록]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="blist">
-							<p><span><strong>총 111개</strong>  |  1/12페이지</span></p>
+							<p><span><strong>총 ${totCount }개</strong>  |  ${NoticeVo.page }/${totPage }페이지</span></p>
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
@@ -45,54 +47,26 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
-										<td>111</td>
-										<td class="title"><a href="view.do">제목입니다.</a></td>
-										<td>2020-01-01 11:11:11</td>
-										<td>홍길동</td>
-										<td class="last">9</td>
-									</tr>
-									<tr>
-										<td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
-										<td>111</td>
-										<td class="title"><a href="view.do">제목입니다.</a></td>
-										<td>2020-01-01 11:11:11</td>
-										<td>홍길동</td>
-										<td class="last">9</td>
-									</tr>
-									<tr>
-										<td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
-										<td>111</td>
-										<td class="title"><a href="view.do">제목입니다.</a></td>
-										<td>2020-01-01 11:11:11</td>
-										<td>홍길동</td>
-										<td class="last">9</td>
-									</tr>
-									<tr>
-										<td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
-										<td>111</td>
-										<td class="title"><a href="view.do">제목입니다.</a></td>
-										<td>2020-01-01 11:11:11</td>
-										<td>홍길동</td>
-										<td class="last">9</td>
-									</tr>
-									<tr>
-										<td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
-										<td>111</td>
-										<td class="title"><a href="view.do">제목입니다.</a></td>
-										<td>2020-01-01 11:11:11</td>
-										<td>홍길동</td>
-										<td class="last">9</td>
-									</tr>
-									<tr>
-										<td class="first"><input type="checkbox" name="no" id="no" value=""/></td>
-										<td>111</td>
-										<td class="title"><a href="view.do">제목입니다.</a></td>
-										<td>2020-01-01 11:11:11</td>
-										<td>홍길동</td>
-										<td class="last">9</td>
-									</tr>
+									<c:if test="${empty list }">
+			                            <tr>
+			                                <td class="first" colspan="8">등록된 글이 없습니다.</td>
+			                            </tr>
+									</c:if>
+									<c:if test="${!empty list }">
+										<c:forEach var="vo" items="${list }">                                    
+			                            <tr>
+			                                <td>${vo.notice_no }</td>
+			                                <td class="txt_l">
+			                                    <a href="view.do?notice_no=${vo.notice_no }">${vo.notice_title }</a>
+			                                </td>
+			                                <td class="writer">
+			                                    <a href="view.do?notice_no=${vo.notice_no }">${vo.notice_writer }</a>
+			                                </td>
+			                                <td class="date">${vo.notice_date }</td>
+			                                <td class="date">${vo.notice_readcount }</td>
+			                            </tr>
+			                            </c:forEach>
+			                         </c:if>
 								</tbody>
 							</table>
 							</form>

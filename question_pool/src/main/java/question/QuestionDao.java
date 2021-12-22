@@ -10,10 +10,10 @@ public class QuestionDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	public int insert(QuestionVo vo) {
-		int r = -1; //0개가 insert될수도있음
+	public int insert(QuestionVo qv,ExampleVo ev) {
+		int r = -1;
 		try {
-			r = sqlSessionTemplate.insert("question.insert",vo);
+			r = sqlSessionTemplate.insert("question.insert_question",qv)+sqlSessionTemplate.insert("question.insert_example",ev);
 		}catch(Exception e) {
 			r=0;
 		}
