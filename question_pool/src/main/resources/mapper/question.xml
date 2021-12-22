@@ -8,10 +8,7 @@
 	</insert>	
 	<insert id="insert_example" parameterType="question.ExampleVo">
 		INSERT INTO example(example, example_content)
-		VALUES 	('a', #{example_a}),
-				('b', #{example_b}),
-				('c', #{example_c}),
-				('d', #{example_d})
+		VALUES (#{example},#{example_content})
 	</insert>
 	<insert id="schoolinsert" parameterType="question.QuestionVo">
 	</insert>

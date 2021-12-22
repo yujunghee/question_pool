@@ -3,6 +3,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script>
+	$(function(){
+		$('input[type="RADIO"]').click(function(){
+	 	   if ($(this).is(':checked')){
+		   		var radioVal = $(this).val();
+		   		console.log(radioVal);
+			}
+		});
+	});
+</script>
 </head>
 <body> 
 <!-- 문제등록/수정페이지 -->
@@ -23,14 +33,14 @@
 						해설<textarea name="explanation" id="explanation" rows="20" cols="70"></textarea><br>
 						<div class="ex">
 							<br><br>
-							<input type="RADIO" name="a" value="a">&nbsp;&nbsp;&nbsp;
-							(A) <input type="text" name="example_a" style="width:500px;"><br><br>
-							<input type="RADIO" name="b" value="b">&nbsp;&nbsp;&nbsp;
-							(B) <input type="text" name="example_b" style="width:500px;"><br><br>
-							<input type="RADIO" name="c" value="c">&nbsp;&nbsp;&nbsp;
-							(C) <input type="text" name="example_c" style="width:500px;"><br><br>
-							<input type="RADIO" name="d" value="d">&nbsp;&nbsp;&nbsp;
-							(D) <input type="text" name="example_d" style="width:500px;"><br><br>
+							<input type="RADIO" name="example" value="a">&nbsp;&nbsp;&nbsp;
+							(A) <input type="text" name="example_content" style="width:500px;"><br><br>
+							<input type="RADIO" name="example" value="b">&nbsp;&nbsp;&nbsp;
+							(B) <input type="text" name="example_content" style="width:500px;"><br><br>
+							<input type="RADIO" name="example" value="c">&nbsp;&nbsp;&nbsp;
+							(C) <input type="text" name="example_content" style="width:500px;"><br><br>
+							<input type="RADIO" name="example" value="d">&nbsp;&nbsp;&nbsp;
+							(D) <input type="text" name="example_content" style="width:500px;"><br><br>
 						</div>
 						<input type="submit" value="등록" style="width:150px;height:30px;float:right;">
 					</div>

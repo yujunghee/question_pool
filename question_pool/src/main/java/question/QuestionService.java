@@ -2,5 +2,6 @@ package question;
 
 public interface QuestionService {
 
-	int insert(QuestionVo qv,ExampleVo ev);
+	int insertQuestion(QuestionVo qv);
+	int insertExample(ExampleVo ev);
 }
