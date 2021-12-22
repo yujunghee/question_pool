@@ -13,5 +13,11 @@
 				('c', #{example_c}),
 				('d', #{example_d})
 	</insert>
-	
+	<insert id="insert_school" parameterType="question.QuestionVo">
+		INSERT INTO school (school_name)
+		VALUES (#{school_name})
+	</insert>
+	<select id="selectList" resultType="question.QuestionVo" parameterType="question.QuestionVo">
+		SELECT * FROM school 
+	</select>
 </mapper>
