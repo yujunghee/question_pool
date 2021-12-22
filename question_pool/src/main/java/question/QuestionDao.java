@@ -1,8 +1,6 @@
 package question;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +25,19 @@ public class QuestionDao {
 	public int insertExample(ExampleVo ev) {
 		return sqlSessionTemplate.insert("question.insert_example",ev);
 	}
+
+	public int insertSchool(QuestionVo qv) {
+		int r = -1;
+		try {
+			r = sqlSessionTemplate.insert("question.insert_school",qv);
+		}catch(Exception e) {
+			r=0;
+		}
+		return r;
+	}
+
+	public List<QuestionVo> selectList(QuestionVo vo) {
+		return sqlSessionTemplate.selectList("question.selectList",vo);
+	}
+
 }

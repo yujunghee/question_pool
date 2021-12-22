@@ -10,6 +10,11 @@
 		INSERT INTO example(example, example_content)
 		VALUES (#{example},#{example_content})
 	</insert>
-	<insert id="schoolinsert" parameterType="question.QuestionVo">
+	<insert id="insert_school" parameterType="question.QuestionVo">
+		INSERT INTO school (school_name)
+		VALUES (#{school_name})
 	</insert>
+	<select id="selectList" resultType="question.QuestionVo" parameterType="question.QuestionVo">
+		SELECT * FROM school 
+	</select>
 </mapper>
