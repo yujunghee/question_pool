@@ -1,6 +1,5 @@
 package question;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,11 +48,12 @@ public class QuestionController {
 		return "admin/include/return";
 	}
 
-	@GetMapping("/admin/question/school.do")
+	@GetMapping("/admin/school/school.do")
 	public String school() {
 		return "admin/question/school"; // 학교등록페이지로 이동
 	}
-	@GetMapping("/admin/question/write.do")
+	
+	@GetMapping("/admin/school/write.do")
 	public String indexschool(Model model, QuestionVo vo) {
 		List<QuestionVo> list = questionService.selectList(vo);
 		model.addAttribute("list", list);

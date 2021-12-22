@@ -3,6 +3,7 @@ package question;
 public class QuestionVo {
 
 	private int question_no;
+	private int question_realnum;
 	private int question_ref;
 	private String passage;
 	private String question_content;
@@ -19,7 +20,12 @@ public class QuestionVo {
 	private int exam_time;
 	
 	
-	
+	public int getQuestion_realnum() {
+		return question_realnum;
+	}
+	public void setQuestion_realnum(int question_realnum) {
+		this.question_realnum = question_realnum;
+	}
 	public int getYear() {
 		return year;
 	}
