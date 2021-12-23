@@ -14,8 +14,6 @@ function goSaveSchool(){
 	$("#frm").submit();
 }
 function goSaveExam(){
-	
-	
 	if($("#year").val()==''){
 		alert("년도입력");
 		$("#year").focus();
@@ -31,7 +29,12 @@ function goSaveExam(){
 		$("#exam_time").focus();
 		return;
 	}
-	$("#frm").submit();
+	if($("#semester").val()==''){
+		alert("학기 입력");
+		$("#semester").focus();
+		return;
+	}
+	$("#frm1").submit();
 }
 </script>
 </head>
@@ -78,7 +81,12 @@ function goSaveExam(){
 										<a class="btns" style="cursor:pointer;" href="javascript:goSaveSchool();"><strong>저장</strong></a>
 										</div>
 										</div>
-									<form method="post" name="frm1" id="frm1" action="insertexams.do" enctype="multipart/form-data">
+                                
+									<form method="post" name="frm1" id="frm1" action="insertexam.do" enctype="multipart/form-data">
+								<c:forEach var="vo" items="${list}">
+                                <label><input type="radio" name="school_no" value="${vo.school_no}">
+                                 ${vo.school_name}</label>
+                                </c:forEach>
 								<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -89,13 +97,7 @@ function goSaveExam(){
 									<col width="15%" />
 								</colgroup>
 								<tbody>
-								<c:forEach var="vo" items="${list}">
-                           		<tr>
-                                <td>${vo.school_no}</td>
-                                </tr>
-                                </c:forEach>
 									<tr>
-										
 										<th scope="row"><label for="">년도</label></th>
 										<td colspan="10">
 											<input type="text" id="year" name="year" class="w100" />	
@@ -113,19 +115,22 @@ function goSaveExam(){
 											<input type="text" id="exam_time" name="exam_time" class="w100"/>	
 										</td>
 									</tr>
+									<tr>
+										<th scope="row"><label for="">학기</label></th>
+										<td colspan="10">
+											<input type="text" id="semester" name="semester" class="w100"/>	
+										</td>
+									</tr>
 								</tbody>
 							</table>
 							<input type="hidden" name="cmd" value="write" />
-							</form>
 							<div class="btn">
-								<div class="btnLeft">
-									<a class="btns" href="school.do"><strong>목록</strong></a>
-								</div>
 								<div class="btnRight">
 									<a class="btns" style="cursor:pointer;" href="javascript:goSaveExam();"><strong>저장</strong></a>
 									
 								</div>
 							</div>
+							</form>
 							<!--//btn-->
 						</div>
 						<!-- //bread -->

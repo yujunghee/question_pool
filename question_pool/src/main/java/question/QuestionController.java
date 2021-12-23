@@ -9,12 +9,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import school.SchoolService;
+import school.SchoolVo;
 
 @Controller
 public class QuestionController {
 
 	@Autowired
 	QuestionService questionService;
+	
+	@Autowired
+	SchoolService schoolService;
 
 	@GetMapping("/admin/question/pool.do")
 	public String pool() {
@@ -48,24 +55,21 @@ public class QuestionController {
 		return "admin/include/return";
 	}
 
-	@GetMapping("/admin/school/school.do")
-	public String school() {
-		return "admin/question/school"; // 학교등록페이지로 이동
-	}
 	
 	@GetMapping("/admin/school/write.do")
-	public String indexschool(Model model, QuestionVo vo) {
-		List<QuestionVo> list = questionService.selectList(vo);
+	public String indexschool(Model model, SchoolVo vo) {
+		
+		List<SchoolVo> list = schoolService.selectList(vo);
 		model.addAttribute("list", list);
-		return "admin/question/write"; // 학교등록페이지로 이동
+		return "admin/school/write"; // 학교등록페이지로 이동
 	}
 
-	@RequestMapping("/admin/question/insertschool.do")
-	public String insertSchool(QuestionVo qv, HttpServletRequest req) {
-		int r = questionService.insertSchool(qv);
+	@RequestMapping("/admin/school/insertschool.do")
+	public String insertSchool(SchoolVo sv, HttpServletRequest req) {
+		int r = questionService.insertSchool(sv);
 		if (r > 0) {
 			req.setAttribute("msg", "정상적으로 등록되었습니다.");
-			req.setAttribute("url", "/question_pool/admin/question/school.do");
+			req.setAttribute("url", "/question_pool/admin/school/write.do");
 		} else {
 			req.setAttribute("msg", "등록 오류");
 			req.setAttribute("url", "write.do");
@@ -74,4 +78,17 @@ public class QuestionController {
 		return "admin/include/return";
 	}
 
+	@RequestMapping("/admin/school/insertexam.do")
+	public String insertExam(QuestionVo qv, HttpServletRequest req) {
+		qv.setSchool_no(Integer.parseInt(req.getParameter("school_no")));
+		int r = questionService.insertExam(qv);
+		if (r > 0) {
+			req.setAttribute("msg", "정상적으로 등록되었습니다.");
+			req.setAttribute("url", "/question_pool/admin/question/pool.do");
+		} else {
+			req.setAttribute("msg", "등록 오류");
+			req.setAttribute("url", "write.do");
+		}
+		return "admin/include/return";
+	}
 }
