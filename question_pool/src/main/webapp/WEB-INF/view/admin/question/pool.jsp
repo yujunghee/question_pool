@@ -14,6 +14,7 @@
 		<!-- 학교/연도/회차 선택 페이지 -->
 		
 		<a href="write.do"><input type="button" value="문제등록" style="width:500px;height:200px;"></a> <!-- 임시로 버튼만 만들어둠 -->
+		<a href="edit.do"><input type="button" value="문제수정" style="width:500px;height:200px;"></a> <!-- 임시로 버튼만 만들어둠 -->
 	</div>
 	<!--//canvas -->
 </div>

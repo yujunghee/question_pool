@@ -42,13 +42,15 @@ public class QuestionController {
 		int r1 = questionService.insertQuestion(qv);
 		int r2 = 0;
 		for(int i=0; i<arr2.length; i++) {
-			ev.setExample(arr1[i]);
-			ev.setExample_content(arr2[i]);
-			questionService.insertExample(ev);
-			r2++;
+			if(!arr2[i].equals("")) {
+				ev.setExample(arr1[i]);
+				ev.setExample_content(arr2[i]);
+				questionService.insertExample(ev);
+				r2++;
+			}
 		}
 		
-		if(r1>0 && r2>3) {
+		if(r1>0 && r2>0) {
 			req.setAttribute("msg", "정상적으로 등록되었습니다.");
 			req.setAttribute("url", "/question_pool/admin/question/write.do");
 		} else {
