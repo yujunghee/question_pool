@@ -30,16 +30,18 @@ public class QuestionController {
 	public String insert(QuestionVo qv, ExampleVo ev, HttpServletRequest req) {
 		String[] arr1 = {"a","b","c","d","e"};
 		String[] arr2 = req.getParameterValues("example_content");
+		qv.setAnswer(req.getParameter("example"));
 		
 		int r1 = questionService.insertQuestion(qv);
-		
+		int r2 = 0;
 		for(int i=0; i<arr2.length; i++) {
 			ev.setExample(arr1[i]);
 			ev.setExample_content(arr2[i]);
 			questionService.insertExample(ev);
+			r2++;
 		}
 		
-		if(r1>0) {
+		if(r1>0 && r2>3) {
 			req.setAttribute("msg", "정상적으로 등록되었습니다.");
 			req.setAttribute("url", "/question_pool/admin/question/write.do");
 		} else {

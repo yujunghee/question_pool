@@ -1,17 +1,13 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
 	$(function(){
-		$('input[type="RADIO"]').click(function(){
-	 	   if ($(this).is(':checked')){
-		   		var radioVal = $(this).val();
-		   		console.log(radioVal);
-			}
-		});
-	});
+		console.log("${adminInfo.admin_name}");
+	})
 </script>
 </head>
 	<body> 
@@ -20,13 +16,14 @@
 				<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 				<div id="container" style="width:1200px;">
 					<form name="frm" id="frm" action="insert.do" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="admin_no" value="${adminInfo.admin_no}">
 						<div id="content">
 							<div class="con_tit">
 								<h2>문제등록/수정</h2>
 							</div>
 							<div class="con">
 								<h2>문제번호 : nn번</h2><br>
-								지문<textarea name="passage" id="passage	" rows="20" cols="70"></textarea>
+								지문<textarea name="passage" id="passage" rows="20" cols="70"></textarea>
 								참조번호<textarea name="question_ref" id="question_ref" rows="5" cols="10"></textarea><br>
 								문제<textarea name="question_content" id="question_content" rows="20" cols="70"></textarea>
 								해설<textarea name="explanation" id="explanation" rows="20" cols="70"></textarea><br>
