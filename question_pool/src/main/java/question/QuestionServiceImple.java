@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import school.SchoolVo;
+
 @Service
 public class QuestionServiceImple implements QuestionService {
 
@@ -12,18 +14,24 @@ public class QuestionServiceImple implements QuestionService {
 	QuestionDao dao;
 	
 	@Override
-	public int insert(QuestionVo qv,ExampleVo ev) {
-		return dao.insert(qv, ev);
+	public int insertQuestion(QuestionVo qv) {
+		return dao.insertQuestion(qv);
+	}
+	
+	@Override
+	public int insertExample(ExampleVo ev) {
+		return dao.insertExample(ev);
 	}
 
 	@Override
-	public int insertSchool(QuestionVo qv) {
-		return dao.insertSchool(qv);
+	public int insertSchool(SchoolVo sv) {
+		return dao.insertSchool(sv);
 	}
 
 	@Override
-	public List<QuestionVo> selectList(QuestionVo vo) {
-		return dao.selectList(vo);
+	public int insertExam(QuestionVo qv) {
+		return dao.insertExam(qv);
 	}
+
 
 }

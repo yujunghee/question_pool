@@ -1,12 +1,13 @@
 package question;
 
-import java.util.List;
+import school.SchoolVo;
 
 public interface QuestionService {
 
-	int insert(QuestionVo qv,ExampleVo ev);
+	int insertQuestion(QuestionVo qv);
+	int insertExample(ExampleVo ev);
 
-	int insertSchool(QuestionVo qv);
+	int insertSchool(SchoolVo sv);
 
-	List<QuestionVo> selectList(QuestionVo vo);
+	int insertExam(QuestionVo qv);
 }

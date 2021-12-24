@@ -3,21 +3,22 @@
 <mapper namespace="question"><!-- mapper파일의 이름 -->
 
 	<insert id="insert_question" parameterType="question.QuestionVo">
-		INSERT INTO question (question_ref, passage, question_content, explanation) 
-		VALUES (#{question_ref}, #{passage}, #{question_content}, #{explanation})	
+		INSERT INTO question (question_realnum, question_ref, passage, question_content, explanation, answer, admin_no) 
+		VALUES (#{question_realnum}, #{question_ref}, #{passage}, #{question_content}, #{explanation}, #{answer}, #{admin_no})	
 	</insert>	
 	<insert id="insert_example" parameterType="question.ExampleVo">
 		INSERT INTO example(example, example_content)
-		VALUES 	('a', #{example_a}),
-				('b', #{example_b}),
-				('c', #{example_c}),
-				('d', #{example_d})
+		VALUES (#{example},#{example_content})
 	</insert>
-	<insert id="insert_school" parameterType="question.QuestionVo">
+	<insert id="insert_school" parameterType="school.SchoolVo">
 		INSERT INTO school (school_name)
 		VALUES (#{school_name})
 	</insert>
-	<select id="selectList" resultType="question.QuestionVo" parameterType="question.QuestionVo">
+	<select id="selectList" resultType="school.SchoolVo" parameterType="school.SchoolVo">
 		SELECT * FROM school 
 	</select>
+	<insert id="insert_exam" parameterType="question.QuestionVo">
+		INSERT INTO exam (year, number_of_questions, exam_time, semester, school_no)
+		VALUES (#{year}, #{number_of_questions}, #{exam_time}, #{semester}, #{school_no})
+	</insert>
 </mapper>

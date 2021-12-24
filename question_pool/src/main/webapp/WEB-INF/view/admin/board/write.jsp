@@ -22,9 +22,18 @@ $(function() {
 			//예제 코드
 			//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
 		},
-		fCreator: "createSEditor2"
+		fCreator: "createSEditor2"		
 	});
 });
+function goSave() {
+	if ($("#title").val() == '') {
+		alert("제목을 입력하세요");
+		$("#title").focus();
+		return;
+	}
+	oEditors.getById['content'].exec("UPDATE_CONTENTS_FIELD",[]);			
+	$("#frm").submit();
+}
 </script>
 </head>
 <body> 

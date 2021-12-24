@@ -3,6 +3,7 @@ package question;
 public class QuestionVo {
 
 	private int question_no;
+	private int question_realnum;
 	private int question_ref;
 	private String passage;
 	private String question_content;
@@ -11,15 +12,34 @@ public class QuestionVo {
 	private int exam_no;
 	private int admin_no;
 
-	private int school_no;
-	private String school_name;
 	
 	private int year;
 	private int number_of_questions;
 	private int exam_time;
+	private int semester;
+	private int school_no;
 	
 	
 	
+	
+	public int getSemester() {
+		return semester;
+	}
+	public void setSemester(int semester) {
+		this.semester = semester;
+	}
+	public int getSchool_no() {
+		return school_no;
+	}
+	public void setSchool_no(int school_no) {
+		this.school_no = school_no;
+	}
+	public int getQuestion_realnum() {
+		return question_realnum;
+	}
+	public void setQuestion_realnum(int question_realnum) {
+		this.question_realnum = question_realnum;
+	}
 	public int getYear() {
 		return year;
 	}
@@ -37,18 +57,6 @@ public class QuestionVo {
 	}
 	public void setExam_time(int exam_time) {
 		this.exam_time = exam_time;
-	}
-	public int getSchool_no() {
-		return school_no;
-	}
-	public void setSchool_no(int school_no) {
-		this.school_no = school_no;
-	}
-	public String getSchool_name() {
-		return school_name;
-	}
-	public void setSchool_name(String school_name) {
-		this.school_name = school_name;
 	}
 	public int getQuestion_no() {
 		return question_no;
