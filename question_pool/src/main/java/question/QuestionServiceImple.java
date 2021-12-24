@@ -24,6 +24,11 @@ public class QuestionServiceImple implements QuestionService {
 	}
 
 	@Override
+	public List<QuestionVo> selectQuestionlist(QuestionVo qv) {
+		return dao.selectQuestionlist(qv);
+	}
+	
+	@Override
 	public int insertSchool(SchoolVo sv) {
 		return dao.insertSchool(sv);
 	}
@@ -32,6 +37,7 @@ public class QuestionServiceImple implements QuestionService {
 	public int insertExam(QuestionVo qv) {
 		return dao.insertExam(qv);
 	}
+
 
 
 }

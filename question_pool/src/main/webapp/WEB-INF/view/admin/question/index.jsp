@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script type="text/javascript" src="/question_pool/smarteditor/js/HuskyEZCreator.js"></script>
@@ -55,16 +56,17 @@
 									<col width="15%" />
 								</colgroup>
 								<tbody>
+									<c:forEach var="vo" items="${list}">
 									<tr>
 										<th scope="row"><label for="">문제번호</label></th>
 										<td colspan="10">
-											<input type="text" id="question_realnum" name="question_realnum" title="문제번호를 입력해주세요" style="width:100px;" />	
+											${vo.question_realnum }
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">문제</label></th>
 										<td colspan="10">
-											<input type="text" id="question_content" name="question_content" class="w100" title="문제를 입력해주세요" />	
+											${vo.question_content }
 										</td>
 									</tr>
 									<tr>
@@ -101,6 +103,7 @@
 											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />	
 										</td>
 									</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 							<div class="btn">
