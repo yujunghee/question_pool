@@ -46,5 +46,4 @@
 	</bean>
 	<!-- 정적페이지 -->
 	<mvc:view-controller path="/admin/question/input.do"/>
-	<mvc:view-controller path="/admin/board/notice/write.do"/>
 </beans>

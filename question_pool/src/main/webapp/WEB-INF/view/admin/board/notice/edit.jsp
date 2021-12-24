@@ -6,6 +6,7 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script type="text/javascript" src="/question_pool/smarteditor/js/HuskyEZCreator.js"></script>
 <script src="/question_pool/js/common.js"></script>
+<script src="https://malsup.github.io/jquery.form.js"></script>
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
 	var oEditors;
@@ -18,9 +19,19 @@
 			$("#notice_title").focus();
 			return;
 		}
+		var data = $("#frm").serialize();
 		oEditors.getById['notice_content'].exec("UPDATE_CONTENTS_FIELD",[]);
-		$("#frm").submit();
+		$("#frm").submit();		
 	}
+	$(function(){
+		$("#frm").ajaxForm({
+			url:'update.do',
+			success:function(res) {
+				alert('정상적으로 수정되었습니다.');
+				location.href='view.do?notice_no=${data.notice_no}';
+			}
+		});
+	});
 </script>
 </head>
 <body> 
@@ -41,7 +52,8 @@
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="update.do" enctype="multipart/form-data">
+							<input type="hidden" name=notice_no value="${data.notice_no }">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -55,18 +67,19 @@
 									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="10">
-											<input type="text" id="notice_title" name="notice_title" class="w100" title="제목을 입력해주세요" />	
+											<input type="text" id="notice_title" name="notice_title" class="w100" title="제목을 입력해주세요" value="${data.notice_title }"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">내용</label></th>
 										<td colspan="10">
-											<textarea id="notice_content" name="notice_content" title="내용을 입력해주세요" style="width:100%;"></textarea>	
+											<textarea id="notice_content" name="notice_content" title="내용을 입력해주세요" style="width:100%;">${data.notice_content }</textarea>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">첨부파일</label></th>
 										<td colspan="10">
+											<input type="checkbox" name="delCheck" value="1">기존파일삭제(${data.notice_file_org})<br>
 											<input type="file" id="file" name="file" class="w100" title="첨부파일을 업로드 해주세요." />	
 										</td>
 									</tr>
