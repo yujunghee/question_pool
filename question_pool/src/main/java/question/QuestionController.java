@@ -29,7 +29,7 @@ public class QuestionController {
 	}
 	
 	@GetMapping("/admin/question/write.do")
-	public String input() {
+	public String write() {
 		return "admin/question/write";
 	}
 
