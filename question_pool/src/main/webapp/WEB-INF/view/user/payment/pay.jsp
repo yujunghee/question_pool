@@ -38,6 +38,7 @@ function product(pname ,pay){
 	});
 }
 
+
 </script>
 <body>  
 <input type="button" value="30일권" onclick="product('30일권',100)"/><br>
