@@ -27,6 +27,10 @@ public class QuestionDao {
 	public int insertExample(ExampleVo ev) {
 		return sqlSessionTemplate.insert("question.insert_example",ev);
 	}
+	
+	public List<QuestionVo> selectQuestionlist(QuestionVo qv){
+		return sqlSessionTemplate.selectList("question.selectQuestionlist",qv);
+	}
 
 	public int insertSchool(SchoolVo sv) {
 		int r = -1;

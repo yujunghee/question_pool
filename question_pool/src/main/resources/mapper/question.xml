@@ -10,6 +10,13 @@
 		INSERT INTO example(example, example_content)
 		VALUES (#{example},#{example_content})
 	</insert>
+	
+	<select id="selectQuestionlist" resultType="question.QuestionVo" parameterType="question.QuestionVo">
+		SELECT *
+		FROM question
+		ORDER BY question_realnum
+	</select>
+	
 	<insert id="insert_school" parameterType="school.SchoolVo">
 		INSERT INTO school (school_name)
 		VALUES (#{school_name})
