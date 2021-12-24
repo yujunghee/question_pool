@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pay"> <!-- mapper파일의 이름 -->
+
+
+	<select id="PaymentRecord" parameterType="payment.PayVo" resultType = "payment.PayVo">
+		SELECT user.user_name, user.user_email, product.category, product.price, payment.pay_date, payment.refund 
+		FROM user JOIN payment ON user.user_no = payment.user_no JOIN product ON payment.product_no = product.product_no
+	</select>
+
+</mapper>
