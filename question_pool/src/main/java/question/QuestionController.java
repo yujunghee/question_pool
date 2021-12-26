@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import school.SchoolService;
 import school.SchoolVo;
@@ -19,12 +20,19 @@ public class QuestionController {
 
 	@Autowired
 	QuestionService questionService;
+
+	@Autowired
+	QuestionServiceImple questionServiceImple;
 	
 	@Autowired
 	SchoolService schoolService;
 
-	@GetMapping("/admin/question/pool.do")
-	public String pool() {
+	@RequestMapping("/admin/question/pool.do")
+	public String pool(SchoolVo vo, Model model, QuestionVo qv) {
+		List<QuestionVo> qvlist = questionServiceImple.selectexam(qv);
+		model.addAttribute("qvlist",qvlist);
+		List<SchoolVo> list = schoolService.selectList(vo);
+		model.addAttribute("list", list);
 		return "admin/question/pool"; // 문제등록(학교/연도/회차선택창으로 이동)
 	}
 	
@@ -33,6 +41,12 @@ public class QuestionController {
 		return "admin/question/write";
 	}
 
+	@RequestMapping("/admin/school/list.do")
+	public String list(Model model, QuestionVo vo) {
+		model.addAttribute("qlist", questionServiceImple.selectList1(vo));
+		return "admin/question/pool";
+	}
+	
 	@RequestMapping("/admin/question/insert.do")
 	public String insert(QuestionVo qv, ExampleVo ev, HttpServletRequest req) {
 		String[] arr1 = {"a","b","c","d","e"};
@@ -64,6 +78,11 @@ public class QuestionController {
 		List<SchoolVo> list = schoolService.selectList(vo);
 		model.addAttribute("list", list);
 		return "admin/school/write"; // 학교등록페이지로 이동
+	}
+
+	@PostMapping("/admin/question/write.do")
+	public String senddata(SchoolVo vo, QuestionVo qv) {
+		return"admin/question/write";
 	}
 
 	@RequestMapping("/admin/school/insertschool.do")

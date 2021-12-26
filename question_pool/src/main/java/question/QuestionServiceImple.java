@@ -33,5 +33,10 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.insertExam(qv);
 	}
 
-
+	public List<QuestionVo> selectexam(QuestionVo qv){
+		return dao.selectList(qv);
+	}
+	public List<QuestionVo> selectList1(QuestionVo vo) {
+		return dao.selectList(vo);
+	}
 }
