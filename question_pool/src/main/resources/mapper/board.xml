@@ -6,14 +6,16 @@
 	 <sql id="boardWhere">
 	 	<where>
 			<if test="searchType == '' ">
-				(title LIKE '%${searchWord}%' OR content LIKE '%${searchWord}%')
+				(notice_title LIKE '%${searchWord}%' OR notice_content LIKE '%${searchWord}%')
 			</if>
 			<if test="searchType != null and searchType != '' ">
 				${searchType} LIKE '%${searchWord}%'
 			</if>
+			<!--  
 			<if test="admin_no > 0">
 				AND admin_no = ${admin_no}
 			</if>
+			 -->
 		</where>
 	 </sql>
 	 
