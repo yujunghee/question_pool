@@ -19,4 +19,10 @@ public class UserPayServiceImple implements UserPayService{
 	}
 
 
+//	@Override
+//	public int insert(UserPayVo vo) {
+//		return payDao.insert(vo);
+//	}
+
+
 }
