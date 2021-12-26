@@ -23,9 +23,11 @@ public class QuestionController {
 	SchoolService schoolService;
 
 	@RequestMapping("/admin/question/index.do")
-	public String selectQuestionlist(QuestionVo qv, Model model) {
-		List<QuestionVo> list = questionService.selectQuestionlist(qv);
-		model.addAttribute("list",list);
+	public String selectQuestionlist(QuestionVo qv, ExampleVo ev, Model model) {
+		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
+		List<ExampleVo> elist = questionService.selectExamplelist(ev);
+		model.addAttribute("qlist",qlist);
+		model.addAttribute("elist",elist);
 		return "admin/question/index";
 	}
 	
@@ -51,6 +53,7 @@ public class QuestionController {
 			if(!arr2[i].equals("")) {
 				ev.setExample(arr1[i]);
 				ev.setExample_content(arr2[i]);
+				ev.setQuestion_no(qv.getQuestion_no());
 				questionService.insertExample(ev);
 				r2++;
 			}

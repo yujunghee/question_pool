@@ -9,6 +9,7 @@ public interface QuestionService {
 	int insertQuestion(QuestionVo qv);
 	int insertExample(ExampleVo ev);
 	List<QuestionVo> selectQuestionlist(QuestionVo qv);
+	List<ExampleVo> selectExamplelist(ExampleVo ev);
 	int insertSchool(SchoolVo sv);
 
 	int insertExam(QuestionVo qv);

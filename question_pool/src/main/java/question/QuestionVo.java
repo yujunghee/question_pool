@@ -4,7 +4,7 @@ public class QuestionVo {
 
 	private int question_no;
 	private int question_realnum;
-	private int question_ref;
+	private Integer question_ref;
 	private String passage;
 	private String question_content;
 	private String answer;
@@ -18,8 +18,6 @@ public class QuestionVo {
 	private int exam_time;
 	private int semester;
 	private int school_no;
-	
-	
 	
 	
 	public int getSemester() {
@@ -64,10 +62,10 @@ public class QuestionVo {
 	public void setQuestion_no(int question_no) {
 		this.question_no = question_no;
 	}
-	public int getQuestion_ref() {
+	public Integer getQuestion_ref() {
 		return question_ref;
 	}
-	public void setQuestion_ref(int question_ref) {
+	public void setQuestion_ref(Integer question_ref) {
 		this.question_ref = question_ref;
 	}
 	public String getPassage() {

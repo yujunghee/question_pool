@@ -18,7 +18,6 @@
 		<mvc:jsp suffix=".jsp"/>
 	</mvc:view-resolvers>
 	
-	
 	<!-- DBCP 빈등록 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>

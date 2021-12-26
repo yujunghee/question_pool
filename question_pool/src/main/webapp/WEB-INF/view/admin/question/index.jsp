@@ -3,29 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-<script type="text/javascript" src="/question_pool/smarteditor/js/HuskyEZCreator.js"></script>
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
-<script>
-	var oEditors;
-	$(function(){
-		oEditors = setEditor("content");
-	});
-	
-	function goSave(){
-		if($("#title").val() == ''){
-			alert('제목을 입력하세요');
-			$("title").focus();
-			return;
-		}
-		oEditors.getById['content'].exec("UPDATE_CONTENTS_FIELD",[]);
-		$("#frm").submit();
-	}
-</script>
-<style>
-
-</style>
 </head>
 <body> 
 <div id="wrap">
@@ -45,8 +26,10 @@
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="" enctype="multipart/form-data">
+							<c:forEach var="qv" items="${qlist}">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
+							<input type="hidden" value="${qv.question_no}">
 								<colgroup>
 									<col width="10%" />
 									<col width="15%" />
@@ -56,45 +39,45 @@
 									<col width="15%" />
 								</colgroup>
 								<tbody>
-									<c:forEach var="vo" items="${list}">
 									<tr>
 										<th scope="row"><label for="">문제번호</label></th>
 										<td colspan="10">
-											${vo.question_realnum }
+											${qv.question_realnum }
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">문제</label></th>
 										<td colspan="10">
-											${vo.question_content }
+											${fn:replace(qv.question_content,'$','<u>')}
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">참조번호</label></th>
+										<td colspan="10">
+											${qv.question_ref }
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">지문</label></th>
 										<td colspan="10">
-											참조번호&nbsp;<input type="text" id="question_ref" name="question_ref" title="참조번호를 입력해주세요" style="width:100px;" /><br><br>
-											<textarea id="passage" name="passage" title="지문을 입력해주세요" rows="10" style="width:100%;"></textarea>	
+											${qv.passage }
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">보기</label></th>
 										<td colspan="10">
-											<input type="RADIO" name="example" value="a">&nbsp;&nbsp;&nbsp;
-											(A) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="b">&nbsp;&nbsp;&nbsp;
-											(B) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="c">&nbsp;&nbsp;&nbsp;
-											(C) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="d">&nbsp;&nbsp;&nbsp;
-											(D) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="e">&nbsp;&nbsp;&nbsp;
-											(E) <input type="text" name="example_content" style="width:500px;">
+											<c:forEach var="ev" items="${elist}">
+												<c:if test="${ev.question_no eq qv.question_no}">
+												<input type="RADIO" name="example" value="a">&nbsp; 
+												(${ev.example}) ${ev.example_content}<br>
+												</c:if>
+											</c:forEach>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">해설</label></th>
 										<td colspan="10">
-											<textarea id="explanation" name="explanation" title="해설을 입력해주세요" rows="10" style="width:100%;"></textarea>	
+											${qv.explanation}
 										</td>
 									</tr>
 									<tr>
@@ -103,9 +86,9 @@
 											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />	
 										</td>
 									</tr>
-									</c:forEach>
 								</tbody>
 							</table>
+							</c:forEach>
 							<div class="btn">
 								<div class="btnRight">
 									<input type="submit" class="btns" value="등록" style="width:250px;height:50px;">
