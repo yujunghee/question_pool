@@ -47,6 +47,7 @@
 
 	<!-- 정적페이지 -->
 	<mvc:view-controller path="/admin/board/notice/write.do"/>
+	<mvc:view-controller path="/admin/question/input.do"/>
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
@@ -54,4 +55,5 @@
 			<bean class="util.LoginInterceptor"/>
 	</mvc:interceptor>
 	</mvc:interceptors>
+	<!-- 정적페이지 -->
 </beans>

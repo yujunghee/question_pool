@@ -6,14 +6,16 @@
 	 <sql id="boardWhere">
 	 	<where>
 			<if test="searchType == '' ">
-				(title LIKE '%${searchWord}%' OR content LIKE '%${searchWord}%')
+				(notice_title LIKE '%${searchWord}%' OR notice_content LIKE '%${searchWord}%')
 			</if>
 			<if test="searchType != null and searchType != '' ">
 				${searchType} LIKE '%${searchWord}%'
 			</if>
+			<!--  
 			<if test="admin_no > 0">
 				AND admin_no = ${admin_no}
 			</if>
+			 -->
 		</where>
 	 </sql>
 	 
@@ -44,21 +46,21 @@
 	</select>
 	
 	<update id="updateReadcount" parameterType="admin.board.NoticeVo">
-		UPDATE board SET notice_readcount=notice_readcount+1 WHERE notice_no = #{notice_no}
+		UPDATE notice SET notice_readcount=notice_readcount+1 WHERE notice_no = #{notice_no}
 	</update>
 	
 	<update id="update" parameterType="admin.board.NoticeVo">
-		UPDATE board SET 
+		UPDATE notice SET 
 			notice_title=#{notice_title} 
 			, notice_content=#{notice_content}
-			<if test="file_org != null"> 
+			<if test="notice_file_org != null"> 
 			, notice_file_org=#{notice_file_org} 
 			, notice_file_real=#{notice_file_real}
 			</if> 
 		WHERE notice_no = #{notice_no}
 	</update>
-	 
-	<delete id="delete" parameterType="int">
-		DELETE FROM board WHERE notice_no=#{notice_no}
-	</delete>
+	
+	<delete id="delete">
+		DELETE FROM notice WHERE notice_no=#{notice_no}
+	</delete> 
 </mapper> 

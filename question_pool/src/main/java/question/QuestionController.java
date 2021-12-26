@@ -10,7 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestMethod;
+=======
+>>>>>>> branch 'master' of https://github.com/yujunghee/question_pool.git
 
 import school.SchoolService;
 import school.SchoolVo;
@@ -33,11 +36,22 @@ public class QuestionController {
 		model.addAttribute("qvlist",qvlist);
 		List<SchoolVo> list = schoolService.selectList(vo);
 		model.addAttribute("list", list);
+	@RequestMapping("/admin/question/index.do")
+	public String selectQuestionlist(QuestionVo qv, ExampleVo ev, Model model) {
+		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
+		List<ExampleVo> elist = questionService.selectExamplelist(ev);
+		model.addAttribute("qlist",qlist);
+		model.addAttribute("elist",elist);
+		return "admin/question/index";
+	}
+	
+	@GetMapping("/admin/question/pool.do")
+	public String pool() {
 		return "admin/question/pool"; // 문제등록(학교/연도/회차선택창으로 이동)
 	}
 	
 	@GetMapping("/admin/question/write.do")
-	public String input() {
+	public String write() {
 		return "admin/question/write";
 	}
 
@@ -56,13 +70,16 @@ public class QuestionController {
 		int r1 = questionService.insertQuestion(qv);
 		int r2 = 0;
 		for(int i=0; i<arr2.length; i++) {
-			ev.setExample(arr1[i]);
-			ev.setExample_content(arr2[i]);
-			questionService.insertExample(ev);
-			r2++;
+			if(!arr2[i].equals("")) {
+				ev.setExample(arr1[i]);
+				ev.setExample_content(arr2[i]);
+				ev.setQuestion_no(qv.getQuestion_no());
+				questionService.insertExample(ev);
+				r2++;
+			}
 		}
 		
-		if(r1>0 && r2>3) {
+		if(r1>0 && r2>0) {
 			req.setAttribute("msg", "정상적으로 등록되었습니다.");
 			req.setAttribute("url", "/question_pool/admin/question/write.do");
 		} else {

@@ -4,6 +4,64 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+<script type="text/javascript">	
+$(function(){  // 전체 체크버튼	
+	var chkObj = document.getElementsByName("RowCheck");
+	var rowCnt = chkObj.length;
+	
+	$("input[name='allChk']").click(function(){
+		var chk_listArr = $("input[name='RowCheck']");
+		for (var i=0; i<chk_listArr.length; i++){
+			chk_listArr[i].checked = this.checked;
+		}
+	});
+	$("input[name='RowCheck']").click(function(){
+		if($("input[name='RowCheck']:checked").length == rowCnt){
+			$("input[name='allChk']")[0].checked = true;
+		}
+		else{
+			$("input[name='allChk']")[0].checked = false;
+		}
+	});
+});
+function del(){  // 단일 및 다중선택 후 삭제 가능하도록 배열 처리
+	var url = "delete.do";    // Controller로 보내고자 하는 URL (.dh부분은 자신이 설정한 값으로 변경해야됨)
+	var valueArr = new Array();
+    var list = $("input[name='RowCheck']")
+    for(var i = 0; i < list.length; i++){
+        if(list[i].checked){ //선택되어 있으면 배열에 값을 저장함
+            valueArr.push(list[i].value);
+        	console.log(valueArr);
+        }
+    }
+    if (valueArr.length == 0){
+    	alert("선택된 글이 없습니다.");
+    }
+    else{
+		var chk = confirm("정말 삭제하시겠습니까?");				 
+		$.ajax({
+		    url : url,                    // 전송 URL
+		    type : 'POST',                // GET or POST 방식
+		    traditional : true,
+		    data : {
+		    	valueArr : valueArr        // 보내고자 하는 data 변수 설정
+		    },
+            success: function(jdata){
+                if(jdata = 1) {
+                    alert("삭제 성공");
+                    location.replace("notice.do")
+                }
+                else{
+                    alert("삭제 실패");
+                }
+            }
+		});
+	}
+}
+
+</script>
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 </head>
 <body> 
@@ -25,7 +83,7 @@
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="blist">
-							<p><span><strong>총 ${totCount }개</strong>  |  ${NoticeVo.page }/${totPage }페이지</span></p>
+							<p><span>총 ${totCount }개  <strong>|</strong>  ${noticeVo.page }/${totPage }페이지</span></p>							
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
@@ -38,7 +96,7 @@
 								</colgroup>
 								<thead>
 									<tr>
-										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="check(this, document.frm.no)"/></th>
+										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk"/></th>
 										<th scope="col">번호</th>
 										<th scope="col">제목</th> 
 										<th scope="col">작성일</th> 
@@ -53,17 +111,19 @@
 			                            </tr>
 									</c:if>
 									<c:if test="${!empty list }">
-										<c:forEach var="vo" items="${list }">                                    
+										<c:forEach var="list" items="${list }">                                    
+			                            <input type="hidden" name="notice_no" value="${list.notice_no }">
 			                            <tr>
-			                                <td>${vo.notice_no }</td>
+			                            	<td scope="col" class="first"><input type="checkbox" name="RowCheck" value="${list.notice_no }"/></td>			                            	
+			                                <td>${list.notice_no }</td>
 			                                <td class="txt_l">
-			                                    <a href="view.do?notice_no=${vo.notice_no }">${vo.notice_title }</a>
+			                                    <a href="view.do?notice_no=${list.notice_no }">${list.notice_title }</a>
 			                                </td>
+			                                <td class="date">${list.notice_date }</td>			                                
 			                                <td class="writer">
-			                                    <a href="view.do?notice_no=${vo.notice_no }">${vo.notice_writer }</a>
-			                                </td>
-			                                <td class="date">${vo.notice_date }</td>
-			                                <td class="date">${vo.notice_readcount }</td>
+			                                    <a href="">관리자</a>
+			                                </td>			                                
+			                                <td class="date">${list.notice_readcount }</td>
 			                            </tr>
 			                            </c:forEach>
 			                         </c:if>
@@ -72,7 +132,7 @@
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="#" onclick=""><strong>삭제</strong> </a>
+									<a class="btns" href="javascript:del();"><strong>삭제</strong></a> 
 								</div>
 								<div class="btnRight">
 									<a class="wbtn" href="write.do"><strong>등록</strong> </a>
@@ -81,20 +141,19 @@
 							<!--//btn-->
 							<!-- 페이징 처리 -->
 							<div class='page'>
-								<strong>1</strong>
-								<a href="">2</a>
-								<a href="">3</a>
-								<a href="">4</a>
+								<c:forEach var="rpage" begin="1" end="${totPage }">
+									<a href="notice.do?page=${rpage }">[${rpage }]</a>
+								</c:forEach>
 							</div>
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="index.do"  method="post">
+							<form name="searchForm" id="searchForm" action="notice.do"  method="get" >
 								<div class="search">
-									<select name="stype" title="검색을 선택해주세요">
-										<option value="all">전체</option>
-										<option value="title">제목</option>
-										<option value="contents">내용</option>
+									<select name="searchType" title="검색을 선택해주세요">
+										<option value="">전체</option>
+										<option value="notice_title" <c:if test="${param.searchType == 'notice_title'}">selected</c:if>>제목</option>
+										<option value="notice_content" <c:if test="${param.searchType == 'notice_content'}">selected</c:if>>내용</option>
 									</select>
-									<input type="text" name="sval" value="" title="검색할 내용을 입력해주세요" />
+									<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
 								</div>
 							</form>

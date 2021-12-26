@@ -29,25 +29,26 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public NoticeVo view(int boardno) { 
-		boardDao.updateReadcount(boardno);
-		return boardDao.selectOne(boardno);
+	public NoticeVo view(int notice_no) { 
+		boardDao.updateReadcount(notice_no);
+		return boardDao.selectOne(notice_no);
 	}
 	@Override
-	public NoticeVo edit(int boardno) {
-		boardDao.updateReadcount(boardno);
-		return boardDao.selectOne(boardno);
+	public NoticeVo edit(int notice_no) {
+		boardDao.updateReadcount(notice_no);
+		return boardDao.selectOne(notice_no);
 	}	
 
 	@Override
 	public int update(NoticeVo vo) {
 		return boardDao.update(vo);
 	}
+	
 
 	@Override
-	public int delete(NoticeVo vo) {
-		return boardDao.delete(vo);
-	}
-	
+	public int delete(String notice_no) { 		
+		return boardDao.delete(notice_no);
+	} 
+
 	// ----------------------- 공지사항 영역 끝 -----------------------
 }
