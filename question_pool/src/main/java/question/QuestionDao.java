@@ -14,6 +14,11 @@ public class QuestionDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
+	public List<QuestionVo> selectList(QuestionVo sv) {
+		List<QuestionVo> list= sqlSessionTemplate.selectList("question.selectexam",sv);
+		return list;
+	}
+	
 	public int insertQuestion(QuestionVo qv) {
 		int r = -1;
 		try {
@@ -25,11 +30,26 @@ public class QuestionDao {
 	}
 	
 	public int insertExample(ExampleVo ev) {
-		return sqlSessionTemplate.insert("question.insert_example",ev);
+		int r = -1;
+		try {
+			r = sqlSessionTemplate.insert("question.insert_example",ev);
+		}catch(Exception e) {
+			r=0;
+		}
+		return r;
 	}
 	
 	public List<QuestionVo> selectQuestionlist(QuestionVo qv){
 		return sqlSessionTemplate.selectList("question.selectQuestionlist",qv);
+	}
+	public List<QuestionVo> selectyear(QuestionVo qv){
+		return sqlSessionTemplate.selectList("question.selectyear",qv);
+	}
+	public List<QuestionVo> selectsemester(QuestionVo qv){
+		return sqlSessionTemplate.selectList("question.selectsemester",qv);
+	}
+	public List<ExampleVo> selectExamplelist(ExampleVo ev){
+		return sqlSessionTemplate.selectList("question.selectExamplelist",ev);
 	}
 
 	public int insertSchool(SchoolVo sv) {
@@ -50,6 +70,7 @@ public class QuestionDao {
 		}
 		return r;
 	}
-
+	
+	
 
 }

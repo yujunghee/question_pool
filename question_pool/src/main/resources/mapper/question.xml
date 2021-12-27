@@ -2,19 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="question"><!-- mapper파일의 이름 -->
 
-	<insert id="insert_question" parameterType="question.QuestionVo">
-		INSERT INTO question (question_realnum, question_ref, passage, question_content, explanation, answer, admin_no) 
-		VALUES (#{question_realnum}, #{question_ref}, #{passage}, #{question_content}, #{explanation}, #{answer}, #{admin_no})	
+	<insert id="insert_question" parameterType="question.QuestionVo" useGeneratedKeys="true">
+		INSERT INTO question (passage, question_content, explanation, answer, admin_no, question_ref) 
+		VALUES (#{passage}, #{question_content}, #{explanation}, #{answer}, #{admin_no}, #{question_ref})	
+		<selectKey keyProperty="question_no" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	</insert>	
+	
+	
+	
 	<insert id="insert_example" parameterType="question.ExampleVo">
-		INSERT INTO example(example, example_content)
-		VALUES (#{example},#{example_content})
+		INSERT INTO example(example, example_content, question_no)
+		VALUES (#{example},#{example_content},#{question_no})
 	</insert>
 	
 	<select id="selectQuestionlist" resultType="question.QuestionVo" parameterType="question.QuestionVo">
 		SELECT *
 		FROM question
-		ORDER BY question_realnum
+		ORDER BY question_no
+	</select>
+	
+	<select id="selectExamplelist" resultType="question.ExampleVo" parameterType="question.ExampleVo">
+		SELECT *
+		FROM example,question
+		WHERE example.question_no=question.question_no
 	</select>
 	
 	<insert id="insert_school" parameterType="school.SchoolVo">
@@ -22,10 +34,25 @@
 		VALUES (#{school_name})
 	</insert>
 	<select id="selectList" resultType="school.SchoolVo" parameterType="school.SchoolVo">
-		SELECT * FROM school 
+		SELECT * FROM school order by school_name asc;
 	</select>
+	<select id="selectexam" resultType="question.QuestionVo" parameterType="question.QuestionVo">
+		SELECT * FROM exam 
+	</select>
+	
 	<insert id="insert_exam" parameterType="question.QuestionVo">
 		INSERT INTO exam (year, number_of_questions, exam_time, semester, school_no)
 		VALUES (#{year}, #{number_of_questions}, #{exam_time}, #{semester}, #{school_no})
 	</insert>
+	
+	
+	<select id="selectyear" resultType="question.QuestionVo" parameterType="question.QuestionVo">
+		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no where exam.school_no = #{school_no}
+	</select>
+	<select id="selectsemester" resultType="question.QuestionVo" parameterType="question.QuestionVo">
+		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no where exam.year = #{year} 
+	</select>
+	
+	
+	
 </mapper>
