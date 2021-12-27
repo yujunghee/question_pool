@@ -45,7 +45,10 @@
 	
 	
 	<select id="selectyear" resultType="question.QuestionVo" parameterType="question.QuestionVo">
-		select year from exam where school_no = #{xx}
+		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no where exam.school_no = #{school_no}
+	</select>
+	<select id="selectsemester" resultType="question.QuestionVo" parameterType="question.QuestionVo">
+		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no where exam.year = #{year} 
 	</select>
 	
 	
