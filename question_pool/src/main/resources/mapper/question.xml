@@ -3,12 +3,14 @@
 <mapper namespace="question"><!-- mapper파일의 이름 -->
 
 	<insert id="insert_question" parameterType="question.QuestionVo" useGeneratedKeys="true">
-		INSERT INTO question (question_realnum, passage, question_content, explanation, answer, admin_no, question_ref) 
-		VALUES (#{question_realnum}, #{passage}, #{question_content}, #{explanation}, #{answer}, #{admin_no}, #{question_ref})	
+		INSERT INTO question (passage, question_content, explanation, answer, admin_no, question_ref) 
+		VALUES (#{passage}, #{question_content}, #{explanation}, #{answer}, #{admin_no}, #{question_ref})	
 		<selectKey keyProperty="question_no" resultType="int" order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>	
+	
+	
 	
 	<insert id="insert_example" parameterType="question.ExampleVo">
 		INSERT INTO example(example, example_content, question_no)
@@ -18,7 +20,7 @@
 	<select id="selectQuestionlist" resultType="question.QuestionVo" parameterType="question.QuestionVo">
 		SELECT *
 		FROM question
-		ORDER BY question_realnum
+		ORDER BY question_no
 	</select>
 	
 	<select id="selectExamplelist" resultType="question.ExampleVo" parameterType="question.ExampleVo">
