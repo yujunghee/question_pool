@@ -4,9 +4,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
-<script>
-</script>
 </head>
+<script>
+
+</script>
 <body>
 	<div id="wrap">
 		<!-- canvas -->
@@ -16,18 +17,28 @@
 			<!-- E N D :: headerArea-->
 			<!-- 학교/연도/회차 선택 페이지 -->
 			<form name="frm" id="frm" action="" enctype="multipart/form-data">
-			<input type="hidden" name="school_no" value="${qlist.school_no }">
 				<select name="school_no">
 					<c:forEach var="vo" items="${list}">
 						<option value="${vo.school_no}">${vo.school_name}</option>
 					</c:forEach>
 				</select> 
+				<input type="submit" value="전송">
+			</form>
+			<form name="frm" id="frm" action="" enctype="multipart/form-data">
 				<select name="year">
-					<c:forEach var="vo" items="${qlist}">
-						<option value="${vo.year}">${vo.year}</option>
+					<c:forEach var="qlist" items="${qlist}">
+						<option value="${qlist.year }" value="${qlist.school_no}">${qlist.year}</option>
 					</c:forEach>
 				</select> 
-				<a class="btn" href="javascript:goSave();">저장</a>
+				<input type="submit" value="전송">
+			</form>
+			<form name="frm" id="frm" action="" enctype="multipart/form-data">
+				<select name="semester">
+					<c:forEach var="plist" items="${plist}">
+						<option value="${plist.exam_no}">${plist.semester}</option>
+					</c:forEach>
+				</select> 
+				<input type="submit" value="전송">
 			</form>
 			<!-- 임시로 버튼만 만들어둠 -->
 			<a href="edit.do"><input type="button" value="문제수정"

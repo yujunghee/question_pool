@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import school.SchoolService;
 import school.SchoolVo;
@@ -31,8 +32,14 @@ public class QuestionController {
       return "admin/question/index";
    }
    
-   @GetMapping("/admin/question/pool.do")
-   public String pool() {
+   @RequestMapping("/admin/question/pool.do")
+   public String pool(SchoolVo vo, Model model, QuestionVo qv) {
+	   List<SchoolVo> list = schoolService.selectList(vo);
+		model.addAttribute("list", list);
+		List<QuestionVo> qlist = questionService.selectyear(qv);
+		model.addAttribute("qlist", qlist);
+		List<QuestionVo> plist = questionService.selectsemester(qv);
+		model.addAttribute("plist", plist);
       return "admin/question/pool"; // 문제등록(학교/연도/회차선택창으로 이동)
    }
    
