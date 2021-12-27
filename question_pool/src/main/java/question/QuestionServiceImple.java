@@ -43,13 +43,15 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.insertExam(qv);
 	}
 
+	@Override
 	public List<QuestionVo> selectexam(QuestionVo qv){
 		return dao.selectList(qv);
 	}
-	public List<QuestionVo> selectList1(QuestionVo vo) {
-		return dao.selectList(vo);
-	}
 
+	@Override
+	public QuestionVo year(int year) {
+		return dao.selectOne(year);
+	}
 
 
 }

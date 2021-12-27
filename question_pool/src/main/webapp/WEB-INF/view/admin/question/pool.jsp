@@ -16,19 +16,15 @@
 			<!-- E N D :: headerArea-->
 			<!-- 학교/연도/회차 선택 페이지 -->
 			<form name="frm" id="frm" action="" enctype="multipart/form-data">
+			<input type="hidden" name="school_no" value="${qlist.school_no }">
 				<select name="school_no">
 					<c:forEach var="vo" items="${list}">
 						<option value="${vo.school_no}">${vo.school_name}</option>
 					</c:forEach>
 				</select> 
 				<select name="year">
-				<c:forEach var="vo" items="${qvlist}">
+					<c:forEach var="vo" items="${qlist}">
 						<option value="${vo.year}">${vo.year}</option>
-					</c:forEach>
-				</select> 
-				<select name="semester">
-				<c:forEach var="vo" items="${qvlist}">
-						<option value="${vo.semester}">${vo.semester}</option>
 					</c:forEach>
 				</select> 
 				<a class="btn" href="javascript:goSave();">저장</a>

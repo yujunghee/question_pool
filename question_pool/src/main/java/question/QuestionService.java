@@ -14,6 +14,7 @@ public interface QuestionService {
 	int insertSchool(SchoolVo sv);
 
 	int insertExam(QuestionVo qv);
-	
+	List<QuestionVo> selectexam(QuestionVo qv);
+	QuestionVo year(int year);
 	
 }

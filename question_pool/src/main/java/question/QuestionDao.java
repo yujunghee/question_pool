@@ -18,10 +18,6 @@ public class QuestionDao {
 		List<QuestionVo> list= sqlSessionTemplate.selectList("question.selectexam",sv);
 		return list;
 	}
-	public List<QuestionVo> selectList1(QuestionVo cv){
-		List<QuestionVo> list = sqlSessionTemplate.selectList("question.selectyear", cv);
-		return list;
-	}
 	
 	public int insertQuestion(QuestionVo qv) {
 		int r = -1;
@@ -68,6 +64,9 @@ public class QuestionDao {
 		}
 		return r;
 	}
-
+	
+	public QuestionVo selectOne(int year) {
+		return sqlSessionTemplate.selectOne("reply.selectyear", year);
+	}
 
 }
