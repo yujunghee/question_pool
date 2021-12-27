@@ -19,6 +19,17 @@
 		$("#frm").submit();
 	}
 </script>
+<script>
+	function add(){
+		$.ajax({
+			url : '/question_pool/admin/question/write.do',
+			data : {question_ref : question_no},
+			success : function(res){
+				alert('1');
+			}
+		});
+	}
+</script>
 <style>
 
 </style>
@@ -53,23 +64,12 @@
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">문제번호</label></th>
-										<td colspan="10">
-											<input type="text" id="question_realnum" name="question_realnum" title="문제번호를 입력해주세요" style="width:100px;" />	
-										</td>
-									</tr>
-									<tr>
 										<th scope="row"><label for="">문제</label></th>
 										<td colspan="10">
 											<input type="text" id="question_content" name="question_content" class="w100" title="문제를 입력해주세요" />	
 										</td>
 									</tr>
-									<tr>
-										<th scope="row"><label for="">참조번호</label></th>
-										<td colspan="10">
-											<input type="text" id="question_ref" name="question_ref" title="참조번호를 입력해주세요" style="width:100px;" />
-										</td>
-									</tr>
+									<div id="writeArea"></div>
 									<tr>
 										<th scope="row"><label for="">지문</label></th>
 										<td colspan="10">
@@ -92,15 +92,15 @@
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">해설</label></th>
+										<th scope="row"><label for="">참조&nbsp;</label></th>
 										<td colspan="10">
-											<textarea id="explanation" name="explanation" title="해설을 입력해주세요" rows="10" style="width:100%;"></textarea>	
+											<input type="button" onclick="javascript:add();" value="참조문제">
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
+										<th scope="row"><label for="">해설</label></th>
 										<td colspan="10">
-											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />	
+											<textarea id="explanation" name="explanation" title="해설을 입력해주세요" rows="10" style="width:100%;"></textarea>	
 										</td>
 									</tr>
 								</tbody>
