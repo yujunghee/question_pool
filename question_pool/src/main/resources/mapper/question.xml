@@ -34,10 +34,22 @@
 		VALUES (#{school_name})
 	</insert>
 	<select id="selectList" resultType="school.SchoolVo" parameterType="school.SchoolVo">
-		SELECT * FROM school 
+		SELECT * FROM school order by school_name asc;
 	</select>
+	<select id="selectexam" resultType="question.QuestionVo" parameterType="question.QuestionVo">
+		SELECT * FROM exam 
+	</select>
+	
 	<insert id="insert_exam" parameterType="question.QuestionVo">
 		INSERT INTO exam (year, number_of_questions, exam_time, semester, school_no)
 		VALUES (#{year}, #{number_of_questions}, #{exam_time}, #{semester}, #{school_no})
 	</insert>
+	
+	
+	<select id="selectyear" resultType="question.QuestionVo" parameterType="question.QuestionVo">
+		select year from exam where school_no = #{xx}
+	</select>
+	
+	
+	
 </mapper>

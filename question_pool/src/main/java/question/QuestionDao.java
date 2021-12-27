@@ -14,6 +14,11 @@ public class QuestionDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
+	public List<QuestionVo> selectList(QuestionVo sv) {
+		List<QuestionVo> list= sqlSessionTemplate.selectList("question.selectexam",sv);
+		return list;
+	}
+	
 	public int insertQuestion(QuestionVo qv) {
 		int r = -1;
 		try {
@@ -59,6 +64,9 @@ public class QuestionDao {
 		}
 		return r;
 	}
-
+	
+	public QuestionVo selectOne(int year) {
+		return sqlSessionTemplate.selectOne("reply.selectyear", year);
+	}
 
 }
