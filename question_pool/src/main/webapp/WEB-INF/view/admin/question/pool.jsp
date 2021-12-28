@@ -17,7 +17,7 @@
 			<!-- 학교/연도/회차 선택 페이지 -->
 			<form name="frm" id="frm" action="" enctype="multipart/form-data">
 			<input type="hidden" name="school_no" value="${qlist.school_no }">
-				<select name="school_no" id="school_no" onchange="alert(this.value)">
+				<select name="school_no" id="school_no" >
 					<c:forEach var="vo" items="${list}">
 						<option value="${vo.school_no}">${vo.school_name}</option>
 					</c:forEach>
