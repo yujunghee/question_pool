@@ -85,7 +85,7 @@ function fn_paging(curPage){
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="blist">
-							<p><span>총 ${pagination.listCnt }개  <strong>|</strong>  ${pagination.pageCnt }/${pagination.curPage}페이지</span></p>							
+							<p><span>총 ${pagination.listCnt }개  <strong>|</strong>  ${pagination.curPage }/${pagination.pageCnt}페이지</span></p>							
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
@@ -169,7 +169,9 @@ function fn_paging(curPage){
 			                        </a> 
 			                    </c:if>
 			                    <c:if test="${pagination.curRange ne pagination.rangeCnt && pagination.rangeCnt > 0}">
-			                        <a href="#" onClick="fn_paging('${pagination.pageCnt }')">[끝]</a> 
+			                        <a href="#" onClick="fn_paging('${pagination.pageCnt }')">
+			                        	>>
+			                        </a> 
 			                    </c:if>
 							</div>
 							<!-- //페이징 처리 -->
