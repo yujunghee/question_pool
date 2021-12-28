@@ -9,7 +9,7 @@
 	<!-- 컴퍼넌트 스캔 -->
 
 
-	<context:component-scan base-package="admin,question, payment, userPayment,school, util"/>  
+	<context:component-scan base-package="admin, question, payment, userPayment, school, util, userMain, userTest, userUtil"/>  
 
 	<!-- 어노테이션 활성화 -->
 	<mvc:annotation-driven/>
