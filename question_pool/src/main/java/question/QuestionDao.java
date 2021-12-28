@@ -42,6 +42,12 @@ public class QuestionDao {
 	public List<QuestionVo> selectQuestionlist(QuestionVo qv){
 		return sqlSessionTemplate.selectList("question.selectQuestionlist",qv);
 	}
+	public List<QuestionVo> selectyear(QuestionVo qv){
+		return sqlSessionTemplate.selectList("question.selectyear",qv);
+	}
+	public List<QuestionVo> selectsemester(QuestionVo qv){
+		return sqlSessionTemplate.selectList("question.selectsemester",qv);
+	}
 	public List<ExampleVo> selectExamplelist(ExampleVo ev){
 		return sqlSessionTemplate.selectList("question.selectExamplelist",ev);
 	}
@@ -65,8 +71,6 @@ public class QuestionDao {
 		return r;
 	}
 	
-	public QuestionVo selectOne(int year) {
-		return sqlSessionTemplate.selectOne("reply.selectyear", year);
-	}
+	
 
 }

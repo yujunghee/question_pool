@@ -27,6 +27,14 @@ public class QuestionServiceImple implements QuestionService {
 	public List<QuestionVo> selectQuestionlist(QuestionVo qv) {
 		return dao.selectQuestionlist(qv);
 	}
+	@Override
+	public List<QuestionVo> selectyear(QuestionVo qv) {
+		return dao.selectyear(qv);
+	}
+	@Override
+	public List<QuestionVo> selectsemester(QuestionVo qv) {
+		return dao.selectsemester(qv);
+	}
 	
 	@Override
 	public List<ExampleVo> selectExamplelist(ExampleVo ev) {
@@ -48,10 +56,6 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.selectList(qv);
 	}
 
-	@Override
-	public QuestionVo year(int year) {
-		return dao.selectOne(year);
-	}
 
 
 }

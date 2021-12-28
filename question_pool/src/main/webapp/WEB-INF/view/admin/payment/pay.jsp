@@ -18,7 +18,6 @@
       margin: 0 auto;
       padding: 100px 0px 0px 0px;
       border: 0ch ;
-
       }
       .pay>ul>li>ul>li{
         float: left;
@@ -44,7 +43,6 @@
        	width: 100px;
         height: 20px;
       }	
-
 </style>
 <body>
 <%@ include file="/WEB-INF/view/admin/include/top.jsp" %>

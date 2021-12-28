@@ -26,7 +26,6 @@
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="" enctype="multipart/form-data">
 							<c:forEach var="qv" items="${qlist}">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 							<input type="hidden" value="${qv.question_no}">
@@ -39,12 +38,6 @@
 									<col width="15%" />
 								</colgroup>
 								<tbody>
-									<tr>
-										<th scope="row"><label for="">문제번호</label></th>
-										<td colspan="10">
-											${qv.question_realnum }
-										</td>
-									</tr>
 									<tr>
 										<th scope="row"><label for="">문제</label></th>
 										<td colspan="10">
@@ -80,21 +73,9 @@
 											${qv.explanation}
 										</td>
 									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />	
-										</td>
-									</tr>
 								</tbody>
 							</table>
 							</c:forEach>
-							<div class="btn">
-								<div class="btnRight">
-									<input type="submit" class="btns" value="등록" style="width:250px;height:50px;">
-								</div>
-							</div>
-							</form>
 							<!--//btn-->
 						</div>
 						<!-- //bread -->

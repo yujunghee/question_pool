@@ -92,15 +92,21 @@
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">참조&nbsp;</label></th>
-										<td colspan="10">
-											<input type="button" onclick="javascript:add();" value="참조문제">
-										</td>
-									</tr>
-									<tr>
 										<th scope="row"><label for="">해설</label></th>
 										<td colspan="10">
 											<textarea id="explanation" name="explanation" title="해설을 입력해주세요" rows="10" style="width:100%;"></textarea>	
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">첨부파일</label></th>
+										<td colspan="10">
+											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />	
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">참조&nbsp;</label></th>
+										<td colspan="10">
+											<input type="button" onclick="javascript:add();" value="참조문제">
 										</td>
 									</tr>
 								</tbody>
