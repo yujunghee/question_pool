@@ -34,6 +34,7 @@ public class BoardController {
 		
 		int startIdx = (vo.getPage()-1) * 10;
 		vo.setStartIdx(startIdx);
+		System.out.println("startIdx :"+startIdx);
 		
 		List<NoticeVo> list = boardService.selectList(vo);
 		model.addAttribute("list", list);
