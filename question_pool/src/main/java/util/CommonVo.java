@@ -9,10 +9,8 @@ public class CommonVo {
 	private String searchType;
 	private String searchWord;
 	private String orderCond;
-	private int startIdx;	// limit 시작값
-	private int page;		// 사용자가 요청한 페이지
+	private int pageSize = 10;
+	private int startIndex = 0;
+	private int CntPerPage;
 	
-	public CommonVo() {
-		page = 1;
-	}	
 }

@@ -48,7 +48,9 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int delete(String notice_no) { 		
 		return boardDao.delete(notice_no);
-	} 
+	}
+
+	 
 
 	// ----------------------- 공지사항 영역 끝 -----------------------
 }

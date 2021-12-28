@@ -29,7 +29,7 @@
 		SELECT * FROM notice
 		<include refid="boardWhere"></include>
 		ORDER BY notice_date DESC
-		LIMIT ${startIdx}, 10
+		LIMIT #{startIndex}, #{pageSize}
 	</select>
 	
 	<insert id="insert" parameterType="admin.board.NoticeVo">

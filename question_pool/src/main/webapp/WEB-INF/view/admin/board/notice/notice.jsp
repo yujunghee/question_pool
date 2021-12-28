@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 <script type="text/javascript">	
 $(function(){  // 전체 체크버튼	
 	var chkObj = document.getElementsByName("RowCheck");
@@ -60,7 +60,9 @@ function del(){  // 단일 및 다중선택 후 삭제 가능하도록 배열 �
 		});
 	}
 }
-
+function fn_paging(curPage){
+    location.href="notice.do?curPage="+curPage;
+}
 </script>
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 </head>
@@ -83,7 +85,7 @@ function del(){  // 단일 및 다중선택 후 삭제 가능하도록 배열 �
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="blist">
-							<p><span>총 ${totCount }개  <strong>|</strong>  ${noticeVo.page }/${totPage }페이지</span></p>							
+							<p><span>총 ${pagination.listCnt }개  <strong>|</strong>  ${pagination.pageCnt }/${pagination.curPage}페이지</span></p>							
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
@@ -140,10 +142,35 @@ function del(){  // 단일 및 다중선택 후 삭제 가능하도록 배열 �
 							</div>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
-							<div class='page'>
-								<c:forEach var="rpage" begin="1" end="${totPage }">
-									<a href="notice.do?page=${rpage }">[${rpage }]</a>
-								</c:forEach>
+							<div class='page'>															
+								<c:if test="${pagination.curRange ne 1 }">
+			                        <a href="#" onClick="fn_paging(1)">
+			                        	<<
+			                        </a> 
+			                    </c:if>
+			                    <c:if test="${pagination.curPage ne 1}">
+			                        <a href="#" onClick="fn_paging('${pagination.prevPage }')">
+			                        	<
+			                        </a> 
+			                    </c:if>
+			                    <c:forEach var="pageNum" begin="${pagination.startPage }" end="${pagination.endPage }">
+			                        <c:choose>
+			                            <c:when test="${pageNum eq  pagination.curPage}">
+			                                <span style="font-weight: bold;"><a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a></span> 
+			                            </c:when>
+			                            <c:otherwise>
+			                                <a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a> 
+			                            </c:otherwise>
+			                        </c:choose>
+			                    </c:forEach>
+			                    <c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
+			                        <a href="#" onClick="fn_paging('${pagination.nextPage }')">
+			                        	>
+			                        </a> 
+			                    </c:if>
+			                    <c:if test="${pagination.curRange ne pagination.rangeCnt && pagination.rangeCnt > 0}">
+			                        <a href="#" onClick="fn_paging('${pagination.pageCnt }')">[끝]</a> 
+			                    </c:if>
 							</div>
 							<!-- //페이징 처리 -->
 							<form name="searchForm" id="searchForm" action="notice.do"  method="get" >

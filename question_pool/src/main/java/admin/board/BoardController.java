@@ -25,21 +25,33 @@ public class BoardController {
 	// ----------------------- 공지사항 영역 시작 -----------------------
 	
 	@GetMapping("/admin/board/notice/notice.do")
-	public String index(Model model, HttpServletRequest req, NoticeVo vo) {
-		int totCount = boardService.count(vo); // 총개수
-		System.out.println("totCount : " +totCount);
-		int totPage = totCount / 10; // 총페이지수
-		if (totCount % 10 > 0) totPage++;
-		System.out.println("totPage:"+totPage);
+	public String index(Model model, HttpServletRequest req, NoticeVo vo, @RequestParam(defaultValue="1") int curPage) throws Exception{
+//		int totCount = boardService.count(vo); // 총개수
+//		System.out.println("totCount : " +totCount);
+//		int totPage = totCount / 10; // 총페이지수
+//		if (totCount % 10 > 0) totPage++;
+//		System.out.println("totPage:"+totPage);
+//		
+//		int startIdx = (vo.getPage()-1) * 10;
+//		vo.setStartIdx(startIdx);
+//		System.out.println("startIdx :"+startIdx);
 		
-		int startIdx = (vo.getPage()-1) * 10;
-		vo.setStartIdx(startIdx);
-		System.out.println("startIdx :"+startIdx);
+//		model.addAttribute("totPage", totPage);
+//		model.addAttribute("totCount", totCount);
 		
 		List<NoticeVo> list = boardService.selectList(vo);
-		model.addAttribute("list", list);
-		model.addAttribute("totPage", totPage);
-		model.addAttribute("totCount", totCount);
+		// pagination
+		int listCnt = boardService.count(vo);
+        
+        Pagination pagination = new Pagination(listCnt, curPage);
+        
+        vo.setStartIndex(pagination.getStartIndex());
+        vo.setCntPerPage(pagination.getPageSize()); 
+        // 전체리스트 출력
+        
+        model.addAttribute("list", list);
+        model.addAttribute("listCnt", listCnt);
+        model.addAttribute("pagination", pagination);
 		return "admin/board/notice/notice";
 	}
 	
