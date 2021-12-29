@@ -10,6 +10,7 @@ public class SchoolService {
 	@Autowired
 	SchoolDao dao;
 
+	
 	public List<SchoolVo> selectList(SchoolVo vo){
 		return dao.selectList(vo);
 	}

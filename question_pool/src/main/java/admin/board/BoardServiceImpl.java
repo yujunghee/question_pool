@@ -14,41 +14,87 @@ public class BoardServiceImpl implements BoardService {
 	BoardDao boardDao;
 
 	@Override
-	public int count(NoticeVo vo) {
-		return boardDao.count(vo);
+	public int noticeCount(NoticeVo vo) {
+		return boardDao.noticeCount(vo);
 	}
 	
 	@Override
-	public List<NoticeVo> selectList(NoticeVo vo) {
-		return boardDao.selectList(vo);
+	public List<NoticeVo> noticeList(NoticeVo vo) {
+		return boardDao.noticeList(vo);
 	}
 
 	@Override
-	public int insert(NoticeVo vo) {
-		return boardDao.insert(vo);
+	public int noticeInsert(NoticeVo vo) {
+		return boardDao.noticeInsert(vo);
 	}
 
 	@Override
-	public NoticeVo view(int notice_no) { 
-		boardDao.updateReadcount(notice_no);
-		return boardDao.selectOne(notice_no);
+	public NoticeVo noticeView(int notice_no) { 
+		boardDao.noticeUpdateReadcount(notice_no);
+		return boardDao.noticeSelectOne(notice_no);
 	}
 	@Override
-	public NoticeVo edit(int notice_no) {
-		boardDao.updateReadcount(notice_no);
-		return boardDao.selectOne(notice_no);
+	public NoticeVo noticeEdit(int notice_no) {
+		boardDao.noticeUpdateReadcount(notice_no);
+		return boardDao.noticeSelectOne(notice_no);
 	}	
 
 	@Override
-	public int update(NoticeVo vo) {
-		return boardDao.update(vo);
+	public int noticeUpdate(NoticeVo vo) {
+		return boardDao.noticeUpdate(vo);
 	}
 	
 
 	@Override
-	public int delete(String notice_no) { 		
-		return boardDao.delete(notice_no);
-	} 
+	public int noticeDelete(String notice_no) { 		
+		return boardDao.noticeDelete(notice_no);
+	}
+
+	 
 
 	// ----------------------- 공지사항 영역 끝 -----------------------
+	
+	// ----------------------- 시험일정 영역 시작 -----------------------
+	
+		
+	@Override
+	public int tdCount(TestdateVo vo) {
+		return boardDao.tdCount(vo);
+	}
+	
+	@Override
+	public List<TestdateVo> tdList(TestdateVo vo) {
+		return boardDao.tdList(vo);
+	}
+
+	@Override
+	public int tdInsert(TestdateVo vo) {
+		return boardDao.tdInsert(vo);
+	}
+
+	@Override
+	public TestdateVo tdView(int td_no) { 
+		boardDao.tdUpdateReadcount(td_no);
+		return boardDao.tdSelectOne(td_no);
+	}
+	@Override
+	public TestdateVo tdEdit(int td_no) {
+		boardDao.tdUpdateReadcount(td_no);
+		return boardDao.tdSelectOne(td_no);
+	}	
+
+	@Override
+	public int tdUpdate(TestdateVo vo) {
+		return boardDao.tdUpdate(vo);
+	}
+	
+
+	@Override
+	public int tdDelete(String td_no) { 		
+		return boardDao.tdDelete(td_no);
+	}
+
+		 
+
+	// ----------------------- 시험일정 영역 끝 -----------------------
 }

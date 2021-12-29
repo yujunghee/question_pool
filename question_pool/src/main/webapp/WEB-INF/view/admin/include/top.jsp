@@ -77,7 +77,7 @@ $(window).load(function(){
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/admin/board/notice/notice.do"><span>공지사항</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/admin/board/qa.do"><span>Q&A</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/board/testdate.do"><span>시험일정</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/board/testdate/testdate.do"><span>시험일정</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/admin/board/community.do"><span>커뮤니티</span></a></li>
 					</ul>
 					</div>

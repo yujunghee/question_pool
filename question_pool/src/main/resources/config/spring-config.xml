@@ -7,7 +7,10 @@
 				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 				http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	<!-- 컴퍼넌트 스캔 -->
-	<context:component-scan base-package="admin,question,payment,school,util"/>
+
+
+	<context:component-scan base-package="admin, question, payment, userPayment, school, util, userMain, userTest, userUtil, user"/>  
+
 	<!-- 어노테이션 활성화 -->
 	<mvc:annotation-driven/>
 	<!-- default servlet -->
@@ -46,6 +49,7 @@
 	</bean>
 
 	<!-- 정적페이지 -->
+
 	<mvc:view-controller path="/admin/board/notice/write.do"/>
 	<mvc:view-controller path="/admin/question/input.do"/>
 	
@@ -56,4 +60,5 @@
 	</mvc:interceptor>
 	</mvc:interceptors>
 	<!-- 정적페이지 -->
+
 </beans>
