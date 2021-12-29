@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@ page import="util.*" %>
+<%@ page import="userUtil.*" %>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -62,7 +62,7 @@ $(document).ready(function(){
         $(this).next(".gnb_submenu").slideToggle();
     });
     
-    clickMenu('main1', 'Main', '/main/index.do', true);
+    clickMenu('main1', 'Main', '/user/main/index.do', true);
     
     $("#pass").bind("keydown", function(e) {
 		if (e.keyCode == 13) { // enter key
@@ -301,7 +301,7 @@ function test() {
 <body>
 <div id="wrap">
 	<div id="header">
-		<h1><a href="<%=userUtil.Property.contextPath%>/index.do">개인 포트폴리오</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
+		<h1><a href="<%=userUtil.Property.contextPath%>user/index.do">개인 포트폴리오</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
 		<ul class="topmenu">
 			<li class="logout"></li>
 			<li class="homepage"><a href="http://gdu.co.kr" target="_blank">팀프로젝트</a></li>
@@ -314,8 +314,8 @@ function test() {
 				<div class="allmenu_con">
 					<dl style="width:13.666%;">
 						<dt><a href="javascript:;">나의 정보</a></dt>
-						<dd class="frist"><a href="javascript:;" onclick="clickMenu('myinfo1', '프로필', '/myinfo/index.do', false)">프로필</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('myinfo2', '자기소개', '/myinfo/myinfo.do', false)">자기소개</a></dd>
+						<dd class="frist"><a href="javascript:;" onclick="clickMenu('myinfo1', '프로필', 'user/myinfo/index.do', false)">프로필</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('myinfo2', '자기소개', 'user/myinfo/myinfo.do', false)">자기소개</a></dd>
 					</dl>
 					<dl style="width:13.666%;">
 						<dt><a href="javascript:;">팀프로젝트</a></dt>
@@ -346,8 +346,8 @@ function test() {
 					<dl style="width:15.666%;">
 						<dt><a href="javascript:;">개인 프로젝트</a></dt>
 						<dd class="frist"><a href="javascript:;" onclick="clickMenu('portfolio1', '공지사항', '/portfolio/notice/index.do', false)">공지사항</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio2', '갤러리', '/portfolio/gallery/index.do', false)">갤러리</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'Q&A', '/portfolio/qna/index.do', false)">Q&A</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('portfolio2', '갤러리', 'user/portfolio/gallery/index.do', false)">갤러리</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'Q&A', 'user/portfolio/qna/index.do', false)">Q&A</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio4', '답변게시판', '/portfolio/reply/index.do', false)">답변게시판</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio5', '댓글게시판', '/portfolio/comment/index.do', false)">댓글게시판</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio6', '회원관리', '/portfolio/member/index.do', false)">회원관리</a></dd>
