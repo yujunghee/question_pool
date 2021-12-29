@@ -10,23 +10,17 @@
 		</selectKey>
 	</insert>	
 	
-	
-	
 	<insert id="insert_example" parameterType="question.ExampleVo">
 		INSERT INTO example(example, example_content, question_no)
 		VALUES (#{example},#{example_content},#{question_no})
 	</insert>
 	
 	<select id="selectQuestionlist" resultType="question.QuestionVo" parameterType="question.QuestionVo">
-		SELECT *
-		FROM question
-		ORDER BY question_no
+		SELECT * FROM question ORDER BY question_no
 	</select>
 	
 	<select id="selectExamplelist" resultType="question.ExampleVo" parameterType="question.ExampleVo">
-		SELECT *
-		FROM example,question
-		WHERE example.question_no=question.question_no
+		SELECT * FROM example
 	</select>
 	
 	<insert id="insert_school" parameterType="school.SchoolVo">

@@ -48,6 +48,11 @@ public class QuestionController {
       return "admin/question/write";
    }
 
+   @GetMapping("/admin/question/writeAjax.do")
+   public String writeAjax() {
+	   return "admin/question/writeAjax";
+   }
+   
    @RequestMapping("/admin/question/insert.do")
    public String insert(QuestionVo qv, ExampleVo ev, HttpServletRequest req) {
       String[] arr1 = {"a","b","c","d","e"};
