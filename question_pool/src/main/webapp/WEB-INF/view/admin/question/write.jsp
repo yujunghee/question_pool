@@ -22,11 +22,11 @@
 <script>
 	function add(){
 		$.ajax({
-			url : '/question_pool/admin/question/write.do',
-			data : {question_ref : question_no},
+			url : '/question_pool/admin/question/writeAjax.do',
+			data : $("#frm").serialize(),
 			success : function(res){
-				alert('1');
-			}
+   				$("#writeArea").html(res);
+   			}
 		});
 	}
 </script>
@@ -69,7 +69,6 @@
 											<input type="text" id="question_content" name="question_content" class="w100" title="문제를 입력해주세요" />	
 										</td>
 									</tr>
-									<div id="writeArea"></div>
 									<tr>
 										<th scope="row"><label for="">지문</label></th>
 										<td colspan="10">
@@ -94,6 +93,7 @@
 									<tr>
 										<th scope="row"><label for="">참조&nbsp;</label></th>
 										<td colspan="10">
+											<div id="writeArea"></div>
 											<input type="button" onclick="javascript:add();" value="참조문제">
 										</td>
 									</tr>

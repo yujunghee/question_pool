@@ -48,6 +48,11 @@ public class QuestionController {
       return "admin/question/write";
    }
 
+   @GetMapping("/admin/question/writeAjax.do")
+   public String writeAjax() {
+	   return "admin/question/writeAjax";
+   }
+   
    @RequestMapping("/admin/question/insert.do")
    public String insert(QuestionVo qv, ExampleVo ev, HttpServletRequest req) {
       String[] arr1 = {"a","b","c","d","e"};
@@ -68,7 +73,7 @@ public class QuestionController {
       
       if(r1>0 && r2>0) {
          req.setAttribute("msg", "정상적으로 등록되었습니다.");
-         req.setAttribute("url", "/question_pool/admin/question/write.do");
+         req.setAttribute("url", "write.do");
       } else {
          req.setAttribute("msg", "등록 오류");
       }

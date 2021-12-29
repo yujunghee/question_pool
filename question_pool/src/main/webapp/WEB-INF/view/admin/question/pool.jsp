@@ -6,7 +6,6 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
 </head>
 <script>
-
 </script>
 <body>
 	<div id="wrap">
@@ -16,8 +15,13 @@
 			<%@ include file="/WEB-INF/view/admin/include/top.jsp"%>
 			<!-- E N D :: headerArea-->
 			<!-- 학교/연도/회차 선택 페이지 -->
+<<<<<<< HEAD
 			<form name="frm" id="frm" action="" enctype="multipart/form-data">
 				<select name="school_no" id="school_no">
+=======
+			<form name="frm" id="frm" action="" enctype="multipart/form-data">			
+				<select name="school_no" id="school_no">
+>>>>>>> branch 'master' of https://github.com/yujunghee/question_pool.git
 					<c:forEach var="vo" items="${list}">
 						<option value="${vo.school_no}">${vo.school_name}</option>
 					</c:forEach>
