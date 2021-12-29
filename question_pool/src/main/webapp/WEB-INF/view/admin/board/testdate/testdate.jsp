@@ -78,7 +78,7 @@ function fn_paging(curPage){
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [목록]</h2>
+					<h2>시험일정 - [목록]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -103,7 +103,8 @@ function fn_paging(curPage){
 										<th scope="col">제목</th> 
 										<th scope="col">작성일</th> 
 										<th scope="col">작성자</th> 
-										<th scope="col" class="last">조회수</th>
+										<th scope="col">조회수</th> 
+										<th scope="col" class="last" style="width: 80px">파일</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -126,6 +127,7 @@ function fn_paging(curPage){
 			                                    <a href="">관리자</a>
 			                                </td>			                                
 			                                <td class="readcount">${list.notice_readcount }</td>
+			                                <td class="file">file</td>
 			                            </tr>
 			                            </c:forEach>
 			                         </c:if>

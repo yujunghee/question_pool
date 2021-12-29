@@ -365,7 +365,7 @@ function test() {
 					<dt id="myinfo" class="gnb_menu">나의정보</dt>
 					<dd class="gnb_submenu">
 						<ul>	
-							<li id="myinfo1_submenu" onclick="clickMenu('myinfo1', '프로필', '/myinfo/index.do', false)">프로필</li>
+							<li id="myinfo1_submenu" onclick="clickMenu('myinfo1', '프로필', 'user/myinfo/index.do', false)">프로필</li>
 							<li id="myinfo2_submenu" onclick="clickMenu('myinfo2', '자기소개', '/myinfo/myinfo.do', false)">자기소개</li>
 						</ul>
 					</dd>

@@ -7,13 +7,25 @@ public interface BoardService {
 
 	// ----------------------- 공지사항 영역 시작 -----------------------
 	
-	List<NoticeVo> selectList(NoticeVo vo);
-	int count(NoticeVo vo);
-	int insert(NoticeVo vo);
-	NoticeVo view(int notice_no);
-	NoticeVo edit(int notice_no);
-	int update(NoticeVo vo);
-	int delete(String notice_no);
+	List<NoticeVo> noticeList(NoticeVo vo);
+	int noticeCount(NoticeVo vo);
+	int noticeInsert(NoticeVo vo);
+	NoticeVo noticeView(int notice_no);
+	NoticeVo noticeEdit(int notice_no);
+	int noticeUpdate(NoticeVo vo);
+	int noticeDelete(String notice_no);
 	
 	// ----------------------- 공지사항 영역 끝 -----------------------
+	
+	// ----------------------- 시험일정 영역 시작 -----------------------
+	
+	List<TestdateVo> tdList(TestdateVo vo);
+	int tdCount(TestdateVo vo);
+	int tdInsert(TestdateVo vo);
+	TestdateVo tdView(int td_no);
+	TestdateVo tdEdit(int td_no);
+	int tdUpdate(TestdateVo vo);
+	int tdDelete(String td_no);
+		
+	// ----------------------- 시험일정 영역 끝 -----------------------
 }
