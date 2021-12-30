@@ -40,7 +40,7 @@ public class UserController {
 		model.addAttribute("url", "index.do");
 		sess.invalidate();
 		return "user/include/give";
-	}   
+	}
 	
 	
 	@GetMapping("/user/board/index.do")
