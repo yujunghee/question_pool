@@ -3,27 +3,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/smarteditor/js/HuskyEZCreator.js"></script>
 <script>
-function loginCheck(){
-	if ( $("#user_email").val().length < 1 ) {
-		alert("이메일을 입력해주세요.");
-		$("#user_email").val().focus();
+function loginCheck() {
+	if ($("#user_email").val() == '') {
+		alert('이메일을 입력해 주세요');
+		$("#user_email").focus();
 		return false;
 	}
-	if ( $("#user_pwd").val().length < 1 ) {
-		alert("비밀번호를 입력해주세요.");
-		$("#user_pwd").val().focus();
+	if ($("#user_pwd").val() == '') {
+		alert('비밀번호를 입력해 주세요');
+		$("#user_pwd").focus();
 		return false;
 	}
-	var f = document.board;
-	if (f.reg.checked) {
-	   document.cookie = "cookie_userid=" + f.id.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
-	} else {
-	   var now = new Date();	
-	   document.cookie = "cookie_userid=null;path=/;expires="+now;
-	}
-	return true;
-	
 }
 
 function userid_chk() {
@@ -51,16 +44,34 @@ function CookieVal(cookieName) {
 }
 
 </script>
+<style>
+      *{
+          margin: 0 auto;
+          padding: 0;
+          box-sizing: border-box;
+        }
+#login{
+	      width: 1500px;
+      higth:100%;	
+      text-align: center;
+      margin: 0 auto;
+      padding: 100px 0px 0px 0px;
+      border: 0ch ;
+      }
+#bor{
+	 padding: 10px;
+}
+</style>
 </head>
 <body onload="userid_chk();">
 <div id="login">
 	<div class="title">
-		<h1><span>사이트 이름입니다.</span></h1>
+		<h1><span>Question_Pool</span></h1>
 	</div>
 	<div class="login"> 
 	<form name="board" id="board" method="post" action="login.do" onsubmit="return loginCheck();">
 		<fieldset>
-			<legend>로그인</legend>
+			
 			<div class="bgBox">
 				<div class="infoBox">
 					<dl>
@@ -86,6 +97,10 @@ function CookieVal(cookieName) {
 			<!-- //bgBox -->
 			<div class="joinList">
 				<input type="checkbox" name="reg" id="reg"/> <label for="reg">아이디 저장</label>
+			</div>
+			<div>
+			                        <a href="join.do" class="btn">회원가입</a> 
+                                    <a href="searchId.do" class="btn">이메일/비밀번호 찾기</a>
 			</div>
 			<!-- //joinList -->
 			<input type="hidden" name="url" id="url" value="<%//=url%>"/>

@@ -17,7 +17,7 @@ public class UserController {
 	
 	@GetMapping("/user/login.do")
 	public String userlogin() {
-		return "user/login";
+		return "user/login/login";
 	}
 	@GetMapping("/user/index.do")
 	public String usermainpage() {
@@ -34,13 +34,14 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping("/user/logout.do")
-	public String logout(Model model, HttpSession sess) {
+	@GetMapping("/user/logout.do")
+	public String logOut(Model model, HttpSession sess) {
+		model.addAttribute("msg", "로그아웃되었습니다.");
+		model.addAttribute("url", "index.do");
 		sess.invalidate();
-		model.addAttribute("msg","로그아웃되었습니다");
-		model.addAttribute("url","/question_pool/user/login.do");
-		return "user/include/return";
-	}
+		return "user/include/give";
+	}   
+	
 	
 	@GetMapping("/user/board/index.do")
 	public String userBoardMain() {
