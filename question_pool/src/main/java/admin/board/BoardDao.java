@@ -15,17 +15,17 @@ public class BoardDao {
 	// ----------------------- 공지사항 영역 시작 -----------------------
 	
 	public int noticeCount(NoticeVo vo) {
-		return sqlSessionTemplate.selectOne("board.count", vo);
+		return sqlSessionTemplate.selectOne("board.noticeCount", vo);
 	}
 	
 	public List<NoticeVo> noticeList(NoticeVo vo) {
-		return sqlSessionTemplate.selectList("board.selectList", vo);
+		return sqlSessionTemplate.selectList("board.noticeList", vo);
 	}
 	
 	public int noticeInsert(NoticeVo vo) {
 		int r = -1;
 		try {
-			r = sqlSessionTemplate.insert("board.insert", vo);
+			r = sqlSessionTemplate.insert("board.noticeInsert", vo);
 		} catch (Exception e) {
 			r = 0;
 			System.out.println(e.getMessage());
@@ -34,39 +34,39 @@ public class BoardDao {
 	}
 	
 	public NoticeVo noticeSelectOne(int notice_no) {
-		return sqlSessionTemplate.selectOne("board.selectOne", notice_no);
+		return sqlSessionTemplate.selectOne("board.noticeOne", notice_no);
 	}
 	
 	public int noticeUpdateReadcount(int notice_no) {
-		return sqlSessionTemplate.update("board.updateReadcount", notice_no);
+		return sqlSessionTemplate.update("board.noticeUpdateReadcount", notice_no);
 	}
 	
 	public int noticeUpdate(NoticeVo vo) {
-		return sqlSessionTemplate.update("board.update", vo);
+		return sqlSessionTemplate.update("board.noticeUpdate", vo);
 	}	
 	
 	public int noticeDelete(String notice_no) {		
-		return sqlSessionTemplate.delete("board.delete", notice_no);
+		return sqlSessionTemplate.delete("board.noticeDelete", notice_no);
 	}
 	
 	
 	// ----------------------- 공지사항 영역 끝 -----------------------
 	
 	
-	// ----------------------- 공지사항 영역 시작 -----------------------
+	// ----------------------- 시험일정 영역 시작 -----------------------
 	
 		public int tdCount(TestdateVo vo) {
-			return sqlSessionTemplate.selectOne("board.count", vo);
+			return sqlSessionTemplate.selectOne("board.tdCount", vo);
 		}
 		
 		public List<TestdateVo> tdList(TestdateVo vo) {
-			return sqlSessionTemplate.selectList("board.selectList", vo);
+			return sqlSessionTemplate.selectList("board.tdList", vo);
 		}
 		
 		public int tdInsert(TestdateVo vo) {
 			int r = -1;
 			try {
-				r = sqlSessionTemplate.insert("board.insert", vo);
+				r = sqlSessionTemplate.insert("board.tdInsert", vo);
 			} catch (Exception e) {
 				r = 0;
 				System.out.println(e.getMessage());
@@ -75,21 +75,21 @@ public class BoardDao {
 		}
 		
 		public TestdateVo tdSelectOne(int Testdate_no) {
-			return sqlSessionTemplate.selectOne("board.selectOne", Testdate_no);
+			return sqlSessionTemplate.selectOne("board.tdOne", Testdate_no);
 		}
 		
 		public int tdUpdateReadcount(int Testdate_no) {
-			return sqlSessionTemplate.update("board.updateReadcount", Testdate_no);
+			return sqlSessionTemplate.update("board.tdUpdateReadcount", Testdate_no);
 		}
 		
 		public int tdUpdate(TestdateVo vo) {
-			return sqlSessionTemplate.update("board.update", vo);
+			return sqlSessionTemplate.update("board.tdUpdate", vo);
 		}	
 		
 		public int tdDelete(String Testdate_no) {		
-			return sqlSessionTemplate.delete("board.delete", Testdate_no);
+			return sqlSessionTemplate.delete("board.tdDelete", Testdate_no);
 		}
 		
 		
-		// ----------------------- 공지사항 영역 끝 -----------------------
+		// ----------------------- 시험일정 영역 끝 -----------------------
 }
