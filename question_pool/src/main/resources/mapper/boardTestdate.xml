@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="board2"> <!-- mapper파일의 이름 -->	
+	
+	
+	<!-- ======================================= 시험일정 영역 시작 ======================================= -->
+	
+	<sql id="boardWhere2">
+	 	<where>
+			<if test="searchType == '' ">
+				(td_title LIKE '%${searchWord}%' OR td_content LIKE '%${searchWord}%')
+			</if>
+			<if test="searchType != null and searchType != '' ">
+				${searchType} LIKE '%${searchWord}%'
+			</if>
+			<!--  
+			<if test="admin_no > 0">
+				AND admin_no = ${admin_no}
+			</if>
+			 -->
+		</where>
+	 </sql>
+	 
+	 <!-- 페이징처리 -->
+	 <select id="count" resultType="int" parameterType="admin.board.TestdateVo">
+	 	SELECT COUNT(*) FROM td
+	 	<include refid="boardWhere2"></include>
+	 </select>
+
+	<select id="selectList" resultType="admin.board.TestdateVo" parameterType="admin.board.TestdateVo">
+		SELECT * FROM td
+		<include refid="boardWhere2"></include>
+		ORDER BY td_date DESC
+		LIMIT ${startIdx},10
+	</select>
+	
+	<insert id="insert" parameterType="admin.board.TestdateVo">
+		<!-- #{}는 PreparedStatement, ${}는 Statement -->
+		INSERT INTO td (
+			td_title, td_content, td_date, admin_no, td_readcount, td_file_org, td_file_real 
+			) VALUES (
+				#{td_title}, #{td_content}, NOW(), #{admin_no}, #{td_readcount}, #{td_file_org}, #{td_file_real}
+			) 
+	</insert>
+	
+	<select id="selectOne" parameterType="int" resultType="admin.board.TestdateVo">
+		SELECT * FROM td WHERE td_no = #{xxx}
+	</select>
+	
+	<update id="updateReadcount" parameterType="admin.board.TestdateVo">
+		UPDATE td SET td_readcount=td_readcount+1 WHERE td_no = #{td_no}
+	</update>
+	
+	<update id="update" parameterType="admin.board.TestdateVo">
+		UPDATE td SET 
+			td_title=#{td_title} 
+			, td_content=#{td_content}
+			<if test="td_file_org != null"> 
+			, td_file_org=#{td_file_org} 
+			, td_file_real=#{td_file_real}
+			</if> 
+		WHERE td_no = #{td_no}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM td WHERE td_no=#{td_no}
+	</delete>
+	
+	
+	<!-- ======================================= 시험일정 영역 끝 ======================================= --> 
+</mapper> 

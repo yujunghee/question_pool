@@ -49,7 +49,8 @@ public class QuestionController {
    }
 
    @GetMapping("/admin/question/writeAjax.do")
-   public String writeAjax() {
+   public String writeAjax(HttpServletRequest req) {
+	   System.out.println(req.getParameter("question_no"));
 	   return "admin/question/writeAjax";
    }
    

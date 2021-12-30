@@ -85,7 +85,7 @@ function fn_paging(curPage){
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="blist">
-							<p><span>총 ${pagination.listCnt }개  <strong>|</strong>  ${pagination.pageCnt }/${pagination.curPage}페이지</span></p>							
+							<p><span><strong>총 ${totCount }개</strong>  |  ${noticeVo.page }/${totPage }페이지</span></p>							
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
@@ -142,38 +142,7 @@ function fn_paging(curPage){
 							</div>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
-							<div class='page'>															
-								<c:if test="${pagination.curRange ne 1 }">
-			                        <a href="#" onClick="fn_paging(1)">
-			                        	<<
-			                        </a> 
-			                    </c:if>
-			                    <c:if test="${pagination.curPage ne 1}">
-			                        <a href="#" onClick="fn_paging('${pagination.prevPage }')">
-			                        	<
-			                        </a> 
-			                    </c:if>
-			                    <c:forEach var="pageNum" begin="${pagination.startPage }" end="${pagination.endPage }">
-			                        <c:choose>
-			                            <c:when test="${pageNum eq  pagination.curPage}">
-			                                <span style="font-weight: bold;"><a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a></span> 
-			                            </c:when>
-			                            <c:otherwise>
-			                                <a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a> 
-			                            </c:otherwise>
-			                        </c:choose>
-			                    </c:forEach>
-			                    <c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
-			                        <a href="#" onClick="fn_paging('${pagination.nextPage }')">
-			                        	>
-			                        </a> 
-			                    </c:if>
-			                    <c:if test="${pagination.curRange ne pagination.rangeCnt && pagination.rangeCnt > 0}">
-			                        <a href="#" onClick="fn_paging('${pagination.pageCnt }')">
-			                        	>>
-			                        </a> 
-			                    </c:if>
-							</div>
+							${pageArea }
 							<!-- //페이징 처리 -->
 							<form name="searchForm" id="searchForm" action="notice.do"  method="get" >
 								<div class="search">

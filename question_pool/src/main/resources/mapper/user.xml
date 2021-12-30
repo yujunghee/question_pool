@@ -3,7 +3,7 @@
 <mapper namespace="user"> <!-- mapper파일의 이름 -->
 	<insert id="insert" parameterType="user.UserVo" useGeneratedKeys="true">
 		INSERT INTO user (
-			user_no, user_email, user_pwd, user_nick, user_name, user_tel, apply_school, user_regdate
+			user_no, user_email, user_pwd, user_nick, user_name, user_tel, user_address, user_regdate
 		) VALUES (
 			#{user_no}, #{user_email}, #{user_pwd}, #{user_nick}, #{user_name},#{user_tel},#{apply_school}, NOW()
 		)
