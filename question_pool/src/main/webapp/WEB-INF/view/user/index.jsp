@@ -5,6 +5,7 @@
 <head>
 <title><%=userUtil.Property.title %></title>
 <%@ include file="/WEB-INF/view/user/include/headHtml.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
 function directionTop() {
 	$('html, body').animate({scrollTop: 0 }, 'slow');
@@ -303,8 +304,16 @@ function test() {
 	<div id="header">
 		<h1><a href="<%=userUtil.Property.contextPath%>user/index.do">개인 포트폴리오</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
 		<ul class="topmenu">
-			<li class="logout"></li>
+			<c:if test="${empty userInfo }">
 			<li class="login"><a href="/question_pool/user/login.do">로그인</a></li>
+			<li class="signup"><a href="/question_pool/user/join.do">회원가입</a></li>
+			</c:if>
+			<c:if test="${!empty userInfo }">
+			<li class="login"><a href="/question_pool/user/logout.do">로그아웃</a></li>
+			<li class="signup"><a href="/question_pool/user/mypage.do">마이페이지</a></li>
+			</c:if>			
+			
+	
 			
 		</ul>
 	</div>
