@@ -128,7 +128,12 @@ function fn_paging(curPage){
 			                                    <a href="">관리자</a>
 			                                </td>			                                
 			                                <td class="readcount">${list.td_readcount }</td>
-			                                <td class="file">file</td>
+			                                <td class="file">
+			                                	<a href="/question_pool/common/download.jsp?path=/upload/&org=${list.td_file_org}&real=${list.td_file_real}" 
+                       								target="_blank"> 
+			                                		<img src="/question_pool/img/ico_file.png" >
+			                                	</a>
+			                                </td>
 			                            </tr>
 			                            </c:forEach>
 			                         </c:if>

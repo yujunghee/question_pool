@@ -35,6 +35,6 @@ try {
 	bos.close();
 	bis.close();
 } catch (Exception e) {
-	System.out.println(e.getMessage());
+	// System.out.println(e.getMessage());
 }
 %>

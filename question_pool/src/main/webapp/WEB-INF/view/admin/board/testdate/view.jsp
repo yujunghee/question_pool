@@ -44,7 +44,8 @@
 										<th scope="row"><label for="">내용</label></th>
 										<td colspan="10">
 											${data.td_content }
-										</td>
+											<img src="/question_pool/upload/${data.td_file_real }">																							
+										</td>									
 									</tr>
 									<tr>
 										<th scope="row"><label for="">첨부파일</label></th>
