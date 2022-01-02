@@ -20,10 +20,14 @@ public class UserServiceImple implements UserService {
 		}
 		return false;
 	}
+	@Override
+	public int userEmailCheck(String email) {
+		return dao.userEmailCheck(email);
+	}
 
 	@Override
-	public int emailcheck(String email) {
-		return dao.emailCheck(email);
+	public int insert(UserVo vo) {
+		return dao.insert(vo);
 	}
 
 	

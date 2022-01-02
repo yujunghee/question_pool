@@ -3,9 +3,9 @@
 <mapper namespace="user"> <!-- mapper파일의 이름 -->
 	<insert id="insert" parameterType="user.UserVo" useGeneratedKeys="true">
 		INSERT INTO user (
-			user_no, user_email, user_pwd, user_nick, user_name, user_tel, user_address, user_regdate
+			user_email, user_pwd, user_nick, user_name, user_tel, user_address, user_regdate, zipcode, addr1, addr2
 		) VALUES (
-			#{user_no}, #{user_email}, #{user_pwd}, #{user_nick}, #{user_name},#{user_tel},#{apply_school}, NOW()
+			 #{user_email}, md5(#{user_pwd}), #{user_nick}, #{user_name},#{user_tel},#{user_address}, NOW(), #{zipcode}, #{addr1}, #{addr2}
 		)
 		
 	</insert>
@@ -16,6 +16,10 @@
 	
 	<select id="login" parameterType="user.UserVo" resultType="user.UserVo">
 		SELECT * FROM user WHERE user_email=#{user_email} AND user_pwd=md5(#{user_pwd})
+	</select>
+	
+	<select id="userEmailCheck" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM user WHERE user_email = #{user_email}
 	</select>
 
 </mapper>

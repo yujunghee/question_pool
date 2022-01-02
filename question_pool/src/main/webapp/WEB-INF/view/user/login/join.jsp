@@ -40,7 +40,6 @@
     			}
     		});
     		
-    		selectDate("birthday");
     	})
     </script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -144,6 +143,22 @@
 	    	$("#frm").submit();
 	    }
 	</script>
+<style>
+      *{
+          margin: 0 auto;
+          padding: 0;
+          box-sizing: border-box;
+        }
+.wrap{
+	      width: 1500px;
+      higth:100%;	
+      text-align: center;
+      margin: 0 auto;
+      padding: 100px 0px 0px 0px;
+      border: 0ch ;
+      }
+
+</style>
 </head>
 <body>
     <div class="wrap">
@@ -177,18 +192,9 @@
                             <th>*이름</th>
                             <td><input type="text" name="name" id="name" style="float:left;"> </td>
                         </tr>
-                        <tr>
-                            <th>*성별</th>
-                            <td>
-                            <select name="gender" id="gender">
-                            <option value="1">남성</option>
-                            <option value="2">여성</option>
-                            </select> 
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>*생년월일</th>
-                            <td><input type="text" name="birthday" id="birthday" style="float:left;" autocomplete="off"> </td>
+                         <tr>
+                            <th>*별명</th>
+                            <td><input type="text" name="name" id="name" style="float:left;"> </td>
                         </tr>
                         <tr>
                             <th>*휴대폰 번호</th>
