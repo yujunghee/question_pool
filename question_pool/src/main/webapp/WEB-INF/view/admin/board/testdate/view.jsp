@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -42,9 +44,16 @@
 									</tr>
 									<tr>
 										<th scope="row"><label for="">내용</label></th>
+										<p><span>번호 :  <strong> ${data.td_no}</strong>  |  작성자 :  <strong>관리자</strong> | 조회수 :  <strong>${data.td_readcount }</strong>  |  작성일 :  <strong><fmt:formatDate value="${data.td_date }" pattern="yyyy-MM-dd HH:mm:ss"/></strong> </span></p>
 										<td colspan="10">
 											${data.td_content }
-											<img src="/question_pool/upload/${data.td_file_real }">																							
+											
+											<c:if test="${!empty data.td_file_real }">											
+												<img src="/question_pool/upload/${data.td_file_real }">											
+											</c:if>
+											<c:if test="${empty data.td_file_real }">											
+												<img src="">											
+											</c:if>																							
 										</td>									
 									</tr>
 									<tr>

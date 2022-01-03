@@ -123,7 +123,7 @@ function fn_paging(curPage){
 			                                <td class="txt_l">
 			                                    <a href="view.do?td_no=${list.td_no }">${list.td_title }</a>
 			                                </td>
-			                                <td class="date">${list.td_date }</td>			                                
+			                                <td class="date"><fmt:formatDate value="${list.td_date }" pattern="yyyy-MM-dd"/></td>			                                			                                
 			                                <td class="writer">
 			                                    <a href="">관리자</a>
 			                                </td>			                                
@@ -152,7 +152,7 @@ function fn_paging(curPage){
 							<!-- 페이징 처리 -->
 							${CommonUtil.getPageArea("testdate.do", testdateVo.page, totPage, 10)}
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="td.do"  method="get" >
+							<form name="searchForm" id="searchForm" action="testdate.do"  method="get" >
 								<div class="search">
 									<select name="searchType" title="검색을 선택해주세요">
 										<option value="">전체</option>

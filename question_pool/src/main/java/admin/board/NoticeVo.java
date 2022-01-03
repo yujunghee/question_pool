@@ -20,10 +20,4 @@ public class NoticeVo extends CommonVo {
 	private String notice_file_real;
 	private String name;
 	
-	public String getNotice_date() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		return sdf.format(this.notice_date);
-	}
-	
-	
 }

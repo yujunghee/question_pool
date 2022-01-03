@@ -121,7 +121,7 @@ function fn_paging(curPage){
 			                                <td class="txt_l">
 			                                    <a href="view.do?notice_no=${list.notice_no }">${list.notice_title }</a>
 			                                </td>
-			                                <td class="date">${list.notice_date }</td>			                                
+			                                <td class="date"><fmt:formatDate value="${list.notice_date }" pattern="yyyy-MM-dd"/></td>			                                
 			                                <td class="writer">
 			                                    <a href="">관리자</a>
 			                                </td>			                                

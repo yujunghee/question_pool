@@ -18,12 +18,6 @@ public class TestdateVo extends CommonVo {
 	private int td_readcount; 
 	private String td_file_org; 
 	private String td_file_real;
-	private String name;
-	
-	public String getTd_date() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		return sdf.format(this.td_date);
-	}
-	
+	private String name;	
 	
 }
