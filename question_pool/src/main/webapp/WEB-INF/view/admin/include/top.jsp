@@ -72,7 +72,7 @@ $(window).load(function(){
   				<li><a href="<%=request.getContextPath()%>/admin/member/index.do" class="parent"><span>회원관리</span></a></li>
   				<li><a href="<%=request.getContextPath()%>/admin/school/write.do" class="parent"><span>학교등록</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/question/pool.do" class="parent"><span>문제등록/수정</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/board/index.do" class="parent"><span>게시판</span></a>
+				<li><a href="<%=request.getContextPath()%>/admin/board/notice/notice.do" class="parent"><span>게시판</span></a>
 					<div class="standard_left">
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/admin/board/notice/notice.do"><span>공지사항</span></a></li>
