@@ -25,7 +25,7 @@
 			url : '/question_pool/admin/question/writeAjax.do',
 			data : $("#frm").serialize(),
 			success : function(res){
-   				$("#writeArea").html(res);
+   				$("#writeArea").append(res);
    			}
 		});
 	}
@@ -91,16 +91,17 @@
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">참조&nbsp;</label></th>
-										<td colspan="10">
-											<div id="writeArea"></div>
-											<input type="button" onclick="javascript:add();" value="참조문제">
-										</td>
-									</tr>
-									<tr>
 										<th scope="row"><label for="">해설</label></th>
 										<td colspan="10">
 											<textarea id="explanation" name="explanation" title="해설을 입력해주세요" rows="10" style="width:100%;"></textarea>	
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">참조문제&nbsp;</label></th>
+										<td colspan="10">
+											<div id="writeArea"></div>
+											<input type="button" onclick="javascript:add();" value="참조문제추가">
+											<input type="checkbox" value="참조문제인지">
 										</td>
 									</tr>
 								</tbody>
