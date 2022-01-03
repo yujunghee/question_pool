@@ -3,7 +3,6 @@ package question;
 public class QuestionVo {
 
 	private int question_no;
-	private int question_realnum;
 	private Integer question_ref;
 	private String passage;
 	private String question_content;
@@ -31,12 +30,6 @@ public class QuestionVo {
 	}
 	public void setSchool_no(int school_no) {
 		this.school_no = school_no;
-	}
-	public int getQuestion_realnum() {
-		return question_realnum;
-	}
-	public void setQuestion_realnum(int question_realnum) {
-		this.question_realnum = question_realnum;
 	}
 	public int getYear() {
 		return year;
