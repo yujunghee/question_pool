@@ -5,6 +5,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import util.SendMail;
+
 @Service
 public class UserServiceImple implements UserService {
 
@@ -20,11 +22,16 @@ public class UserServiceImple implements UserService {
 		}
 		return false;
 	}
+	@Override
+	public int userEmailCheck(String email) {
+		return dao.userEmailCheck(email);
+	}
 
 	@Override
-	public int emailcheck(String email) {
-		return dao.emailCheck(email);
+	public int insert(UserVo vo) {
+		return dao.insert(vo);
 	}
+
 
 	
 }

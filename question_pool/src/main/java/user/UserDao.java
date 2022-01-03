@@ -16,8 +16,13 @@ public class UserDao {
 	}
 
 	//이메일 중복체크
-	public int emailCheck(String email) {
-		return sst.selectOne("user.emailCheck", email);
+	public int userEmailCheck(String email) {
+		return sst.selectOne("user.userEmailCheck", email);
 	}
 
+	// 회원가입
+	public int insert(UserVo vo) {
+		return sst.insert("user.insert", vo);
+	}
+	
 }

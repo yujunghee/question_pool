@@ -16,22 +16,22 @@
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script>
     	$(function(){
-    		$("#emailCheckBtn").click(function(){  
-    			if ($("#email").val().trim() == '') {
+    		$("#emailCheckBtn").click(function(){
+    			if ($("#user_email").val().trim() == '') {
     				alert('이메일을 입력해 주세요');
-    				$("#email").focus();
+    				$("#user_email").focus();
     			} else {
     				$.ajax({
     					url : 'emailCheck.do',
     					data : {
-    						email : $("#email").val()
+    						email : $("#user_email").val()
     					},
     					async:false,
     					success:function(aaa) {
     						if (aaa.trim() == '1') {
     							alert('중복된 이메일입니다. 다른 이메일을 입력해 주세요');
-    							$("#email").val("");
-    							$("#email").focus();
+    							$("#user_email").val("");
+    							$("#user_email").focus();
     						} else {
     							alert("사용가능한 이메일입니다.");
     						}
@@ -40,7 +40,6 @@
     			}
     		});
     		
-    		selectDate("birthday");
     	})
     </script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -93,63 +92,83 @@
 	    }
 	    
 	    function goSave() {
-	    	if ($("#email").val().trim() == "") {
+	    	if ($("#user_email").val().trim() == "") {
 	    		alert('이메일을 입력해 주세요');
-	    		$("#email").focus();
+	    		$("#user_email").focus();
 	    		return;
 	    	}
 	    	var con = true;
 	    	$.ajax({
 				url : 'emailCheck.do',
 				data : {
-					email : $("#email").val()
+					email : $("#user_email").val()
 				},
 				async:false,
 				success:function(aaa) {
 					if (aaa.trim() == '1') {
 						alert('중복된 이메일입니다. 다른 이메일을 입력해 주세요');
-						$("#email").val("");
-						$("#email").focus();
+						$("#user_email").val("");
+						$("#user_email").focus();
 						con = false;
 					}
 				}
 			})
 	    	if (con == false) return;
-	    	if ($("#pwd").val().trim() == '') {
+	    	if ($("#user_pwd").val().trim() == '') {
 	    		alert('비밀번호를 입력해 주세요');
-	    		$("#pwd").focus();
+	    		$("#user_pwd").focus();
 	    		return;
 	    	}
 	    	var reg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-	    	if( !reg.test($("#pwd").val()) ) {
+	    	if( !reg.test($("#user_pwd").val()) ) {
 	    	    alert("비밀번호는 문자+숫자 조합으로 8자이상 입력해 주세요.");
 	    	    //$("#pwd").val("");
-	    	    $("#pwd").focus();
+	    	    $("#user_pwd").focus();
 	    	    return;
 	    	}
-	    	if ($("#pwd").val() != $("#pw_check").val()) {
+	    	if ($("#user_pwd").val() != $("#pw_check").val()) {
 	    		alert("비밀번호가 일치하지 않습니다.");
 	    		return;
 	    	}
-	    	if ($("#name").val().trim() == '') {
+	    	if ($("#user_name").val().trim() == '') {
 	    		alert('이름을 입력해 주세요');
-	    		$("#name").focus();
+	    		$("#user_name").focus();
 	    		return;
 	    	}
-	    	if ($("#tel").val().trim() == '') {
+	     	if ($("#user_nick").val().trim() == '') {
+	    		alert('별명을 입력해 주세요');
+	    		$("#user_nick").focus();
+	    		return;
+	    	}
+	    	if ($("#user_tel").val().trim() == '') {
 	    		alert('휴대폰번호를 입력해 주세요');
-	    		$("#tel").focus();
+	    		$("#user_tel").focus();
 	    		return;
 	    	}
 	    	$("#frm").submit();
 	    }
 	</script>
+<style>
+      *{
+          margin: 0 auto;
+          padding: 0;
+          box-sizing: border-box;
+        }
+.wrap{
+	      width: 1500px;
+      higth:100%;	
+      text-align: center;
+      margin: 0 auto;
+      padding: 100px 0px 0px 0px;
+      border: 0ch ;
+      }
+</style>
 </head>
 <body>
     <div class="wrap">
         <div class="sub">
             <div class="size">
-                <h3 class="sub_title">회원가입</h3>
+                <h3 class="sub_title">question_pool</h3>
                 <form name="frm" id="frm" action="insert.do" method="post">
                 <table class="board_write">
                     <caption>회원가입</caption>
@@ -161,13 +180,13 @@
                         <tr>
                             <th>*이메일</th>
                             <td>
-                                <input type="text" name="email" id="email" class="inNextBtn" style="float:left;">
+                                <input type="text" name="user_email" id="user_email" class="inNextBtn" style="float:left;">
                                 <span class="email_check"><a href="javascript:;" id="emailCheckBtn" class="btn bgGray" style="float:left; width:auto; clear:none;">중복확인</a></span>
                             </td>
                         </tr>
                         <tr>
                             <th>*비밀번호</th>
-                            <td><input type="password" name="pwd" id="pwd" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문 조합으로 8자 이상으로 입력해주세요.</span> </td>
+                            <td><input type="password" name="user_pwd" id="user_pwd" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문 조합으로 8자 이상으로 입력해주세요.</span> </td>
                         </tr>
                         <tr>
                             <th>*비밀번호<span>확인</span></th>
@@ -175,25 +194,16 @@
                         </tr>
                         <tr>
                             <th>*이름</th>
-                            <td><input type="text" name="name" id="name" style="float:left;"> </td>
+                            <td><input type="text" name="user_name" id="user_name" style="float:left;"> </td>
                         </tr>
-                        <tr>
-                            <th>*성별</th>
-                            <td>
-                            <select name="gender" id="gender">
-                            <option value="1">남성</option>
-                            <option value="2">여성</option>
-                            </select> 
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>*생년월일</th>
-                            <td><input type="text" name="birthday" id="birthday" style="float:left;" autocomplete="off"> </td>
+                         <tr>
+                            <th>*별명</th>
+                            <td><input type="text" name="user_nick" id="user_nick" style="float:left;"> </td>
                         </tr>
                         <tr>
                             <th>*휴대폰 번호</th>
                             <td>
-                                <input type="text" name="tel" id="tel" value=""  maxlength="15" style="float:left;">
+                                <input type="text" name="user_tel" id="user_tel" value=""  maxlength="15" style="float:left;">
                             </td>
                         </tr>
                         <tr>
