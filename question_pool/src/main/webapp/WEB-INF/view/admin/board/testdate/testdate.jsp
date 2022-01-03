@@ -145,7 +145,7 @@ function fn_paging(curPage){
 							</div>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
-							${pageArea }
+							${CommonUtil.getPageArea("testdate.do", testdateVo.page, totPage, 10)}
 							<!-- //페이징 처리 -->
 							<form name="searchForm" id="searchForm" action="td.do"  method="get" >
 								<div class="search">
