@@ -31,8 +31,8 @@
 				</select> 
 				<input type="submit" value="전송">
 			</form>
-			<form name="frm" id="frm" action="" enctype="multipart/form-data">
-				<select name="semester">
+			<form name="frm" id="frm" action="/question_pool/admin/question.write.do" enctype="multipart/form-data">
+				<select name="exam_no">
 					<c:forEach var="plist" items="${plist}">
 						<option value="${plist.exam_no}">${plist.semester}</option>
 					</c:forEach>
