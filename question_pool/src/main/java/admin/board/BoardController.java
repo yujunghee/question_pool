@@ -155,8 +155,7 @@ public class BoardController {
 		List<TestdateVo> list = boardService.tdList(vo);
 		model.addAttribute("list",list);
 		model.addAttribute("totPage",totPage);
-		model.addAttribute("totCount",totCount);
-		model.addAttribute("pageArea",Pagination.getPageArea("testdate.do", vo.getPage(), totPage, 10));
+		model.addAttribute("totCount",totCount);		
 		return "admin/board/testdate/testdate";
 	}
 	

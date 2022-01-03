@@ -16,7 +16,7 @@
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script>
     	$(function(){
-    		$("#emailCheckBtn").click(function(){
+    		$("#emailCheckBtn").click(function(){  
     			if ($("#email").val().trim() == '') {
     				alert('이메일을 입력해 주세요');
     				$("#email").focus();
