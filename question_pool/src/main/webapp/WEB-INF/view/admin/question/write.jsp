@@ -101,7 +101,6 @@
 										<td colspan="10">
 											<div id="writeArea"></div>
 											<input type="button" onclick="javascript:add();" value="참조문제추가">
-											<input type="checkbox" value="참조문제인지">
 										</td>
 									</tr>
 								</tbody>

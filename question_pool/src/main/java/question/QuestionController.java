@@ -47,23 +47,25 @@ public class QuestionController {
    public String write() {
       return "admin/question/write";
    }
+   
+   @GetMapping("/admin/question/writeAjax.do")
+   public String writeAjax() {
+	   return "admin/question/writeAjax";
+   }
+   
    @GetMapping("/admin/question/edit.do")
    public String edit() {
 	   return "admin/question/edit";
    }
 
-   @GetMapping("/admin/question/writeAjax.do")
-   public String writeAjax(HttpServletRequest req) {
-	   return "admin/question/writeAjax";
-   }
-   
    @RequestMapping("/admin/question/insert.do")
-   public String insert(QuestionVo qv, ExampleVo ev, HttpServletRequest req) {
+   public String insert(QuestionVo qv, ExampleVo ev, HttpServletRequest req, Model model) {
       String[] arr1 = {"a","b","c","d","e"};
       String[] arr2 = req.getParameterValues("example_content");
       qv.setAnswer(req.getParameter("example"));
-      
       int r1 = questionService.insertQuestion(qv);
+      model.addAttribute("refno",qv.getQuestion_no());
+  
       int r2 = 0;
       for(int i=0; i<arr2.length; i++) {
          if(!arr2[i].equals("")) {
@@ -74,7 +76,7 @@ public class QuestionController {
             r2++;
          }
       }
-      
+    
       if(r1>0 && r2>0) {
          req.setAttribute("msg", "정상적으로 등록되었습니다.");
          req.setAttribute("url", "write.do");

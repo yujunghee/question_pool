@@ -14,9 +14,17 @@ public class QuestionDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<QuestionVo> selectList(QuestionVo sv) {
-		List<QuestionVo> list= sqlSessionTemplate.selectList("question.selectexam",sv);
+	public List<QuestionVo> selectList(QuestionVo qv) {
+		List<QuestionVo> list= sqlSessionTemplate.selectList("question.selectexam",qv);
 		return list;
+	}
+	
+	public int updateRef(QuestionVo qv) {
+		return sqlSessionTemplate.update("question.updateRef",qv);
+	}
+	
+	public int select(int question_no) {
+		return sqlSessionTemplate.selectOne("question.last",question_no);
 	}
 	
 	public int insertQuestion(QuestionVo qv) {
