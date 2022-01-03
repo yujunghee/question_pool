@@ -14,6 +14,8 @@ public class UserVo {
 	private String user_pwd;
 	private String user_nick;
 	private String user_name;
+	private String user_address;
 	private int user_tel;
+	private Timestamp user_regdate;
 			 
 }

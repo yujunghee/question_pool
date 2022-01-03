@@ -47,6 +47,10 @@ public class QuestionController {
    public String write() {
       return "admin/question/write";
    }
+   @GetMapping("/admin/question/edit.do")
+   public String edit() {
+	   return "admin/question/edit";
+   }
 
    @GetMapping("/admin/question/writeAjax.do")
    public String writeAjax(HttpServletRequest req) {

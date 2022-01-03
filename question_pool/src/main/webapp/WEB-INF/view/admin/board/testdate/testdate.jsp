@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="util.Pagination" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -51,7 +52,7 @@ function del(){  // 단일 및 다중선택 후 삭제 가능하도록 배열 �
             success: function(jdata){
                 if(jdata = 1) {
                     alert("삭제 성공");
-                    location.replace("notice.do")
+                    location.replace("td.do")
                 }
                 else{
                     alert("삭제 실패");
@@ -61,7 +62,7 @@ function del(){  // 단일 및 다중선택 후 삭제 가능하도록 배열 �
 	}
 }
 function fn_paging(curPage){
-    location.href="notice.do?curPage="+curPage;
+    location.href="td.do?curPage="+curPage;
 }
 </script>
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
@@ -85,7 +86,7 @@ function fn_paging(curPage){
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="blist">
-							<p><span>총 ${pagination.listCnt }개  <strong>|</strong>  ${pagination.pageCnt }/${pagination.curPage}페이지</span></p>							
+							<p><span><strong>총 ${totCount }개</strong>  |  ${testdateVo.page }/${totPage }페이지</span></p>							
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
@@ -115,19 +116,24 @@ function fn_paging(curPage){
 									</c:if>
 									<c:if test="${!empty list }">
 										<c:forEach var="list" items="${list }">                                    
-			                            <input type="hidden" name="notice_no" value="${list.notice_no }">
+			                            <input type="hidden" name="td_no" value="${list.td_no }">
 			                            <tr>
-			                            	<td scope="col" class="first"><input type="checkbox" name="RowCheck" value="${list.notice_no }"/></td>			                            	
-			                                <td>${list.notice_no }</td>
+			                            	<td scope="col" class="first"><input type="checkbox" name="RowCheck" value="${list.td_no }"/></td>			                            	
+			                                <td>${list.td_no }</td>
 			                                <td class="txt_l">
-			                                    <a href="view.do?notice_no=${list.notice_no }">${list.notice_title }</a>
+			                                    <a href="view.do?td_no=${list.td_no }">${list.td_title }</a>
 			                                </td>
-			                                <td class="date">${list.notice_date }</td>			                                
+			                                <td class="date">${list.td_date }</td>			                                
 			                                <td class="writer">
 			                                    <a href="">관리자</a>
 			                                </td>			                                
-			                                <td class="readcount">${list.notice_readcount }</td>
-			                                <td class="file">file</td>
+			                                <td class="readcount">${list.td_readcount }</td>
+			                                <td class="file">
+			                                	<a href="/question_pool/common/download.jsp?path=/upload/&org=${list.td_file_org}&real=${list.td_file_real}" 
+                       								target="_blank"> 
+			                                		<img src="/question_pool/img/ico_file.png" >
+			                                	</a>
+			                                </td>
 			                            </tr>
 			                            </c:forEach>
 			                         </c:if>
@@ -144,45 +150,14 @@ function fn_paging(curPage){
 							</div>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
-							<div class='page'>															
-								<c:if test="${pagination.curRange ne 1 }">
-			                        <a href="#" onClick="fn_paging(1)">
-			                        	<<
-			                        </a> 
-			                    </c:if>
-			                    <c:if test="${pagination.curPage ne 1}">
-			                        <a href="#" onClick="fn_paging('${pagination.prevPage }')">
-			                        	<
-			                        </a> 
-			                    </c:if>
-			                    <c:forEach var="pageNum" begin="${pagination.startPage }" end="${pagination.endPage }">
-			                        <c:choose>
-			                            <c:when test="${pageNum eq  pagination.curPage}">
-			                                <span style="font-weight: bold;"><a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a></span> 
-			                            </c:when>
-			                            <c:otherwise>
-			                                <a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a> 
-			                            </c:otherwise>
-			                        </c:choose>
-			                    </c:forEach>
-			                    <c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
-			                        <a href="#" onClick="fn_paging('${pagination.nextPage }')">
-			                        	>
-			                        </a> 
-			                    </c:if>
-			                    <c:if test="${pagination.curRange ne pagination.rangeCnt && pagination.rangeCnt > 0}">
-			                        <a href="#" onClick="fn_paging('${pagination.pageCnt }')">
-			                        	>>
-			                        </a> 
-			                    </c:if>
-							</div>
+							${pageArea }
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="notice.do"  method="get" >
+							<form name="searchForm" id="searchForm" action="td.do"  method="get" >
 								<div class="search">
 									<select name="searchType" title="검색을 선택해주세요">
 										<option value="">전체</option>
-										<option value="notice_title" <c:if test="${param.searchType == 'notice_title'}">selected</c:if>>제목</option>
-										<option value="notice_content" <c:if test="${param.searchType == 'notice_content'}">selected</c:if>>내용</option>
+										<option value="td_title" <c:if test="${param.searchType == 'td_title'}">selected</c:if>>제목</option>
+										<option value="td_content" <c:if test="${param.searchType == 'td_content'}">selected</c:if>>내용</option>
 									</select>
 									<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
