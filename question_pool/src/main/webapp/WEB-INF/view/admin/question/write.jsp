@@ -78,15 +78,15 @@
 									<tr>
 										<th scope="row"><label for="">보기</label></th>
 										<td colspan="10">
-											<input type="RADIO" name="example" value="a">&nbsp; 
+											<input type="checkbox" name="example" value="a">&nbsp; 
 											(A) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="b">&nbsp; 
+											<input type="checkbox" name="example" value="b">&nbsp; 
 											(B) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="c">&nbsp; 
+											<input type="checkbox" name="example" value="c">&nbsp; 
 											(C) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="d">&nbsp; 
+											<input type="checkbox" name="example" value="d">&nbsp; 
 											(D) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="e">&nbsp; 
+											<input type="checkbox" name="example" value="e">&nbsp; 
 											(E) <input type="text" name="example_content" style="width:500px;">
 										</td>
 									</tr>

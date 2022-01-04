@@ -64,36 +64,32 @@ public class QuestionController {
 		String[] econtent = req.getParameterValues("example_content");
 		String[] content = req.getParameterValues("question_content");
 		String[] explanation = req.getParameterValues("explanation");
-		//String[] answers = req.getParameterValues("example");
-
-		System.out.println("econtent : "+econtent.length);
-		System.out.println("content : "+content.length);
-		System.out.println("examples : "+examples.length);
-		System.out.println("explanation : "+explanation.length);
-		//System.out.println("answers : "+answers.length);
-
+		String[] answers = req.getParameterValues("example");
+		
 		int r1 = 0;
 		int r2 = 0;
 		int ref = 0;
+		
 		for (int i = 0; i < content.length; i++) {
 			qv.setQuestion_content(content[i]);
 			qv.setExplanation(explanation[i]);
-			//qv.setAnswer(answers[i]);
-
-			questionService.insertQuestion(qv);
-			r1++;
+			qv.setAnswer(answers[i]);
 
 			if (i == 0) {
+				questionService.insertQuestion(qv);
+				r1++;
 				ref = qv.getQuestion_no();
-				System.out.println(ref);
 			} else {
 				qv.setQuestion_ref(ref);
+				qv.setPassage(null);
+				questionService.insertQuestion(qv);
+				r1++;
 			}
 
 			for (int j = 0; j < 5; j++) {
 				if (!("").equals(econtent[j])) {
 					ev.setExample(examples[j]);
-					ev.setExample_content(econtent[j]);
+					ev.setExample_content(econtent[(i*5)+j]);
 					ev.setQuestion_no(qv.getQuestion_no());
 					questionService.insertExample(ev);
 					r2++;
@@ -102,6 +98,7 @@ public class QuestionController {
 		}
 
 		if (r1 > 0 && r2 > 0) {
+			System.out.println("r1 : "+r1+"r2 : "+r2);
 			req.setAttribute("msg", "정상적으로 등록되었습니다.");
 			req.setAttribute("url", "write.do");
 		} else {
