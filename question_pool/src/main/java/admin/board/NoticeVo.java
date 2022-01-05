@@ -18,6 +18,6 @@ public class NoticeVo extends CommonVo {
 	private int notice_readcount; 
 	private String notice_file_org; 
 	private String notice_file_real;
-	private String name;
+	private String admin_name;
 	
 }

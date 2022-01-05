@@ -48,11 +48,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int noticeDelete(String notice_no) { 		
 		return boardDao.noticeDelete(notice_no);
-	}
-
-	 
+	}	 
 
 	// ----------------------- 공지사항 영역 끝 -----------------------
+	
+	
+	
+	
 	
 	// ----------------------- 시험일정 영역 시작 -----------------------
 	
@@ -92,9 +94,53 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int tdDelete(String td_no) { 		
 		return boardDao.tdDelete(td_no);
-	}
-
-		 
+	}		 
 
 	// ----------------------- 시험일정 영역 끝 -----------------------
+	
+	
+	
+	
+	
+	// ----------------------- QnA 영역 시작 -----------------------
+		
+	@Override
+	public int qaCount(QaVo vo) {
+		return boardDao.qaCount(vo);
+	}
+	
+	@Override
+	public List<QaVo> qaList(QaVo vo) {
+		return boardDao.qaList(vo);
+	}
+
+	@Override
+	public int qaInsert(QaVo vo) {
+		return boardDao.qaInsert(vo);
+	}
+
+	@Override
+	public QaVo qaView(int qa_no) { 
+		boardDao.qaUpdateReadcount(qa_no);
+		return boardDao.qaSelectOne(qa_no);
+	}
+	@Override
+	public QaVo qaEdit(int qa_no) {
+		boardDao.qaUpdateReadcount(qa_no);
+		return boardDao.qaSelectOne(qa_no);
+	}	
+
+	@Override
+	public int qaUpdate(QaVo vo) {
+		return boardDao.qaUpdate(vo);
+	}
+	
+
+	@Override
+	public int qaDelete(String qa_no) { 		
+		return boardDao.qaDelete(qa_no);
+	}			 
+
+	// ----------------------- QnA 영역 끝 -----------------------
+	
 }

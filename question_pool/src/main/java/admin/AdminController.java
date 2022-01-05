@@ -42,8 +42,4 @@ public class AdminController {
 		return "admin/include/return";
 	}
 	
-	@GetMapping("/admin/board/index.do")
-	public String adminBoardMain() {
-		return "admin/board/index";
-	}
 }
