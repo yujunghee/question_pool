@@ -3,8 +3,8 @@
 <mapper namespace="question"><!-- mapper파일의 이름 -->
 
 	<insert id="insert_question" parameterType="question.QuestionVo" useGeneratedKeys="true">
-		INSERT INTO question (passage, question_content, explanation, answer, admin_no, question_ref) 
-		VALUES (#{passage}, #{question_content}, #{explanation}, #{answer}, #{admin_no}, #{question_ref})	
+		INSERT INTO question (passage, question_content, explanation, answer, admin_no, question_ref, exam_no) 
+		VALUES (#{passage}, #{question_content}, #{explanation}, #{answer}, #{admin_no}, #{question_ref}, #{exam_no})	
 		<selectKey keyProperty="question_no" resultType="int" order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
@@ -30,8 +30,9 @@
 	<select id="selectList" resultType="school.SchoolVo" parameterType="school.SchoolVo">
 		SELECT * FROM school order by school_name asc;
 	</select>
-	<select id="selectexam" resultType="question.QuestionVo" parameterType="question.QuestionVo">
-		SELECT * FROM exam 
+	
+	<select id="selectExam" resultType="question.QuestionVo" parameterType="int">
+		SELECT * FROM exam WHERE exam_no=#{exam_no}
 	</select>
 	
 	<insert id="insert_exam" parameterType="question.QuestionVo">

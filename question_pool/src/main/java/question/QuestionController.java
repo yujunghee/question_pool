@@ -3,6 +3,7 @@ package question;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import admin.AdminVo;
 import school.SchoolService;
 import school.SchoolVo;
 
@@ -44,7 +46,8 @@ public class QuestionController {
 	}
 
 	@GetMapping("/admin/question/write.do")
-	public String write() {
+	public String write(Model model, HttpServletRequest req, @RequestParam int exam_no) {
+		model.addAttribute("exam",questionService.selectExam(exam_no));
 		return "admin/question/write";
 	}
 
@@ -59,7 +62,9 @@ public class QuestionController {
 	}
 
 	@RequestMapping("/admin/question/insert.do")
-	public String insert(QuestionVo qv, ExampleVo ev, HttpServletRequest req) {
+	public String insert(Model model, QuestionVo qv, ExampleVo ev, HttpServletRequest req, HttpSession sess, @RequestParam int exam_no) {
+		qv.setAdmin_no(((AdminVo)sess.getAttribute("adminInfo")).getAdmin_no());
+		model.addAttribute("exam",questionService.selectExam(exam_no));
 		String[] examples = { "a", "b", "c", "d", "e" };
 		String[] econtent = req.getParameterValues("example_content");
 		String[] content = req.getParameterValues("question_content");
@@ -74,7 +79,7 @@ public class QuestionController {
 			qv.setQuestion_content(content[i]);
 			qv.setExplanation(explanation[i]);
 			qv.setAnswer(answers[i]);
-
+			
 			if (i == 0) {
 				questionService.insertQuestion(qv);
 				r1++;
@@ -98,9 +103,8 @@ public class QuestionController {
 		}
 
 		if (r1 > 0 && r2 > 0) {
-			System.out.println("r1 : "+r1+"r2 : "+r2);
 			req.setAttribute("msg", "정상적으로 등록되었습니다.");
-			req.setAttribute("url", "write.do");
+			req.setAttribute("url", "write.do?exam_no="+exam_no);
 		} else {
 			req.setAttribute("msg", "등록 오류");
 		}

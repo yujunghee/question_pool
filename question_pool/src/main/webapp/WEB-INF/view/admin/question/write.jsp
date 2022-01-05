@@ -43,16 +43,19 @@
 		<!-- E N D :: headerArea--> 
 		<!-- S T A R T :: containerArea-->
 		<div id="container">
+		<input type="hidden" id="exam_no" name="exam_no" value="${exam.exam_no}">
+		<input type="hidden" id="school_no" name="school_no" value="${exam.school_no}">
+		<input type="hidden" id="admin_no" name="admin_no" value="${adminInfo.admin_no}">
 			<div id="content">
 				<div class="con_tit">
-					<h2>문제등록-[ㅇㅇ대학교 ㅇㅇ년도 ㅇㅇ학기]</h2>
+					<h2>문제등록 ${exam.exam_no}</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="insert.do?exam_no=${exam.exam_no}" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />

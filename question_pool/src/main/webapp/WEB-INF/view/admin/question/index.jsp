@@ -1,12 +1,23 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script>
+	$(function(){
+		var obj = $("#question_content");
+		var len = $("#question_content").length;
+		console.log(obj[0]);
+		console.log(obj[1]);
+		
+		//str.replace("$","<u>");
+	});
+</script>
+
 </head>
 <body> 
 <div id="wrap">
@@ -40,8 +51,8 @@
 								<tbody>
 									<tr>
 										<th scope="row"><label for="">문제</label></th>
-										<td colspan="10">
-											${fn:replace(qv.question_content,'$','<u>')}
+										<td colspan="10" id="question_content">
+											${qv.question_content}
 										</td>
 									</tr>
 									<tr>

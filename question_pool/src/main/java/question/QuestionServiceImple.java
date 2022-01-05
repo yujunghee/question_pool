@@ -56,4 +56,9 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.selectList(qv);
 	}
 
+	@Override
+	public QuestionVo selectExam(int exam_no) {
+		return dao.selectExam(exam_no);
+	}
+
 }

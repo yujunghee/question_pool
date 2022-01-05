@@ -19,14 +19,6 @@ public class QuestionDao {
 		return list;
 	}
 	
-	public int updateRef(QuestionVo qv) {
-		return sqlSessionTemplate.update("question.updateRef",qv);
-	}
-	
-	public int select(int question_no) {
-		return sqlSessionTemplate.selectOne("question.last",question_no);
-	}
-	
 	public int insertQuestion(QuestionVo qv) {
 		int r = -1;
 		try {
@@ -79,6 +71,8 @@ public class QuestionDao {
 		return r;
 	}
 	
-	
+	public QuestionVo selectExam(int exam_no) {
+		return sqlSessionTemplate.selectOne("question.selectExam",exam_no);
+	}
 
 }
