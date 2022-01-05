@@ -25,7 +25,7 @@
 			url : '/question_pool/admin/question/writeAjax.do',
 			data : $("#frm").serialize(),
 			success : function(res){
-   				$("#writeArea").html(res);
+   				$("#writeArea").append(res);
    			}
 		});
 	}
@@ -78,29 +78,29 @@
 									<tr>
 										<th scope="row"><label for="">보기</label></th>
 										<td colspan="10">
-											<input type="RADIO" name="example" value="a">&nbsp; 
+											<input type="checkbox" name="example" value="a">&nbsp; 
 											(A) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="b">&nbsp; 
+											<input type="checkbox" name="example" value="b">&nbsp; 
 											(B) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="c">&nbsp; 
+											<input type="checkbox" name="example" value="c">&nbsp; 
 											(C) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="d">&nbsp; 
+											<input type="checkbox" name="example" value="d">&nbsp; 
 											(D) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="e">&nbsp; 
+											<input type="checkbox" name="example" value="e">&nbsp; 
 											(E) <input type="text" name="example_content" style="width:500px;">
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">참조&nbsp;</label></th>
-										<td colspan="10">
-											<div id="writeArea"></div>
-											<input type="button" onclick="javascript:add();" value="참조문제">
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">해설</label></th>
 										<td colspan="10">
 											<textarea id="explanation" name="explanation" title="해설을 입력해주세요" rows="10" style="width:100%;"></textarea>	
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">참조문제&nbsp;</label></th>
+										<td colspan="10">
+											<div id="writeArea"></div>
+											<input type="button" onclick="javascript:add();" value="참조문제추가">
 										</td>
 									</tr>
 								</tbody>

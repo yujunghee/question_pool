@@ -14,7 +14,6 @@ public interface QuestionService {
 	List<QuestionVo> selectsemester(QuestionVo qv);
 	List<ExampleVo> selectExamplelist(ExampleVo ev);
 	int insertSchool(SchoolVo sv);
-
 	int insertExam(QuestionVo qv);
 	List<QuestionVo> selectexam(QuestionVo qv);
 	

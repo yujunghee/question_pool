@@ -56,6 +56,4 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.selectList(qv);
 	}
 
-
-
 }
