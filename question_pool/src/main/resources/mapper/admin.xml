@@ -3,9 +3,9 @@
 <mapper namespace="admin"> <!-- mapper파일의 이름 -->
 	<insert id="insert" parameterType="admin.AdminVo" useGeneratedKeys="true">
 		INSERT INTO admin (
-			admin_no, admin_email, admin_pwd, admin_name, admin_regdate
+			admin_email, admin_pwd, admin_name, admin_regdate
 		) VALUES (
-			#{admin_no}, #{admin_email}, #{admin_pwd}, #{admin_name}, NOW()
+			#{admin_email}, MD5(#{admin_pwd}), #{admin_name}, NOW()
 		)
 		
 	</insert>

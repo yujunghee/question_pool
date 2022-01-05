@@ -53,43 +53,88 @@ public class BoardDao {
 	// ----------------------- 공지사항 영역 끝 -----------------------
 	
 	
+	
+	
 	// ----------------------- 시험일정 영역 시작 -----------------------
 	
-		public int tdCount(TestdateVo vo) {
-			return sqlSessionTemplate.selectOne("board.tdCount", vo);
+	public int tdCount(TestdateVo vo) {
+		return sqlSessionTemplate.selectOne("board.tdCount", vo);
+	}
+	
+	public List<TestdateVo> tdList(TestdateVo vo) {
+		return sqlSessionTemplate.selectList("board.tdList", vo);
+	}
+	
+	public int tdInsert(TestdateVo vo) {
+		int r = -1;
+		try {
+			r = sqlSessionTemplate.insert("board.tdInsert", vo);
+		} catch (Exception e) {
+			r = 0;
+			System.out.println(e.getMessage());
 		}
-		
-		public List<TestdateVo> tdList(TestdateVo vo) {
-			return sqlSessionTemplate.selectList("board.tdList", vo);
+		return r;
+	}
+	
+	public TestdateVo tdSelectOne(int Testdate_no) {
+		return sqlSessionTemplate.selectOne("board.tdOne", Testdate_no);
+	}
+	
+	public int tdUpdateReadcount(int Testdate_no) {
+		return sqlSessionTemplate.update("board.tdUpdateReadcount", Testdate_no);
+	}
+	
+	public int tdUpdate(TestdateVo vo) {
+		return sqlSessionTemplate.update("board.tdUpdate", vo);
+	}	
+	
+	public int tdDelete(String Testdate_no) {		
+		return sqlSessionTemplate.delete("board.tdDelete", Testdate_no);
+	}
+	
+	
+	// ----------------------- 시험일정 영역 끝 -----------------------
+	
+	
+	
+	
+	// ----------------------- QnA 영역 시작 -----------------------
+	
+	public int qaCount(QaVo vo) {
+		return sqlSessionTemplate.selectOne("board.qaCount", vo);
+	}
+	
+	public List<QaVo> qaList(QaVo vo) {
+		return sqlSessionTemplate.selectList("board.qaList", vo);
+	}
+	
+	public int qaInsert(QaVo vo) {
+		int r = -1;
+		try {
+			r = sqlSessionTemplate.insert("board.qaInsert", vo);
+		} catch (Exception e) {
+			r = 0;
+			System.out.println(e.getMessage());
 		}
-		
-		public int tdInsert(TestdateVo vo) {
-			int r = -1;
-			try {
-				r = sqlSessionTemplate.insert("board.tdInsert", vo);
-			} catch (Exception e) {
-				r = 0;
-				System.out.println(e.getMessage());
-			}
-			return r;
-		}
-		
-		public TestdateVo tdSelectOne(int Testdate_no) {
-			return sqlSessionTemplate.selectOne("board.tdOne", Testdate_no);
-		}
-		
-		public int tdUpdateReadcount(int Testdate_no) {
-			return sqlSessionTemplate.update("board.tdUpdateReadcount", Testdate_no);
-		}
-		
-		public int tdUpdate(TestdateVo vo) {
-			return sqlSessionTemplate.update("board.tdUpdate", vo);
-		}	
-		
-		public int tdDelete(String Testdate_no) {		
-			return sqlSessionTemplate.delete("board.tdDelete", Testdate_no);
-		}
-		
-		
-		// ----------------------- 시험일정 영역 끝 -----------------------
+		return r;
+	}
+	
+	public QaVo qaSelectOne(int qa_no) {
+		return sqlSessionTemplate.selectOne("board.qaOne", qa_no);
+	}
+	
+	public int qaUpdateReadcount(int qa_no) {
+		return sqlSessionTemplate.update("board.qaUpdateReadcount", qa_no);
+	}
+	
+	public int qaUpdate(QaVo vo) {
+		return sqlSessionTemplate.update("board.qaUpdate", vo);
+	}	
+	
+	public int qaDelete(String qa_no) {		
+		return sqlSessionTemplate.delete("board.qaDelete", qa_no);
+	}
+	
+	
+	// ----------------------- QnA 영역 끝 -----------------------
 }

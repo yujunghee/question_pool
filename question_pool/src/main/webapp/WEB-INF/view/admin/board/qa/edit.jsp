@@ -11,16 +11,16 @@
 <script>
 	var oEditors;
 	$(function(){
-		oEditors = setEditor("td_content");
+		oEditors = setEditor("qa_content");
 	});
 	function goSave() {
-		if ($("#td_title").val() == '') {
+		if ($("#qa_title").val() == '') {
 			alert("제목을 입력하세요");
-			$("#td_title").focus();
+			$("#qa_title").focus();
 			return;
 		}
 		var data = $("#frm").serialize();
-		oEditors.getById['td_content'].exec("UPDATE_CONTENTS_FIELD",[]);
+		oEditors.getById['qa_content'].exec("UPDATE_CONTENTS_FIELD",[]);
 		$("#frm").submit();		
 	}
 	$(function(){
@@ -28,7 +28,7 @@
 			url:'update.do',
 			success:function(res) {
 				alert('정상적으로 수정되었습니다.');
-				location.href='view.do?td_no=${data.td_no}';
+				location.href='view.do?qa_no=${data.qa_no}';
 			}
 		});
 	});
@@ -45,7 +45,7 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>시험일정 - [수정]</h2>
+					<h2>QnA - [수정]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -53,7 +53,7 @@
 					<div id="bbs">
 						<div id="bread">
 							<form method="post" name="frm" id="frm" action="update.do" enctype="multipart/form-data">
-							<input type="hidden" name=td_no value="${data.td_no }">
+							<input type="hidden" name=qa_no value="${data.qa_no }">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -67,20 +67,13 @@
 									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="10">
-											<input type="text" id="td_title" name="td_title" class="w100" title="제목을 입력해주세요" value="${data.td_title }"/>	
+											<input type="text" id="qa_title" name="qa_title" class="w100" title="제목을 입력해주세요" value="${data.qa_title }"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">내용</label></th>
 										<td colspan="10">
-											<textarea id="td_content" name="td_content" title="내용을 입력해주세요" style="width:100%;">${data.td_content }</textarea>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-											<input type="checkbox" name="delCheck" value="1">기존파일삭제(${data.td_file_org})<br>
-											<input type="file" id="file" name="file" class="w100" title="첨부파일을 업로드 해주세요." />	
+											<textarea id="qa_content" name="qa_content" title="내용을 입력해주세요" style="width:100%;">${data.qa_content }</textarea>	
 										</td>
 									</tr>
 								</tbody>
@@ -88,7 +81,7 @@
 							<input type="hidden" name="cmd" value="write" />							
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="testdate.do"><strong>목록</strong></a>
+									<a class="btns" href="qa.do"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
 									<a class="btns" style="cursor:pointer;"href="javascript:goSave();"><strong>저장</strong></a>

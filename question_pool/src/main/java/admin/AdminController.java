@@ -27,7 +27,7 @@ public class AdminController {
 	@PostMapping("/admin/login.do")
 	public String adminloginprocess(AdminVo vo, HttpSession sess, Model model) {
 		if(service.login(vo, sess)) {
-			return "redirect:index.do";
+			return "redirect:question/pool.do";
 		}else {
 			model.addAttribute("msg","이메일, 비밀번호를 확인해주세요");
 		return "admin/include/return";
@@ -42,8 +42,4 @@ public class AdminController {
 		return "admin/include/return";
 	}
 	
-	@GetMapping("/admin/board/index.do")
-	public String adminBoardMain() {
-		return "admin/board/index";
-	}
 }

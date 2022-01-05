@@ -18,6 +18,6 @@ public class TestdateVo extends CommonVo {
 	private int td_readcount; 
 	private String td_file_org; 
 	private String td_file_real;
-	private String name;	
+	private String admin_name;	
 	
 }

@@ -117,7 +117,7 @@ function fn_paging(curPage){
 									<c:if test="${!empty list }">
 										<c:forEach var="list" items="${list }">                                    
 			                            <input type="hidden" name="td_no" value="${list.td_no }">
-			                            <tr>
+			                            <tr onclick="location.href='view.do?td_no=${list.td_no }'" style="cursor: pointer;">
 			                            	<td scope="col" class="first"><input type="checkbox" name="RowCheck" value="${list.td_no }"/></td>			                            	
 			                                <td>${list.td_no }</td>
 			                                <td class="txt_l">
@@ -125,7 +125,7 @@ function fn_paging(curPage){
 			                                </td>
 			                                <td class="date"><fmt:formatDate value="${list.td_date }" pattern="yyyy-MM-dd"/></td>			                                			                                
 			                                <td class="writer">
-			                                    <a href="">관리자</a>
+			                                    ${list.admin_name }
 			                                </td>			                                
 			                                <td class="readcount">${list.td_readcount }</td>
 			                                <td class="file">

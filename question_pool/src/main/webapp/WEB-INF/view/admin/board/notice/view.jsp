@@ -73,7 +73,6 @@
 								</div>
 								<div class="btnRight">
 									<a class="btns" style="cursor:pointer;" href="edit.do?notice_no=${data.notice_no }"><strong>수정</strong></a>
-									<a class="btns" style="cursor:pointer;" href=""><strong>답변</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

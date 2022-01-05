@@ -9,7 +9,7 @@
 	<!-- 컴퍼넌트 스캔 -->
 
 
-	<context:component-scan base-package="admin, question, payment, userPayment, school, util, userMain, userTest, userUtil, user, admin.board"/>  
+	<context:component-scan base-package="admin, question, payment, userPayment, school, util, userMain, userTest, userUtil, user, comment"/>  
 
 	<!-- 어노테이션 활성화 -->
 	<mvc:annotation-driven/>
@@ -49,7 +49,6 @@
 	</bean>
 
 	<!-- 정적페이지 -->
-
 	<mvc:view-controller path="/admin/board/notice/write.do"/>
 	
 	<mvc:interceptors>
