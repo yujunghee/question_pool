@@ -12,6 +12,7 @@ public class UserServiceImple implements UserService {
 
 	@Autowired
 	UserDao dao;
+
 	
 	@Override
 	public boolean login(UserVo vo, HttpSession sess) {
@@ -23,14 +24,36 @@ public class UserServiceImple implements UserService {
 		return false;
 	}
 	@Override
-	public int userEmailCheck(String email) {
-		return dao.userEmailCheck(email);
+	public String userEmailCheck(String email) {
+		if (email != null) {
+			String confirm = "";
+			for (int i=0; i<3; i++) {
+				confirm += (char)((Math.random()*26)+65);
+			}
+			for (int i=0; i<3; i++) {
+				confirm += (int)((Math.random()*9));
+			}
+
+			// 이메일 발송
+			SendMail.sendMail("jinin7906@naver.com",
+									email, 
+								"question_pool 인증번호입니다. 감사합니다", 
+								"인증번호:<span style='color:red;'>"+confirm+"</span>");
+			return confirm;
+		}
+		return "";
 	}
 
 	@Override
 	public int insert(UserVo vo) {
 		return dao.insert(vo);
 	}
+	
+	@Override
+	public int emailDuplicate(String emailDuplicate) {
+		return dao.emailDuplicate(emailDuplicate);
+	}
+
 
 
 	

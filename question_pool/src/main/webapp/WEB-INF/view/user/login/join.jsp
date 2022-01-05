@@ -16,13 +16,13 @@
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script>
     	$(function(){
-    		$("#emailCheckBtn").click(function(){
+    		$("#confirm").click(function(){
     			if ($("#user_email").val().trim() == '') {
     				alert('이메일을 입력해 주세요');
     				$("#user_email").focus();
     			} else {
     				$.ajax({
-    					url : 'emailCheck.do',
+    					url : 'emailDuplicate.do',
     					data : {
     						email : $("#user_email").val()
     					},
@@ -32,8 +32,14 @@
     							alert('중복된 이메일입니다. 다른 이메일을 입력해 주세요');
     							$("#user_email").val("");
     							$("#user_email").focus();
-    						} else {
-    							alert("사용가능한 이메일입니다.");
+    						}else {
+    							alert("이메일이 발송되었습니다. 최대 1~2분 소요됩니다.");
+    							$.ajax({
+    		    					url : 'userEmailCheck.do',
+    		    					data : {
+    		    						email : $("#user_email").val()
+    		    					}
+    							})
     						}
     					}
     				})
@@ -181,7 +187,14 @@
                             <th>*이메일</th>
                             <td>
                                 <input type="text" name="user_email" id="user_email" class="inNextBtn" style="float:left;">
-                                <span class="email_check"><a href="javascript:;" id="emailCheckBtn" class="btn bgGray" style="float:left; width:auto; clear:none;">중복확인</a></span>
+                                <span class="confirm"><a href="javascript:;" id="confirm" class="btn bgGray" style="float:left; width:auto; clear:none;">메일인증</a></span>
+                            </td>
+                        </tr>
+                         <tr>
+                            <th>*이메일</th>
+                            <td>
+                                <input type="text" name="a" id="a" class="inNextBtn" style="float:left;">
+                                <span class="a"><a href="javascript:;" id="a" class="btn bgGray" style="float:left; width:auto; clear:none;">중복확인</a></span>
                             </td>
                         </tr>
                         <tr>

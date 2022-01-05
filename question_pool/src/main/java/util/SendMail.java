@@ -27,7 +27,7 @@ public class SendMail {
 			//세션객체 생성
 			Session session =Session.getDefaultInstance(prop, new Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("skaxogus2660", "Wndrnr26^^");
+					return new PasswordAuthentication("jinin7906", "@just26131506");
 				}
 			});
 			session.setDebug(true);
@@ -59,6 +59,6 @@ public class SendMail {
 		for(int i=0; i<3; i++) {
 			tempPwd+=(int)(Math.random()*9);
 		}
-		sendMail("skaxogus2660@naver.com","skaxogus2660@gmail.com","[더조은]임시비밀번호","임시비밀번호는 <span style='color:blue;'>"+tempPwd+"</span>입니다.");
+		sendMail("jinin7906@naver.com","justkill9@naver.com","[더조은]임시비밀번호","임시비밀번호는 <span style='color:blue;'>"+tempPwd+"</span>입니다.");
 	}
 }

@@ -25,4 +25,12 @@ public class UserDao {
 		return sst.insert("user.insert", vo);
 	}
 	
+	public String userConfirm(String userConfirm) {
+		return sst.selectOne("user.userConfirm", userConfirm);
+	}
+	
+	//이메일 중복체크
+	public int emailDuplicate(String emailDuplicate) {
+		return sst.selectOne("user.emailDuplicate", emailDuplicate);
+	}
 }

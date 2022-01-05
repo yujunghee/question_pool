@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -50,7 +51,7 @@ public class UserController {
 	
 	
 
-	@GetMapping("/user/emailCheck.do")
+	@GetMapping("/user/userEmailCheck.do")
 	public String userEmailCheck(Model model, @RequestParam String email) {
 		model.addAttribute("result", service.userEmailCheck(email));
 		return "user/include/result";
@@ -66,4 +67,11 @@ public class UserController {
 		}
 		return "user/include/return";
 	}
+	@GetMapping("/user/emailDuplicate.do")
+	public String aaa(Model model, @RequestParam String email) {
+		model.addAttribute("result", service.emailDuplicate(email));
+		return "user/include/result";
+	}
+	
+
 }
