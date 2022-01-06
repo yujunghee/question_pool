@@ -19,5 +19,11 @@
 	<select id="userEmailCheck" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM user WHERE user_email = #{user_email}
 	</select>
+	
+	<select id="emailDuplicate" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM user WHERE user_email = #{user_email}
+	</select>
+	
+	
 
 </mapper>

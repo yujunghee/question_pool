@@ -14,15 +14,19 @@
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+        <link rel="stylesheet" href="/question_pool/css/user/userJoin/reset.css"/>
+    <link rel="stylesheet" href="/question_pool/css/user/userJoin/common.css"/>
+    <link rel="stylesheet" href="/question_pool/css/user/userJoin/contents.css"/>
     <script>
+    var code =String(Math.random());
     	$(function(){
-    		$("#emailCheckBtn").click(function(){
+    		$("#emailDuplicate").click(function(){
     			if ($("#user_email").val().trim() == '') {
     				alert('이메일을 입력해 주세요');
     				$("#user_email").focus();
     			} else {
     				$.ajax({
-    					url : 'emailCheck.do',
+    					url : 'emailDuplicate.do',
     					data : {
     						email : $("#user_email").val()
     					},
@@ -32,14 +36,32 @@
     							alert('중복된 이메일입니다. 다른 이메일을 입력해 주세요');
     							$("#user_email").val("");
     							$("#user_email").focus();
-    						} else {
-    							alert("사용가능한 이메일입니다.");
+    						}else {
+    							alert("이메일이 발송되었습니다. 최대 1~2분 소요됩니다.");
+    							$.ajax({
+    		    					url : 'userEmailCheck.do',
+    		    					data : {
+    		    						email : $("#user_email").val()
+    		    					},
+    		    					success:function(data){
+    		    						code = data;
+    		    					}
+    							})
     						}
     					}
     				})
     			}
     		});
-    		
+    	})
+        	$(function(){
+    		$('#confirmbtm').click(function(){
+    			if($('#confirm').val().trim() != code){
+    				alert('인증번호를 확인해 주세요');
+    				$("#confirm").focus();
+    			} else {
+    				alert('인증되었습니다.');
+    			}
+    		});
     	})
     </script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -113,6 +135,11 @@
 					}
 				}
 			})
+			if($('#confirm').val().trim() != code){
+				alert('인증번호를 확인해 주세요');
+				$("#confirm").focus();
+				con = false;
+			}
 	    	if (con == false) return;
 	    	if ($("#user_pwd").val().trim() == '') {
 	    		alert('비밀번호를 입력해 주세요');
@@ -145,24 +172,24 @@
 	    		$("#user_tel").focus();
 	    		return;
 	    	}
+	    	if ($("#zipcode").val().trim() == '') {
+	    		alert('주소를 입력해 주세요');
+	    		$("#zipcode").focus();
+	    		return;
+	    	}
+	    	if ($("#addr1").val().trim() == '') {
+	    		alert('주소를 입력해 주세요');
+	    		$("#addr1").focus();
+	    		return;
+	    	}
+	    	if ($("#addr2").val().trim() == '') {
+	    		alert('상세주소를 입력해 주세요');
+	    		$("#addr2").focus();
+	    		return;
+	    	}
 	    	$("#frm").submit();
 	    }
 	</script>
-<style>
-      *{
-          margin: 0 auto;
-          padding: 0;
-          box-sizing: border-box;
-        }
-.wrap{
-	      width: 1500px;
-      higth:100%;	
-      text-align: center;
-      margin: 0 auto;
-      padding: 100px 0px 0px 0px;
-      border: 0ch ;
-      }
-</style>
 </head>
 <body>
     <div class="wrap">
@@ -181,7 +208,14 @@
                             <th>*이메일</th>
                             <td>
                                 <input type="text" name="user_email" id="user_email" class="inNextBtn" style="float:left;">
-                                <span class="email_check"><a href="javascript:;" id="emailCheckBtn" class="btn bgGray" style="float:left; width:auto; clear:none;">중복확인</a></span>
+                                <span class="emailDuplicate"><a href="javascript:;" id="emailDuplicate" class="btn bgGray" style="float:left; width:auto; clear:none;">메일인증</a></span>
+                            </td>
+                        </tr>
+                         <tr>
+                            <th>*인증번호</th>
+                            <td>
+                                <input type="text" name="confirm" id="confirm" class="inNextBtn" style="float:left;">
+                                <span class="confirmbtm"><a href="javascript:;" id="confirmbtm" class="btn bgGray" style="float:left; width:auto; clear:none;"	>확인</a></span>
                             </td>
                         </tr>
                         <tr>
@@ -203,7 +237,7 @@
                         <tr>
                             <th>*휴대폰 번호</th>
                             <td>
-                                <input type="text" name="user_tel" id="user_tel" value=""  maxlength="15" style="float:left;">
+                                <input type="text" name="user_tel" id="user_tel" value=""  maxlength="15" style="float:left;"><span class="ptxt"> 숫자만 입력해 주세요.</span>
                             </td>
                         </tr>
                         <tr>
