@@ -14,6 +14,9 @@
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+        <link rel="stylesheet" href="/question_pool/css/user/userJoin/reset.css"/>
+    <link rel="stylesheet" href="/question_pool/css/user/userJoin/common.css"/>
+    <link rel="stylesheet" href="/question_pool/css/user/userJoin/contents.css"/>
     <script>
     var code =String(Math.random());
     	$(function(){
@@ -41,7 +44,6 @@
     		    						email : $("#user_email").val()
     		    					},
     		    					success:function(data){
-    		    						console.log(data);
     		    						code = data;
     		    					}
     							})
@@ -170,25 +172,24 @@
 	    		$("#user_tel").focus();
 	    		return;
 	    	}
+	    	if ($("#zipcode").val().trim() == '') {
+	    		alert('주소를 입력해 주세요');
+	    		$("#zipcode").focus();
+	    		return;
+	    	}
+	    	if ($("#addr1").val().trim() == '') {
+	    		alert('주소를 입력해 주세요');
+	    		$("#addr1").focus();
+	    		return;
+	    	}
+	    	if ($("#addr2").val().trim() == '') {
+	    		alert('상세주소를 입력해 주세요');
+	    		$("#addr2").focus();
+	    		return;
+	    	}
 	    	$("#frm").submit();
 	    }
 	</script>
-<style>
-      *{
-          margin: 0 auto;
-          padding: 0;
-          box-sizing: border-box;
-        }
-.wrap{
-	      width: 1500px;
-      higth:100%;	
-      text-align: center;
-      margin: 0 auto;
-      padding: 100px 0px 0px 0px;
-      border: 0ch ;
-      }
-
-</style>
 </head>
 <body>
     <div class="wrap">
@@ -236,7 +237,7 @@
                         <tr>
                             <th>*휴대폰 번호</th>
                             <td>
-                                <input type="text" name="user_tel" id="user_tel" value=""  maxlength="15" style="float:left;">
+                                <input type="text" name="user_tel" id="user_tel" value=""  maxlength="15" style="float:left;"><span class="ptxt"> 숫자만 입력해 주세요.</span>
                             </td>
                         </tr>
                         <tr>
