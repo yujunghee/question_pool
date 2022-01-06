@@ -35,15 +35,16 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>문제등록-[ㅇㅇ대학교 ㅇㅇ년도 ㅇㅇ학기]</h2>
+					<h2>문제수정-[ㅇㅇ대학교 ${exam.year}년도 ${exam.semester}학기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="update.do" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
+							<input type="hidden" value="${qv.question_no}">
 								<colgroup>
 									<col width="10%" />
 									<col width="15%" />
@@ -53,59 +54,38 @@
 									<col width="15%" />
 								</colgroup>
 								<tbody>
-								<c:forEach var="vo" items="${list}">
-									<tr>
-										<th scope="row"><label for="">문제번호</label></th>
-										<td colspan="10">
-											${vo.question_realnum }
-										</td>
-									</tr>
 									<tr>
 										<th scope="row"><label for="">문제</label></th>
 										<td colspan="10">
-											${vo.question_content }
+											<input type="text" id="question_content" name="question_content" class="w100" value="${qv.question_content}" />	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">지문</label></th>
 										<td colspan="10">
-											참조번호&nbsp;<input type="text" id="question_ref" name="question_ref" title="참조번호를 입력해주세요" style="width:100px;" /><br><br>
-											<textarea id="passage" name="passage" title="지문을 입력해주세요" rows="10" style="width:100%;">${vo.passage }</textarea>	
+											<textarea id="passage" name="passage" rows="10" style="width:100%;">${qv.passage}</textarea>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">보기</label></th>
 										<td colspan="10">
-											<input type="RADIO" name="example" value="a">&nbsp;&nbsp;&nbsp;
-											(A) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="b">&nbsp;&nbsp;&nbsp;
-											(B) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="c">&nbsp;&nbsp;&nbsp;
-											(C) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="d">&nbsp;&nbsp;&nbsp;
-											(D) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="RADIO" name="example" value="e">&nbsp;&nbsp;&nbsp;
-											(E) <input type="text" name="example_content" style="width:500px;">
+											<c:forEach var="ev" items="${elist}">
+												<input type="RADIO" name="example" value="">&nbsp; 
+												(${ev.example}) <input type="text" name="example_content" value="${ev.example_content}"><br>
+											</c:forEach>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">해설</label></th>
 										<td colspan="10">
-											<textarea id="explanation" name="explanation" title="해설을 입력해주세요" rows="10" style="width:100%;"></textarea>	
+											<textarea id="explanation" name="explanation" value="${qv.explanation}" rows="10" style="width:100%;"></textarea>	
 										</td>
 									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />	
-										</td>
-									</tr>
-									</c:forEach>
 								</tbody>
 							</table>
 							<div class="btn">
 								<div class="btnRight">
-									<input type="submit" class="btns" value="등록" style="width:250px;height:50px;">
+									<input type="submit" onclick="javascript:goSave();" class="btns" value="수정" style="width:250px;height:50px;">
 								</div>
 							</div>
 							</form>

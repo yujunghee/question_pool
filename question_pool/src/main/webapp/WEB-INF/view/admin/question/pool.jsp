@@ -6,6 +6,14 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
 </head>
 <script>
+	function chk(){
+		return true;
+	}
+	function chk2(frm){
+		frm.action='/question_pool/admin/question/index.do';
+		frm.submit();
+		return true;
+	}
 </script>
 <body>
 	<div id="wrap">
@@ -31,7 +39,7 @@
 				</select> 
 				<input type="submit" value="전송">
 			</form>
-			<form name="frm" id="frm" action="/question_pool/admin/question/write.do" enctype="multipart/form-data"
+			<form name="frm" id="frm" action="/question_pool/admin/question/write.do" onsubmit="return chk();" enctype="multipart/form-data"
 							style="text-align:center;">
 				<select name="exam_no">
 					<c:forEach var="plist" items="${plist}">
@@ -39,10 +47,8 @@
 					</c:forEach>
 				</select> 
 				<input type="submit" value="문제등록" >
-			<a href="edit.do"><input type="submit" value="문제수정"></a>
+				<input type="button" value="문제목록" onclick="return chk2(this.form);">
 			</form>
-			
-			<!-- 임시로 버튼만 만들어둠 -->
 		</div>
 		<!--//canvas -->
 	</div>

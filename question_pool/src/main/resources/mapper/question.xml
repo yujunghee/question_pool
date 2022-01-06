@@ -10,6 +10,23 @@
 		</selectKey>
 	</insert>	
 	
+	<select id="selectQuestion" parameterType="int" resultType="question.QuestionVo">
+		SELECT * FROM question WHERE question_no=#{question_no}
+	</select>
+	
+	<select id="selectExample" parameterType="int" resultType="question.ExampleVo">
+		SELECT * FROM example WHERE question_no=#{question_no}
+	</select>
+	
+	<update id="updateQuestion" parameterType="question.QuestionVo">
+		UPDATE question SET question_content=#{question_content}, passage=#{passage}, answer=#{answer}, explanation=#{explanation}
+		WHERE question_no=#{question_no}
+	</update>
+	
+	<update id="updateExample" parameterType="question.ExampleVo">
+		UPDATE example SET example_content=#{example_content} WHERE example_no=#{example_no}
+	</update>
+	
 	<insert id="insert_example" parameterType="question.ExampleVo">
 		INSERT INTO example(example, example_content, question_no)
 		VALUES (#{example},#{example_content},#{question_no})
@@ -20,7 +37,7 @@
 	</select>
 	
 	<select id="selectExamplelist" resultType="question.ExampleVo" parameterType="question.ExampleVo">
-		SELECT * FROM example
+		SELECT * FROM example WHERE question_no=#{question_no}
 	</select>
 	
 	<insert id="insert_school" parameterType="school.SchoolVo">

@@ -26,7 +26,8 @@ public class QuestionController {
 	SchoolService schoolService;
 
 	@RequestMapping("/admin/question/index.do")
-	public String selectQuestionlist(QuestionVo qv, ExampleVo ev, Model model) {
+	public String selectQuestionlist(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int exam_no) {
+		model.addAttribute("exam",questionService.selectExam(exam_no));
 		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
 		List<ExampleVo> elist = questionService.selectExamplelist(ev);
 		model.addAttribute("qlist", qlist);
@@ -46,7 +47,7 @@ public class QuestionController {
 	}
 
 	@GetMapping("/admin/question/write.do")
-	public String write(Model model, HttpServletRequest req, @RequestParam int exam_no) {
+	public String write(Model model, @RequestParam int exam_no) {
 		model.addAttribute("exam",questionService.selectExam(exam_no));
 		return "admin/question/write";
 	}
@@ -57,10 +58,36 @@ public class QuestionController {
 	}
 
 	@GetMapping("/admin/question/edit.do")
-	public String edit() {
+	public String edit(ExampleVo ev, Model model, @RequestParam int question_no) {
+		model.addAttribute("qv",questionService.selectQuestion(question_no));
+		ev.setQuestion_no(question_no);
+		List<ExampleVo> elist = questionService.selectExamplelist(ev);
+		model.addAttribute("elist",elist);
 		return "admin/question/edit";
 	}
 
+	@RequestMapping("/admin/question/update.do")
+	public String update(QuestionVo qv, ExampleVo ev, HttpServletRequest req) {
+		String[] econtent = req.getParameterValues("example_content");
+		int r1=0;
+		int r2=0;
+		
+		r1= questionService.updateQuestion(qv);
+		
+		//for(int i=0; i<econtent.length; i++) {
+			r2=questionService.updateExample(ev);
+			
+		//}
+		
+		if (r1 > 0 && r2 > 0) {
+			req.setAttribute("msg", "정상적으로 수정되었습니다.");
+			req.setAttribute("url", "index.do?exam_no="+qv.getExam_no());
+		} else {
+			req.setAttribute("msg", "수정 오류");
+		}
+		return "admin/include/return";
+	}
+	
 	@RequestMapping("/admin/question/insert.do")
 	public String insert(Model model, QuestionVo qv, ExampleVo ev, HttpServletRequest req, HttpSession sess, @RequestParam int exam_no) {
 		qv.setAdmin_no(((AdminVo)sess.getAttribute("adminInfo")).getAdmin_no());
