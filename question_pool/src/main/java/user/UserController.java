@@ -67,6 +67,7 @@ public class UserController {
 		}
 		return "user/include/return";
 	}
+	
 	@GetMapping("/user/emailDuplicate.do")
 	public String aaa(Model model, @RequestParam String email) {
 		model.addAttribute("result", service.emailDuplicate(email));

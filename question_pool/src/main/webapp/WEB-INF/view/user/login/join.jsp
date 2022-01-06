@@ -15,8 +15,9 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script>
+    var code =String(Math.random());
     	$(function(){
-    		$("#confirm").click(function(){
+    		$("#emailDuplicate").click(function(){
     			if ($("#user_email").val().trim() == '') {
     				alert('이메일을 입력해 주세요');
     				$("#user_email").focus();
@@ -38,6 +39,10 @@
     		    					url : 'userEmailCheck.do',
     		    					data : {
     		    						email : $("#user_email").val()
+    		    					},
+    		    					success:function(data){
+    		    						console.log(data);
+    		    						code = data;
     		    					}
     							})
     						}
@@ -45,7 +50,16 @@
     				})
     			}
     		});
-    		
+    	})
+        	$(function(){
+    		$('#confirmbtm').click(function(){
+    			if($('#confirm').val().trim() != code){
+    				alert('인증번호를 확인해 주세요');
+    				$("#confirm").focus();
+    			} else {
+    				alert('인증되었습니다.');
+    			}
+    		});
     	})
     </script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -119,6 +133,11 @@
 					}
 				}
 			})
+			if($('#confirm').val().trim() != code){
+				alert('인증번호를 확인해 주세요');
+				$("#confirm").focus();
+				con = false;
+			}
 	    	if (con == false) return;
 	    	if ($("#user_pwd").val().trim() == '') {
 	    		alert('비밀번호를 입력해 주세요');
@@ -168,6 +187,7 @@
       padding: 100px 0px 0px 0px;
       border: 0ch ;
       }
+
 </style>
 </head>
 <body>
@@ -187,14 +207,14 @@
                             <th>*이메일</th>
                             <td>
                                 <input type="text" name="user_email" id="user_email" class="inNextBtn" style="float:left;">
-                                <span class="confirm"><a href="javascript:;" id="confirm" class="btn bgGray" style="float:left; width:auto; clear:none;">메일인증</a></span>
+                                <span class="emailDuplicate"><a href="javascript:;" id="emailDuplicate" class="btn bgGray" style="float:left; width:auto; clear:none;">메일인증</a></span>
                             </td>
                         </tr>
                          <tr>
-                            <th>*이메일</th>
+                            <th>*인증번호</th>
                             <td>
-                                <input type="text" name="a" id="a" class="inNextBtn" style="float:left;">
-                                <span class="a"><a href="javascript:;" id="a" class="btn bgGray" style="float:left; width:auto; clear:none;">중복확인</a></span>
+                                <input type="text" name="confirm" id="confirm" class="inNextBtn" style="float:left;">
+                                <span class="confirmbtm"><a href="javascript:;" id="confirmbtm" class="btn bgGray" style="float:left; width:auto; clear:none;"	>확인</a></span>
                             </td>
                         </tr>
                         <tr>
