@@ -1,19 +1,22 @@
 package admin;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class AdminServiceImple implements AdminService {
 
 	@Autowired
-	AdminDao dao;
+	private AdminDao admindao;
 	
 	@Override
 	public boolean login(AdminVo vo, HttpSession sess) {
-		AdminVo av = dao.login(vo);
+		AdminVo av = admindao.login(vo);
 		if(av!=null) {
 			sess.setAttribute("adminInfo", av);
 			return true;
@@ -23,8 +26,19 @@ public class AdminServiceImple implements AdminService {
 
 	@Override
 	public int emailcheck(String email) {
-		return dao.emailCheck(email);
+		return admindao.emailCheck(email);
+	}
+	
+	@Override
+	public List<AdminVo> adminList(AdminVo vo){
+		return admindao.adminList(vo);
 	}
 
+	@Override
+	public int adminDelete(String admin_no) {
+		return admindao.adminDelete(admin_no);
+	}
+	
 	
 }
+

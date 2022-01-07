@@ -10,7 +10,7 @@
 </head>
 <script>
 
-function product(pname ,pay){
+function product(pname ,pay, product_no){
 	//가맹점 식별코드
 	IMP.init('imp01855034');
 	IMP.request_pay({
@@ -23,25 +23,29 @@ function product(pname ,pay){
 	    buyer_name : '${data.user_name}', 
 	    buyer_tel : '${data.user_tel}',
 	}, function(rsp) {
-		console.log(rsp);
+   		 var msg = '';
 	    if ( rsp.success ) {
-	    	var msg = '결제가 완료되었습니다.';
-	        msg += '고유ID : ' + rsp.imp_uid;
-	        msg += '상점 거래ID : ' + rsp.merchant_uid;
-	        msg += '결제 금액 : ' + rsp.paid_amount;
-	        msg += '카드 승인번호 : ' + rsp.apply_num;
+		    	$.ajax({
+		    		 type: 'POST',
+					url : 'payInsert.do',
+					data : {
+						pay_id : rsp.imp_uid,
+						user_no : ${data.user_no},
+						product_no : product_no
+					},
+		    	})
+				msg += pname+' 결제되었습니다 감사합니다.'
 	    } else {
-	    	 var msg = '결제에 실패하였습니다.';
-	         msg += '에러내용 : ' + rsp.error_msg;
+	         msg += rsp.error_msg+ '  다시 시도해주세요.';
 	    }
-	    alert(msg);
+        alert(msg); 
 	});
 }
 
 
 </script>
 <body>  
-<input type="button" value="30일권" onclick="product('30일권',100)"/><br>
-<input type="button" value="60일권" onclick="product('60일권',200)"/><br>
+<input type="button" value="30일권" onclick="product('30일권',100, 1)"/><br>
+<input type="button" value="60일권" onclick="product('60일권',200, 2)"/><br>
 </body>
 </html>
