@@ -14,18 +14,17 @@ public class UserPayDao {
 	private SqlSessionTemplate sst;
 	
 	public UserPayVo paymentUser(UserPayVo vo) throws Exception {
-		return sst.selectOne("userPay.Payment", vo);
+		return sst.selectOne("userPay.paymentUser", vo);
 	}
 	
-//	public int insert(UserPayVo vo) {
-//		//return sqlSessionTemplate.insert("board.insert",vo);
-//		int r = -1;
-//		try {
-//			r = sst.insert("userPay.insert",vo);
-//		}catch (Exception e) {
-//			r = 0;
-//			System.out.println(e.getMessage());
-//		}
-//		return r;
-//	}
+	public int insert(UserPayVo vo) {
+		int r = -1;
+		try {
+			r = sst.insert("userPay.payInsert",vo);
+		}catch (Exception e) {
+			r = 0;
+			System.out.println(e.getMessage());
+		}
+		return r;
+	}
 }
