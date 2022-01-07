@@ -27,7 +27,7 @@ public class QuestionController {
 	SchoolService schoolService;
 
 	@RequestMapping("/admin/question/index.do")
-	public String selectQuestionlist(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int exam_no) {
+	public String indexQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int exam_no) {
 		model.addAttribute("exam",questionService.selectExam(exam_no));
 		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
 		List<ExampleVo> elist = new ArrayList<ExampleVo>();
@@ -37,6 +37,7 @@ public class QuestionController {
 		}
 		model.addAttribute("qlist", qlist);
 		model.addAttribute("elist", elist);
+		//model.addAttribute("data",questionService.selectQuestion(qv.getQuestion_no()));
 		return "admin/question/index";
 	}
 
@@ -150,6 +151,24 @@ public class QuestionController {
 		return "admin/include/return";
 	}
 
+	@GetMapping("/admin/question/delete.do")
+	public String deleteQuestion(Model model, @RequestParam int question_no, @RequestParam int exam_no, HttpServletRequest req) {
+		int r = questionService.deleteQuestion(question_no);
+		if (r > 0) {
+			req.setAttribute("msg", "정상적으로 삭제되었습니다.");
+			req.setAttribute("url", "index.do?exam_no="+exam_no);
+		} else {
+			req.setAttribute("msg", "삭제 오류");
+		}
+		return "admin/include/return";
+	}
+	
+//	@GetMapping("/admin/question/deleteAjax.do")
+//	public String deleteAjax(Model model, @RequestParam int question_no) {
+//		model.addAttribute("result", questionService.deleteQuestion(question_no));
+//		return "admin/include/result";
+//	}
+	
 	@GetMapping("/admin/school/write.do")
 	public String indexschool(Model model, SchoolVo vo) {
 

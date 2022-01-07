@@ -23,6 +23,11 @@
 		UPDATE example SET example_content=#{example_content} WHERE example_no=#{example_no}
 	</update>
 	
+	<delete id="deleteQuestion" parameterType="int">
+		DELETE FROM q, e USING question AS q LEFT JOIN example AS e ON q.question_no=e.question_no
+		WHERE e.question_no=#{question_no}	
+</delete>
+	
 	<insert id="insert_example" parameterType="question.ExampleVo">
 		INSERT INTO example(example, example_content, question_no)
 		VALUES (#{example},#{example_content},#{question_no})

@@ -51,6 +51,10 @@ public class QuestionDao {
 		return sqlSessionTemplate.update("question.updateExample",ev);
 	}
 	
+	public int deleteQuestion(int question_no) {
+		return sqlSessionTemplate.delete("question.deleteQuestion",question_no);
+	}
+	
 	public List<QuestionVo> selectQuestionlist(QuestionVo qv){
 		return sqlSessionTemplate.selectList("question.selectQuestionlist",qv);
 	}

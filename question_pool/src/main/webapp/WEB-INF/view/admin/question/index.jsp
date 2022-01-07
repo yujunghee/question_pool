@@ -16,8 +16,8 @@
 		
 		//str.replace("$","<u>");
 	});
+	
 </script>
-
 </head>
 <body> 
 <div id="wrap">
@@ -82,6 +82,7 @@
 									<tr>
 										<td colspan="10">
 											<a href="edit.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제수정"></a>
+											<a href="delete.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제삭제"></a>
 										</td>
 									</tr>
 								</tbody>

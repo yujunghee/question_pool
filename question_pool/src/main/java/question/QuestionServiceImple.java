@@ -76,4 +76,9 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.selectQuestion(question_no);
 	}
 
+	@Override
+	public int deleteQuestion(int question_no) {
+		return dao.deleteQuestion(question_no);
+	}
+
 }
