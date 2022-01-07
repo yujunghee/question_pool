@@ -76,9 +76,4 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.selectQuestion(question_no);
 	}
 
-	@Override
-	public ExampleVo selectExample(int example_no) {
-		return dao.selectExample(example_no);
-	}
-
 }

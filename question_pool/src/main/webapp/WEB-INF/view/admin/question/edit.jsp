@@ -35,14 +35,15 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>문제수정-[ㅇㅇ대학교 ${exam.year}년도 ${exam.semester}학기]</h2>
+				
+					<h2>문제수정-[${exam.school_no}대학교 ${exam.year}년도 ${exam.semester}학기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="update.do" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="update.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 							<input type="hidden" value="${qv.question_no}">
 								<colgroup>
@@ -69,9 +70,12 @@
 									<tr>
 										<th scope="row"><label for="">보기</label></th>
 										<td colspan="10">
-											<c:forEach var="ev" items="${elist}">
-												<input type="RADIO" name="example" value="">&nbsp; 
-												(${ev.example}) <input type="text" name="example_content" value="${ev.example_content}"><br>
+											<c:forEach var="ev" items="${elist}" varStatus="status">
+												<input type="hidden" name="example_no" value="${ev.example_no}">
+												<input type="checkbox" name="example" value="${ex[status.index]}">&nbsp; 
+												(${ev.example})
+												<input type="text" name="example_content" value="${ev.example_content}">
+												<br>
 											</c:forEach>
 										</td>
 									</tr>

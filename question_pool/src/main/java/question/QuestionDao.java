@@ -43,10 +43,6 @@ public class QuestionDao {
 		return sqlSessionTemplate.selectOne("question.selectQuestion",question_no);
 	}
 	
-	public ExampleVo selectExample(int example_no) {
-		return sqlSessionTemplate.selectOne("question.selectExample",example_no);
-	}
-	
 	public int updateQuestion(QuestionVo qv) {
 		return sqlSessionTemplate.update("question.updateQuestion",qv);
 	}
