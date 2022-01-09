@@ -41,7 +41,9 @@
 	</insert>
 	
 	<select id="noticeOne" parameterType="int" resultType="admin.board.NoticeVo">
-		SELECT * FROM notice WHERE notice_no = #{xxx}
+		SELECT * 
+		, (SELECT admin_name FROM admin WHERE admin_no=notice.admin_no) admin_name
+		FROM notice WHERE notice_no = #{xxx}
 	</select>
 	
 	<update id="noticeUpdateReadcount" parameterType="admin.board.NoticeVo">
@@ -106,7 +108,9 @@
 	</insert>
 	
 	<select id="tdOne" parameterType="int" resultType="admin.board.TestdateVo">
-		SELECT * FROM testdate WHERE td_no = #{xxx}
+		SELECT * 
+		, (SELECT admin_name FROM admin WHERE admin_no=testdate.admin_no) admin_name
+		FROM testdate WHERE td_no = #{xxx}
 	</select>
 	
 	<update id="tdUpdateReadcount" parameterType="admin.board.TestdateVo">
@@ -151,14 +155,14 @@
 	 <!-- 페이징처리 -->
 	 <select id="qaCount" resultType="int" parameterType="admin.board.QaVo">
 	 	SELECT COUNT(*) FROM qa
-	 	<include refid="boardWhere"></include>
+	 	<include refid="boardWhere3"></include>
 	 </select>
 
 	<select id="qaList" resultType="admin.board.QaVo" parameterType="admin.board.QaVo">
 		SELECT * 
 		, (SELECT admin_name FROM admin WHERE admin_no=qa.admin_no) admin_name
 		FROM qa
-		<include refid="boardWhere"></include>
+		<include refid="boardWhere3"></include>
 		ORDER BY qa_date DESC
 		LIMIT ${startIdx},10
 	</select>
@@ -191,6 +195,68 @@
 	</delete>
 	
 	
-	<!-- ======================================= 커뮤니티 영역 끝 ======================================= -->
+	<!-- ======================================= QnA 영역 끝 ======================================= -->
+	
+	
+	
+	
+	<!-- ======================================= 커뮤니티 영역 시작 ======================================= -->
+	
+	<sql id="boardWhere4">
+	 	<where>
+			<if test="searchType == '' ">
+				(community_title LIKE '%${searchWord}%' OR community_content LIKE '%${searchWord}%')
+			</if>
+			<if test="searchType != null and searchType != '' ">
+				${searchType} LIKE '%${searchWord}%'
+			</if>			  
+			<if test="admin_no > 0">
+				AND admin_no = ${admin_no}
+			</if>
+		</where>
+	 </sql>
 	 
+	 <!-- 페이징처리 -->
+	 <select id="communityCount" resultType="int" parameterType="admin.board.CommunityVo">
+	 	SELECT COUNT(*) FROM community
+	 	<include refid="boardWhere4"></include>
+	 </select>
+
+	<select id="communityList" resultType="admin.board.CommunityVo" parameterType="admin.board.CommunityVo">
+		SELECT * 
+		, (SELECT admin_name FROM admin WHERE admin_no=community.admin_no) admin_name
+		FROM community
+		<include refid="boardWhere4"></include>
+		ORDER BY community_date DESC
+		LIMIT ${startIdx},10
+	</select>
+	
+	<insert id="communityInsert" parameterType="admin.board.CommunityVo">		
+		INSERT INTO community (
+			community_title, community_content, community_date, admin_no, community_readcount 
+			) VALUES (
+				#{community_title}, #{community_content}, NOW(), #{admin_no}, #{community_readcount}
+			) 
+	</insert>
+	
+	<select id="communityOne" parameterType="int" resultType="admin.board.CommunityVo">
+		SELECT * FROM community WHERE community_no = #{xxx}
+	</select>
+	
+	<update id="communityUpdateReadcount" parameterType="admin.board.CommunityVo">
+		UPDATE community SET community_readcount=community_readcount+1 WHERE community_no = #{community_no}
+	</update> 
+	
+	<update id="communityUpdate" parameterType="admin.board.CommunityVo">
+		UPDATE community SET 
+			community_title=#{community_title} 
+			, community_content=#{community_content}
+		WHERE community_no = #{community_no}
+	</update>
+	
+	<delete id="communityDelete">
+		DELETE FROM community WHERE community_no=#{community_no}
+	</delete> 
+	
+	<!-- ======================================= 커뮤니티 영역 끝 ======================================= -->
 </mapper> 

@@ -116,11 +116,12 @@ function fn_paging(curPage){
 									</c:if>
 									<c:if test="${!empty list }">
 										<c:forEach var="list" items="${list }">                                    
-			                            <input type="hidden" name="td_no" value="${list.td_no }">
-			                            <tr onclick="location.href='view.do?td_no=${list.td_no }'" style="cursor: pointer;">
+			                            <input type="hidden" name="td_no" value="${list.td_no }">			                            
+			                            <input type="hidden" name="admin_no" value="${list.admin_no }">
+			                            <tr>
 			                            	<td scope="col" class="first"><input type="checkbox" name="RowCheck" value="${list.td_no }"/></td>			                            	
 			                                <td>${list.td_no }</td>
-			                                <td class="txt_l">
+			                                <td class="txt_l" onclick="location.href='view.do?td_no=${list.td_no }'" style="cursor: pointer;">
 			                                    <a href="view.do?td_no=${list.td_no }">${list.td_title }</a>
 			                                </td>
 			                                <td class="date"><fmt:formatDate value="${list.td_date }" pattern="yyyy-MM-dd"/></td>			                                			                                
@@ -150,7 +151,7 @@ function fn_paging(curPage){
 							</div>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
-							${CommonUtil.getPageArea("testdate.do", testdateVo.page, totPage, 10)}
+							${pageArea }
 							<!-- //페이징 처리 -->
 							<form name="searchForm" id="searchForm" action="testdate.do"  method="get" >
 								<div class="search">

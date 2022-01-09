@@ -44,7 +44,7 @@
 									</tr>
 									<tr>
 										<th scope="row"><label for="">내용</label></th>
-										<p><span>번호 :  <strong> ${data.td_no}</strong>  |  작성자 :  <strong>관리자</strong> | 조회수 :  <strong>${data.td_readcount }</strong>  |  작성일 :  <strong><fmt:formatDate value="${data.td_date }" pattern="yyyy-MM-dd HH:mm:ss"/></strong> </span></p>
+										<p><span>번호 :  <strong> ${data.td_no}</strong>  |  작성자 :  <strong>${data.admin_name }</strong> | 조회수 :  <strong>${data.td_readcount }</strong>  |  작성일 :  <strong><fmt:formatDate value="${data.td_date }" pattern="yyyy-MM-dd HH:mm:ss"/></strong> </span></p>
 										<td colspan="10">
 											${data.td_content }
 											

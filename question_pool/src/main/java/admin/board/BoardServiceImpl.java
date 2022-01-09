@@ -143,4 +143,47 @@ public class BoardServiceImpl implements BoardService {
 
 	// ----------------------- QnA 영역 끝 -----------------------
 	
+	
+	
+	
+	// ----------------------- 커뮤니티 영역 시작 -----------------------
+	
+	@Override
+	public int communityCount(CommunityVo vo) {
+		return boardDao.communityCount(vo);
+	}
+	
+	@Override
+	public List<CommunityVo> communityList(CommunityVo vo) {
+		return boardDao.communityList(vo);
+	}
+
+	@Override
+	public int communityInsert(CommunityVo vo) {
+		return boardDao.communityInsert(vo);
+	}
+
+	@Override
+	public CommunityVo communityView(int community_no) { 
+		boardDao.communityUpdateReadcount(community_no);
+		return boardDao.communitySelectOne(community_no);
+	}
+	@Override
+	public CommunityVo communityEdit(int community_no) {
+		boardDao.communityUpdateReadcount(community_no);
+		return boardDao.communitySelectOne(community_no);
+	}	
+
+	@Override
+	public int communityUpdate(CommunityVo vo) {
+		return boardDao.communityUpdate(vo);
+	}
+	
+
+	@Override
+	public int communityDelete(String community_no) { 		
+		return boardDao.communityDelete(community_no);
+	}			 
+
+	// ----------------------- 커뮤니티 영역 끝 -----------------------
 }

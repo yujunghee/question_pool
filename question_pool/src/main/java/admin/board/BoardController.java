@@ -163,7 +163,8 @@ public class BoardController {
 		List<TestdateVo> list = boardService.tdList(vo);
 		model.addAttribute("list",list);
 		model.addAttribute("totPage",totPage);
-		model.addAttribute("totCount",totCount);		
+		model.addAttribute("totCount",totCount);
+		model.addAttribute("pageArea",Pagination.getPageArea("testdate.do", vo.getPage(), totPage, 10));
 		return "admin/board/testdate/testdate";
 	}
 	
@@ -263,7 +264,7 @@ public class BoardController {
 	}
 	
 	
-// ----------------------------- 시험일정 영역 끝 -----------------------------
+// ----------------------------- 시험일정 영역 끝 ---------------------------------------
 
 	
 // ----------------------------- QnA 영역 시작 -----------------------------------------
@@ -280,7 +281,8 @@ public class BoardController {
 		List<QaVo> list = boardService.qaList(vo);
 		model.addAttribute("list",list);
 		model.addAttribute("totPage",totPage);
-		model.addAttribute("totCount",totCount);		
+		model.addAttribute("totCount",totCount);
+		model.addAttribute("pageArea",Pagination.getPageArea("qa.do", vo.getPage(), totPage, 10));
 		return "admin/board/qa/qa";
 	}
 	
@@ -343,6 +345,88 @@ public class BoardController {
 	}
 
 // ----------------------------- QnA 영역 끝 ----------------------------------------
+
 	
+	
+	
+	
+// ----------------------------- 커뮤니티 영역 시작 -----------------------------------------
+
+	@GetMapping("/admin/board/community/community.do")
+	public String communityList(Model model, HttpServletRequest req, CommunityVo vo) throws Exception{
+		int totCount = boardService.communityCount(vo);
+		int totPage = totCount / 10; //총페이지수 
+		if(totCount % 10 > 0) totPage++;
+		
+		int startIdx = (vo.getPage()-1)*10;
+		vo.setStartIdx(startIdx);				 		
+		
+		List<CommunityVo> list = boardService.communityList(vo);
+		model.addAttribute("list",list);
+		model.addAttribute("totPage",totPage);
+		model.addAttribute("totCount",totCount);
+		model.addAttribute("pageArea",Pagination.getPageArea("community.do", vo.getPage(), totPage, 10));
+		return "admin/board/community/community";
+	}
+	
+	@RequestMapping("/admin/board/community/write.do")
+	public String communityWrite() {
+		return "admin/board/community/write";
+	}
+	
+	@PostMapping("/admin/board/community/insert.do")
+	public String communityInsert(CommunityVo vo, HttpServletRequest req, MultipartFile file, HttpSession sess) {
+		vo.setAdmin_no(((AdminVo)sess.getAttribute("adminInfo")).getAdmin_no());
+		
+		int r = boardService.communityInsert(vo);
+				
+		if (r > 0) {
+			req.setAttribute("msg", "정상적으로 등록되었습니다.");
+			req.setAttribute("url", "community.do");
+		} else {
+			req.setAttribute("msg", "등록 오류");
+			req.setAttribute("url", "write.do");
+		}		
+		return "admin/include/return";
+	}
+	
+	@GetMapping("/admin/board/community/view.do")
+	public String communityView(Model model, @RequestParam int community_no) {
+		model.addAttribute("data", boardService.communityView(community_no));
+		return "admin/board/community/view";
+	}
+	
+	@GetMapping("/admin/board/community/edit.do")
+	public String communityEdit(Model model, @RequestParam int community_no) {
+		model.addAttribute("data", boardService.communityView(community_no)); 
+		return "admin/board/community/edit";
+	}
+	
+	@PostMapping("/admin/board/community/update.do")
+	public String communityUpdate(Model model, CommunityVo vo) {		
+		int res = boardService.communityUpdate(vo);
+		if (res > 0) {
+			model.addAttribute("msg", "정상적으로 수정되었습니다.");
+			model.addAttribute("url", "view.do?community_no="+vo.getCommunity_no()); // 성공했을때 상세페이지로 이동
+		} else {
+			model.addAttribute("msg", "수정 오류");
+			model.addAttribute("url", "edit.do?community_no="+vo.getCommunity_no()); // 실패했을때 수정페이지로 이동
+		}
+		return "admin/include/return";
+	}	
+	
+	@RequestMapping("/admin/board/community/delete.do")
+	public String communityDelete(HttpServletRequest request, CommunityVo vo) throws Exception {
+		// 단일 및 다중선택 후 삭제 가능하도록 배열 처리
+        String[] ajaxMsg = request.getParameterValues("valueArr");        
+        int size = ajaxMsg.length;
+        for(int i=0; i<size; i++) {
+        	System.out.println("ajaxMsg[i]:"+ajaxMsg[i]); 
+    		boardService.communityDelete(ajaxMsg[i]);
+        }
+		return "admin/include/return";
+	}
+
+// ----------------------------- 커뮤니티 영역 끝 ----------------------------------------
 }	
 
