@@ -137,4 +137,46 @@ public class BoardDao {
 	
 	
 	// ----------------------- QnA 영역 끝 -----------------------
+	
+	
+	
+	// ----------------------- 커뮤니티 영역 시작 -----------------------
+	
+	public int communityCount(CommunityVo vo) {
+		return sqlSessionTemplate.selectOne("board.communityCount", vo);
+	}
+	
+	public List<CommunityVo> communityList(CommunityVo vo) {
+		return sqlSessionTemplate.selectList("board.communityList", vo);
+	}
+	
+	public int communityInsert(CommunityVo vo) {
+		int r = -1;
+		try {
+			r = sqlSessionTemplate.insert("board.communityInsert", vo);
+		} catch (Exception e) {
+			r = 0;
+			System.out.println(e.getMessage());
+		}
+		return r;
+	}
+	
+	public CommunityVo communitySelectOne(int community_no) {
+		return sqlSessionTemplate.selectOne("board.communityOne", community_no);
+	}
+	
+	public int communityUpdateReadcount(int community_no) {
+		return sqlSessionTemplate.update("board.communityUpdateReadcount", community_no);
+	}
+	
+	public int communityUpdate(CommunityVo vo) {
+		return sqlSessionTemplate.update("board.communityUpdate", vo);
+	}	
+	
+	public int communityDelete(String community_no) {		
+		return sqlSessionTemplate.delete("board.communityDelete", community_no);
+	}
+	
+	
+	// ----------------------- 커뮤니티 영역 끝 -----------------------
 }

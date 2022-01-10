@@ -330,7 +330,7 @@ function test() {
 					<dl style="width:13.666%;">
 						<dt><a href="javascript:;">결제</a></dt>
 						<dd class="frist"><a href="javascript:;" onclick="clickMenu('project1', '상품보기', '/user/payment/pay.do', false)">상품보기</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('project2', '프로젝트 기획', '/project/plan.do', false)">프로젝트 기획</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('project2', '환불요청', '/user/payment/refund.do', false)">환불요청</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('project3', '프로젝트 설계', '/project/architecture.do', false)">프로젝트 설계</a></dd>
 					</dl>
 					<dl style="width:13.666%;">
@@ -383,7 +383,7 @@ function test() {
 					<dd class="gnb_submenu">
 						<ul>	
 							<li id="project1_submenu" onclick="clickMenu('project1', '상품보기', '/user/payment/pay.do', false)">상품보기</li>
-							<li id="project2_submenu" onclick="clickMenu('project2', '프로젝트 기획', '/project/plan.do', false)">프로젝트 기획</li>
+							<li id="project2_submenu" onclick="clickMenu('project2', '환불요청', '/user/payment/refund.do', false)">환불요청</li>
 							<li id="project3_submenu" onclick="clickMenu('project3', '프로젝트 설계', '/project/architecture.do', false)">프로젝트 설계</li>
 						</ul>
 					</dd>

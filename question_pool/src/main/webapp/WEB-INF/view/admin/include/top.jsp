@@ -56,7 +56,7 @@ $(window).load(function(){
 </script>
 <div id="header">
 	<div class="header_inner">
-		<h1>SAMPLE</h1>
+		<h1>QUESTION_POOL</h1>
 		<p class="login_name"></p>
 		<!-- util : s -->
 		<div class="util">
@@ -78,7 +78,7 @@ $(window).load(function(){
 						<li><a href="<%=request.getContextPath()%>/admin/board/notice/notice.do"><span>공지사항</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/admin/board/qa/qa.do"><span>Q&A</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/admin/board/testdate/testdate.do"><span>시험일정</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/board/community/community.do"><span>커뮤니티</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/board/community/community.do"><span>자유게시판</span></a></li>
 					</ul>
 					</div>
 				</li>
