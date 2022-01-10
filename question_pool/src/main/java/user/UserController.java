@@ -1,5 +1,7 @@
 package user;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,14 +11,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import util.Pagination;
 
 @Controller
 public class UserController {
 
 	@Autowired
-	UserService service;
+	UserService userservice;
 	
 	@GetMapping("/user/login.do")
 	public String userlogin() {
@@ -33,7 +36,7 @@ public class UserController {
 	
 	@PostMapping("/user/login.do")
 	public String userloginprocess(UserVo vo, HttpSession sess, Model model) {
-		if(service.login(vo, sess)) {
+		if(userservice.login(vo, sess)) {
 			return "redirect:index.do";
 		}else {
 			model.addAttribute("msg","이메일, 비밀번호를 확인해주세요");
@@ -49,17 +52,16 @@ public class UserController {
 		return "user/include/give";
 	}
 	
-	
 
 	@GetMapping("/user/userEmailCheck.do")
 	public String userEmailCheck(Model model, @RequestParam String email) {
-		model.addAttribute("result", service.userEmailCheck(email));
+		model.addAttribute("result", userservice.userEmailCheck(email));
 		return "user/include/result";
 	}
 	
 	@PostMapping("/user/insert.do")
 	public String insert(UserVo vo, HttpServletRequest req) {
-		if (service.insert(vo) > 0) {
+		if (userservice.insert(vo) > 0) {
 			req.setAttribute("msg", "정상적으로 가입되었습니다.");
 			req.setAttribute("url", "/question_pool/user/index.do");
 		} else {
@@ -70,9 +72,63 @@ public class UserController {
 	
 	@GetMapping("/user/emailDuplicate.do")
 	public String aaa(Model model, @RequestParam String email) {
-		model.addAttribute("result", service.emailDuplicate(email));
+		model.addAttribute("result", userservice.emailDuplicate(email));
 		return "user/include/result";
 	}
-	
 
+	@GetMapping("/admin/member/index.do")
+	public String userList(Model model, UserVo vo ) throws Exception {
+		
+		int totCount = userservice.userCount(vo);
+		int totPage = totCount / 10; //총페이지수 
+		if(totCount % 10 > 0) totPage++;
+		
+		int startIdx = (vo.getPage()-1)*10;
+		vo.setStartIdx(startIdx);	
+		
+		List<UserVo> list = userservice.userList(vo);
+		model.addAttribute("list", list);
+		model.addAttribute("totPage",totPage);
+		model.addAttribute("totCount",totCount);
+		model.addAttribute("pageArea",Pagination.getPageArea("index.do", vo.getPage(), totPage, 10));
+
+		return "admin/member/index";
+	}
+
+	@RequestMapping("/admin/member/delete.do")
+	public String userDelete(HttpServletRequest request, UserVo vo) throws Exception {
+        String[] ajaxMsg = request.getParameterValues("valueArr");        
+        int size = ajaxMsg.length;
+        for(int i=0; i<size; i++) {
+        	System.out.println("ajaxMsg[i]:"+ajaxMsg[i]);
+        	userservice.userDelete(ajaxMsg[i]);
+        }
+		return "admin/include/return";
+	}	
+	
+	@GetMapping("/admin/member/view.do")
+	public String userView(Model model, @RequestParam int user_no) {
+		model.addAttribute("data", userservice.userView(user_no));
+		return "admin/member/view";
+	}
+	
+	@GetMapping("/admin/member/edit.do")
+	public String userEdit(Model model, @RequestParam int user_no) {
+		model.addAttribute("data", userservice.userView(user_no)); 
+		return "admin/member/edit";
+	}
+	
+	@PostMapping("/admin/member/update.do")
+	public String userUpdate(Model model, UserVo vo, HttpServletRequest req) {
+
+		int res = userservice.userUpdate(vo);
+		if (res > 0) {
+			model.addAttribute("msg", "정상적으로 수정되었습니다.");
+			model.addAttribute("url", "view.do?user_no="+vo.getUser_no()); // 성공했을때 상세페이지로 이동
+		} else {
+			model.addAttribute("msg", "수정 오류");
+			model.addAttribute("url", "edit.do?user_no="+vo.getUser_no()); // 실패했을때 수정페이지로 이동
+		}
+		return "admin/include/return";
+	}
 }
