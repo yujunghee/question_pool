@@ -29,6 +29,7 @@ public class QuestionController {
 	@RequestMapping("/admin/question/index.do")
 	public String indexQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int exam_no) {
 		model.addAttribute("exam",questionService.selectExam(exam_no));
+		model.addAttribute("school", schoolService.selectSchool(exam_no));
 		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
 		List<ExampleVo> elist = new ArrayList<ExampleVo>();
 		for(int i=0; i<qlist.size(); i++) {
@@ -55,6 +56,7 @@ public class QuestionController {
 	@GetMapping("/admin/question/write.do")
 	public String write(Model model, @RequestParam int exam_no) {
 		model.addAttribute("exam",questionService.selectExam(exam_no));
+		model.addAttribute("school", schoolService.selectSchool(exam_no));
 		return "admin/question/write";
 	}
 
@@ -70,7 +72,7 @@ public class QuestionController {
 		ev.setQuestion_no(question_no);
 		List<ExampleVo> elist = questionService.selectExamplelist(ev);
 		model.addAttribute("elist",elist);
-		String[] examples = { "a", "b", "c", "d", "e" };
+		String[] examples = { "A", "B", "C", "D", "E" };
 		model.addAttribute("ex",examples);
 		return "admin/question/edit";
 	}

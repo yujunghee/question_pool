@@ -58,6 +58,9 @@
 		VALUES (#{year}, #{number_of_questions}, #{exam_time}, #{semester}, #{school_no})
 	</insert>
 	
+	<select id="selectSchool" resultType="school.SchoolVo" parameterType="int">
+		SELECT * FROM school s JOIN exam e ON s.school_no=e.school_no;		
+	</select>
 	
 	<select id="selectyear" resultType="question.QuestionVo" parameterType="question.QuestionVo">
 		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no where exam.school_no = #{school_no}
@@ -65,7 +68,5 @@
 	<select id="selectsemester" resultType="question.QuestionVo" parameterType="question.QuestionVo">
 		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no where exam.year = #{year} 
 	</select>
-	
-	
 	
 </mapper>

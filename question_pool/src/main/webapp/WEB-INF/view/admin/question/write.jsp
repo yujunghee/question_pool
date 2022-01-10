@@ -48,7 +48,7 @@
 		<input type="hidden" id="admin_no" name="admin_no" value="${adminInfo.admin_no}">
 			<div id="content">
 				<div class="con_tit">
-					<h2>문제등록-[ㅇㅇ대학교 ${exam.year}년도 ${exam.semester}학기]</h2>
+					<h2>문제등록-[${school.school_name} ${exam.year}년도 ${exam.semester}학기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">

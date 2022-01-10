@@ -18,4 +18,8 @@ public class SchoolDao {
 		return list;
 	}
 
+	public SchoolVo selectSchool(int school_no) {
+		return sst.selectOne("question.selectSchool",school_no);
+	}
+	
 }

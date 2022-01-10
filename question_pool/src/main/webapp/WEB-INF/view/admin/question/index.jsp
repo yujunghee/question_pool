@@ -30,7 +30,7 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>문제목록-[${exam.school_no}대학교 ${exam.year}년도 ${exam.semester}학기]</h2>
+					<h2>문제목록-[${school.school_name} ${exam.year}년도 ${exam.semester}학기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">

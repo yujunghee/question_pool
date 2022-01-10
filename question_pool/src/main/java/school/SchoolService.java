@@ -14,4 +14,8 @@ public class SchoolService {
 	public List<SchoolVo> selectList(SchoolVo vo){
 		return dao.selectList(vo);
 	}
+	
+	public SchoolVo selectSchool(int school_no) {
+		return dao.selectSchool(school_no);
+	}
 }

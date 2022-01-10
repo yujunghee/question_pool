@@ -73,6 +73,7 @@ public class QuestionVo {
 	public void setQuestion_content(String question_content) {
 		this.question_content = question_content;
 	}
+	
 	public String getAnswer() {
 		return answer;
 	}
