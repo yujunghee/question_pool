@@ -56,7 +56,7 @@ $(window).load(function(){
 </script>
 <div id="header">
 	<div class="header_inner">
-		<h1>SAMPLE</h1>
+		<h1>QUESTION_POOL</h1>
 		<p class="login_name"></p>
 		<!-- util : s -->
 		<div class="util">
