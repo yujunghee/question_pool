@@ -35,7 +35,7 @@ public class UserServiceImple implements UserService {
 			}
 
 			// 이메일 발송
-			SendMail.sendMail("jinin7906@naver.com",
+			SendMail.sendMail("question_pool@naver.com",
 									email, 
 								"question_pool 인증번호입니다. 감사합니다", 
 								"인증번호:<span style='color:red;'>"+confirm+"</span>");
