@@ -4,11 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">	
+</script>
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 </head>
-<body> 
+<body>
 <div id="wrap">
-<input type="hidden" name="notice_no" value="${data.notice_no}">
+<input type="hidden" name="user_no" value="${data.user_no}">
+
 	<!-- canvas -->
 	<div id="canvas">
 		<!-- S T A R T :: headerArea-->
@@ -19,65 +24,81 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [읽기]</h2>
+					<h2>관리자 정보 [상세]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
-					<!-- 내용 : s -->
 					<div id="bbs">
-						<div id="bread">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
-								<colgroup>
-									<col width="10%" />
-									<col width="15%" />
-									<col width="10%" />
-									<col width="15%" />
-									<col width="25%" />
-									<col width="25%" />
-								</colgroup>
-								<tbody>
-									<tr>
-										<th scope="row"><label for="">제목</label></th>
-										<td colspan="10">
-											${data.notice_title }
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">내용</label></th>										
-											<p><span>번호 :  <strong> ${data.notice_no}</strong>  |  작성자 :  <strong>관리자</strong> | 조회수 :  <strong>${data.notice_readcount }</strong>  |  작성일 :  <strong><fmt:formatDate value="${data.notice_date }" pattern="yyyy-MM-dd HH:mm:ss"/></strong> </span></p>										
-										<td colspan="10">											
-											${data.notice_content }											
-											
-											<c:if test="${!empty data.notice_file_real }">											
-												<img src="/question_pool/upload/${data.notice_file_real }">											
-											</c:if>
-											<c:if test="${empty data.notice_file_real }">											
-												<img src="">											
-											</c:if>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-												<div class="file">
-													<a href="/question_pool/common/download.jsp?path=/upload/&org=${data.notice_file_org}&real=${data.notice_file_real}" 
-                       								target="_blank">${data.notice_file_org } </a>
-												</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+						<div id="blist">
+							<p><span><strong>총 ${totCount }개</strong>  |  ${adminVo.page }/${totPage }페이지</span></p>							
+							<form name="frm" id="frm" action="process.do" method="post">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
+                    <colgroup>
+                        <col width="20%" />
+                        <col width="*" />
+                    </colgroup>
+                    <tbody>
+                    	<tr>
+                            <td>번호</td>
+                            <td>${data.user_no }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>아이디</td>
+                            <td>${data.user_email }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>비밀번호</td>
+                            <td>${data.user_pwd }
+                        </tr>
+
+                        <tr>
+                            <td>이름</td>
+                            <td>${data.user_name}
+                        </tr>
+                        <tr>
+                            <td>닉네임</td>
+                            <td>${data.user_nick }
+                        </tr>
+                        <tr>
+                            <td>전화번호</td>
+                            <td>${data.user_tel }
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td>가입일</td>
+			                <td class="date"><fmt:formatDate value="${data.user_regdate }" pattern="yyyy-MM-dd"/></td>			                                                              
+						</tr>
+                        <tr>
+                        	<td>우편번호</td>
+                        	<td>${data.zipcode}
+                        	</td>
+                        </tr>
+                        <tr>
+                        	<td>주소1</td>
+                        	<td>${data.addr1 }
+                        	</td>
+                        </tr>
+                        <tr>
+	                        <td>주소2</td>
+                        	<td>${data.addr2 }
+                        	</td>
+                        </tr>
+                    </tbody>
+                </table>
+							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="notice.do"><strong>목록</strong></a>
+									<a class="btns" href="index.do"><strong>목록</strong></a> 
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="edit.do?notice_no=${data.notice_no }"><strong>수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="edit.do?user_no=${data.user_no }"><strong>수정</strong></a>
 								</div>
 							</div>
 							<!--//btn-->
 						</div>
-						<!-- //bread -->
+						<!-- //blist -->
 					</div>
 					<!-- //bbs --> 
 					<!-- 내용 : e -->

@@ -17,3 +17,4 @@ public class AdminVo extends CommonVo {
 	private Timestamp admin_regdate;
 
 }
+

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import admin.board.NoticeVo;
+
 
 @Service
 public class AdminServiceImple implements AdminService {
@@ -23,11 +25,6 @@ public class AdminServiceImple implements AdminService {
 		}
 		return false;
 	}
-
-	@Override
-	public int emailcheck(String email) {
-		return admindao.emailCheck(email);
-	}
 	
 	@Override
 	public List<AdminVo> adminList(AdminVo vo){
@@ -39,6 +36,28 @@ public class AdminServiceImple implements AdminService {
 		return admindao.adminDelete(admin_no);
 	}
 	
+	@Override
+	public AdminVo adminView(int admin_no) {
+		return admindao.adminSelectOne(admin_no);
+	}
 	
+	@Override
+	public AdminVo adminEdit(int admin_no) {
+		return admindao.adminSelectOne(admin_no);
+	}	
+	
+	@Override
+	public int adminInsert(AdminVo vo) {
+		return admindao.adminInsert(vo);
+	}
+	
+	@Override
+	public int adminUpdate(AdminVo vo) {
+		return admindao.adminUpdate(vo);
+	}
+	
+	@Override
+	public int adminCount(AdminVo vo) {
+		return admindao.adminCount(vo);
+	}
 }
-

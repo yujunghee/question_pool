@@ -60,27 +60,10 @@ function del(){  // 단일 및 다중선택 후 삭제 가능하도록 배열 �
 		});
 	}
 }
-
-function getCheckboxValue()  {
-	  // 선택된 목록 가져오기
-	  const query = 'input[name="RowCheck"]:checked';
-	  const selectedEls = 
-	      document.querySelectorAll(query);
-	  
-	  // 선택된 목록에서 value 찾기
-	  let result = '';
-	  selectedEls.forEach((el) => {
-	    result += el.value + '&';
-	  });
-	  
-	  // 출력
-	  document.getElementById('result').innerText
-	    = result;
-	}
-	
 function fn_paging(curPage){
-    location.href="index.do?curPage="+curPage;
+    location.href="notice.do?curPage="+curPage;
 }
+
 </script>
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 </head>
@@ -127,33 +110,32 @@ function fn_paging(curPage){
 									</tr>
 								</thead>
 								<tbody>
+									
 										<c:forEach var="list" items="${list }">                                    
-			                            	<td scope="col" class="first"><input type="checkbox" name="RowCheck" value="${list.admin_no }" onclick='getCheckboxValue()'/></td>			                            	
+			                            <tr>
+			                            	<td scope="col" class="first"><input type="checkbox" name="RowCheck" value="${list.admin_no }" /></td>			                            	
 			                                
 			                                <td>${list.admin_no }</td>
 			                                <td class="txt_l">
 			                                    <a href="view.do?admin_no=${list.admin_no }">${list.admin_email }</a>
 			                                </td>
-			                                <td>${list.admin_pwd } </td>
-			                                <td class="writer">
-			                                    ${list.admin_name }
-			                                </td>			       
+			                                <td class="password">${list.admin_pwd } </td>
+			                                <td>${list.admin_name }</td>			       
 			                                <td class="date"><fmt:formatDate value="${list.admin_regdate }" pattern="yyyy-MM-dd"/></td>			                                                              
-			                            </tr>
+			                           </tr>
 			                            </c:forEach>
+			                             
 								</tbody>
 							</table>
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
 									<a class="btns" href="javascript:del();"><strong>삭제</strong></a> 
-									<a class="btns" href="view.do?admin_no="><strong>수정</strong></a> 								
 								</div>
 								<div class="btnRight">
-									<a class="wbtn" href="insert.do"><strong>등록</strong> </a>
+									<a class="wbtn" href="write.do"><strong>등록</strong> </a>
 									
 								</div>
-								<div id='result'></div>
 							</div>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
@@ -164,7 +146,7 @@ function fn_paging(curPage){
 									<select name="searchType" title="검색을 선택해주세요">
 										<option value="">전체</option>
 										<option value="admin_email" <c:if test="${param.searchType == 'admin_email'}">selected</c:if>>아이디</option>
-										<option value="" <c:if test="${param.searchType == 'admin_name'}">selected</c:if>>이름</option>
+										<option value="admin_name" <c:if test="${param.searchType == 'admin_name'}">selected</c:if>>이름</option>
 									</select>
 									<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />

@@ -1,103 +1,118 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-<script type="text/javascript" src="/question_pool/smarteditor/js/HuskyEZCreator.js"></script>
-<script src="/question_pool/js/common.js"></script>
-<script src="https://malsup.github.io/jquery.form.js"></script>
-<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
-<script>
-	var oEditors;
-	$(function(){
-		oEditors = setEditor("notice_content");
-	});
-	function goSave() {
-		if ($("#notice_title").val() == '') {
-			alert("제목을 입력하세요");
-			$("#notice_title").focus();
-			return;
-		}
-		var data = $("#frm").serialize();
-		oEditors.getById['notice_content'].exec("UPDATE_CONTENTS_FIELD",[]);
-		$("#frm").submit();		
+<script type="text/javascript">	
+function goSave() {
+	if ($("#admin_email").val() == '') {
+		alert("아이디을 입력하세요");
+		$("#admin_email").focus();
+		return;
 	}
-	$(function(){
-		$("#frm").ajaxForm({
-			url:'update.do',
-			success:function(res) {
-				alert('정상적으로 수정되었습니다.');
-				location.href='view.do?notice_no=${data.notice_no}';
-			}
-		});
+	var data = $("#frm").serialize();
+	$("#frm").submit();		
+}
+$(function(){
+	$("#frm").ajaxForm({
+		url:'update.do',
+		success:function(res) {
+			alert('정상적으로 수정되었습니다.');
+			location.href='view.do?user_no=${data.user_no}';
+		}
 	});
+});
 </script>
+<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 </head>
-<body> 
+<body>
 <div id="wrap">
+<input type="hidden" name="user_no" value="${data.user_no}">
+
 	<!-- canvas -->
 	<div id="canvas">
 		<!-- S T A R T :: headerArea-->
 		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 		<!-- E N D :: headerArea--> 
+		
 		<!-- S T A R T :: containerArea-->
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [수정]</h2>
+					<h2>회원 정보 [수정]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
-					<!-- 내용 : s -->
 					<div id="bbs">
-						<div id="bread">
-							<form method="post" name="frm" id="frm" action="update.do" enctype="multipart/form-data">
-							<input type="hidden" name=notice_no value="${data.notice_no }">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
-								<colgroup>
-									<col width="10%" />
-									<col width="15%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="15%" />
-								</colgroup>
-								<tbody>
-									<tr>
-										<th scope="row"><label for="">*제목</label></th>
-										<td colspan="10">
-											<input type="text" id="notice_title" name="notice_title" class="w100" title="제목을 입력해주세요" value="${data.notice_title }"/>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">내용</label></th>
-										<td colspan="10">
-											<textarea id="notice_content" name="notice_content" title="내용을 입력해주세요" style="width:100%;">${data.notice_content }</textarea>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-											<input type="checkbox" name="delCheck" value="1">기존파일삭제(${data.notice_file_org})<br>
-											<input type="file" id="file" name="file" class="w100" title="첨부파일을 업로드 해주세요." />	
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<input type="hidden" name="cmd" value="write" />							
-							<div class="btn">
-								<div class="btnLeft">
-									<a class="btns" href="notice.do"><strong>목록</strong></a>
-								</div>
-								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;"href="javascript:goSave();"><strong>저장</strong></a>
-								</div>
-							</div>
-							</form>
-							<!--//btn-->
-						</div>
-						<!-- //bread -->
+						<div id="blist">
+							<p><span><strong>총 ${totCount }개</strong>  |  ${adminVo.page }/${totPage }페이지</span></p>							
+							<form name="frm" id="frm" action="update.do" method="post">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
+                    <colgroup>
+                        <col width="20%" />
+                        <col width="*" />
+                    </colgroup>
+                    <tbody>
+                    	<tr>
+                            <td>번호</td>
+                            <td>${data.user_no }</td>
+                        </tr>
+                        <tr>
+                            <td>아이디</td>
+                            <td>${data.user_email }</td>
+                        </tr>
+                        <tr>
+                            <td>비밀번호</td>
+                            <td>${data.user_pwd }</td>                            
+                        </tr>
+
+                        <tr>
+                            <td>이름</td>
+                            <td>${data.user_name}</td>                            
+                        </tr>
+                        <tr>
+                            <td>닉네임</td>
+                            <td>${data.user_nick }</td>                            
+                        </tr>
+                        <tr>
+                            <td>*전화번호</td>
+                            <td>
+                            <input type="text" style="text-align:center; width:200px;" name="user_tel" id="user_tel" title="${data.user_tel }" value="${data.user_tel }">
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td>가입일</td>
+			                <td class="date"><fmt:formatDate value="${data.user_regdate }" pattern="yyyy-MM-dd"/></td>			                                                              
+						</tr>
+                        <tr>
+                        	<td>*우편번호</td>
+                        	<td>
+                            <input type="text" style= "text-align:center; width:200px;" name="zipcode" id="zipcode" title="${data.zipcode}" value="${data.zipcode}">
+                        	</td>
+                        </tr>
+                        <tr>
+                        	<td>*주소1</td>
+                        	<td>
+                            <input type="text" style=" text-align:center; width:200px;" name="addr1" id="addr1" title="${data.addr1 }" value="${data.addr1 }">
+                        	</td>
+                        </tr>
+                        <tr>
+	                        <td>*주소2</td>
+                        	<td>
+                            <input type="text" style="text-align:center;  width:200px;" name="addr2" id="addr2" title="${data.addr2 }" value="${data.addr2 }">
+                        	
+                        	</td>
+                        </tr>
+                    </tbody>
+                </table>
+				</form>
+				<input type="hidden" name="cmd" value="write" />
+				<div class="btn">
+					<div class="btnRight">
+						<a class="btns" href="javascript:goSave();"><strong>저장</strong></a>
 					</div>
 					<!-- //bbs --> 
 					<!-- 내용 : e -->
