@@ -14,10 +14,6 @@
 		SELECT * FROM question WHERE question_no=#{question_no}
 	</select>
 	
-	<select id="selectExample" parameterType="int" resultType="question.ExampleVo">
-		SELECT * FROM example WHERE question_no=#{question_no}
-	</select>
-	
 	<update id="updateQuestion" parameterType="question.QuestionVo">
 		UPDATE question SET question_content=#{question_content}, passage=#{passage}, answer=#{answer}, explanation=#{explanation}
 		WHERE question_no=#{question_no}
@@ -26,6 +22,11 @@
 	<update id="updateExample" parameterType="question.ExampleVo">
 		UPDATE example SET example_content=#{example_content} WHERE example_no=#{example_no}
 	</update>
+	
+	<delete id="deleteQuestion" parameterType="int">
+		DELETE FROM q, e USING question AS q LEFT JOIN example AS e ON q.question_no=e.question_no
+		WHERE e.question_no=#{question_no}	
+</delete>
 	
 	<insert id="insert_example" parameterType="question.ExampleVo">
 		INSERT INTO example(example, example_content, question_no)

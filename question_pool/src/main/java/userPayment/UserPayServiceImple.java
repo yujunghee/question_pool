@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+
 @Service
 public class UserPayServiceImple implements UserPayService{
 
@@ -16,6 +17,11 @@ public class UserPayServiceImple implements UserPayService{
 	@Override
 	public UserPayVo paymentUser(UserPayVo vo) throws Exception {
 		return payDao.paymentUser(vo);
+	}
+	
+	@Override
+	public int insert(UserPayVo vo) { // 재정의 
+		return payDao.insert(vo);
 	}
 
 

@@ -10,9 +10,9 @@ public interface QuestionService {
 	int insertQuestion(QuestionVo qv);
 	int insertExample(ExampleVo ev);
 	QuestionVo selectQuestion(int question_no);
-	ExampleVo selectExample(int example_no);
 	int updateQuestion(QuestionVo qv);
 	int updateExample(ExampleVo ev);
+	int deleteQuestion(int question_no);
 	List<QuestionVo> selectQuestionlist(QuestionVo qv);
 	List<QuestionVo> selectyear(QuestionVo qv);
 	List<QuestionVo> selectsemester(QuestionVo qv);

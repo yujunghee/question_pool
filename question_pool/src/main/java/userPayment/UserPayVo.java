@@ -1,6 +1,8 @@
 package userPayment;
 
 
+import java.sql.Timestamp;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +14,12 @@ public class UserPayVo {
 	private String user_email;
 	private String user_name;
 	private String user_tel;
+	private int pay_no;
+	private Timestamp pay_date;
+	private int pay_way;
+	private String pay_id;
+	private int product_no;
+	
 	
 
 }

@@ -16,8 +16,8 @@
 		
 		//str.replace("$","<u>");
 	});
+	
 </script>
-
 </head>
 <body> 
 <div id="wrap">
@@ -30,7 +30,7 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>문제목록-[ㅇㅇ대학교 ${exam.year}년도 ${exam.semester}학기]</h2>
+					<h2>문제목록-[${exam.school_no}대학교 ${exam.year}년도 ${exam.semester}학기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -50,7 +50,7 @@
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">${status.index+1}번 문제</label></th>
+										<th scope="row"><label for="">${status.count}번 문제</label></th>
 										<td colspan="10" id="question_content">
 											${qv.question_content}
 										</td>
@@ -65,7 +65,10 @@
 										<th scope="row"><label for="">보기</label></th>
 										<td colspan="10">
 											<c:forEach var="ev" items="${elist}">
-												(${ev.example}) ${ev.example_content}<br>
+											<input type="hidden" value="${ev.example_no}">
+												<c:if test="${ev.question_no eq qv.question_no}">
+													(${ev.example}) ${ev.example_content}<br>
+												</c:if>
 											</c:forEach>
 											정답 : (${qv.answer})
 										</td>
@@ -78,7 +81,8 @@
 									</tr>
 									<tr>
 										<td colspan="10">
-											<a href="edit.do?question_no=${qv.question_no}"><input type="button" value="문제수정"></a>
+											<a href="edit.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제수정"></a>
+											<a href="delete.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제삭제"></a>
 										</td>
 									</tr>
 								</tbody>

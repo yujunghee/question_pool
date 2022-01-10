@@ -127,4 +127,3 @@ public class AdminController {
 		return "admin/include/return";
 	}
 }
-

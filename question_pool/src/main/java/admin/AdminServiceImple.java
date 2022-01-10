@@ -61,4 +61,3 @@ public class AdminServiceImple implements AdminService {
 		return admindao.adminCount(vo);
 	}
 }
-

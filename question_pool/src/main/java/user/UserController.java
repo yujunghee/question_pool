@@ -49,7 +49,7 @@ public class UserController {
 		model.addAttribute("msg", "로그아웃되었습니다.");
 		model.addAttribute("url", "index.do");
 		sess.invalidate();
-		return "user/include/give";
+		return "user/include/return";
 	}
 	
 
