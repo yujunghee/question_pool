@@ -1,90 +1,129 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-<script type="text/javascript" src="/question_pool/smarteditor/js/HuskyEZCreator.js"></script>
-<script src="/question_pool/js/common.js"></script>
-<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
-<script>
-	var oEditors;
-	$(function(){
-		oEditors = setEditor("notice_content");
-	});
-	function goSave() {
-		if ($("#notice_title").val() == '') {
-			alert("제목을 입력하세요");
-			$("#notice_title").focus();
-			return;
-		}
-		oEditors.getById['notice_content'].exec("UPDATE_CONTENTS_FIELD",[]);
-		$("#frm").submit();
+<script type="text/javascript">
+
+function goSave() {
+	if ($("#admin_email").val() == '') {
+		alert("아이디를 입력하세요");
+		$("#admin_email").focus();
+		return;
 	}
+	var con = true;
+	$.ajax({
+		url : 'adminEmailCheck.do',
+		data : {
+			email : $("#admin_email").val()
+		},
+		async:false,
+		success:function(aaa) {
+			if (aaa.trim() == '1') {
+				alert('중복된 아이디입니다. 다른 아이디를 입력해 주세요');
+				$("#admin_email").val("");
+				$("#admin_email").focus();
+				con = false;
+			}
+		}
+	})
+	if (con == false) return;
+	    	if ($("#admin_pwd").val().trim() == '') {
+	    		alert('비밀번호를 입력해 주세요');
+	    		$("#admin_pwd").focus();
+	    		return;
+	    	}
+	    	var reg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+	    	if( !reg.test($("#admin_pwd").val()) ) {
+	    	    alert("비밀번호는 문자+숫자 조합으로 8자이상 입력해 주세요.");
+	    	    //$("#pwd").val("");
+	    	    $("#admin_pwd").focus();
+	    	    return;
+	    	}	
+	    	if ($("#admin_name").val().trim() == '') {
+	    		alert('이름을 입력해 주세요');
+	    		$("#admin_name").focus();
+	    		return;
+	    	}
+			$("#frm").submit();		
+}
+
 </script>
+<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 </head>
 <body> 
 <div id="wrap">
+<input type="hidden" name="admin_no" value="${data.admin_no}">
+
 	<!-- canvas -->
 	<div id="canvas">
 		<!-- S T A R T :: headerArea-->
 		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 		<!-- E N D :: headerArea--> 
+		
 		<!-- S T A R T :: containerArea-->
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [쓰기]</h2>
+					<h2>관리자 등록</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
-						<div id="bread">
-							<form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
+						<div id="blist">
+							<p><span><strong>총 ${totCount }개</strong>  |  ${adminVo.page }/${totPage }페이지</span></p>
+							<form name="frm" id="frm" action="insert.do" method="post">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
-									<col width="10%" />
-									<col width="15%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="15%" />
+									<col class="w4" />
+									<col class="w10" />
+									<col class="w10" />
+									<col class="w10" />
+									<col class="w10" />									
 								</colgroup>
+								<thead>
+									<tr>
+										<th scope="col">번호</th>
+										<th scope="col">*아이디</th> 
+										<th scope="col">*비밀번호</th> 
+										<th scope="col">*이름</th>
+										<th scope="col">등록일</th>		 
+									</tr>
+								</thead>
 								<tbody>
-									<tr>
-										<th scope="row"><label for="">*제목</label></th>
-										<td colspan="10">
-											<input type="text" id="notice_title" name="notice_title" class="w100" title="제목을 입력해주세요" />	
+			                    	<tr>
+				                    	<td>${data.admin_no }</td>
+    									<td>
+											<input type="text" style="border: none; width:200px;" id="admin_email" name="admin_email" value="${data.admin_email }">	
+										
 										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">내용</label></th>
-										<td colspan="10">
-											<textarea id="notice_content" name="notice_content" title="내용을 입력해주세요" style="width:100%;"></textarea>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-											<input type="file" id="file" name="file" class="w100" title="첨부파일을 업로드 해주세요." />	
-										</td>
-									</tr>
+										<td class="txt_l">
+											<input type="text" style="border: none; width:200px;" id="admin_pwd" name="admin_pwd" value="${data.admin_pwd }">	
+										</td>	
+										<td>
+    										<input type="text" style="border: none; width:200px;" id="admin_name" name="admin_name" value="${data.admin_name }">	
+										</td>					       
+			                           <td class="date"><fmt:formatDate value="${data.admin_regdate }" pattern="yyyy-MM-dd"/></td>			                                                              
+			                           </tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="cmd" value="write" />							
+								<input type="hidden" name="cmd" value="write.do"/>
+								<input type="hidden" name="checkEmail" id="checkEmail" value="0"/>
+							
+							</form>
 							<div class="btn">
-								<div class="btnLeft">
-									<a class="btns" href="notice.do"><strong>목록</strong></a>
-								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;"href="javascript:goSave();"><strong>저장</strong></a>
+									<a class="btns" href="javascript:goSave();"><strong>저장</strong></a>
+					
 								</div>
 							</div>
-							</form>
 							<!--//btn-->
 						</div>
-						<!-- //bread -->
+						<!-- //blist -->
 					</div>
 					<!-- //bbs --> 
 					<!-- 내용 : e -->
