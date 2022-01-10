@@ -29,7 +29,7 @@ function product(pname ,pay, product_no){
 		    		 type: 'POST',
 					url : 'payInsert.do',
 					data : {
-						pay_id : rsp.imp_uid,
+						pay_id : rsp.merchant_uid,
 						user_no : ${data.user_no},
 						product_no : product_no
 					},
