@@ -2,27 +2,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script type="text/javascript" src="/question_pool/smarteditor/js/HuskyEZCreator.js"></script>
 <script src="/question_pool/js/common.js"></script>
-
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
 	var oEditors;
 	$(function(){
-		oEditors = setEditor("passage");
+		oEditors = setEditor("community_content");
 	});
-	
-	function goSave(){
-		oEditors.getById['passage'].exec("UPDATE_CONTENTS_FIELD",[]);
+	function goSave() {
+		if ($("#community_title").val() == '') {
+			alert("제목을 입력하세요");
+			$("#community_title").focus();
+			return;
+		}
+		oEditors.getById['community_content'].exec("UPDATE_CONTENTS_FIELD",[]);
 		$("#frm").submit();
 	}
 </script>
-<style>
-
-</style>
 </head>
 <body> 
 <div id="wrap">
@@ -35,17 +34,15 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-				
-					<h2>문제수정-[${exam.school_no}대학교 ${exam.year}년도 ${exam.semester}학기]</h2>
+					<h2>자유게시판 - [쓰기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="update.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
-							<input type="hidden" value="${qv.question_no}">
 								<colgroup>
 									<col width="10%" />
 									<col width="15%" />
@@ -56,40 +53,26 @@
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">문제</label></th>
+										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="10">
-											<input type="text" id="question_content" name="question_content" class="w100" value="${qv.question_content}" />	
+											<input type="text" id="community_title" name="community_title" class="w100" title="제목을 입력해주세요" />	
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">지문</label></th>
+										<th scope="row"><label for="">내용</label></th>
 										<td colspan="10">
-											<textarea id="passage" name="passage" rows="10" style="width:100%;">${qv.passage}</textarea>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">보기</label></th>
-										<td colspan="10">
-											<c:forEach var="ev" items="${elist}" varStatus="status">
-												<input type="hidden" name="example_no" value="${ev.example_no}">
-												<input type="checkbox" name="example" value="${ex[status.index]}">&nbsp; 
-												(${ev.example})
-												<input type="text" name="example_content" value="${ev.example_content}">
-												<br>
-											</c:forEach>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">해설</label></th>
-										<td colspan="10">
-											<textarea id="explanation" name="explanation" value="${qv.explanation}" rows="10" style="width:100%;"></textarea>	
+											<textarea id="community_content" name="community_content" title="내용을 입력해주세요" style="width:100%;"></textarea>	
 										</td>
 									</tr>
 								</tbody>
 							</table>
+							<input type="hidden" name="cmd" value="write" />							
 							<div class="btn">
+								<div class="btnLeft">
+									<a class="btns" href="community.do"><strong>목록</strong></a>
+								</div>
 								<div class="btnRight">
-									<input type="submit" onclick="javascript:goSave();" class="btns" value="수정" style="width:250px;height:50px;">
+									<a class="btns" style="cursor:pointer;"href="javascript:goSave();"><strong>저장</strong></a>
 								</div>
 							</div>
 							</form>

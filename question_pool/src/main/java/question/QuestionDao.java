@@ -39,6 +39,22 @@ public class QuestionDao {
 		return r;
 	}
 	
+	public QuestionVo selectQuestion(int question_no) {
+		return sqlSessionTemplate.selectOne("question.selectQuestion",question_no);
+	}
+	
+	public int updateQuestion(QuestionVo qv) {
+		return sqlSessionTemplate.update("question.updateQuestion",qv);
+	}
+	
+	public int updateExample(ExampleVo ev) {
+		return sqlSessionTemplate.update("question.updateExample",ev);
+	}
+	
+	public int deleteQuestion(int question_no) {
+		return sqlSessionTemplate.delete("question.deleteQuestion",question_no);
+	}
+	
 	public List<QuestionVo> selectQuestionlist(QuestionVo qv){
 		return sqlSessionTemplate.selectList("question.selectQuestionlist",qv);
 	}

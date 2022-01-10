@@ -16,8 +16,8 @@
 		
 		//str.replace("$","<u>");
 	});
+	
 </script>
-
 </head>
 <body> 
 <div id="wrap">
@@ -30,14 +30,14 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>문제등록-[ㅇㅇ대학교 ㅇㅇ년도 ㅇㅇ학기]</h2>
+					<h2>문제목록-[${exam.school_no}대학교 ${exam.year}년도 ${exam.semester}학기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<c:forEach var="qv" items="${qlist}">
+							<c:forEach var="qv" items="${qlist}" varStatus="status">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 							<input type="hidden" value="${qv.question_no}">
 								<colgroup>
@@ -50,15 +50,9 @@
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">문제</label></th>
+										<th scope="row"><label for="">${status.count}번 문제</label></th>
 										<td colspan="10" id="question_content">
 											${qv.question_content}
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">참조번호</label></th>
-										<td colspan="10">
-											${qv.question_ref }
 										</td>
 									</tr>
 									<tr>
@@ -71,17 +65,24 @@
 										<th scope="row"><label for="">보기</label></th>
 										<td colspan="10">
 											<c:forEach var="ev" items="${elist}">
+											<input type="hidden" value="${ev.example_no}">
 												<c:if test="${ev.question_no eq qv.question_no}">
-												<input type="RADIO" name="example" value="a">&nbsp; 
-												(${ev.example}) ${ev.example_content}<br>
+													(${ev.example}) ${ev.example_content}<br>
 												</c:if>
 											</c:forEach>
+											정답 : (${qv.answer})
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">해설</label></th>
 										<td colspan="10">
 											${qv.explanation}
+										</td>
+									</tr>
+									<tr>
+										<td colspan="10">
+											<a href="edit.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제수정"></a>
+											<a href="delete.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제삭제"></a>
 										</td>
 									</tr>
 								</tbody>

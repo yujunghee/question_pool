@@ -61,4 +61,24 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.selectExam(exam_no);
 	}
 
+	@Override
+	public int updateQuestion(QuestionVo qv) {
+		return dao.updateQuestion(qv);
+	}
+
+	@Override
+	public int updateExample(ExampleVo ev) {
+		return dao.updateExample(ev);
+	}
+
+	@Override
+	public QuestionVo selectQuestion(int question_no) {
+		return dao.selectQuestion(question_no);
+	}
+
+	@Override
+	public int deleteQuestion(int question_no) {
+		return dao.deleteQuestion(question_no);
+	}
+
 }

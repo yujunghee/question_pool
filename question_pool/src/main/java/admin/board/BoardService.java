@@ -44,4 +44,18 @@ public interface BoardService {
 	int qaDelete(String qa_no);
 		
 	// ----------------------- QnA 영역 끝 -------------------------
+	
+	
+	
+	// ----------------------- 커뮤니티 영역 시작 -----------------------
+	
+	List<CommunityVo> communityList(CommunityVo vo);
+	int communityCount(CommunityVo vo);
+	int communityInsert(CommunityVo vo);
+	CommunityVo communityView(int community_no);
+	CommunityVo communityEdit(int community_no);
+	int communityUpdate(CommunityVo vo);
+	int communityDelete(String community_no);
+		
+	// ----------------------- 커뮤니티 영역 끝 -------------------------
 }

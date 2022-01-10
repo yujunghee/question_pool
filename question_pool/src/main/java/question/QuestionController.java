@@ -1,5 +1,6 @@
 package question;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,11 +27,17 @@ public class QuestionController {
 	SchoolService schoolService;
 
 	@RequestMapping("/admin/question/index.do")
-	public String selectQuestionlist(QuestionVo qv, ExampleVo ev, Model model) {
+	public String indexQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int exam_no) {
+		model.addAttribute("exam",questionService.selectExam(exam_no));
 		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
-		List<ExampleVo> elist = questionService.selectExamplelist(ev);
+		List<ExampleVo> elist = new ArrayList<ExampleVo>();
+		for(int i=0; i<qlist.size(); i++) {
+			ev.setQuestion_no(qlist.get(i).getQuestion_no());
+			elist.addAll(questionService.selectExamplelist(ev));
+		}
 		model.addAttribute("qlist", qlist);
 		model.addAttribute("elist", elist);
+		//model.addAttribute("data",questionService.selectQuestion(qv.getQuestion_no()));
 		return "admin/question/index";
 	}
 
@@ -46,7 +53,7 @@ public class QuestionController {
 	}
 
 	@GetMapping("/admin/question/write.do")
-	public String write(Model model, HttpServletRequest req, @RequestParam int exam_no) {
+	public String write(Model model, @RequestParam int exam_no) {
 		model.addAttribute("exam",questionService.selectExam(exam_no));
 		return "admin/question/write";
 	}
@@ -57,10 +64,43 @@ public class QuestionController {
 	}
 
 	@GetMapping("/admin/question/edit.do")
-	public String edit() {
+	public String edit(ExampleVo ev, Model model, @RequestParam int exam_no, @RequestParam int question_no) {
+		model.addAttribute("exam",questionService.selectExam(exam_no));
+		model.addAttribute("qv",questionService.selectQuestion(question_no));
+		ev.setQuestion_no(question_no);
+		List<ExampleVo> elist = questionService.selectExamplelist(ev);
+		model.addAttribute("elist",elist);
+		String[] examples = { "a", "b", "c", "d", "e" };
+		model.addAttribute("ex",examples);
 		return "admin/question/edit";
 	}
 
+	@RequestMapping("/admin/question/update.do")
+	public String update(QuestionVo qv, ExampleVo ev, HttpServletRequest req) {
+		String[] econtent = req.getParameterValues("example_content");
+		String[] eno = req.getParameterValues("example_no");
+		
+		int r1=0;
+		int r2=0;
+		
+		qv.setAnswer(req.getParameter("example"));
+		r1= questionService.updateQuestion(qv);
+		
+		for(int i=0; i<econtent.length; i++) {
+			ev.setExample_content(econtent[i]);
+			ev.setExample_no(Integer.parseInt(eno[i]));
+			r2=questionService.updateExample(ev);
+		}
+		
+		if (r1 > 0 && r2 > 0) {
+			req.setAttribute("msg", "정상적으로 수정되었습니다.");
+			req.setAttribute("url", "index.do?exam_no="+qv.getExam_no());
+		} else {
+			req.setAttribute("msg", "수정 오류");
+		}
+		return "admin/include/return";
+	}
+	
 	@RequestMapping("/admin/question/insert.do")
 	public String insert(Model model, QuestionVo qv, ExampleVo ev, HttpServletRequest req, HttpSession sess, @RequestParam int exam_no) {
 		qv.setAdmin_no(((AdminVo)sess.getAttribute("adminInfo")).getAdmin_no());
@@ -111,6 +151,24 @@ public class QuestionController {
 		return "admin/include/return";
 	}
 
+	@GetMapping("/admin/question/delete.do")
+	public String deleteQuestion(Model model, @RequestParam int question_no, @RequestParam int exam_no, HttpServletRequest req) {
+		int r = questionService.deleteQuestion(question_no);
+		if (r > 0) {
+			req.setAttribute("msg", "정상적으로 삭제되었습니다.");
+			req.setAttribute("url", "index.do?exam_no="+exam_no);
+		} else {
+			req.setAttribute("msg", "삭제 오류");
+		}
+		return "admin/include/return";
+	}
+	
+//	@GetMapping("/admin/question/deleteAjax.do")
+//	public String deleteAjax(Model model, @RequestParam int question_no) {
+//		model.addAttribute("result", questionService.deleteQuestion(question_no));
+//		return "admin/include/result";
+//	}
+	
 	@GetMapping("/admin/school/write.do")
 	public String indexschool(Model model, SchoolVo vo) {
 

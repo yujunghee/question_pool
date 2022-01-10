@@ -10,8 +10,6 @@
 		)
 	</insert>
 	
-
-	
 	<select id="login" parameterType="user.UserVo" resultType="user.UserVo">
 		SELECT * FROM user WHERE user_email=#{user_email} AND user_pwd=md5(#{user_pwd})
 	</select>
@@ -23,7 +21,48 @@
 	<select id="emailDuplicate" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM user WHERE user_email = #{user_email}
 	</select>
-	
-	
 
+	 <sql id="boardWhere">
+	 	<where>
+			<if test="searchType == '' ">
+				(user_email LIKE '%${searchWord}%' OR user_name LIKE '%${searchWord}%')
+			</if>
+			<if test="searchType != null and searchType != '' ">
+				${searchType} LIKE '%${searchWord}%'
+			</if>			  
+			<if test="user_no > 0">
+				AND user_no = ${user_no}
+			</if>
+		</where>
+	 </sql>
+
+	<select id="userList" resultType="user.UserVo" parameterType="user.UserVo">
+		SELECT * FROM user
+		<include refid="boardWhere"></include>
+		ORDER BY user_regdate DESC
+		LIMIT ${startIdx},10
+	</select>
+
+	<delete id="userDelete">
+		DELETE FROM user WHERE user_no=#{user_no}
+	</delete>
+	
+	<select id="userOne" parameterType="int" resultType="user.UserVo">
+		SELECT * FROM user WHERE user_no = #{xxx}
+	</select>
+	
+	<select id="userCount" resultType="int" parameterType="user.UserVo">
+	 	SELECT COUNT(*) FROM user
+	 	<include refid="boardWhere"></include> 	
+	 </select>	
+	
+	<update id="userUpdate" parameterType="user.UserVo">
+		UPDATE user SET 
+			user_tel =#{user_tel}
+			, zipcode =#{zipcode}
+			, addr1 =#{addr1}
+			, addr2 =#{addr2}
+		WHERE user_no = #{user_no}
+	</update>
+	
 </mapper>

@@ -328,8 +328,8 @@ function test() {
 						<dd><a href="javascript:;" onclick="clickMenu('myinfo2', '자기소개', 'user/myinfo/myinfo.do', false)">자기소개</a></dd>
 					</dl>
 					<dl style="width:13.666%;">
-						<dt><a href="javascript:;">팀프로젝트</a></dt>
-						<dd class="frist"><a href="javascript:;" onclick="clickMenu('project1', '프로젝트 소개', '/project/index.do', false)">프로젝트 소개</a></dd>
+						<dt><a href="javascript:;">결제</a></dt>
+						<dd class="frist"><a href="javascript:;" onclick="clickMenu('project1', '상품보기', '/user/payment/pay.do', false)">상품보기</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('project2', '프로젝트 기획', '/project/plan.do', false)">프로젝트 기획</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('project3', '프로젝트 설계', '/project/architecture.do', false)">프로젝트 설계</a></dd>
 					</dl>
@@ -379,10 +379,10 @@ function test() {
 							<li id="myinfo2_submenu" onclick="clickMenu('myinfo2', '자기소개', '/myinfo/myinfo.do', false)">자기소개</li>
 						</ul>
 					</dd>
-					<dt id="project" class="gnb_menu">팀프로젝트</dt>
+					<dt id="project" class="gnb_menu">결제</dt>
 					<dd class="gnb_submenu">
 						<ul>	
-							<li id="project1_submenu" onclick="clickMenu('project1', '프로젝트 소개', '/project/index.do', false)">프로젝트 소개</li>
+							<li id="project1_submenu" onclick="clickMenu('project1', '상품보기', '/user/payment/pay.do', false)">상품보기</li>
 							<li id="project2_submenu" onclick="clickMenu('project2', '프로젝트 기획', '/project/plan.do', false)">프로젝트 기획</li>
 							<li id="project3_submenu" onclick="clickMenu('project3', '프로젝트 설계', '/project/architecture.do', false)">프로젝트 설계</li>
 						</ul>

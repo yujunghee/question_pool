@@ -1,8 +1,11 @@
 package user;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 
 @Repository
 public class UserDao {
@@ -32,5 +35,25 @@ public class UserDao {
 	//이메일 중복체크
 	public int emailDuplicate(String emailDuplicate) {
 		return sst.selectOne("user.emailDuplicate", emailDuplicate);
+	}
+
+	public List<UserVo> userList(UserVo vo) {
+		return sst.selectList("user.userList", vo);
+	}
+	
+	public int userDelete(String user_no) {		
+		return sst.delete("user.userDelete", user_no);
+	}
+
+	public UserVo userSelectOne(int user_no) {
+		return sst.selectOne("user.userOne", user_no);
+	}
+	
+	public int userCount(UserVo vo) {
+		return sst.selectOne("user.userCount", vo);
+	}
+	
+	public int userUpdate(UserVo vo) {
+		return sst.update("user.userUpdate", vo);
 	}
 }

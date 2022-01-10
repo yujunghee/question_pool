@@ -4,10 +4,11 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+import util.CommonVo;
 
 @Getter
 @Setter
-public class UserVo {
+public class UserVo extends CommonVo{
 	
 	private int user_no;
 	private String user_email;

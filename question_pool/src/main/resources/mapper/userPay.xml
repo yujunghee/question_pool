@@ -3,16 +3,14 @@
 <mapper namespace="userPay"> <!-- mapper파일의 이름 -->
 
 
-	<select id="Payment" parameterType="userPayment.UserPayVo" resultType = "userPayment.UserPayVo">
-		select * from user where user_no = 1
+	<select id="paymentUser" parameterType="userPayment.UserPayVo" resultType = "userPayment.UserPayVo">
+		select * from user where user_no = #{user_no}
 	</select>
 	
-	<!-- 	<insert id = "insert" parameterType="board.BoardVo">
-		INSERT INTO board (
-			pay_date, pay_way, user_no, admin_no, product_no
-		) values(
-			NOW(),#{pay_way},#{user_no},#{admin_no},#{product_no}
-			)
-	</insert>  -->
+	<insert id = "payInsert" parameterType="userPayment.UserPayVo">
+			INSERT INTO payment(pay_date, pay_id, user_no, product_no)
+			VALUES (NOW(), #{pay_id}, #{user_no}, #{product_no})
+	</insert>
+	
 
 </mapper>
