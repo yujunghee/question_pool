@@ -38,55 +38,18 @@
 					<div id="bbs">
 						<div id="bread">
 							<c:forEach var="qv" items="${qlist}" varStatus="status">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 							<input type="hidden" value="${qv.question_no}">
-								<colgroup>
-									<col width="10%" />
-									<col width="15%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="15%" />
-								</colgroup>
-								<tbody>
-									<tr>
-										<th scope="row"><label for="">${status.count}번 문제</label></th>
-										<td colspan="10" id="question_content">
-											${qv.question_content}
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">지문</label></th>
-										<td colspan="10">
-											${qv.passage }
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">보기</label></th>
-										<td colspan="10">
-											<c:forEach var="ev" items="${elist}">
-											<input type="hidden" value="${ev.example_no}">
-												<c:if test="${ev.question_no eq qv.question_no}">
-													(${ev.example}) ${ev.example_content}<br>
-												</c:if>
-											</c:forEach>
-											정답 : (${qv.answer})
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">해설</label></th>
-										<td colspan="10">
-											${qv.explanation}
-										</td>
-									</tr>
-									<tr>
-										<td colspan="10">
-											<a href="edit.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제수정"></a>
-											<a href="delete.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제삭제"></a>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+										<p colspan="10">${qv.passage}</p><br>
+										<c:set var="string" value="${qv.question_content}"/>
+										<c:set var="string1" value="${fn:replace(string,'#','<u>')}"/>
+										<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
+										<h1 style="width:500px;">${status.count}. ${string2}</h1>
+										<c:forEach var="ev" items="${qv.ex}">
+												(${ev.example}) ${ev.example_content}<br>
+										</c:forEach>
+										<a href="edit.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제수정"></a>
+										<a href="delete.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제삭제"></a>
+										<br><br>
 							</c:forEach>
 							<!--//btn-->
 						</div>

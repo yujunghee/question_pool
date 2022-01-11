@@ -1,5 +1,7 @@
 package question;
 
+import java.util.List;
+
 public class QuestionVo {
 
 	private int question_no;
@@ -11,13 +13,19 @@ public class QuestionVo {
 	private int exam_no;
 	private int admin_no;
 
+	private List<ExampleVo> ex;
 	
+	public List<ExampleVo> getEx() {
+		return ex;
+	}
+	public void setEx(List<ExampleVo> ex) {
+		this.ex = ex;
+	}
 	private int year;
 	private int number_of_questions;
 	private int exam_time;
 	private int semester;
 	private int school_no;
-	
 	
 	public int getSemester() {
 		return semester;

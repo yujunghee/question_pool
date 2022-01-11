@@ -8,6 +8,9 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 </head>
+<style>
+h1{font-size:250%;}
+</style>
 <body> 
 <div id="wrap">
 	<!-- canvas -->
@@ -25,6 +28,8 @@
 					<div id="bbs">
 						<div id="bread">
 						<form method="post" name="frm" id="frm" action="score.do" enctype="multipart/form-data">
+						<h1> 총 ㅇㅇ문제 중 맞은 문제 ㅇㅇ개</h1><br><hr>
+						
 							<c:forEach var="qv" items="${qlist}" varStatus="status">
 							<input type="hidden" value="${qv.question_no}">
 								<colgroup>
@@ -40,13 +45,10 @@
 										<c:set var="string" value="${qv.question_content}"/>
 										<c:set var="string1" value="${fn:replace(string,'#','<u>')}"/>
 										<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
-										<h1 style="width:500px;">${status.count}. ${string2}</h1>
+										<p style="width:500px;">${status.count}. ${string2}</p>
 										
-										<c:forEach var="ev" items="${elist}">
-										<input type="hidden" value="${ev.example_no}">
-											<c:if test="${ev.question_no eq qv.question_no}">
+										<c:forEach var="ev" items="${qv.ex}">
 												(${ev.example}) ${ev.example_content}<br>
-											</c:if>
 										</c:forEach>
 										<p>${qv.explanation}</p>
 										<p>정답 : (${qv.answer})</p>

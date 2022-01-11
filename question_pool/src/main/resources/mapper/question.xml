@@ -34,11 +34,11 @@
 	</insert>
 	
 	<select id="selectQuestionlist" resultType="question.QuestionVo" parameterType="question.QuestionVo">
-		SELECT * FROM question ORDER BY question_no
+		SELECT * FROM question WHERE exam_no=#{exam_no} ORDER BY question_no 
 	</select>
 	
 	<select id="selectExamplelist" resultType="question.ExampleVo" parameterType="question.ExampleVo">
-		SELECT * FROM example WHERE question_no=#{question_no}
+		SELECT * FROM example
 	</select>
 	
 	<insert id="insert_school" parameterType="school.SchoolVo">
@@ -68,5 +68,12 @@
 	<select id="selectsemester" resultType="question.QuestionVo" parameterType="question.QuestionVo">
 		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no where exam.year = #{year} 
 	</select>
+	
+	<!-- ======================= USER ============================= -->
+	
+	<insert id="insertAQ" parameterType="question.AnsweredQuestionVo">
+		INSERT INTO answered_question(user_answer, score, answered_date, memo) 
+		VALUES(#{user_answer}, #{score}, NOW(), #{memo})
+	</insert>
 	
 </mapper>
