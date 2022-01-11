@@ -149,6 +149,7 @@ textarea{border:1px solid #cccccc;}
 #bbs #blist table .frist{background-image:none !important;}
 #bbs #blist table .first{background-image:none !important;}
 #bbs #blist table tbody tr:hover{background:#f6f6f6;} /*마우스오버 배경칼라지정*/
+#bbs #blist table tbody .none:hover{background:#fff;} /*마우스오버 배경칼라 없앰*/
 #bbs #blist table tbody td{padding:13px 2px; text-align:center; /* font-weight:bold;  */background:url(/question_pool/img/admin/blist_td_line.gif) repeat-y left top; border-bottom:1px solid #cccdd0;}
 #bbs #blist table tbody td.tdLine_l{padding:13px 2px; text-align:center;/*  font-weight:bold; */ background:url(/question_pool/img/admin/blist_td_line.gif) repeat-y left top; border-bottom:1px solid #cccdd0;}
 #bbs #blist table tbody td.title{ text-align: left; padding-left:10px;  }
