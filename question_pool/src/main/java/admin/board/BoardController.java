@@ -32,7 +32,7 @@ public class BoardController {
 	
 // ----------------------------- 공지사항 영역 시작 -----------------------------
 	
-	@GetMapping("/admin/board/notice/notice.do")
+	@GetMapping({"/admin/board/notice/notice.do", "/user/board/notice/notice.do}"})
 	public String noticeList(Model model, HttpServletRequest req, NoticeVo vo) throws Exception{
 			
 			int totCount = boardService.noticeCount(vo);

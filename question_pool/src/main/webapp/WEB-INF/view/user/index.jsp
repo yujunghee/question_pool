@@ -355,7 +355,7 @@ function test() {
 					</dl>
 					<dl style="width:15.666%;">
 						<dt><a href="javascript:;">개인 프로젝트</a></dt>
-						<dd class="frist"><a href="javascript:;" onclick="clickMenu('portfolio1', '공지사항', '/portfolio/notice/index.do', false)">공지사항</a></dd>
+						<dd class="frist"><a href="javascript:;" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio2', '갤러리', 'user/portfolio/gallery/index.do', false)">갤러리</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'Q&A', 'user/portfolio/qna/index.do', false)">Q&A</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio4', '답변게시판', '/portfolio/reply/index.do', false)">답변게시판</a></dd>
@@ -416,7 +416,7 @@ function test() {
 					<dt id="portfolio" class="gnb_menu">개인 프로젝트</dt>
 					<dd class="gnb_submenu">
 						<ul>	
-							<li id="portfolio1_submenu" onclick="clickMenu('portfolio1', '공지사항', '/portfolio/notice/index.do', false)">공지사항</li>
+							<li id="portfolio1_submenu" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</li>
 							<li id="portfolio2_submenu" onclick="clickMenu('portfolio2', '갤러리', '/portfolio/gallery/index.do', false)">갤러리</li>
 							<li id="portfolio3_submenu" onclick="clickMenu('portfolio3', 'Q&A', '/portfolio/qna/index.do', false)">Q&A</li>
 							<li id="portfolio4_submenu" onclick="clickMenu('portfolio4', '답변게시판', '/portfolio/reply/index.do', false)">답변게시판</li>
