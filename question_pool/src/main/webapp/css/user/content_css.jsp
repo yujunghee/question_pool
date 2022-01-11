@@ -56,6 +56,7 @@
 .searchWrap .space10{display:inline-block; width:10px;}
 .searchWrap .space20{display:inline-block; width:20px;}
 
+
 .bbs{position:relative; width:100%; clear:both;}
 
 /* list */
@@ -80,6 +81,17 @@
 .inTab_etc_contact p{margin-top:5px; margin-left:2px;}
 .inTab_etc_contact p > strong.red{color:#c00000;}
 .bottomline{border-bottom:1px dashed #ddd; padding-bottom:35px;}
+
+<%-- ----------------------추가부분 ---------------------  --%>
+.bbs .list .search{position:relative; width:100%; margin:0px; padding:9px 0; text-align:center; vertical-align:middle;}
+.bbs .list .search input{width:160px; height:20px; border:1px solid .cccccc; vertical-align:middle; display:inline;}
+.bbs .list .search select{width:115px; height:20px; border:1px solid .cccccc; font-size:12px; vertical-align:middle; color:.706a5f; margin:0 5px 0 0; display:inline;}
+.bbs .list .search .sbtn{position:relative; width:64px; height:23px; top:0px; *top:-2px; left:0px; border:none; vertical-align:bottom;}
+.bbs .list .search .clinicList{ display:inline;}
+.bbs .color .search select{width:115px; height:20px; border:1px solid .cccccc; font-size:12px; vertical-align:middle; color:.706a5f; margin:0; display:inline;}
+.bbs .color .search .sbtn{position:relative; width:53px; height:20px; top:0px; *top:-2px; left:-8px; border:none; vertical-align:bottom;}
+.bbs .color .search .clinicList{ display:inline;}
+<%-- ----------------------/추가부분 ---------------------  --%>
 
 /* schedule */
 .scheduleLine{position:relative; border-bottom:1px solid #dddddd; text-align:center;}
