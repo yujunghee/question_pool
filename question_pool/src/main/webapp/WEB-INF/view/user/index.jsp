@@ -334,8 +334,8 @@ function test() {
 						<dd><a href="javascript:;" onclick="clickMenu('project3', '프로젝트 설계', '/project/architecture.do', false)">프로젝트 설계</a></dd>
 					</dl>
 					<dl style="width:13.666%;">
-						<dt><a href="javascript:;">Front-End</a></dt>
-						<dd class="frist"><a href="javascript:;" onclick="clickMenu('front1', 'HTML', '/front/html.do', false)">HTML</a></dd>
+						<dt><a href="javascript:;">문제풀기</a></dt>
+						<dd class="frist"><a href="javascript:;" onclick="clickMenu('front1', '문제풀기', '/user/question/index.do', false)">문제풀기</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('front2', 'CSS', '/front/css.do', false)">CSS</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('front3', 'JavaScript', '/front/javascript.do', false)">JavaScript</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('front4', 'Jquery', '/front/jquery.do', false)">Jquery</a></dd>
@@ -355,7 +355,7 @@ function test() {
 					</dl>
 					<dl style="width:15.666%;">
 						<dt><a href="javascript:;">개인 프로젝트</a></dt>
-						<dd class="frist"><a href="javascript:;" onclick="clickMenu('portfolio1', '공지사항', '/portfolio/notice/index.do', false)">공지사항</a></dd>
+						<dd class="frist"><a href="javascript:;" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio2', '갤러리', 'user/portfolio/gallery/index.do', false)">갤러리</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'Q&A', 'user/portfolio/qna/index.do', false)">Q&A</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio4', '답변게시판', '/portfolio/reply/index.do', false)">답변게시판</a></dd>
@@ -387,10 +387,10 @@ function test() {
 							<li id="project3_submenu" onclick="clickMenu('project3', '프로젝트 설계', '/project/architecture.do', false)">프로젝트 설계</li>
 						</ul>
 					</dd>
-					<dt id="front" class="gnb_menu">Front-End</dt>
+					<dt id="front" class="gnb_menu">문제풀기</dt>
 					<dd class="gnb_submenu">
 						<ul>	
-							<li id="front1_submenu" onclick="clickMenu('front1', 'HTML', '/front/html.do', false)">HTML</li>
+							<li id="front1_submenu" onclick="clickMenu('front1', 'HTML', '/user/question/pool.do', false)">문제풀기</li>
 							<li id="front2_submenu" onclick="clickMenu('front2', 'CSS', '/front/css.do', false)">CSS</li>
 							<li id="front3_submenu" onclick="clickMenu('front3', 'JavaScript', '/front/js.do', false)">JavaScript</li>
 							<li id="front4_submenu" onclick="clickMenu('front4', 'Jquery', '/front/jquery.do', false)">Jquery</li>
@@ -416,7 +416,7 @@ function test() {
 					<dt id="portfolio" class="gnb_menu">개인 프로젝트</dt>
 					<dd class="gnb_submenu">
 						<ul>	
-							<li id="portfolio1_submenu" onclick="clickMenu('portfolio1', '공지사항', '/portfolio/notice/index.do', false)">공지사항</li>
+							<li id="portfolio1_submenu" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</li>
 							<li id="portfolio2_submenu" onclick="clickMenu('portfolio2', '갤러리', '/portfolio/gallery/index.do', false)">갤러리</li>
 							<li id="portfolio3_submenu" onclick="clickMenu('portfolio3', 'Q&A', '/portfolio/qna/index.do', false)">Q&A</li>
 							<li id="portfolio4_submenu" onclick="clickMenu('portfolio4', '답변게시판', '/portfolio/reply/index.do', false)">답변게시판</li>

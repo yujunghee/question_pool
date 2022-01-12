@@ -50,6 +50,24 @@ public class BoardController {
 			return "admin/board/notice/notice";
 	}
 	
+	@GetMapping("/user/board/notice/notice.do")
+	public String noticeListUser(Model model, HttpServletRequest req, NoticeVo vo) throws Exception{
+			
+			int totCount = boardService.noticeCount(vo);
+			int totPage = totCount / 10; //총페이지수 
+			if(totCount % 10 > 0) totPage++;
+			
+			int startIdx = (vo.getPage()-1)*10;
+			vo.setStartIdx(startIdx);				 		
+			
+			List<NoticeVo> list = boardService.noticeList(vo);
+			model.addAttribute("list",list);
+			model.addAttribute("totPage",totPage);
+			model.addAttribute("totCount",totCount);
+			model.addAttribute("pageArea",Pagination.getPageArea("notice.do", vo.getPage(), totPage, 10));
+			return "user/board/notice/notice";
+	}
+	
 	@RequestMapping("/admin/board/notice/write.do")
 	public String noticeWrite() {
 		return "admin/board/notice/write";

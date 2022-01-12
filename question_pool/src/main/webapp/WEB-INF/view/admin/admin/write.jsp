@@ -95,17 +95,17 @@ function goSave() {
 									</tr>
 								</thead>
 								<tbody>
-			                    	<tr>
+			                    	<tr class="none">
 				                    	<td>${data.admin_no }</td>
     									<td>
-											<input type="text" style="border: none; width:200px;" id="admin_email" name="admin_email" value="${data.admin_email }">	
+											<input type="text" style="border: none; width:200px; border:1px solid #c6cdd8;" id="admin_email" name="admin_email" value="${data.admin_email }">	
 										
 										</td>
 										<td class="txt_l">
-											<input type="text" style="border: none; width:200px;" id="admin_pwd" name="admin_pwd" value="${data.admin_pwd }">	
+											<input type="password" style="border: none; width:200px; border:1px solid #c6cdd8;" id="admin_pwd" name="admin_pwd" value="${data.admin_pwd }">	
 										</td>	
 										<td>
-    										<input type="text" style="border: none; width:200px;" id="admin_name" name="admin_name" value="${data.admin_name }">	
+    										<input type="text" style="border: none; width:200px; border:1px solid #c6cdd8;" id="admin_name" name="admin_name" value="${data.admin_name }">	
 										</td>					       
 			                           <td class="date"><fmt:formatDate value="${data.admin_regdate }" pattern="yyyy-MM-dd"/></td>			                                                              
 			                           </tr>
