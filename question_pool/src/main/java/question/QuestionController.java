@@ -211,7 +211,7 @@ public class QuestionController {
 		return "admin/include/return";
 	}
 	
-	/*--------------------------USER-------------------------------*/
+	/*--------------------------USER------------------------------*/
 	
 	
 	@RequestMapping("/user/question/index.do")
