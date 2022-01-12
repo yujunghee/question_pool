@@ -83,7 +83,7 @@ $(window).load(function(){
 					</div>
 				</li>
 				<li><a href="<%=request.getContextPath()%>/admin/admin/index.do" class="parent"><span>관리자관리</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/payment/index.do" class="parent"><span>결제관리</span></a></li>
+				<li><a href="<%=request.getContextPath()%>/admin/payment/pay.do" class="parent"><span>결제관리</span></a></li>
 			</ul>
 		</div>
 		<!--//gnb-->

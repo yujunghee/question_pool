@@ -30,7 +30,7 @@ public class UserPayDao {
 	}
 	
 	public int refundUpdate(UserPayVo vo) {
-		return sst.update("userPay.UserPayVo", vo);
+		return sst.update("userPay.refundUpdate", vo);
 	}
 	
 }
