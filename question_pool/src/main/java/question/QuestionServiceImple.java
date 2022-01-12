@@ -86,4 +86,10 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.deleteQuestion(question_no);
 	}
 
+	/* --------------------USER-------------------- */
+	@Override
+	public int insertAQ(AnsweredQuestionVo av) {
+		return dao.insertAQ(av);
+	}
+
 }

@@ -10,6 +10,7 @@
 </head>
 <style>
 h1{font-size:250%;}
+h2{font-size:150%;}
 </style>
 <body> 
 <div id="wrap">
@@ -29,7 +30,8 @@ h1{font-size:250%;}
 						<div id="bread">
 						<form method="post" name="frm" id="frm" action="score.do" enctype="multipart/form-data">
 						<h1> 총 ㅇㅇ문제 중 맞은 문제 ㅇㅇ개</h1><br><hr>
-						
+							
+							<h2>[해설보기]</h2>
 							<c:forEach var="qv" items="${qlist}" varStatus="status">
 							<input type="hidden" value="${qv.question_no}">
 								<colgroup>
