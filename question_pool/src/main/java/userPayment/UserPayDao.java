@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
+
 @Repository
 public class UserPayDao {
 
@@ -27,4 +28,9 @@ public class UserPayDao {
 		}
 		return r;
 	}
+	
+	public int refundUpdate(UserPayVo vo) {
+		return sst.update("userPay.UserPayVo", vo);
+	}
+	
 }

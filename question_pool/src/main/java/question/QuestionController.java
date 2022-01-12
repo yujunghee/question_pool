@@ -29,15 +29,20 @@ public class QuestionController {
 	@RequestMapping("/admin/question/index.do")
 	public String indexQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int exam_no) {
 		model.addAttribute("exam",questionService.selectExam(exam_no));
+		model.addAttribute("school", schoolService.selectSchool(exam_no));
 		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
-		List<ExampleVo> elist = new ArrayList<ExampleVo>();
+		List<ExampleVo> list = questionService.selectExamplelist(ev);
+	
 		for(int i=0; i<qlist.size(); i++) {
-			ev.setQuestion_no(qlist.get(i).getQuestion_no());
-			elist.addAll(questionService.selectExamplelist(ev));
+			List<ExampleVo> elist = new ArrayList<ExampleVo>();
+			for(int j=0; j<list.size(); j++) {
+				if(qlist.get(i).getQuestion_no() == list.get(j).getQuestion_no()) {
+					elist.add(list.get(j));
+				}
+			}
+			qlist.get(i).setEx(elist);
 		}
 		model.addAttribute("qlist", qlist);
-		model.addAttribute("elist", elist);
-		//model.addAttribute("data",questionService.selectQuestion(qv.getQuestion_no()));
 		return "admin/question/index";
 	}
 
@@ -55,6 +60,7 @@ public class QuestionController {
 	@GetMapping("/admin/question/write.do")
 	public String write(Model model, @RequestParam int exam_no) {
 		model.addAttribute("exam",questionService.selectExam(exam_no));
+		model.addAttribute("school", schoolService.selectSchool(exam_no));
 		return "admin/question/write";
 	}
 
@@ -70,7 +76,7 @@ public class QuestionController {
 		ev.setQuestion_no(question_no);
 		List<ExampleVo> elist = questionService.selectExamplelist(ev);
 		model.addAttribute("elist",elist);
-		String[] examples = { "a", "b", "c", "d", "e" };
+		String[] examples = { "A", "B", "C", "D", "E" };
 		model.addAttribute("ex",examples);
 		return "admin/question/edit";
 	}
@@ -203,5 +209,63 @@ public class QuestionController {
 			req.setAttribute("url", "write.do");
 		}
 		return "admin/include/return";
+	}
+	
+	/*--------------------------USER-------------------------------*/
+	
+	@RequestMapping("/user/question/index.do")
+	public String indexUserQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int exam_no) {
+		model.addAttribute("exam",questionService.selectExam(exam_no));
+		model.addAttribute("school", schoolService.selectSchool(exam_no));
+		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
+		List<ExampleVo> list = questionService.selectExamplelist(ev);
+	
+		for(int i=0; i<qlist.size(); i++) {
+			List<ExampleVo> elist = new ArrayList<ExampleVo>();
+			for(int j=0; j<list.size(); j++) {
+				if(qlist.get(i).getQuestion_no() == list.get(j).getQuestion_no()) {
+					elist.add(list.get(j));
+				}
+			}
+			qlist.get(i).setEx(elist);
+		}
+		model.addAttribute("qlist", qlist);
+		String[] examples = { "A", "B", "C", "D", "E" };
+		model.addAttribute("ex",examples);
+		return "user/question/index";
+	}
+
+	@RequestMapping("/user/question/pool.do")
+	public String Userpool(SchoolVo vo, Model model, QuestionVo qv) {
+		List<SchoolVo> list = schoolService.selectList(vo);
+		model.addAttribute("list", list);
+		List<QuestionVo> qlist = questionService.selectyear(qv);
+		model.addAttribute("qlist", qlist);
+		List<QuestionVo> plist = questionService.selectsemester(qv);
+		model.addAttribute("plist", plist);
+		return "user/question/pool"; // 문제등록(학교/연도/회차선택창으로 이동)
+	}
+	
+	@RequestMapping("/user/question/score.do")
+	public String score(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int exam_no) {
+		model.addAttribute("exam",questionService.selectExam(exam_no));
+		model.addAttribute("school", schoolService.selectSchool(exam_no));
+		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
+		List<ExampleVo> list = questionService.selectExamplelist(ev);
+	
+		for(int i=0; i<qlist.size(); i++) {
+			List<ExampleVo> elist = new ArrayList<ExampleVo>();
+			for(int j=0; j<list.size(); j++) {
+				if(qlist.get(i).getQuestion_no() == list.get(j).getQuestion_no()) {
+					elist.add(list.get(j));
+				}
+			}
+			qlist.get(i).setEx(elist);
+		}
+		model.addAttribute("qlist", qlist);
+		String[] examples = { "A", "B", "C", "D", "E" };
+		model.addAttribute("ex",examples);
+		
+		return "user/question/score";
 	}
 }
