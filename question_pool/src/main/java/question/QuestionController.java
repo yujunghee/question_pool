@@ -211,7 +211,7 @@ public class QuestionController {
 		return "admin/include/return";
 	}
 	
-	/*--------------------------USER-------------------------------*/
+	/*--------------------------USER------------------------------*/
 	
 	@RequestMapping("/user/question/index.do")
 	public String indexUserQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int exam_no) {
