@@ -22,5 +22,7 @@ public class UserPayVo {
 	private int product_no;
 	
 	
+	
+	
 
 }

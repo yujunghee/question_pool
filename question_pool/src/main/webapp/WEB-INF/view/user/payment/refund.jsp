@@ -14,6 +14,7 @@
 			환불 여부는 관리자에 의해 결정됨을 알려드립니다.
 		<h3>동의하시면 환불요청을 진행해주세요.</h3>
 		<form name="frm" id="frm" action="refundUpdate.do" method="post">
+		<input type="hidden" id="user_no" name="user_no" value="${userInfo.user_no}">
 		<select name="refund_reason">
 		    <option value="1">실수로 잘못 결제함</option>
 		    <option value="2">다른 사이트 이용</option>

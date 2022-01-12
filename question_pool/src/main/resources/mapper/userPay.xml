@@ -13,7 +13,7 @@
 	</insert>
 	
 	<update id="refundUpdate" parameterType="userPayment.UserPayVo">
-		UPDATE payment SET refund = 99 WHERE user_no = 1 ORDER BY pay_date DESC limit 1
+		UPDATE payment SET refund = 1 WHERE user_no = #{user_no} ORDER BY pay_date DESC limit 1
 	</update>
 
 </mapper>

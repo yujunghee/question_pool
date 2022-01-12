@@ -89,12 +89,12 @@
                     <li>${vo.category }</li>
                     <li>${vo.price }</li>
                     <li>${vo.pay_date }</li>
-                    <li> 11 </li>
+                    <li>  </li>
                     <c:if test="${vo.refund eq 1}">
                     <li><input class="submit" type="submit" value="환불 요청" onclick="cancelPay()" ></li> 
                     </c:if>
                     <c:if test="${vo.refund eq 0}">
-                    <li>  11</li> 
+                    <li>  </li> 
                     </c:if>
                     </c:forEach>
                 </ul>  
