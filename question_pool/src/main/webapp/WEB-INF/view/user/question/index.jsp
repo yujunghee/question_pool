@@ -25,7 +25,7 @@
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-						<form method="post" name="frm" id="frm" action="score.do" enctype="multipart/form-data">
+						<form method="post" name="frm" id="frm" action="score.do?exam_no=${exam.exam_no}" enctype="multipart/form-data">
 							<c:forEach var="qv" items="${qlist}" varStatus="status">
 							<input type="hidden" value="${qv.question_no}">
 								<colgroup>
@@ -43,13 +43,11 @@
 										<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
 										<h1 style="width:500px;">${status.count}. ${string2}</h1>
 										
-										<c:forEach var="ev" items="${elist}">
-										<input type="hidden" value="${ev.example_no}">
-											<c:if test="${ev.question_no eq qv.question_no}">
-											<input type="checkbox" name="answer" value="${ex[status.index]}">&nbsp;
+										<c:forEach var="ev" items="${qv.ex}" varStatus="status">
+											<input type="checkbox" name="example" value="${ex[status.index]}">&nbsp;
 												(${ev.example}) ${ev.example_content}<br>
-											</c:if>
 										</c:forEach>
+										
 							<br><br>
 							</c:forEach>
 							

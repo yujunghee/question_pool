@@ -73,8 +73,8 @@ public class QuestionController {
 	public String edit(ExampleVo ev, Model model, @RequestParam int exam_no, @RequestParam int question_no) {
 		model.addAttribute("exam",questionService.selectExam(exam_no));
 		model.addAttribute("qv",questionService.selectQuestion(question_no));
-		ev.setQuestion_no(question_no);
-		List<ExampleVo> elist = questionService.selectExamplelist(ev);
+		
+		List<ExampleVo> elist = questionService.selectExample(question_no);
 		model.addAttribute("elist",elist);
 		String[] examples = { "A", "B", "C", "D", "E" };
 		model.addAttribute("ex",examples);
@@ -111,7 +111,7 @@ public class QuestionController {
 	public String insert(Model model, QuestionVo qv, ExampleVo ev, HttpServletRequest req, HttpSession sess, @RequestParam int exam_no) {
 		qv.setAdmin_no(((AdminVo)sess.getAttribute("adminInfo")).getAdmin_no());
 		model.addAttribute("exam",questionService.selectExam(exam_no));
-		String[] examples = { "a", "b", "c", "d", "e" };
+		String[] examples = { "A", "B", "C", "D", "E" };
 		String[] econtent = req.getParameterValues("example_content");
 		String[] content = req.getParameterValues("question_content");
 		String[] explanation = req.getParameterValues("explanation");
@@ -168,12 +168,6 @@ public class QuestionController {
 		}
 		return "admin/include/return";
 	}
-	
-//	@GetMapping("/admin/question/deleteAjax.do")
-//	public String deleteAjax(Model model, @RequestParam int question_no) {
-//		model.addAttribute("result", questionService.deleteQuestion(question_no));
-//		return "admin/include/result";
-//	}
 	
 	@GetMapping("/admin/school/write.do")
 	public String indexschool(Model model, SchoolVo vo) {

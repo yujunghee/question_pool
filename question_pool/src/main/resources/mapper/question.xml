@@ -14,6 +14,10 @@
 		SELECT * FROM question WHERE question_no=#{question_no}
 	</select>
 	
+	<select id="selectExample" parameterType="int" resultType="question.ExampleVo">
+		SELECT * FROM example WHERE question_no=#{question_no}
+	</select>
+	
 	<update id="updateQuestion" parameterType="question.QuestionVo">
 		UPDATE question SET question_content=#{question_content}, passage=#{passage}, answer=#{answer}, explanation=#{explanation}
 		WHERE question_no=#{question_no}
