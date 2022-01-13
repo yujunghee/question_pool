@@ -70,16 +70,16 @@ function chk(){
 				</select>
 			<br /> <br />
 				<div id="yeararea"></div>
+			</div>
 			<br/>
+			<form name="frm" id="frm" action="/question_pool/user/question/index.do" onsubmit="return chk();" enctype="multipart/form-data"
+				style="text-align: center;">
 			<div id="semesterarea"></div>
-			
-				 <input type=button value="검색" class="submit" onclick="chk()" style="text-align:center">
-			</div>
 			<br/>
 			<br/>
-			<div style="text-align: center;" id="examarea">
-			
-			</div>
+
+			<input type="submit" value="검색" class="submit">
+			</form>
 		</div>
 		<!--//canvas -->
 	</div>
