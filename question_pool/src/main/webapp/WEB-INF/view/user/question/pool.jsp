@@ -18,7 +18,16 @@
 </head>
 <script>
 function chk(){
-	return true;
+			$.ajax({
+				url : 'showmetheexam.do',
+				data : {
+					exam_no : $("#exam_no").val()
+				},
+				async : false,
+				success : function(res) {
+					$("#examarea").html(res);
+			}
+		})
 }
 	function getyear(){
 				$.ajax({
@@ -61,16 +70,16 @@ function chk(){
 				</select>
 			<br /> <br />
 				<div id="yeararea"></div>
+			<br/>
+			<div id="semesterarea"></div>
+			
+				 <input type=button value="검색" class="submit" onclick="chk()" style="text-align:center">
 			</div>
 			<br/>
-			<form name="frm" id="frm" action="/question_pool/user/question/index.do" onsubmit="return chk();" enctype="multipart/form-data"
-				style="text-align: center;">
-			<div id="semesterarea"></div>
 			<br/>
-			<br/>
-				 
-			<input type="submit" value="검색" class="submit">
-			</form>
+			<div style="text-align: center;" id="examarea">
+			
+			</div>
 		</div>
 		<!--//canvas -->
 	</div>

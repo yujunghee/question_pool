@@ -8,7 +8,14 @@ public class ExamVo {
 	private int exam_time;
 	private int semester;
 	private int school_no;
+	private String school_name;
 	
+	public String getSchool_name() {
+		return school_name;
+	}
+	public void setSchool_name(String school_name) {
+		this.school_name = school_name;
+	}
 	public int getExam_no() {
 		return exam_no;
 	}

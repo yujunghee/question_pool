@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 </head>
 <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script><!-- jQuery CDN --->
 <script>
@@ -30,7 +30,7 @@
           padding: 0;
           box-sizing: border-box;
         }
-      .container{
+      .container1{
       width: 1500px;
       higth:100%;	
       text-align: center;
@@ -65,7 +65,7 @@
 </style>
 <body>
 <%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
-<div class="container">
+<div class="container1">
    <div class="pay">  
         <ul class="">
             <li>

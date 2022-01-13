@@ -9,14 +9,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form>
-	<h4 style="font-size: 20px;">학기선택</h4>
-	<select name="exam_no" id="exam_no" style="width: 100px; height: 30px;">
+		<form action="/question_pool/user/question/index.do">
+	<h4 style="font-size: 20px;">시험들</h4>
 		<c:forEach var="plist" items="${dList}">
-			<option value="${plist.exam_no}">${plist.semester}</option>
+	<label><input type="radio" name="exam_no" value="${plist.exam_no}">${plist.school_name}의${plist.year}년도의${plist.semester}학기 시험</label>
 		</c:forEach>
-	</select>
-	<br/>
-	</form>
+		<br/>
+		<input type="submit" value="시험시작" >
+		</form>
+	
 </body>
 </html>
