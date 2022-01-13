@@ -14,6 +14,7 @@ public class UserPayVo {
 	private String user_email;
 	private String user_name;
 	private String user_tel;
+	private int refund_reason;
 	private int refund;
 	private int pay_no;
 	private Timestamp pay_date;

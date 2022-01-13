@@ -9,7 +9,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <script>
-	console.log(${user_no}+'asdsad')
 function product(pname ,pay, product_no){
 	//가맹점 식별코드
 	IMP.init('imp01855034');
