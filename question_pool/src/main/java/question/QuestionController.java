@@ -218,8 +218,6 @@ public class QuestionController {
 	@RequestMapping("/admin/question/showmethesemester.do")
 	public String showmethesemester(SchoolVo vo, Model model, QuestionVo qv) {
 		model.addAttribute("dList", questionService.selectsemester(qv));
-		List<SchoolVo> list = schoolService.selectList(vo);
-		model.addAttribute("list", list);
 		return "admin/question/semester"; // 문제등록(학교/연도/회차선택창으로 이동)
 	}
 	/*--------------------------USER------------------------------*/
