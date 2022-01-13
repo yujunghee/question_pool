@@ -261,25 +261,29 @@ public class QuestionController {
 	@RequestMapping("user/question/insert.do")
 	public String insertAQ(HttpServletRequest req, QuestionVo qv, AnsweredQuestionVo av, @RequestParam int exam_no) {
 		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
+		System.out.println(qlist.size());
 		ExamVo xo = new ExamVo();
 		xo = questionService.selectExam(exam_no);
 		av.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
 		av.setExam_no(exam_no);
 		
-		//배열로 insert처리하기(푼답,오/정답)
+		// 오,정답 체크 & 배열로 insert처리
 		String[] answers = req.getParameterValues("example");
 		int r=0;
 		for(int i=0; i<qlist.size(); i++) {
 			if(!("").equals(answers[i])) {
+				av.setQuestion_no(qlist.get(i).getQuestion_no());
+				if((qlist.get(i).getAnswer()).equals(answers[i])) {
+					av.setScore(1); //정답
+				} else {
+					av.setScore(0); //오답
+				}
 				av.setUser_answer(answers[i]);
-			}else {
-				av.setUser_answer(null);
 			}
-			av.setQuestion_no(qlist.get(i).getQuestion_no());
 			questionService.insertAQ(av);
 			r++;
 		}
-		
+				
 		if (r > 0) {
 			req.setAttribute("msg", "정상적으로 제출되었습니다.");
 			req.setAttribute("url", "score.do?exam_no="+exam_no);
@@ -289,16 +293,22 @@ public class QuestionController {
 		return "admin/include/return";
 	}
 	
-	
 	@RequestMapping("/user/question/score.do")
-	public String score(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int exam_no) {
+	public String score(QuestionVo qv, ExampleVo ev, AnsweredQuestionVo av, Model model, HttpServletRequest req, @RequestParam int exam_no) {
 		model.addAttribute("exam",questionService.selectExam(exam_no));
 		model.addAttribute("school", schoolService.selectSchool(exam_no));
 		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
 		List<ExampleVo> list = questionService.selectExamplelist(ev);
 	
+		av.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
+		av.setExam_no(exam_no);
+		List<AnsweredQuestionVo> alist = questionService.selectAQlist(av);
+
+		int cnt = 0; //정답갯수
+		
 		for(int i=0; i<qlist.size(); i++) {
 			List<ExampleVo> elist = new ArrayList<ExampleVo>();
+			if(alist.get(i).getScore() == 1) { cnt++; }
 			for(int j=0; j<list.size(); j++) {
 				if(qlist.get(i).getQuestion_no() == list.get(j).getQuestion_no()) {
 					elist.add(list.get(j));
@@ -307,10 +317,22 @@ public class QuestionController {
 			qlist.get(i).setEx(elist);
 		}
 		model.addAttribute("qlist", qlist);
+		model.addAttribute("alist", alist);
 		String[] examples = { "A", "B", "C", "D", "E" };
 		model.addAttribute("ex",examples);
+		model.addAttribute("cnt",cnt);
 		
 		return "user/question/score";
+	}
+	@RequestMapping("/user/question/showmetheyear.do")
+	public String showmetheyear1(SchoolVo vo, Model model, QuestionVo qv) {
+		model.addAttribute("cList", questionService.selectyear(qv));
+		return "admin/question/year"; // 문제등록(학교/연도/회차선택창으로 이동)
+	}
+	@RequestMapping("/user/question/showmethesemester.do")
+	public String showmethesemester1(SchoolVo vo, Model model, QuestionVo qv) {
+		model.addAttribute("dList", questionService.selectsemester(qv));
+		return "admin/question/semester"; // 문제등록(학교/연도/회차선택창으로 이동)
 	}
 	
 }

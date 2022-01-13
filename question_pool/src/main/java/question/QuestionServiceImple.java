@@ -92,4 +92,9 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.insertAQ(av);
 	}
 
+	@Override
+	public List<AnsweredQuestionVo> selectAQlist(AnsweredQuestionVo av) {
+		return dao.selectAQlist(av);
+	}
+
 }

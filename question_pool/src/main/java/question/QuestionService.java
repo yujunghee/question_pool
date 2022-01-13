@@ -25,4 +25,5 @@ public interface QuestionService {
 	
 	/* USER */
 	int insertAQ(AnsweredQuestionVo av);
+	List<AnsweredQuestionVo> selectAQlist(AnsweredQuestionVo av);
 }

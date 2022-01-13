@@ -104,5 +104,8 @@ public class QuestionDao {
 	public int insertAQ(AnsweredQuestionVo av) {
 		return sqlSessionTemplate.insert("question.insertAQ", av);
 	}
-
+	
+	public List<AnsweredQuestionVo> selectAQlist(AnsweredQuestionVo av){
+		return sqlSessionTemplate.selectList("question.selectAQlist",av);
+	}
 }

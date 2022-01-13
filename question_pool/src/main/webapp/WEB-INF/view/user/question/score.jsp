@@ -29,35 +29,32 @@ h2{font-size:150%;}
 					<div id="bbs">
 						<div id="bread">
 						<form method="post" name="frm" id="frm" action="score.do" enctype="multipart/form-data">
-						<h1> 총 ㅇㅇ문제 중 맞은 문제 ㅇㅇ개</h1><br><hr>
+						<h1 style="color:red;"> 총 ${exam.number_of_questions}문제 중 맞은 문제 ${cnt}개</h1><br><hr>
 							
 							<h2>[해설보기]</h2>
 							<c:forEach var="qv" items="${qlist}" varStatus="status">
 							<input type="hidden" value="${qv.question_no}">
-								<colgroup>
-									<col width="10%" />
-									<col width="15%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="15%" />
-								</colgroup>
-										<p colspan="10">${qv.passage }</p><br>
+										<p>${qv.passage }</p><br>
 										
 										<c:set var="string" value="${qv.question_content}"/>
 										<c:set var="string1" value="${fn:replace(string,'#','<u>')}"/>
 										<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
-										<p style="width:500px;">${status.count}. ${string2}</p>
+										
+										<c:if test="${alist[status.index].score eq 0}">
+											<p style="width:500px; color:red;">${status.count}. ${string2}</p>
+										</c:if>
+										<c:if test="${alist[status.index].score eq 1}">
+											<p style="width:500px;">${status.count}. ${string2}</p>
+										</c:if>
 										
 										<c:forEach var="ev" items="${qv.ex}">
 												(${ev.example}) ${ev.example_content}<br>
 										</c:forEach>
 										<p>${qv.explanation}</p>
+										<p>내가 고른 답 : (${alist[status.index].user_answer})</p>
 										<p>정답 : (${qv.answer})</p>
 							<br><br>
 							</c:forEach>
-							
-							<input type="submit" value="제출하기">
 						</form>
 							<!--//btn-->
 						</div>

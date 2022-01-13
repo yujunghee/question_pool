@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -9,10 +9,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h4 style="font-size: 20px;">년도선택</h4>
-	<select name="year" id="year" style="width: 100px; height: 30px;" onclick="getsemester()">
-		<c:forEach var="vo" items="${cList}">
-			<option value="${vo.year}">${vo.year}</option>
+	<h4 style="font-size: 20px;">학기선택</h4>
+	<select name="exam_no" style="width: 100px; height: 30px;">
+		<c:forEach var="plist" items="${dList}">
+			<option value="${plist.exam_no}">${plist.semester}</option>
 		</c:forEach>
 	</select>
 </body>

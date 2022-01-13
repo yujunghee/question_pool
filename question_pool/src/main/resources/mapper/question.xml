@@ -80,4 +80,7 @@
 		VALUES(#{user_answer}, #{score}, NOW(), #{memo}, #{question_no}, #{user_no}, #{exam_no})
 	</insert>
 	
+	<select id="selectAQlist" resultType="question.AnsweredQuestionVo" parameterType="question.AnsweredQuestionVo">
+		SELECT * FROM answered_question WHERE user_no=#{user_no} AND exam_no=#{exam_no}
+	</select>
 </mapper>
