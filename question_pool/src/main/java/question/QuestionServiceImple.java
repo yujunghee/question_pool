@@ -75,10 +75,21 @@ public class QuestionServiceImple implements QuestionService {
 	public QuestionVo selectQuestion(int question_no) {
 		return dao.selectQuestion(question_no);
 	}
+	
+	@Override
+	public List<ExampleVo> selectExample(int question_no) {
+		return dao.selectExample(question_no);
+	}
 
 	@Override
 	public int deleteQuestion(int question_no) {
 		return dao.deleteQuestion(question_no);
+	}
+
+	/* --------------------USER-------------------- */
+	@Override
+	public int insertAQ(AnsweredQuestionVo av) {
+		return dao.insertAQ(av);
 	}
 
 }

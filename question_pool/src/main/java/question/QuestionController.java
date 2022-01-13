@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import admin.AdminVo;
 import school.SchoolService;
 import school.SchoolVo;
+import user.UserVo;
 
 @Controller
 public class QuestionController {
@@ -28,8 +29,11 @@ public class QuestionController {
 
 	@RequestMapping("/admin/question/index.do")
 	public String indexQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int exam_no) {
-		model.addAttribute("exam",questionService.selectExam(exam_no));
-		model.addAttribute("school", schoolService.selectSchool(exam_no));
+		ExamVo xo = new ExamVo();
+		xo = questionService.selectExam(exam_no);
+		model.addAttribute("exam", xo);
+		model.addAttribute("school", schoolService.selectSchool(xo.getSchool_no()));
+		
 		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
 		List<ExampleVo> list = questionService.selectExamplelist(ev);
 	
@@ -59,8 +63,10 @@ public class QuestionController {
 
 	@GetMapping("/admin/question/write.do")
 	public String write(Model model, @RequestParam int exam_no) {
-		model.addAttribute("exam",questionService.selectExam(exam_no));
-		model.addAttribute("school", schoolService.selectSchool(exam_no));
+		ExamVo ev = new ExamVo();
+		ev = questionService.selectExam(exam_no);
+		model.addAttribute("exam", ev);
+		model.addAttribute("school", schoolService.selectSchool(ev.getSchool_no()));
 		return "admin/question/write";
 	}
 
@@ -73,8 +79,7 @@ public class QuestionController {
 	public String edit(ExampleVo ev, Model model, @RequestParam int exam_no, @RequestParam int question_no) {
 		model.addAttribute("exam",questionService.selectExam(exam_no));
 		model.addAttribute("qv",questionService.selectQuestion(question_no));
-		ev.setQuestion_no(question_no);
-		List<ExampleVo> elist = questionService.selectExamplelist(ev);
+		List<ExampleVo> elist = questionService.selectExample(question_no);
 		model.addAttribute("elist",elist);
 		String[] examples = { "A", "B", "C", "D", "E" };
 		model.addAttribute("ex",examples);
@@ -111,7 +116,7 @@ public class QuestionController {
 	public String insert(Model model, QuestionVo qv, ExampleVo ev, HttpServletRequest req, HttpSession sess, @RequestParam int exam_no) {
 		qv.setAdmin_no(((AdminVo)sess.getAttribute("adminInfo")).getAdmin_no());
 		model.addAttribute("exam",questionService.selectExam(exam_no));
-		String[] examples = { "a", "b", "c", "d", "e" };
+		String[] examples = { "A", "B", "C", "D", "E" };
 		String[] econtent = req.getParameterValues("example_content");
 		String[] content = req.getParameterValues("question_content");
 		String[] explanation = req.getParameterValues("explanation");
@@ -169,12 +174,6 @@ public class QuestionController {
 		return "admin/include/return";
 	}
 	
-//	@GetMapping("/admin/question/deleteAjax.do")
-//	public String deleteAjax(Model model, @RequestParam int question_no) {
-//		model.addAttribute("result", questionService.deleteQuestion(question_no));
-//		return "admin/include/result";
-//	}
-	
 	@GetMapping("/admin/school/write.do")
 	public String indexschool(Model model, SchoolVo vo) {
 
@@ -228,11 +227,13 @@ public class QuestionController {
 	
 	@RequestMapping("/user/question/index.do")
 	public String indexUserQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int exam_no) {
-		model.addAttribute("exam",questionService.selectExam(exam_no));
-		model.addAttribute("school", schoolService.selectSchool(exam_no));
+		ExamVo xo = new ExamVo();
+		xo = questionService.selectExam(exam_no);
+		model.addAttribute("exam", xo);
+		model.addAttribute("school", schoolService.selectSchool(xo.getSchool_no()));
 		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
 		List<ExampleVo> list = questionService.selectExamplelist(ev);
-	
+		
 		for(int i=0; i<qlist.size(); i++) {
 			List<ExampleVo> elist = new ArrayList<ExampleVo>();
 			for(int j=0; j<list.size(); j++) {
@@ -249,15 +250,43 @@ public class QuestionController {
 	}
 
 	@RequestMapping("/user/question/pool.do")
-	public String Userpool(SchoolVo vo, Model model, QuestionVo qv) {
+	public String userPool(SchoolVo vo, Model model, QuestionVo qv) {
 		List<SchoolVo> list = schoolService.selectList(vo);
 		model.addAttribute("list", list);
 		List<QuestionVo> qlist = questionService.selectyear(qv);
 		model.addAttribute("qlist", qlist);
 		List<QuestionVo> plist = questionService.selectsemester(qv);
 		model.addAttribute("plist", plist);
-		return "user/question/pool"; // 문제등록(학교/연도/회차선택창으로 이동)
+		return "user/question/pool"; 
 	}
+	
+	@RequestMapping("user/question/insert.do")
+	public String insertAQ(HttpServletRequest req, QuestionVo qv, AnsweredQuestionVo av, @RequestParam int exam_no) {
+		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
+		ExamVo xo = new ExamVo();
+		xo = questionService.selectExam(exam_no);
+		av.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
+		av.setExam_no(exam_no);
+		
+		//배열로 insert처리하기(푼답,오/정답)
+		String[] answers = req.getParameterValues("example");
+		int r=0;
+		for(int i=0; i<3; i++) {
+			av.setUser_answer(answers[i]);
+			av.setQuestion_no(qlist.get(i).getQuestion_no());
+			questionService.insertAQ(av);
+			r++;
+		}
+		
+		if (r > 0) {
+			req.setAttribute("msg", "정상적으로 제출되었습니다.");
+			req.setAttribute("url", "score.do?exam_no="+exam_no);
+		} else {
+			req.setAttribute("msg", "제출 오류");
+		}
+		return "admin/include/return";
+	}
+	
 	
 	@RequestMapping("/user/question/score.do")
 	public String score(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int exam_no) {

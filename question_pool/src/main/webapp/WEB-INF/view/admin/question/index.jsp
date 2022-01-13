@@ -7,17 +7,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
-<script>
-	$(function(){
-		var obj = $("#question_content");
-		var len = $("#question_content").length;
-		console.log(obj[0]);
-		console.log(obj[1]);
-		
-		//str.replace("$","<u>");
-	});
-	
-</script>
 </head>
 <body> 
 <div id="wrap">
@@ -39,7 +28,7 @@
 						<div id="bread">
 							<c:forEach var="qv" items="${qlist}" varStatus="status">
 							<input type="hidden" value="${qv.question_no}">
-										<p colspan="10">${qv.passage}</p><br>
+										<p>${qv.passage}</p><br>
 										<c:set var="string" value="${qv.question_content}"/>
 										<c:set var="string1" value="${fn:replace(string,'#','<u>')}"/>
 										<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
@@ -47,6 +36,9 @@
 										<c:forEach var="ev" items="${qv.ex}">
 												(${ev.example}) ${ev.example_content}<br>
 										</c:forEach>
+										<br>
+										<p>해설 : ${qv.explanation}</p>
+										<p>정답 : (${qv.answer})</p>
 										<a href="edit.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제수정"></a>
 										<a href="delete.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제삭제"></a>
 										<br><br>

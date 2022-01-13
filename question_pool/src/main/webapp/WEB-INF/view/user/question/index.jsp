@@ -7,6 +7,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script>
+	function conf(){
+		if(confirm('제출하시겠습니까?')){
+			return true;
+		}
+	}
+</script>
 </head>
 <body> 
 <div id="wrap">
@@ -19,13 +26,14 @@
 			<div id="content">
 				<div class="con_tit">
 					<h2>[${school.school_name} ${exam.year}년도 ${exam.semester}학기] - 총 ${exam.number_of_questions}문항/${exam.exam_time}분</h2>
+					<input type="hidden" value="${userInfo.user_no}">
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-						<form method="post" name="frm" id="frm" action="score.do" enctype="multipart/form-data">
+						<form method="post" name="frm" id="frm" action="insert.do?exam_no=${exam.exam_no}" enctype="multipart/form-data" onsubmit="return conf();">
 							<c:forEach var="qv" items="${qlist}" varStatus="status">
 							<input type="hidden" value="${qv.question_no}">
 								<colgroup>
@@ -43,13 +51,11 @@
 										<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
 										<h1 style="width:500px;">${status.count}. ${string2}</h1>
 										
-										<c:forEach var="ev" items="${elist}">
-										<input type="hidden" value="${ev.example_no}">
-											<c:if test="${ev.question_no eq qv.question_no}">
-											<input type="checkbox" name="answer" value="${ex[status.index]}">&nbsp;
+										<c:forEach var="ev" items="${qv.ex}" varStatus="status">
+											<input type="checkbox" name="example" value="${ex[status.index]}">&nbsp;
 												(${ev.example}) ${ev.example_content}<br>
-											</c:if>
 										</c:forEach>
+										
 							<br><br>
 							</c:forEach>
 							

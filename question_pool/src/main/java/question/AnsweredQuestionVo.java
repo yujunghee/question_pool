@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class AnsweredQuestionVo {
 
 	private int aq_no;
-	private String answered_question;
+	private String user_answer;
 	private int score;
 	private Timestamp answered_date;
 	private String memo;
@@ -19,11 +19,11 @@ public class AnsweredQuestionVo {
 	public void setAq_no(int aq_no) {
 		this.aq_no = aq_no;
 	}
-	public String getAnswered_question() {
-		return answered_question;
+	public String getUser_answer() {
+		return user_answer;
 	}
-	public void setAnswered_question(String answered_question) {
-		this.answered_question = answered_question;
+	public void setUser_answer(String user_answer) {
+		this.user_answer = user_answer;
 	}
 	public int getScore() {
 		return score;

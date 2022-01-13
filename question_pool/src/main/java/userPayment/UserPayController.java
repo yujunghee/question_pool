@@ -40,7 +40,7 @@ public class UserPayController {
 		return "user/payment/refund";
 	}
 	@PostMapping("/user/payment/refundUpdate.do")
-	public String update(Model model, UserPayVo vo, MultipartFile file, HttpServletRequest req) {
+	public String update(Model model, UserPayVo vo, HttpServletRequest req) {
 		int r = payService.refundUpdate(vo);
 		if(r > 0) {
 			model.addAttribute("msg","환불 요청되었습니다.");
