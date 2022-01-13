@@ -19,16 +19,23 @@
     	<c:forEach var="vo" items="${cList }">            
         <tr>
             <td></td>
-            <td class="txt_l" style="text-align: left;">
+            <td class="txt_l" style="text-align: left; width: 73%" >
                 ${vo.content }                
             </td>
             <td class="writer">
-                ${vo.name }
+            	<c:if test="${!empty vo.admin_no }">
+                	${vo.admin_name }
+                </c:if>
+                <c:if test="${!empty vo.user_no }">
+                	${vo.user_name }
+                </c:if>
             </td>
             <td class="date" width="8%"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
+            <c:if test="${(!empty userInfo && userInfo.user_no == vo.user_no) || (!empty adminInfo && adminInfo.admin_no == vo.admin_no) }">            
             <td>            			                                   
-			  	<a class="btns" style="cursor:pointer;" href="javascript:goDel(${vo.c_no });"><strong>답변삭제</strong></a>
+			  	<a class="btns" style="cursor:pointer;" href="javascript:goDel(${vo.c_no });"><strong>삭제</strong></a>
             </td>
+            </c:if>
         </tr>        
         </c:forEach>
     </c:if>                    

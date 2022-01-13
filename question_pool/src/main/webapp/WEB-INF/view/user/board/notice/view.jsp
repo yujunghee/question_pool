@@ -5,6 +5,52 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script type="text/javascript">
+	function goSave() {
+		$.ajax({
+			url:'/question_pool/comment/insert.do',
+			type:'post',
+			data:$("#frm").serialize(),
+			success:function(res) {
+				if (res.trim() == '1') {
+					alert('댓글이 등록되었습니다.');
+					commentList('notice', ${data.notice_no});
+					$("#content").val("");
+				} else {
+					alert('등록 오류');
+				}
+			}
+		});
+	}
+	function commentList(tablename, notice_no) {
+		$.ajax({
+			url:'/question_pool/comment/list.do',
+			data:{tablename:tablename, notice_no:notice_no},
+			success:function(res) {
+				$("#commentArea").html(res);
+			}
+		});
+	}
+	$(function() {
+		commentList('notice', ${data.notice_no});
+	});
+	function goDel(c_no) {
+		if (confirm('댓글을 삭제하시겠습니까?')) {
+			$.ajax({
+				url:"/question_pool/comment/delete.do",
+				data:{c_no:c_no},
+				success:function(res) {
+					if (res.trim() == '1') {
+						alert('정삭적으로 삭제되었습니다.');
+						commentList('notice', ${data.notice_no});						
+					} else {
+						alert('삭제 오류');
+					}
+				}
+			})
+		}
+	}
+</script>
 </head>
 <body> 
 <div id="wrap">
@@ -67,12 +113,35 @@
 									</tr>
 								</tbody>
 							</table>
+							<c:if test="${!empty userInfo}">
+							<form method="post" name="frm" id="frm" action="" enctype="multipart/form-data" >
+			                <input type="hidden" name="tablename" value="notice">
+			                <input type="hidden" name="notice_no" value="${data.notice_no }">
+			                <input type="hidden" name="user_no" value="${userInfo.user_no}">
+			                    <table class="board_write">
+			                        <colgroup>
+			                            <col width="*" />
+			                            <col width="100px" />
+			                        </colgroup>
+			                        <tbody>
+			                        <tr>
+			                            <td>
+			                                <textarea name="content" id="content" style="height:50px;"></textarea>
+			                            </td>
+			                            <td>
+			                                <div class="btnSet"  style="text-align:center;">
+			                                    <a class="btns" href="javascript:goSave();"><strong>댓글등록</strong> </a>		                                    
+			                                </div>
+			                            </td>
+			                        </tr>
+			                        </tbody>
+			                    </table>
+			                </form>
+			                </c:if>
+							<div id="commentArea"></div>
 							<div class="btn">
 								<div class="btnLeft">
 									<a class="btns" href="notice.do"><strong>목록</strong></a>
-								</div>
-								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="edit.do?notice_no=${data.notice_no }"><strong>수정</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

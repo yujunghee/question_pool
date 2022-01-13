@@ -110,6 +110,12 @@ public class BoardController {
 		return "admin/board/notice/view";
 	}
 	
+	@GetMapping("/user/board/notice/view.do")
+	public String noticeViewUser(Model model, @RequestParam int notice_no) {
+		model.addAttribute("data", boardService.noticeView(notice_no));
+		return "user/board/notice/view";
+	}
+	
 	@GetMapping("/admin/board/notice/edit.do")
 	public String noticeEdit(Model model, @RequestParam int notice_no) {
 		model.addAttribute("data", boardService.noticeView(notice_no)); 
