@@ -269,8 +269,12 @@ public class QuestionController {
 		//배열로 insert처리하기(푼답,오/정답)
 		String[] answers = req.getParameterValues("example");
 		int r=0;
-		for(int i=0; i<3; i++) {
-			av.setUser_answer(answers[i]);
+		for(int i=0; i<qlist.size(); i++) {
+			if(!("").equals(answers[i])) {
+				av.setUser_answer(answers[i]);
+			}else {
+				av.setUser_answer(null);
+			}
 			av.setQuestion_no(qlist.get(i).getQuestion_no());
 			questionService.insertAQ(av);
 			r++;

@@ -29,7 +29,7 @@ width:130;height:30;  /*--버튼 크기---*/
 			<!-- S T A R T :: headerArea-->
 			<!-- E N D :: headerArea-->
 			<!-- 학교/연도/회차 선택 페이지 -->
-			<form name="frm" id="frm" action="" enctype="multipart/form-data" style="text-align:center; padding:100px 0 0 0;'">
+			<form name="frm" id="frm" action="index.do?exam_no=${vo.exam_no}" enctype="multipart/form-data" style="text-align:center; padding:100px 0 0 0;'">
 			<h4 style="font-size:20px;">학교선택</h4>
 				<c:forEach var="vo" items="${list}">
                                 <label><input type="radio" name="school_no" value="${vo.school_no}">
