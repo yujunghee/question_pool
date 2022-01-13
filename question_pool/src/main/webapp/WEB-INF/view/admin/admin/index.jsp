@@ -101,7 +101,7 @@ function fn_paging(curPage){
 								</colgroup>
 								<thead>
 									<tr>
-										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk"/></th>
+										<th scope="col" class="first"></th>
 										<th scope="col">번호</th>
 										<th scope="col">아이디</th> 
 										<th scope="col">비밀번호</th> 

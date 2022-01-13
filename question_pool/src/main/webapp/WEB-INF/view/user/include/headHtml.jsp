@@ -22,7 +22,7 @@
 <script type="text/javascript" src="<%=userUtil.Property.contextPath%>/js/user/menu.js"></script>
 <!--<script type="text/javascript" src="/js/user/jquery.colorPicker.js"></script>-->
 
-<script type="text/javascript" src="<%=userUtil.Property.contextPath%>/js/user/jquery.selectric.js"></script><!-- select api -->
+
 <script type="text/javascript" src="<%=userUtil.Property.contextPath%>/js/user/icheck.min.js"></script><!-- input api -->
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

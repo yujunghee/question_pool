@@ -70,6 +70,9 @@ public class QuestionDao {
 	public List<QuestionVo> selectsemester(QuestionVo qv) {
 		return sqlSessionTemplate.selectList("question.selectsemester", qv);
 	}
+	public List<QuestionVo> showexam(QuestionVo qv) {
+		return sqlSessionTemplate.selectList("question.showexam", qv);
+	}
 
 	public List<ExampleVo> selectExamplelist(ExampleVo ev) {
 		return sqlSessionTemplate.selectList("question.selectExamplelist", ev);

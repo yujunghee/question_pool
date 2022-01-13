@@ -32,6 +32,10 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.selectyear(qv);
 	}
 	@Override
+	public List<QuestionVo> showexam(QuestionVo qv) {
+		return dao.showexam(qv);
+	}
+	@Override
 	public List<QuestionVo> selectsemester(QuestionVo qv) {
 		return dao.selectsemester(qv);
 	}

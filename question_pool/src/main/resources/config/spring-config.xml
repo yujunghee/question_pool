@@ -53,7 +53,9 @@
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/admin/index.do"/>
+			<mvc:mapping path="/admin/*/*"/>
+			<mvc:mapping path="/admin/*"/>
+			<mvc:exclude-mapping path="/admin/login.do"/>
 			<bean class="util.LoginInterceptor"/>
 	</mvc:interceptor>
 	</mvc:interceptors>
