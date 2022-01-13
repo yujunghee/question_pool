@@ -6,52 +6,69 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
 <style>
 .submit {
-border:1x solid #ff0080;    /*---테두리 정의---*/
-background-Color:#c0c0c0;   /*--백그라운드 정의---*/
-font:12px 굴림;      /*--폰트 정의---*/
-font-weight:bold;   /*--폰트 굵기---*/
-color:#000000;    /*--폰트 색깔---*/
-width:130;height:30;  /*--버튼 크기---*/
+	border: 1x solid #ff0080; /*---테두리 정의---*/
+	background-Color: #c0c0c0; /*--백그라운드 정의---*/
+	font: 12px 굴림; /*--폰트 정의---*/
+	font-weight: bold; /*--폰트 굵기---*/
+	color: #000000; /*--폰트 색깔---*/
+	width: 130;
+	height: 30; /*--버튼 크기---*/
 }
 </style>
-<script>
-	function chk(frm){
-		frm.action='/question_pool/user/question/index.do';
-		frm.submit();
-		return true;
-	}
-</script>
 </head>
+<script>
+function chk(){
+	return true;
+}
+	function getyear(){
+				$.ajax({
+					url : 'showmetheyear.do',
+					data : {
+						school_no : $("#school_no").val()
+					},
+					async : false,
+					success : function(res) {
+						$("#yeararea").html(res);
+				}
+			})
+		}
+	function getsemester(){
+		$.ajax({
+			url : 'showmethesemester.do',
+			data : {
+				year : $("#year").val()
+			},
+			async : false,
+			success : function(res) {
+				$("#semesterarea").html(res);
+		}
+	})
+}
+	
+</script>
 <body>
 	<div id="wrap">
 		<!-- canvas -->
 		<div id="canvas">
-			<!-- S T A R T :: headerArea-->
-			<!-- E N D :: headerArea-->
 			<!-- 학교/연도/회차 선택 페이지 -->
-			<form name="frm" id="frm" action="" enctype="multipart/form-data" style="text-align:center; padding:100px 0 0 0;'">
-			<h4 style="font-size:20px;">학교선택</h4>
-				<c:forEach var="vo" items="${list}">
-                                <label><input type="radio" name="school_no" value="${vo.school_no}">
-                                 ${vo.school_name}</label>
-                </c:forEach>
+			<div style="text-align: center; padding: 200px 0 0 0;'">
+				<h4 style="font-size: 20px;">학교선택</h4>
+				<select name="school_no" id="school_no"
+					style="width: 100px; height: 30px;" onclick="getyear()">
+					<c:forEach var="vo" items="${list}">
+						<option value="${vo.school_no}">${vo.school_name}</option>
+					</c:forEach>
+				</select>
+			<br /> <br />
+				<div id="yeararea"></div>
+			</div>
+			<br/>
+			<form name="frm" id="frm" action="/question_pool/user/question/index.do" onsubmit="return chk();" enctype="multipart/form-data"
+				style="text-align: center;">
+			<div id="semesterarea"></div>
 			<br/>
 			<br/>
-			<br/>
-			<h4 style="font-size:20px;">년도선택</h4>
-                <label><input type="radio" name="year" value="2000">2000</label>
-                <label><input type="radio" name="year" value="2001">2001</label>
-                <label><input type="radio" name="year" value="2002">2002</label>
-                <label><input type="radio" name="year" value="2003">2003</label>
-			<br/>
-			<br/>
-			<br/>
-			<h4 style="font-size:20px;">학기선택</h4>
-				<label><input type="radio" name="semester" value="1">1</label>
-				<label><input type="radio" name="semester" value="2">2</label>
-			<br/>
-			<br/>
-			<br/>
+				 
 			<input type="submit" value="검색" class="submit">
 			</form>
 		</div>

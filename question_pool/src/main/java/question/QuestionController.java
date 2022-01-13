@@ -308,5 +308,15 @@ public class QuestionController {
 		
 		return "user/question/score";
 	}
+	@RequestMapping("/user/question/showmetheyear.do")
+	public String showmetheyear1(SchoolVo vo, Model model, QuestionVo qv) {
+		model.addAttribute("cList", questionService.selectyear(qv));
+		return "admin/question/year"; // 문제등록(학교/연도/회차선택창으로 이동)
+	}
+	@RequestMapping("/user/question/showmethesemester.do")
+	public String showmethesemester1(SchoolVo vo, Model model, QuestionVo qv) {
+		model.addAttribute("dList", questionService.selectsemester(qv));
+		return "admin/question/semester"; // 문제등록(학교/연도/회차선택창으로 이동)
+	}
 	
 }

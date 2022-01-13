@@ -62,17 +62,20 @@ function chk2(frm){
 			<div style="text-align: center; padding: 200px 0 0 0;'">
 				<h4 style="font-size: 20px;">학교선택</h4>
 				<select name="school_no" id="school_no"
-					style="width: 100px; height: 30px;" onchange="getyear()">
+					style="width: 100px; height: 30px;" onclick="getyear()">
 					<c:forEach var="vo" items="${list}">
 						<option value="${vo.school_no}">${vo.school_name}</option>
 					</c:forEach>
 				</select>
 			<br /> <br />
 				<div id="yeararea"></div>
-			<br /> <br /></div>
+			</div>
+			<br/>
 			<form name="frm" id="frm" action="/question_pool/admin/question/write.do" onsubmit="return chk();" enctype="multipart/form-data"
 				style="text-align: center;">
 			<div id="semesterarea"></div>
+			<br/>
+			<br/>
 				 <input type="submit" value="문제등록" class="submit"> <input
 					type="button" value="문제목록" onclick="return chk2(this.form);"
 					class="submit">
