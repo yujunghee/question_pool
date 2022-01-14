@@ -69,7 +69,7 @@
 								<c:set var="string1" value="${fn:replace(string,'#','<u>')}"/>
 								<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
 								
-								<div class="chk" id="chk">
+								<div class="chk">
 									<h1 style="width:500px;">${status.count}. ${string2}</h1>
 								
 									<c:forEach var="ev" items="${qv.ex}" varStatus="status">
