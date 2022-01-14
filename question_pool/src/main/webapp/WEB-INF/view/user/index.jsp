@@ -354,13 +354,11 @@ function test() {
 						<dd><a href="javascript:;" onclick="clickMenu('bigdata3', '데이터분석', '/bigdata/analysis.do', false)">데이터분석</a></dd>
 					</dl>
 					<dl style="width:15.666%;">
-						<dt><a href="javascript:;">개인 프로젝트</a></dt>
+						<dt><a href="javascript:;">커뮤니티</a></dt>
 						<dd class="frist"><a href="javascript:;" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio2', '갤러리', 'user/portfolio/gallery/index.do', false)">갤러리</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'Q&A', 'user/portfolio/qna/index.do', false)">Q&A</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio4', '답변게시판', '/portfolio/reply/index.do', false)">답변게시판</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio5', '댓글게시판', '/portfolio/comment/index.do', false)">댓글게시판</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio6', '회원관리', '/portfolio/member/index.do', false)">회원관리</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('portfolio2', '시험일정', '/user/board/testdate/testdate.do', false)">시험일정</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'Q&A', '/user/board/qa/qa.do', false)">Q&A</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('portfolio4', '자유게시판', '/user/board/community/community.do', false)">자유게시판</a></dd>
 					</dl>
 				</div>
 			</div>
@@ -413,15 +411,13 @@ function test() {
 							<li id="bigdata3_submenu" onclick="clickMenu('bigdata3', '데이터분석', '/bigdata/analysis.do', false)">데이터분석</li>
 						</ul>
 					</dd>
-					<dt id="portfolio" class="gnb_menu">개인 프로젝트</dt>
+					<dt id="portfolio" class="gnb_menu">커뮤니티</dt>
 					<dd class="gnb_submenu">
 						<ul>	
 							<li id="portfolio1_submenu" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</li>
-							<li id="portfolio2_submenu" onclick="clickMenu('portfolio2', '갤러리', '/portfolio/gallery/index.do', false)">갤러리</li>
-							<li id="portfolio3_submenu" onclick="clickMenu('portfolio3', 'Q&A', '/portfolio/qna/index.do', false)">Q&A</li>
-							<li id="portfolio4_submenu" onclick="clickMenu('portfolio4', '답변게시판', '/portfolio/reply/index.do', false)">답변게시판</li>
-							<li id="portfolio5_submenu" onclick="clickMenu('portfolio5', '댓글게시판', '/portfolio/comment/index.do', false)">댓글게시판</li>
-							<li id="portfolio6_submenu" onclick="clickMenu('portfolio6', '회원관리', '/portfolio/member/index.do', false)">회원관리</li>
+							<li id="portfolio2_submenu" onclick="clickMenu('portfolio2', '시험일정', '/user/board/testdate/testdate.do', false)">시험일정</li>
+							<li id="portfolio3_submenu" onclick="clickMenu('portfolio3', 'Q&A', '/user/board/qa/qa.do', false)">Q&A</li>
+							<li id="portfolio4_submenu" onclick="clickMenu('portfolio4', '자유게시판', '/user/board/community/community.do', false)">자유게시판</li>
 						</ul>
 					</dd>
 				</dl>

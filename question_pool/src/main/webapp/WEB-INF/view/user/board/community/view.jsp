@@ -14,7 +14,7 @@
 			success:function(res) {
 				if (res.trim() == '1') {
 					alert('댓글이 등록되었습니다.');
-					commentList('notice', ${data.notice_no});
+					commentList('community', ${data.community_no});
 					$("#content").val("");
 				} else {
 					alert('등록 오류');
@@ -23,12 +23,12 @@
 		});
 	}
 	$(function() {
-		commentList('notice', ${data.notice_no});
+		commentList('community', ${data.community_no});
 	});
-	function commentList(tablename, notice_no) {
+	function commentList(tablename, community_no) {
 		$.ajax({
 			url:'/question_pool/comment/list.do',
-			data:{tablename:tablename, notice_no:notice_no},
+			data:{tablename:tablename, community_no:community_no},
 			success:function(res) {
 				$("#commentArea").html(res);
 			}
@@ -42,7 +42,7 @@
 				success:function(res) {
 					if (res.trim() == '1') {
 						alert('정삭적으로 삭제되었습니다.');
-						commentList('notice', ${data.notice_no});						
+						commentList('community', ${data.community_no});						
 					} else {
 						alert('삭제 오류');
 					}
@@ -54,14 +54,18 @@
 </head>
 <body> 
 <div id="wrap">
-<input type="hidden" name="notice_no" value="${data.notice_no}">
+<input type="hidden" name="community_no" value="${data.community_no}">
 	<!-- canvas -->
 	<div id="canvas">
+		<!-- S T A R T :: headerArea-->
+		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
+		<!-- E N D :: headerArea--> 
+		
 		<!-- S T A R T :: containerArea-->
-		<div id="container" style="width:100%;">
+		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [세부페이지]</h2>
+					<h2>자유게시판 - [세부페이지]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -81,38 +85,22 @@
 									<tr>
 										<th scope="row"><label for="">제목</label></th>
 										<td colspan="10">
-											${data.notice_title }
+											${data.community_title }
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">내용</label></th>										
-											<p><span>번호 :  <strong> ${data.notice_no}</strong>  |  작성자 :  <strong>${data.admin_name }</strong> | 조회수 :  <strong>${data.notice_readcount }</strong>  |  작성일 :  <strong><fmt:formatDate value="${data.notice_date }" pattern="yyyy-MM-dd HH:mm:ss"/></strong> </span></p>										
+											<p><span>번호 :  <strong> ${data.community_no}</strong>  |  작성자 :  <strong>${data.user_name }</strong> | 조회수 :  <strong>${data.community_readcount }</strong>  |  작성일 :  <strong><fmt:formatDate value="${data.community_date }" pattern="yyyy-MM-dd HH:mm:ss"/></strong> </span></p>										
 										<td colspan="10">											
-											${data.notice_content }											
-											
-											<c:if test="${!empty data.notice_file_real }">											
-												<img src="/question_pool/upload/${data.notice_file_real }">											
-											</c:if>
-											<c:if test="${empty data.notice_file_real }">											
-												<img src="">											
-											</c:if>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-												<div class="file">
-													<a href="/question_pool/common/download.jsp?path=/upload/&org=${data.notice_file_org}&real=${data.notice_file_real}" 
-                       								target="_blank">${data.notice_file_org } </a>
-												</div>
+											${data.community_content }
 										</td>
 									</tr>
 								</tbody>
 							</table>
 							<c:if test="${!empty userInfo}">
 							<form method="post" name="frm" id="frm" action="" enctype="multipart/form-data" >
-			                <input type="hidden" name="tablename" value="notice">
-			                <input type="hidden" name="notice_no" value="${data.notice_no }">
+			                <input type="hidden" name="tablename" value="community">
+			                <input type="hidden" name="community_no" value="${data.community_no }">
 			                <input type="hidden" name="user_no" value="${userInfo.user_no}">
 			                    <table class="board_write">
 			                        <colgroup>
@@ -137,8 +125,13 @@
 							<div id="commentArea"></div>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="notice.do"><strong>목록</strong></a>
+									<a class="btns" href="community.do"><strong>목록</strong></a>
 								</div>
+								<c:if test="${!empty userInfo && userInfo.user_no == data.user_no}">
+								<div class="btnRight">
+									<a class="btns" style="cursor:pointer;" href="edit.do?community_no=${data.community_no }"><strong>수정</strong></a>
+								</div>
+								</c:if>
 							</div>
 							<!--//btn-->
 						</div>
