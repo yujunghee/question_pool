@@ -3,7 +3,6 @@ package userPayment;
 
 
 
-import java.io.File;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 import user.UserVo;
 
@@ -57,10 +55,10 @@ public class UserPayController {
 	public String insert(UserPayVo vo, HttpServletRequest req, HttpSession sess) {
 		vo.setUser_no(((UserVo)sess.getAttribute("userInfo")).getUser_no());
 		int r = payService.insert(vo);
-		
+		int q =payService.userGrade(vo);
 		// 정상적으로 등록되었습니다. alert 띄우고 
 		// index.do 로 이동 
-		if(r > 0) {
+		if(r > 0 && q > 0) {
 		req.setAttribute("msg", "결제되었습니다. 감사합니다");
 		req.setAttribute("url", "index.do");
 		} else {
