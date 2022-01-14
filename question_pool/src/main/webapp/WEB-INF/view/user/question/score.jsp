@@ -50,7 +50,7 @@ h2{font-size:150%;}
 										<c:forEach var="ev" items="${qv.ex}">
 												(${ev.example}) ${ev.example_content}<br>
 										</c:forEach>
-										<p>${qv.explanation}</p>
+										<p>[해설] ${qv.explanation}</p>
 										<p>내가 고른 답 : (${alist[status.index].user_answer})</p>
 										<p>정답 : (${qv.answer})</p>
 							<br><br>

@@ -293,6 +293,11 @@ public class QuestionController {
 		return "admin/include/return";
 	}
 	
+	@RequestMapping("user/question/test.do")
+	public String test() {
+		return "user/question/test";
+	}
+	
 	@RequestMapping("/user/question/score.do")
 	public String score(QuestionVo qv, ExampleVo ev, AnsweredQuestionVo av, Model model, HttpServletRequest req, @RequestParam int exam_no) {
 		model.addAttribute("exam",questionService.selectExam(exam_no));
