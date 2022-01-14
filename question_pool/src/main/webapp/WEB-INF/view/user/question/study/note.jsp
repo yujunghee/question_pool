@@ -28,14 +28,24 @@
 						<div id="bread">
 						<form method="post" name="frm" id="frm" action="insert.do?exam_no=${exam.exam_no}" enctype="multipart/form-data" onsubmit="return conf();">
 							<table width="100%" border="1">
-								<tr>
-									<th width="50%">13번</th>
-									<th>메모</th>
-								</tr>	
-								<tr>
-									<td rowspan="2">문제문제</td>
-									<td>해설해설</td>
-								</tr>							
+								<thead>
+									<tr>
+										<th width="50%">13번</th>
+										<th>메모</th>
+									</tr>
+								</thead>
+								<tbody>	
+									<tr>
+										<td>문제문제</td>
+										<td rowspan="3">메모장</td>
+									</tr>	
+									<tr>
+										<td>해설</td>
+									</tr>
+									<tr>
+										<td>답</td>
+									</tr>						
+								</tbody>
 							</table>
 						</form>
 							<!--//btn-->
