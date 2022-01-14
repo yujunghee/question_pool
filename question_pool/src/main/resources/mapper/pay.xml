@@ -9,7 +9,7 @@
 	</select>
 	
 	<update id="cancelPay" parameterType="payment.PayVo">
-		UPDATE payment join user on payment.user_no = user.user_no join
+		UPDATE payment join user on payment.user_no = user.user_no
 		SET payment.refund = 2, user.user_grade = 0 WHERE user.user_no = #{user_no} AND payment.refund = 1	
 	</update>
 	

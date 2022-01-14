@@ -38,10 +38,10 @@ public class PayController {
 		int r = payService.cancelPay(vo);
 		if(r > 0) {
 			model.addAttribute("msg","환불 되었습니다.");
-			model.addAttribute("url","refund.do"); // 성공 했을때 상세페이지 이동 
+			model.addAttribute("url","pay.do"); // 성공 했을때 상세페이지 이동 
 		}else {
 			model.addAttribute("msg","환불 오류. 다시시도해주세요");
-			model.addAttribute("url","refund.do"); //실패했을때 수정페이지 이동 
+			model.addAttribute("url","pay.do"); //실패했을때 수정페이지 이동 
 		}
 		return "admin/include/return";
 	}

@@ -44,16 +44,21 @@
 				    }
 				  });
 		 */
+		 
 		 function cancelPay(){
-				$.ajax({	
+			 var a = prompt('환불 할 사용자의 번호를 입력해주세요.');
+				$.ajax({
 					type : 'POST',
 					url : 'cancelPay.do',
 					data : {
-						user_no : '3'
+						user_no : a
 					},
 					async : false,
-					success : function(res) {
-						console.log("aaaaaaaaaaaaaaaaa")
+					success : function(res) {		
+						alert("환불되었습니다.")
+						document.location.href = document.location.href;
+						document.location.reload();
+						history.go(0);
 				}
 			})
 		}
@@ -78,7 +83,7 @@
         list-style: none;
         border: 1px solid #000;
         text-align: center;
-        width: 16.6%;
+        width: 14.280%;
         height: 40px;
         line-height: 40px;
         background-color: #cccccc;
@@ -89,7 +94,7 @@
         list-style: none;
         border: 1px solid #000;
         text-align: center;
-        width: 16.6%;
+        width: 14.280%;
         height: 40px; 
         line-height: 40px;
       }
@@ -105,6 +110,7 @@
         <ul class="">
             <li>
                 <ul class="">
+            	    <li>사용자 번호</li>
                     <li>계정</li>
                     <li>상품</li>
                     <li>금액</li>
@@ -120,6 +126,7 @@
             <li>
                 <ul class="">
                 	<c:forEach var="vo" items="${data}">
+                	<li>${vo.user_no }</li>
                     <li>${vo.user_email }</li>
                     <li>${vo.category }</li>
                     <li>${vo.price }</li>
