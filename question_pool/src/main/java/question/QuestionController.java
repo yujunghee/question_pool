@@ -293,6 +293,7 @@ public class QuestionController {
 		return "admin/include/return";
 	}
 	
+	// 채점 페이지
 	@RequestMapping("/user/question/score.do")
 	public String score(QuestionVo qv, ExampleVo ev, AnsweredQuestionVo av, Model model, HttpServletRequest req, @RequestParam int exam_no) {
 		model.addAttribute("exam",questionService.selectExam(exam_no));
@@ -324,6 +325,15 @@ public class QuestionController {
 		
 		return "user/question/score";
 	}
+	
+	// 오답노트 페이지
+	@RequestMapping("user/question/note.do")
+	public String note() {
+		return "user/question/study/note";
+	}
+	
+	
+	
 	@RequestMapping("/user/question/showmetheyear.do")
 	public String showmetheyear1(SchoolVo vo, Model model, QuestionVo qv) {
 		model.addAttribute("cList", questionService.selectyear(qv));
