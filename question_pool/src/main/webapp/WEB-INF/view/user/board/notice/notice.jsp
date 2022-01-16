@@ -7,6 +7,8 @@
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <%@ include file="/WEB-INF/view/user/include/headHtml.jsp" %>
+<script type="text/javascript">
+</script>
 </head>
 <body> 
 <div id="boardWrap">
@@ -76,14 +78,14 @@
 							</div>
 							<!-- //페이징 처리 -->							
 							<form name="searchForm" id="searchForm" action="notice.do"  method="get" >
-								<div class="search">
-									<select name="searchType" title="검색을 선택해주세요">
-										<option value="">전체</option>
+								<div class="searchWrap">
+									<select name="searchType" title="검색을 선택해주세요">										
 										<option value="notice_title" <c:if test="${param.searchType == 'notice_title'}">selected</c:if>>제목</option>
 										<option value="notice_content" <c:if test="${param.searchType == 'notice_content'}">selected</c:if>>내용</option>
-									</select>
+										<option value="">제목or내용</option>
+									</select>									
 									<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />
-									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
+									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />									
 								</div>
 							</form>							
 							<!-- //search --> 

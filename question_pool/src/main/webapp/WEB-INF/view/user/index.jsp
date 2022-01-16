@@ -302,7 +302,7 @@ function test() {
 <body>
 <div id="wrap">
 	<div id="header">
-		<h1><a href="<%=userUtil.Property.contextPath%>user/index.do">개인 포트폴리오</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
+		<h1><a href="<%=userUtil.Property.contextPath%>user/index.do">Ladder Up</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
 		<ul class="topmenu">
 			<c:if test="${empty userInfo }">
 			<li class="login"><a href="/question_pool/user/login.do">로그인</a></li>
@@ -413,7 +413,7 @@ function test() {
 							<li id="bigdata3_submenu" onclick="clickMenu('bigdata3', '데이터분석', '/bigdata/analysis.do', false)">데이터분석</li>
 						</ul>
 					</dd>
-					<dt id="portfolio" class="gnb_menu">개인 프로젝트</dt>
+					<dt id="portfolio" class="gnb_menu">커뮤니티</dt>
 					<dd class="gnb_submenu">
 						<ul>	
 							<li id="portfolio1_submenu" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</li>
@@ -427,8 +427,8 @@ function test() {
 				</dl>
 			</div>
 			<div class="menuclose" onclick="menuToggle();"><img src="<%=userUtil.Property.contextPath%>/img/menu_close.png" /></div>
-			<div class="copy">Copyright (C) 2020<br />
-				서민구 Portfolio. 
+			<div class="copy">Copyright (C) 2022<br />
+				더조은종각4조 WebProject. 
 			</div>
 		</div>
 		<!--//menuWrap-->
