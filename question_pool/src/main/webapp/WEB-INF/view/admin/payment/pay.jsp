@@ -46,21 +46,23 @@
 		 */
 		 
 		 function cancelPay(){
-			 var a = prompt('환불 할 사용자의 번호를 입력해주세요.');
-				$.ajax({
-					type : 'POST',
-					url : 'cancelPay.do',
-					data : {
-						user_no : a
-					},
-					async : false,
-					success : function(res) {		
-						alert("환불되었습니다.")
-						document.location.href = document.location.href;
-						document.location.reload();
-						history.go(0);
-				}
-			})
+			 var a = prompt('환불 할 사용자 번호를 입력해주세요.');
+					$.ajax({
+						type : 'POST',
+						url : 'cancelPay.do',
+						data : {
+							user_no : a,
+							admin_no : ${adminInfo.admin_no}
+						},
+						async : false,
+						success : function(res) {
+							alert("환불되었습니다.")
+							document.location.href = document.location.href;
+							document.location.reload();
+							history.go(0);
+					
+					}
+				})
 		}
 
 </script>
@@ -100,8 +102,10 @@
       }
        .submit{
        	width: 100px;
-        height: 20px;
+        height: 50px;
+        float: right;
       }	
+      
 </style>
 <body>
 <%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
@@ -150,13 +154,14 @@
                     <li>  </li> 
                     </c:if>
                     <c:if test="${vo.refund eq 1}">
-                    <li><input class="submit" type="submit" value="환불 요청" id="cancelPay" onclick="cancelPay()" ></li> 
+                    <li style="background-color: #f5f5dc">환불 요청</li> 
                     </c:if>
                     <c:if test="${vo.refund eq 2}">
                     <li>환불 완료</li> 
                     </c:if>
                     </c:forEach>
                 </ul>  
+                <input class="submit" type="submit" value="환불 요청" id="cancelPay" onclick="cancelPay()" size="2" >
             </li>
         </ul>
     </div>

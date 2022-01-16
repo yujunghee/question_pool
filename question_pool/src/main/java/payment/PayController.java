@@ -3,12 +3,15 @@ package payment;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import admin.AdminVo;
 
 
 
@@ -19,7 +22,8 @@ public class PayController {
 	PayService payService;
 	
 	@RequestMapping("/admin/payment/pay.do")
-	public String view(Model model,PayVo vo) throws Exception {
+	public String view(Model model,PayVo vo,HttpServletRequest req, HttpSession sess) throws Exception {
+		vo.setAdmin_no(((AdminVo)sess.getAttribute("adminInfo")).getAdmin_no());
 		List<PayVo> list = payService.paymentUser(vo);
 		model.addAttribute("data",list);
 //		HttpURLConnection conn = null;
