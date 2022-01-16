@@ -310,7 +310,7 @@ function test() {
 			</c:if>
 			<c:if test="${!empty userInfo }">
 			<li class="login"><a href="/question_pool/user/logout.do">로그아웃</a></li>
-			<li class="signup"><a href="/question_pool/user/mypage.do">마이페이지</a></li>
+			<li class="signup"><a href="/question_pool/user/mypage/index.do">마이페이지</a></li>
 			</c:if>			
 			
 	
@@ -344,6 +344,7 @@ function test() {
 						<dd class="frist"><a href="javascript:;" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio2', '시험일정', '/user/board/testdate/testdate.do', false)">시험일정</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'Q&A', '/user/board/qa/qa.do', false)">Q&A</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'FAQ', '/user/board/faq/faq.do', false)">FAQ</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio4', '자유게시판', '/user/board/community/community.do', false)">자유게시판</a></dd>
 					</dl>
 				</div>
@@ -379,7 +380,6 @@ function test() {
 							<li id="back3_submenu" onclick="clickMenu('back3', '단어장', '/back/spring.do', false)">단어장</li>
 						</ul>
 					</dd>
-<<<<<<< HEAD
 					<dt id="back" class="gnb_menu">Back-End</dt>
 					<dd class="gnb_submenu">
 						<ul>	
@@ -397,14 +397,13 @@ function test() {
 							<li id="bigdata3_submenu" onclick="clickMenu('bigdata3', '데이터분석', '/bigdata/analysis.do', false)">데이터분석</li>
 						</ul>
 					</dd>
-=======
->>>>>>> branch 'master' of https://github.com/yujunghee/question_pool.git
 					<dt id="portfolio" class="gnb_menu">커뮤니티</dt>
 					<dd class="gnb_submenu">
 						<ul>	
 							<li id="portfolio1_submenu" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</li>
 							<li id="portfolio2_submenu" onclick="clickMenu('portfolio2', '시험일정', '/user/board/testdate/testdate.do', false)">시험일정</li>
 							<li id="portfolio3_submenu" onclick="clickMenu('portfolio3', 'Q&A', '/user/board/qa/qa.do', false)">Q&A</li>
+							<li id="portfolio3_submenu" onclick="clickMenu('portfolio3', 'FAQ', '/user/board/faq/faq.do', false)">FAQ</li>
 							<li id="portfolio4_submenu" onclick="clickMenu('portfolio4', '자유게시판', '/user/board/community/community.do', false)">자유게시판</li>
 						</ul>
 					</dd>

@@ -6,62 +6,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script type="text/javascript">
-	function goSave() {
-		$.ajax({
-			url:'/question_pool/comment/insert.do',
-			type:'post',
-			data:$("#frm").serialize(),
-			success:function(res) {
-				if (res.trim() == '1') {
-					alert('댓글이 등록되었습니다.');
-					commentList('td', ${data.td_no});
-					$("td > #content").val("");
-				} else {
-					alert('등록 오류');
-				}
-			}
-		});
-	}
 	$(function() {
-		commentList('td', ${data.td_no});
+		commentList('qa', ${data.qa_no});
 	});
-	function commentList(tablename, td_no) {
+	function commentList(tablename, qa_no) {
 		$.ajax({
 			url:'/question_pool/comment/list.do',
-			data:{tablename:tablename, td_no:td_no},
+			data:{tablename:tablename, qa_no:qa_no},
 			success:function(res) {
 				$("#commentArea").html(res);
 			}
 		});
 	}	
-	function goDel(c_no) {
-		if (confirm('댓글을 삭제하시겠습니까?')) {
-			$.ajax({
-				url:"/question_pool/comment/delete.do",
-				data:{c_no:c_no},
-				success:function(res) {
-					if (res.trim() == '1') {
-						alert('정삭적으로 삭제되었습니다.');
-						commentList('td', ${data.td_no});						
-					} else {
-						alert('삭제 오류');
-					}
-				}
-			})
-		}
-	}
 </script>
 </head>
 <body> 
 <div id="wrap">
-<input type="hidden" name="td_no" value="${data.td_no}">
+<input type="hidden" name="qa_no" value="${data.qa_no}">
 	<!-- canvas -->
-	<div id="canvas">
+	<div id="canvas">		
 		<!-- S T A R T :: containerArea-->
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>시험일정 - [상세페이지]</h2>
+					<h2>Q&A - [상세페이지]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -81,39 +49,24 @@
 									<tr>
 										<th scope="row"><label for="">제목</label></th>
 										<td colspan="10">
-											${data.td_title }
+											${data.qa_title }
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">내용</label></th>										
-											<p><span>번호 :  <strong> ${data.td_no}</strong>  |  작성자 :  <strong>${data.admin_name }</strong> | 조회수 :  <strong>${data.td_readcount }</strong>  |  작성일 :  <strong><fmt:formatDate value="${data.td_date }" pattern="yyyy-MM-dd HH:mm:ss"/></strong> </span></p>										
+											<p><span>번호 :  <strong> ${data.qa_no}</strong>  |  작성자 :  <strong>${data.user_name }</strong> | 조회수 :  <strong>${data.qa_readcount }</strong>  |  작성일 :  <strong><fmt:formatDate value="${data.qa_date }" pattern="yyyy-MM-dd HH:mm:ss"/></strong> </span></p>										
 										<td colspan="10">											
-											${data.td_content }											
-											
-											<c:if test="${!empty data.td_file_real }">											
-												<img src="/question_pool/upload/${data.td_file_org }">											
-											</c:if>
-											<c:if test="${empty data.td_file_real }">											
-												<img src="">											
-											</c:if>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-												<div class="file">
-													<a href="/question_pool/common/download.jsp?path=/upload/&org=${data.td_file_org}&real=${data.td_file_real}" 
-                       								target="_blank">${data.td_file_org } </a>
-												</div>
+											${data.qa_content }
 										</td>
 									</tr>
 								</tbody>
 							</table>
 							<c:if test="${!empty userInfo}">
 							<form method="post" name="frm" id="frm" action="" enctype="multipart/form-data" >
-			                <input type="hidden" name="tablename" value="td">
-			                <input type="hidden" name="td_no" value="${data.td_no }">
+			                <input type="hidden" name="tablename" value="qa">
+			                <input type="hidden" name="qa_no" value="${data.qa_no }">
 			                <input type="hidden" name="user_no" value="${userInfo.user_no}">
+			                <input type="hidden" name="admin_no" value="${adminInfo.admin_no}">			                
 			                    <table class="board_write">
 			                        <colgroup>
 			                            <col width="*" />
@@ -137,8 +90,14 @@
 							<div id="commentArea"></div>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="testdate.do"><strong>목록</strong></a>
+									<a class="btns" href="qa.do"><strong>목록</strong></a>
 								</div>
+								<c:if test="${!empty userInfo && userInfo.user_no == data.user_no}">
+								<div class="btnRight">
+									<a class="btns" style="cursor:pointer;" href="edit.do?qa_no=${data.qa_no }"><strong>글수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="delete.do?qa_no=${data.qa_no }"><strong>글삭제</strong></a>
+								</div>
+								</c:if>
 							</div>
 							<!--//btn-->
 						</div>

@@ -15,7 +15,7 @@
 				if (res.trim() == '1') {
 					alert('댓글이 등록되었습니다.');
 					commentList('notice', ${data.notice_no});
-					$("#content").val("");
+					$("td > #content").val("");
 				} else {
 					alert('등록 오류');
 				}
@@ -61,7 +61,7 @@
 		<div id="container" style="width:100%;">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [세부페이지]</h2>
+					<h2>공지사항 - [상세페이지]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">

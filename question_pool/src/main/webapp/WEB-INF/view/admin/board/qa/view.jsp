@@ -15,7 +15,7 @@
 				if (res.trim() == '1') {
 					alert('댓글이 등록되었습니다.');
 					commentList('qa', ${data.qa_no});
-					$("#content").val("");
+					$("td > #content").val("");
 				} else {
 					alert('등록 오류');
 				}
@@ -114,7 +114,7 @@
 		                            </td>
 		                            <td>
 		                                <div class="btnSet"  style="text-align:center;">
-		                                    <a class="btns" href="javascript:goSave();"><strong>등록</strong> </a>		                                    
+		                                    <a class="btns" href="javascript:goSave();"><strong>답변등록</strong> </a>		                                    
 		                                </div>
 		                            </td>
 		                        </tr>

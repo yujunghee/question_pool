@@ -16,14 +16,14 @@
 		<div id="container" style="width:100%;">
 			<div id="content">
 				<div class="pageTitle">
-					<h2>자유게시판</h2>
+					<h2>Q&A</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div class="bbs">
 						<div class="list">
-							<p><span><strong>총 ${totCount }개</strong>  |  ${communityVo.page }/${totPage }페이지</span></p>							
+							<p><span><strong>총 ${totCount }개</strong>  |  ${qaVo.page }/${totPage }페이지</span></p>							
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%"  cellspacing="0" cellpadding="0">
 								<colgroup>
@@ -51,22 +51,22 @@
 									</c:if>
 									<c:if test="${!empty list }">
 										<c:forEach var="list" items="${list }">                                    
-			                            <input type="hidden" name="community_no" value="${list.community_no }">
+			                            <input type="hidden" name="qa_no" value="${list.qa_no }">
 			                            <input type="hidden" name="user_no" value="${list.user_no }">
 			                            <tr>			                            				                            	
-			                                <td>${list.community_no }</td>
-			                                <td class="txt_l" onclick="location.href='view.do?community_no=${list.community_no }'" style="cursor: pointer;">
-			                                    <a href="view.do?community_no=${list.community_no }">${list.community_title } &nbsp;
-			                                    <c:if test="${list.c_count != 0}">
-			                                    	<strong>[${list.c_count }]</strong>
+			                                <td>${list.qa_no }</td>
+			                                <td class="txt_l" onclick="location.href='view.do?qa_no=${list.qa_no }'" style="cursor: pointer;">
+			                                    <a href="view.do?qa_no=${list.qa_no }">${list.qa_title } &nbsp;
+			                                    <c:if test="${list.c_count > 0}">			                                    	
+			                                    	<strong>[답변완료]</strong>	
 			                                    </c:if>
 			                                    </a>
 			                                </td>
-			                                <td class="date"><fmt:formatDate value="${list.community_date }" pattern="yyyy-MM-dd"/></td>			                                
+			                                <td class="date"><fmt:formatDate value="${list.qa_date }" pattern="yyyy-MM-dd"/></td>			                                
 			                                <td class="writer">
 			                                    ${list.user_name }
 			                                </td>			                                
-			                                <td class="readcount">${list.community_readcount }</td>
+			                                <td class="readcount">${list.qa_readcount }</td>
 			                            </tr>
 			                            </c:forEach>
 			                         </c:if>
@@ -85,12 +85,12 @@
 							${pageArea }
 							</div>
 							<!-- //페이징 처리 -->							
-							<form name="searchForm" id="searchForm" action="community.do"  method="get" >
+							<form name="searchForm" id="searchForm" action="qa.do"  method="get" >
 								<div class="search">
 									<select name="searchType" title="검색을 선택해주세요">
 										<option value="">전체</option>
-										<option value="community_title" <c:if test="${param.searchType == 'community_title'}">selected</c:if>>제목</option>
-										<option value="community_content" <c:if test="${param.searchType == 'community_content'}">selected</c:if>>내용</option>
+										<option value="qa_title" <c:if test="${param.searchType == 'qa_title'}">selected</c:if>>제목</option>
+										<option value="qa_content" <c:if test="${param.searchType == 'qa_content'}">selected</c:if>>내용</option>
 										<option value="user_name" <c:if test="${param.searchType == 'user_name'}">selected</c:if>>작성자</option>
 									</select>
 									<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />

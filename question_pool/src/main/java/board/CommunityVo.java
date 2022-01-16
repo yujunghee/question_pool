@@ -1,4 +1,4 @@
-package admin.board;
+package board;
 
 import java.sql.Timestamp;
 

@@ -38,11 +38,11 @@
 								</colgroup>
 								<thead>
 									<tr>										
-										<th scope="col" class="first">번호</th>
+										<th scope="col" class="first" style="width: 5%;">번호</th>
 										<th scope="col">제목</th> 
-										<th scope="col">작성일</th> 
-										<th scope="col">작성자</th> 
-										<th scope="col" class="last">조회수</th>
+										<th scope="col" style="width: 10%;">작성일</th> 
+										<th scope="col" style="width: 7%;">작성자</th> 
+										<th scope="col" style="width: 5%;" class="last">조회수</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -78,7 +78,7 @@
 							</div>
 							<!-- //페이징 처리 -->							
 							<form name="searchForm" id="searchForm" action="notice.do"  method="get" >
-								<div class="searchWrap">
+								<div class="search">
 									<select name="searchType" title="검색을 선택해주세요">										
 										<option value="notice_title" <c:if test="${param.searchType == 'notice_title'}">selected</c:if>>제목</option>
 										<option value="notice_content" <c:if test="${param.searchType == 'notice_content'}">selected</c:if>>내용</option>

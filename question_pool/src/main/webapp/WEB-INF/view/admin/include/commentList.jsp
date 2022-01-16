@@ -30,12 +30,12 @@
 					                	${vo.user_name }
 					                </c:if>
 					            </td>
-					            <td class="date" width="8%"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
-					            <c:if test="${(!empty userInfo && userInfo.user_no == vo.user_no) || (!empty adminInfo && adminInfo.admin_no == vo.admin_no) }">            
+					            <td class="date" width="10%"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
+					            <c:if test="${(!empty userInfo && userInfo.user_no == vo.user_no) || (!empty adminInfo) }">            
 					            <td>            			                                   
 								  	<a class="btns" style="cursor:pointer;" href="javascript:goDel(${vo.c_no });"><strong>삭제</strong></a>
 					            </td>
-					            </c:if>
+					            </c:if>				            
 					        </tr>        
 					        </c:forEach>
 					    </c:if>                    
