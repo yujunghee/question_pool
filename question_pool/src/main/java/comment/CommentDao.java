@@ -19,14 +19,6 @@ public class CommentDao {
 	
 	public int insert(CommentVo cv) {
 		return sqlSessionTemplate.insert("comment.insert", cv);
-//		int r = -1;
-//		try {
-//			r = sqlSessionTemplate.insert("board.insert", vo);
-//		} catch (Exception e) {
-//			r = 0;
-//			System.out.println(e.getMessage());
-//		}
-//		return r;
 	}
 	
 	public int delete(int c_no) {		

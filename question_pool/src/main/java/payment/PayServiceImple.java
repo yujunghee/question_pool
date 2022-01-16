@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+
 @Service
 public class PayServiceImple implements PayService{
 
@@ -17,6 +18,12 @@ public class PayServiceImple implements PayService{
 	@Override
 	public List<PayVo> paymentUser(PayVo vo) throws Exception {
 		return payDao.paymentUser(vo);
+	}
+
+
+	@Override
+	public int cancelPay(PayVo vo) {
+		return payDao.cancelPay(vo);
 	}
 
 

@@ -14,6 +14,10 @@
 		SELECT * FROM question WHERE question_no=#{question_no}
 	</select>
 	
+	<select id="selectExample" parameterType="int" resultType="question.ExampleVo">
+		SELECT * FROM example WHERE question_no=#{question_no}
+	</select>
+	
 	<update id="updateQuestion" parameterType="question.QuestionVo">
 		UPDATE question SET question_content=#{question_content}, passage=#{passage}, answer=#{answer}, explanation=#{explanation}
 		WHERE question_no=#{question_no}
@@ -59,7 +63,7 @@
 	</insert>
 	
 	<select id="selectSchool" resultType="school.SchoolVo" parameterType="int">
-		SELECT * FROM school s JOIN exam e ON s.school_no=e.school_no;		
+		SELECT * FROM school WHERE school_no=#{school_no}
 	</select>
 	
 	<select id="selectyear" resultType="question.QuestionVo" parameterType="question.QuestionVo">
@@ -68,12 +72,18 @@
 	<select id="selectsemester" resultType="question.QuestionVo" parameterType="question.QuestionVo">
 		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no where exam.year = #{year} 
 	</select>
+	<select id="showexam" parameterType="question.QuestionVo" resultType="question.QuestionVo">
+		select school_name, exam.semester, exam_no, year from exam join school on school.school_no=exam.school_no where exam_no = #{exam_no} 
+	</select>
 	
 	<!-- ======================= USER ============================= -->
 	
 	<insert id="insertAQ" parameterType="question.AnsweredQuestionVo">
-		INSERT INTO answered_question(user_answer, score, answered_date, memo) 
-		VALUES(#{user_answer}, #{score}, NOW(), #{memo})
+		INSERT INTO answered_question(user_answer, score, answered_date, memo, question_no, user_no, exam_no) 
+		VALUES(#{user_answer}, #{score}, NOW(), #{memo}, #{question_no}, #{user_no}, #{exam_no})
 	</insert>
 	
+	<select id="selectAQlist" resultType="question.AnsweredQuestionVo" parameterType="question.AnsweredQuestionVo">
+		SELECT * FROM answered_question WHERE user_no=#{user_no} AND exam_no=#{exam_no}
+	</select>
 </mapper>

@@ -66,7 +66,7 @@ function CookieVal(cookieName) {
 <body onload="userid_chk();">
 <div id="login">
 	<div class="title">
-		<h1><span>Question_Pool</span></h1>
+		<h1><span>Ladder Up</span></h1>
 	</div>
 	<div class="login"> 
 	<form name="board" id="board" method="post" action="login.do" onsubmit="return loginCheck();">

@@ -195,7 +195,7 @@
     <div class="wrap">
         <div class="sub">
             <div class="size">
-                <h3 class="sub_title">question_pool</h3>
+                <h3 class="sub_title">Ladder Up</h3>
                 <form name="frm" id="frm" action="insert.do" method="post">
                 <table class="board_write">
                     <caption>회원가입</caption>

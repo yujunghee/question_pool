@@ -11,16 +11,16 @@
 <script>
 	var oEditors;
 	$(function(){
-		oEditors = setEditor("notice_content");
+		oEditors = setEditor("community_content");
 	});
 	function goSave() {
-		if ($("#notice_title").val() == '') {
+		if ($("#community_title").val() == '') {
 			alert("제목을 입력하세요");
-			$("#notice_title").focus();
+			$("#community_title").focus();
 			return;
 		}
 		var data = $("#frm").serialize();
-		oEditors.getById['notice_content'].exec("UPDATE_CONTENTS_FIELD",[]);
+		oEditors.getById['community_content'].exec("UPDATE_CONTENTS_FIELD",[]);
 		$("#frm").submit();		
 	}
 	$(function(){
@@ -28,7 +28,7 @@
 			url:'update.do',
 			success:function(res) {
 				alert('정상적으로 수정되었습니다.');
-				location.href='view.do?notice_no=${data.notice_no}';
+				location.href='view.do?community_no=${data.community_no}';
 			}
 		});
 	});
@@ -45,7 +45,7 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [수정]</h2>
+					<h2>커뮤니티 - [수정]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -53,7 +53,7 @@
 					<div id="bbs">
 						<div id="bread">
 							<form method="post" name="frm" id="frm" action="update.do" enctype="multipart/form-data">
-							<input type="hidden" name=notice_no value="${data.notice_no }">
+							<input type="hidden" name=community_no value="${data.community_no }">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -67,20 +67,13 @@
 									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="10">
-											<input type="text" id="notice_title" name="notice_title" class="w100" title="제목을 입력해주세요" value="${data.notice_title }"/>	
+											<input type="text" id="community_title" name="community_title" class="w100" title="제목을 입력해주세요" value="${data.community_title }"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">내용</label></th>
 										<td colspan="10">
-											<textarea id="notice_content" name="notice_content" title="내용을 입력해주세요" style="width:100%;">${data.notice_content }</textarea>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-											<input type="checkbox" name="delCheck" value="1">기존파일삭제(${data.notice_file_org})<br>
-											<input type="file" id="file" name="file" class="w100" title="첨부파일을 업로드 해주세요." />	
+											<textarea id="community_content" name="community_content" title="내용을 입력해주세요" style="width:100%;">${data.community_content }</textarea>	
 										</td>
 									</tr>
 								</tbody>
@@ -88,7 +81,7 @@
 							<input type="hidden" name="cmd" value="write" />							
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="notice.do"><strong>목록</strong></a>
+									<a class="btns" href="community.do"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
 									<a class="btns" style="cursor:pointer;"href="javascript:goSave();"><strong>저장</strong></a>

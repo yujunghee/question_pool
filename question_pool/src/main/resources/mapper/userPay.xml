@@ -8,12 +8,17 @@
 	</select>
 	
 	<insert id = "payInsert" parameterType="userPayment.UserPayVo">
-			INSERT INTO payment(pay_date, pay_id, user_no, product_no)
-			VALUES (NOW(), #{pay_id}, #{user_no}, #{product_no})
+			INSERT INTO payment(pay_date, pay_id, user_no, product_no, merchant_id)
+			VALUES (NOW(), #{pay_id}, #{user_no}, #{product_no}, #{merchant_id})
 	</insert>
 	
-	<update id="refundUpdate" parameterType="userPayment.UserPayVo">
-		UPDATE payment SET refund = 1 WHERE user_no = #{user_no} ORDER BY pay_date DESC limit 1
+	<update id="userGrade" parameterType="userPayment.UserPayVo">
+		UPDATE user SET user_grade = 1 WHERE user_no = #{user_no}
 	</update>
-
+	
+	<update id="refundUpdate" parameterType="userPayment.UserPayVo">
+		UPDATE payment SET refund = 1, refund_reason = #{refund_reason} WHERE user_no = #{user_no} ORDER BY pay_date DESC limit 1
+	</update>
+	
+	
 </mapper>

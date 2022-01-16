@@ -88,7 +88,7 @@ function clickMenu(id, title, url, reload) {
 	}
 	if ($("#"+id+"_tab").length == 0) {
 		$(".tab > ul:last").append("<li style='width:"+tabWidth+"px;' id=\""+id+"_tab\" onclick=\"activeTab('"+id+"');\" "+nl+">"+title+"<span><img id=\""+id+"_closeImg\" src=\"/img/tab_close_on.png\" onclick=\"delTab(event,'"+id+"')\"/></span></li>");
-		$(".contents:last").append("<iframe src="+url+" id=\""+id+"_ifrm\" onload=\"calcHeight('"+id+"_ifrm');\" name=\"WrittenPublic\" title=\"\" frameborder=\"0\" scrolling=\"no\" style=\"overflow-x:hidden; width:100%; min-height:500px; \"></iframe>");
+		$(".contents:last").append("<iframe src="+url+" id=\""+id+"_ifrm\" onload=\"calcHeight('"+id+"_ifrm');\" name=\"WrittenPublic\" title=\"\" frameborder=\"0\" scrolling=\"yes\" style=\"overflow-x:hidden; width:100%; min-height:500px; \"></iframe>");
 	} else {
 		if (reload) $("#"+id+"_ifrm").attr("src",url);
 	}
@@ -323,9 +323,9 @@ function test() {
 			<div class="allmenu">전체메뉴
 				<div class="allmenu_con">
 					<dl style="width:13.666%;">
-						<dt><a href="javascript:;">나의 정보</a></dt>
-						<dd class="frist"><a href="javascript:;" onclick="clickMenu('myinfo1', '프로필', 'user/myinfo/index.do', false)">프로필</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('myinfo2', '자기소개', 'user/myinfo/myinfo.do', false)">자기소개</a></dd>
+						<dt><a href="javascript:;">문제풀기</a></dt>
+						<dd class="frist"><a href="javascript:;" onclick="clickMenu('front1', '문제풀기', '/user/question/pool.do', false)">문제풀기</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('front2', '점수내역', '/user/question/record.do', false)">점수내역</a></dd>
 					</dl>
 					<dl style="width:13.666%;">
 						<dt><a href="javascript:;">결제</a></dt>
@@ -333,34 +333,18 @@ function test() {
 						<dd><a href="javascript:;" onclick="clickMenu('project2', '환불요청', '/user/payment/refund.do', false)">환불요청</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('project3', '프로젝트 설계', '/project/architecture.do', false)">프로젝트 설계</a></dd>
 					</dl>
-					<dl style="width:13.666%;">
-						<dt><a href="javascript:;">문제풀기</a></dt>
-						<dd class="frist"><a href="javascript:;" onclick="clickMenu('front1', '문제풀기', '/user/question/index.do', false)">문제풀기</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('front2', 'CSS', '/front/css.do', false)">CSS</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('front3', 'JavaScript', '/front/javascript.do', false)">JavaScript</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('front4', 'Jquery', '/front/jquery.do', false)">Jquery</a></dd>
-					</dl>
 					<dl style="width:14.666%;">
-						<dt><a href="javascript:;">Back-End</a></dt>
-						<dd class="frist"><a href="javascript:;" onclick="clickMenu('back1', 'Java', '/back/java.do', false)">Java</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('back2', 'Servlet/JSP', '/back/jsp.do', false)">Servlet/JSP</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('back3', 'Spring', '/back/spring.do', false)">Spring</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('back4', 'DB', '/back/db.do', false)">DB</a></dd>
-					</dl>
-					<dl style="width:16.666%;">
-						<dt><a href="javascript:;">BigData</a></dt>
-						<dd class="frist"><a href="javascript:;" onclick="clickMenu('bigdata1', 'BigData', '/bigdata/bigdata.do', false)">BigData</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('bigdata2', 'Hadoop', '/bigdata/hadoop.do', false)">Hadoop</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('bigdata3', '데이터분석', '/bigdata/analysis.do', false)">데이터분석</a></dd>
+						<dt><a href="javascript:;">추가학습</a></dt>
+						<dd class="frist"><a href="javascript:;" onclick="clickMenu('back1', '랜덤 모의고사', '/user/question/random.do', false)">랜덤 모의고사</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('back2', '오답노트', '/user/question/note.do', false)">오답노트</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('back3', '단어장', '/back/spring.do', false)">단어장</a></dd>
 					</dl>
 					<dl style="width:15.666%;">
-						<dt><a href="javascript:;">개인 프로젝트</a></dt>
+						<dt><a href="javascript:;">커뮤니티</a></dt>
 						<dd class="frist"><a href="javascript:;" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio2', '갤러리', 'user/portfolio/gallery/index.do', false)">갤러리</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'Q&A', 'user/portfolio/qna/index.do', false)">Q&A</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio4', '답변게시판', '/portfolio/reply/index.do', false)">답변게시판</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio5', '댓글게시판', '/portfolio/comment/index.do', false)">댓글게시판</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio6', '회원관리', '/portfolio/member/index.do', false)">회원관리</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('portfolio2', '시험일정', '/user/board/testdate/testdate.do', false)">시험일정</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'Q&A', '/user/board/qa/qa.do', false)">Q&A</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('portfolio4', '자유게시판', '/user/board/community/community.do', false)">자유게시판</a></dd>
 					</dl>
 				</div>
 			</div>
@@ -372,11 +356,11 @@ function test() {
 							<li id="main1_submenu" onclick="clickMenu('main1', '메인', '/main/index.do', false)">Main</li>
 						</ul>
 					</dd>
-					<dt id="myinfo" class="gnb_menu">나의정보</dt>
+					<dt id="front" class="gnb_menu">문제풀기</dt>
 					<dd class="gnb_submenu">
 						<ul>	
-							<li id="myinfo1_submenu" onclick="clickMenu('myinfo1', '프로필', 'user/myinfo/index.do', false)">프로필</li>
-							<li id="myinfo2_submenu" onclick="clickMenu('myinfo2', '자기소개', '/myinfo/myinfo.do', false)">자기소개</li>
+							<li id="front1_submenu" onclick="clickMenu('front1', 'HTML', '/user/question/pool.do', false)">문제풀기</li>
+							<li id="front2_submenu" onclick="clickMenu('front2', 'CSS', '/user/question/record.do', false)">점수내역</li>
 						</ul>
 					</dd>
 					<dt id="project" class="gnb_menu">결제</dt>
@@ -387,15 +371,15 @@ function test() {
 							<li id="project3_submenu" onclick="clickMenu('project3', '프로젝트 설계', '/project/architecture.do', false)">프로젝트 설계</li>
 						</ul>
 					</dd>
-					<dt id="front" class="gnb_menu">문제풀기</dt>
+					<dt id="back" class="gnb_menu">추가학습</dt>
 					<dd class="gnb_submenu">
 						<ul>	
-							<li id="front1_submenu" onclick="clickMenu('front1', 'HTML', '/user/question/pool.do', false)">문제풀기</li>
-							<li id="front2_submenu" onclick="clickMenu('front2', 'CSS', '/front/css.do', false)">CSS</li>
-							<li id="front3_submenu" onclick="clickMenu('front3', 'JavaScript', '/front/js.do', false)">JavaScript</li>
-							<li id="front4_submenu" onclick="clickMenu('front4', 'Jquery', '/front/jquery.do', false)">Jquery</li>
+							<li id="back1_submenu" onclick="clickMenu('back1', '랜덤 모의고사', '/user/question/random.do', false)">랜덤 모의고사</li>
+							<li id="back2_submenu" onclick="clickMenu('back2', '오답노트', '/user/question/note.do', false)">오답노트</li>
+							<li id="back3_submenu" onclick="clickMenu('back3', '단어장', '/back/spring.do', false)">단어장</li>
 						</ul>
 					</dd>
+<<<<<<< HEAD
 					<dt id="back" class="gnb_menu">Back-End</dt>
 					<dd class="gnb_submenu">
 						<ul>	
@@ -413,15 +397,15 @@ function test() {
 							<li id="bigdata3_submenu" onclick="clickMenu('bigdata3', '데이터분석', '/bigdata/analysis.do', false)">데이터분석</li>
 						</ul>
 					</dd>
+=======
+>>>>>>> branch 'master' of https://github.com/yujunghee/question_pool.git
 					<dt id="portfolio" class="gnb_menu">커뮤니티</dt>
 					<dd class="gnb_submenu">
 						<ul>	
 							<li id="portfolio1_submenu" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</li>
-							<li id="portfolio2_submenu" onclick="clickMenu('portfolio2', '갤러리', '/portfolio/gallery/index.do', false)">갤러리</li>
-							<li id="portfolio3_submenu" onclick="clickMenu('portfolio3', 'Q&A', '/portfolio/qna/index.do', false)">Q&A</li>
-							<li id="portfolio4_submenu" onclick="clickMenu('portfolio4', '답변게시판', '/portfolio/reply/index.do', false)">답변게시판</li>
-							<li id="portfolio5_submenu" onclick="clickMenu('portfolio5', '댓글게시판', '/portfolio/comment/index.do', false)">댓글게시판</li>
-							<li id="portfolio6_submenu" onclick="clickMenu('portfolio6', '회원관리', '/portfolio/member/index.do', false)">회원관리</li>
+							<li id="portfolio2_submenu" onclick="clickMenu('portfolio2', '시험일정', '/user/board/testdate/testdate.do', false)">시험일정</li>
+							<li id="portfolio3_submenu" onclick="clickMenu('portfolio3', 'Q&A', '/user/board/qa/qa.do', false)">Q&A</li>
+							<li id="portfolio4_submenu" onclick="clickMenu('portfolio4', '자유게시판', '/user/board/community/community.do', false)">자유게시판</li>
 						</ul>
 					</dd>
 				</dl>

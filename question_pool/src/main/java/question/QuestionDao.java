@@ -42,6 +42,10 @@ public class QuestionDao {
 	public QuestionVo selectQuestion(int question_no) {
 		return sqlSessionTemplate.selectOne("question.selectQuestion", question_no);
 	}
+	
+	public List<ExampleVo> selectExample(int question_no) {
+		return sqlSessionTemplate.selectList("question.selectExample",question_no);
+	}
 
 	public int updateQuestion(QuestionVo qv) {
 		return sqlSessionTemplate.update("question.updateQuestion", qv);
@@ -65,6 +69,9 @@ public class QuestionDao {
 
 	public List<QuestionVo> selectsemester(QuestionVo qv) {
 		return sqlSessionTemplate.selectList("question.selectsemester", qv);
+	}
+	public List<QuestionVo> showexam(QuestionVo qv) {
+		return sqlSessionTemplate.selectList("question.showexam", qv);
 	}
 
 	public List<ExampleVo> selectExamplelist(ExampleVo ev) {
@@ -100,5 +107,8 @@ public class QuestionDao {
 	public int insertAQ(AnsweredQuestionVo av) {
 		return sqlSessionTemplate.insert("question.insertAQ", av);
 	}
-
+	
+	public List<AnsweredQuestionVo> selectAQlist(AnsweredQuestionVo av){
+		return sqlSessionTemplate.selectList("question.selectAQlist",av);
+	}
 }

@@ -10,10 +10,7 @@
 			</if>
 			<if test="searchType != null and searchType != '' ">
 				${searchType} LIKE '%${searchWord}%'
-			</if>			  
-			<if test="admin_no > 0">
-				AND admin_no = ${admin_no}
-			</if>
+			</if>	
 		</where>
 	 </sql>
 	 
@@ -77,9 +74,6 @@
 			</if>
 			<if test="searchType != null and searchType != '' ">
 				${searchType} LIKE '%${searchWord}%'
-			</if>			  
-			<if test="admin_no > 0">
-				AND admin_no = ${admin_no}
 			</if>
 		</where>
 	 </sql>
@@ -210,8 +204,8 @@
 			<if test="searchType != null and searchType != '' ">
 				${searchType} LIKE '%${searchWord}%'
 			</if>			  
-			<if test="admin_no > 0">
-				AND admin_no = ${admin_no}
+			<if test="user_no > 0">
+				AND user_no = ${user_no}
 			</if>
 		</where>
 	 </sql>
@@ -223,8 +217,9 @@
 	 </select>
 
 	<select id="communityList" resultType="admin.board.CommunityVo" parameterType="admin.board.CommunityVo">
-		SELECT * 
-		, (SELECT admin_name FROM admin WHERE admin_no=community.admin_no) admin_name
+		SELECT *
+		, (SELECT user_name FROM user WHERE user_no=community.user_no) user_name
+		, (SELECT COUNT(*) FROM comment WHERE community_no=community.community_no) c_count
 		FROM community
 		<include refid="boardWhere4"></include>
 		ORDER BY community_date DESC
@@ -233,14 +228,16 @@
 	
 	<insert id="communityInsert" parameterType="admin.board.CommunityVo">		
 		INSERT INTO community (
-			community_title, community_content, community_date, admin_no, community_readcount 
+			community_title, community_content, community_date, user_no, community_readcount 
 			) VALUES (
-				#{community_title}, #{community_content}, NOW(), #{admin_no}, #{community_readcount}
+				#{community_title}, #{community_content}, NOW(), #{user_no}, #{community_readcount}
 			) 
 	</insert>
 	
 	<select id="communityOne" parameterType="int" resultType="admin.board.CommunityVo">
-		SELECT * FROM community WHERE community_no = #{xxx}
+		SELECT *		
+			, (SELECT user_name FROM user WHERE user_no=community.user_no) user_name		
+		FROM community WHERE community_no = #{xxx}
 	</select>
 	
 	<update id="communityUpdateReadcount" parameterType="admin.board.CommunityVo">

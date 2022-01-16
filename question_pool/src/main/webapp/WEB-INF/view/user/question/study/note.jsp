@@ -8,41 +8,46 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 </head>
-<body> 
+<body>
 <div id="wrap">
 	<!-- canvas -->
 	<div id="canvas">
 		<!-- S T A R T :: headerArea-->
-		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 		<!-- E N D :: headerArea--> 
 		<!-- S T A R T :: containerArea-->
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>문제목록-[${school.school_name} ${exam.year}년도 ${exam.semester}학기]</h2>
+					<h2>[${school.school_name} ${exam.year}년도 ${exam.semester}학기] - 총 ${exam.number_of_questions}문항/${exam.exam_time}분</h2>
+					<input type="hidden" value="${userInfo.user_no}">
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<c:forEach var="qv" items="${qlist}" varStatus="status">
-							<input type="hidden" value="${qv.question_no}">
-										<p>${qv.passage}</p><br>
-										<c:set var="string" value="${qv.question_content}"/>
-										<c:set var="string1" value="${fn:replace(string,'#','<u>')}"/>
-										<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
-										<h1 style="width:500px;">${status.count}. ${string2}</h1>
-										<c:forEach var="ev" items="${qv.ex}">
-												(${ev.example}) ${ev.example_content}<br>
-										</c:forEach>
-										<br>
-										<p>해설 : ${qv.explanation}</p>
-										<p>정답 : (${qv.answer})</p>
-										<a href="edit.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제수정"></a>
-										<a href="delete.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제삭제"></a>
-										<br><br>
-							</c:forEach>
+						<form method="post" name="frm" id="frm" action="insert.do?exam_no=${exam.exam_no}" enctype="multipart/form-data" onsubmit="return conf();">
+							<table width="100%" border="1">
+								<thead>
+									<tr>
+										<th width="50%">13번</th>
+										<th>메모</th>
+									</tr>
+								</thead>
+								<tbody>	
+									<tr>
+										<td>문제문제</td>
+										<td rowspan="3">메모장</td>
+									</tr>	
+									<tr>
+										<td>해설</td>
+									</tr>
+									<tr>
+										<td>답</td>
+									</tr>						
+								</tbody>
+							</table>
+						</form>
 							<!--//btn-->
 						</div>
 						<!-- //bread -->
@@ -60,6 +65,5 @@
 	<!--//canvas -->
 </div>
 <!--//wrap -->
-
 </body>
 </html>
