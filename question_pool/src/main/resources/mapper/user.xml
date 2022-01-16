@@ -65,4 +65,17 @@
 		WHERE user_no = #{user_no}
 	</update>
 	
+	
+	
+		<select id="searchId" parameterType="user.UserVo" resultType="user.UserVo">
+		SELECT * FROM user WHERE user_tel = #{user_tel} AND user_name = #{user_name}
+	</select>
+	<select id="searchPwd" parameterType="user.UserVo" resultType="user.UserVo">
+		SELECT * FROM user WHERE user_email = #{user_email} AND user_name = #{user_name}
+	</select>
+	
+	<update id="updateTempPwd" parameterType="user.UserVo">
+		UPDATE user SET user_pwd = md5(#{user_pwd}) WHERE user_email = #{user_email} AND user_name = #{user_name}
+	</update>
+	
 </mapper>

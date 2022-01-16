@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class PayVo {
 
+	private int admin_no;
 	private String user_name;
 	private String user_email;
 	private String category;
