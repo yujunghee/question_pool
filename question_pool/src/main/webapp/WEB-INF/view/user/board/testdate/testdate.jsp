@@ -36,11 +36,11 @@
 								</colgroup>
 								<thead>
 									<tr>										
-										<th scope="col" class="first">번호</th>
+										<th scope="col" class="first" style="width: 5%;">번호</th>
 										<th scope="col">제목</th> 
-										<th scope="col">작성일</th> 
-										<th scope="col">작성자</th> 
-										<th scope="col">조회수</th> 
+										<th scope="col" style="width: 10%;">작성일</th> 
+										<th scope="col" style="width: 7%;">작성자</th> 
+										<th scope="col" style="width: 5%;">조회수</th> 
 										<th scope="col" class="last" style="width: 80px">파일</th>
 									</tr>
 								</thead>

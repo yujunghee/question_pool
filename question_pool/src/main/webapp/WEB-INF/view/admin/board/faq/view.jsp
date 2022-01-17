@@ -8,7 +8,7 @@
 </head>
 <body> 
 <div id="wrap">
-<input type="hidden" name="td_no" value="${data.td_no}">
+<input type="hidden" name="faq_no" value="${data.faq_no}">
 	<!-- canvas -->
 	<div id="canvas">
 		<!-- S T A R T :: headerArea-->
@@ -19,7 +19,7 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>시험일정 - [읽기]</h2>
+					<h2>FAQ - [상세]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -39,40 +39,24 @@
 									<tr>
 										<th scope="row"><label for="">제목</label></th>
 										<td colspan="10">
-											${data.td_title }
+											${data.faq_title }
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">내용</label></th>
-										<p><span>번호 :  <strong> ${data.td_no}</strong>  |  작성자 :  <strong>${data.admin_name }</strong> | 조회수 :  <strong>${data.td_readcount }</strong>  |  작성일 :  <strong><fmt:formatDate value="${data.td_date }" pattern="yyyy-MM-dd HH:mm:ss"/></strong> </span></p>
-										<td colspan="10">
-											${data.td_content }
-											
-											<c:if test="${!empty data.td_file_real }">											
-												<img src="/question_pool/upload/${data.td_file_real }">											
-											</c:if>
-											<c:if test="${empty data.td_file_real }">											
-												<img src="">											
-											</c:if>																							
-										</td>									
-									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-												<div class="file">
-													<a href="/question_pool/common/download.jsp?path=/upload/&org=${data.td_file_org}&real=${data.td_file_real}" 
-                       								target="_blank">${data.td_file_org } </a>
-												</div>
+										<th scope="row"><label for="">내용</label></th>										
+											<p><span>번호 :  <strong> ${data.faq_no}</strong>										
+										<td colspan="10">											
+											${data.faq_content }
 										</td>
 									</tr>
 								</tbody>
 							</table>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="testdate.do"><strong>목록</strong></a>
+									<a class="btns" href="faq.do"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="edit.do?td_no=${data.td_no }"><strong>수정</strong></a>									
+									<a class="btns" style="cursor:pointer;" href="edit.do?faq_no=${data.faq_no }"><strong>수정</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

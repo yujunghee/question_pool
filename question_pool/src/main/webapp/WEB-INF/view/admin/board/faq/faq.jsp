@@ -51,7 +51,7 @@ function del(){  // 단일 및 다중선택 후 삭제 가능하도록 배열 �
             success: function(jdata){
                 if(jdata = 1) {
                     alert("삭제 성공");
-                    location.replace("community.do")
+                    location.replace("faq.do")
                 }
                 else{
                     alert("삭제 실패");
@@ -61,7 +61,7 @@ function del(){  // 단일 및 다중선택 후 삭제 가능하도록 배열 �
 	}
 }
 function fn_paging(curPage){
-    location.href="community.do?curPage="+curPage;
+    location.href="faq.do?curPage="+curPage;
 }
 </script>
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
@@ -78,14 +78,14 @@ function fn_paging(curPage){
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>자유게시판 - [목록]</h2>
+					<h2>FAQ - [목록]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="blist">
-							<p><span><strong>총 ${totCount }개</strong>  |  ${CommunityVo.page }/${totPage }페이지</span></p>							
+							<p><span><strong>총 ${totCount }개</strong>  |  ${faqVo.page }/${totPage }페이지</span></p>							
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
@@ -97,13 +97,11 @@ function fn_paging(curPage){
 									<col class="w6" />
 								</colgroup>
 								<thead>
-									<tr>
-										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk"/></th>
-										<th scope="col">번호</th>
-										<th scope="col">제목</th> 
-										<th scope="col">작성일</th> 
-										<th scope="col">작성자</th> 
-										<th scope="col" class="last">조회수</th>
+									<tr>										
+										<th scope="col" class="first"></th>
+										<th scope="col" style="width: 5%">번호</th>
+										<th scope="col" style="width: 10%">분류</th> 
+										<th scope="col" style="width: 85%">문의내용</th> 
 									</tr>
 								</thead>
 								<tbody>
@@ -114,18 +112,15 @@ function fn_paging(curPage){
 									</c:if>
 									<c:if test="${!empty list }">
 										<c:forEach var="list" items="${list }">                                    
-			                            <input type="hidden" name="community_no" value="${list.community_no }">
+			                            <input type="hidden" name="faq_no" value="${list.faq_no }">
+			                            <input type="hidden" name="admin_no" value="${list.admin_no }">
 			                            <tr>
-			                            	<td scope="col" class="first"><input type="checkbox" name="RowCheck" value="${list.community_no }"/></td>			                            	
-			                                <td>${list.community_no }</td>
-			                                <td class="txt_l"  onclick="location.href='view.do?community_no=${list.community_no }'" style="cursor: pointer;">
-			                                    <a href="view.do?community_no=${list.community_no }">${list.community_title }</a>
+			                            	<td scope="col" class="first"><input type="checkbox" name="RowCheck" value="${list.faq_no }"/></td>			                            	
+			                                <td>${list.faq_no }</td>
+			                                <td class="readcount">${list.faq_division }</td>
+			                                <td class="txt_l" onclick="location.href='view.do?faq_no=${list.faq_no }'" style="cursor: pointer; text-align: left;">
+			                                    <a href="view.do?faq_no=${list.faq_no }">&nbsp;&nbsp; ${list.faq_title }</a>
 			                                </td>
-			                                <td class="date"><fmt:formatDate value="${list.community_date }" pattern="yyyy-MM-dd"/></td>			                                
-			                                <td class="writer">
-			                                    ${list.user_name }
-			                                </td>			                                
-			                                <td class="readcount">${list.community_readcount }</td>
 			                            </tr>
 			                            </c:forEach>
 			                         </c:if>
@@ -136,18 +131,20 @@ function fn_paging(curPage){
 								<div class="btnLeft">
 									<a class="btns" href="javascript:del();"><strong>삭제</strong></a> 
 								</div>
+								<div class="btnRight">
+									<a class="wbtn" href="write.do"><strong>등록</strong> </a>
+								</div>
 							</div>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
 							${pageArea }
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="community.do"  method="get" >
+							<form name="searchForm" id="searchForm" action="faq.do"  method="get" >
 								<div class="search">
 									<select name="searchType" title="검색을 선택해주세요">
 										<option value="">전체</option>
-										<option value="community_title" <c:if test="${param.searchType == 'community_title'}">selected</c:if>>제목</option>
-										<option value="community_content" <c:if test="${param.searchType == 'community_content'}">selected</c:if>>내용</option>
-										<option value="user_name" <c:if test="${param.searchType == 'user_name'}">selected</c:if>>작성자</option>
+										<option value="faq_title" <c:if test="${param.searchType == 'faq_title'}">selected</c:if>>제목</option>
+										<option value="faq_content" <c:if test="${param.searchType == 'faq_content'}">selected</c:if>>내용</option>
 									</select>
 									<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />

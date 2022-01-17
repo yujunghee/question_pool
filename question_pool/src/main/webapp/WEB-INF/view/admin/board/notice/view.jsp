@@ -43,18 +43,18 @@
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">내용</label></th>										
-											<p><span>번호 :  <strong> ${data.notice_no}</strong>  |  작성자 :  <strong>${data.admin_name }</strong> | 조회수 :  <strong>${data.notice_readcount }</strong>  |  작성일 :  <strong><fmt:formatDate value="${data.notice_date }" pattern="yyyy-MM-dd HH:mm:ss"/></strong> </span></p>										
-										<td colspan="10">											
-											${data.notice_content }											
+										<th scope="row"><label for="">내용</label></th>
+										<p><span>번호 :  <strong> ${data.notice_no}</strong>  |  작성자 :  <strong>${data.admin_name }</strong> | 조회수 :  <strong>${data.notice_readcount }</strong>  |  작성일 :  <strong><fmt:formatDate value="${data.notice_date }" pattern="yyyy-MM-dd HH:mm:ss"/></strong> </span></p>
+										<td colspan="10">
+											${data.notice_content }
 											
 											<c:if test="${!empty data.notice_file_real }">											
 												<img src="/question_pool/upload/${data.notice_file_real }">											
 											</c:if>
 											<c:if test="${empty data.notice_file_real }">											
 												<img src="">											
-											</c:if>
-										</td>
+											</c:if>																							
+										</td>									
 									</tr>
 									<tr>
 										<th scope="row"><label for="">첨부파일</label></th>
@@ -72,7 +72,7 @@
 									<a class="btns" href="notice.do"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="edit.do?notice_no=${data.notice_no }"><strong>수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="edit.do?notice_no=${data.notice_no }"><strong>수정</strong></a>									
 								</div>
 							</div>
 							<!--//btn-->

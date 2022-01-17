@@ -15,7 +15,7 @@
 				if (res.trim() == '1') {
 					alert('댓글이 등록되었습니다.');
 					commentList('community', ${data.community_no});
-					$("#content").val("");
+					$("td > #content").val("");
 				} else {
 					alert('등록 오류');
 				}
@@ -56,16 +56,12 @@
 <div id="wrap">
 <input type="hidden" name="community_no" value="${data.community_no}">
 	<!-- canvas -->
-	<div id="canvas">
-		<!-- S T A R T :: headerArea-->
-		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
-		<!-- E N D :: headerArea--> 
-		
+	<div id="canvas">		
 		<!-- S T A R T :: containerArea-->
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>자유게시판 - [세부페이지]</h2>
+					<h2>자유게시판 - [상세페이지]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -129,7 +125,8 @@
 								</div>
 								<c:if test="${!empty userInfo && userInfo.user_no == data.user_no}">
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="edit.do?community_no=${data.community_no }"><strong>수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="edit.do?community_no=${data.community_no }"><strong>글수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="delete.do?community_no=${data.community_no }"><strong>글삭제</strong></a>
 								</div>
 								</c:if>
 							</div>

@@ -1,4 +1,4 @@
-package admin.board;
+package board;
 
 import java.util.List;
 
@@ -135,6 +135,10 @@ public class BoardDao {
 		return sqlSessionTemplate.delete("board.qaDelete", qa_no);
 	}
 	
+	public int userQaDelete(QaVo vo) {		
+		return sqlSessionTemplate.delete("board.userQaDelete", vo);
+	}
+	
 	
 	// ----------------------- QnA 영역 끝 -----------------------
 	
@@ -177,6 +181,48 @@ public class BoardDao {
 		return sqlSessionTemplate.delete("board.communityDelete", community_no);
 	}
 	
+	public int userCommunityDelete(CommunityVo vo) {		
+		return sqlSessionTemplate.delete("board.userCommunityDelete", vo);
+	}
+	
 	
 	// ----------------------- 커뮤니티 영역 끝 -----------------------
+	
+	
+	
+	// ----------------------- FAQ 영역 시작 -----------------------
+	
+	public int faqCount(FaqVo vo) {
+		return sqlSessionTemplate.selectOne("board.faqCount", vo);
+	}
+	
+	public List<FaqVo> faqList(FaqVo vo) {
+		return sqlSessionTemplate.selectList("board.faqList", vo);
+	}
+	
+	public int faqInsert(FaqVo vo) {
+		int r = -1;
+		try {
+			r = sqlSessionTemplate.insert("board.faqInsert", vo);
+		} catch (Exception e) {
+			r = 0;
+			System.out.println(e.getMessage());
+		}
+		return r;
+	}
+	
+	public FaqVo faqSelectOne(int faq_no) {
+		return sqlSessionTemplate.selectOne("board.faqOne", faq_no);
+	}	
+	
+	public int faqUpdate(FaqVo vo) {
+		return sqlSessionTemplate.update("board.faqUpdate", vo);
+	}	
+	
+	public int faqDelete(String faq_no) {		
+		return sqlSessionTemplate.delete("board.faqDelete", faq_no);
+	}
+	
+	
+	// ----------------------- FAQ 영역 끝 -----------------------
 }

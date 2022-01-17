@@ -30,90 +30,30 @@ h2::after {
   background-image: -webkit-linear-gradient(right, #00b0ff 0%, #00e676 100%);
   background-image: linear-gradient(to left, #00b0ff 0%, #00e676 100%);
 }
-
 </style>
 </head>
-<script>
-function chk(){
-			$.ajax({
-				url : 'showmetheexam.do',
-				data : {
-					exam_no : $("#exam_no").val()
-				},
-				async : false,
-				success : function(res) {
-					$("#examarea").html(res);
-			}
-		})
-}
-	function getyear(){
-				$.ajax({
-					url : 'showmetheyear.do',
-					data : {
-						school_no : $("#school_no").val()
-					},
-					async : false,
-					success : function(res) {
-						$("#yeararea").html(res);
-				}
-			})
-		}
-	
-	
-	function getsemester(){
-		$.ajax({
-			url : 'showmethesemester.do',
-			data : {
-				year : $("#year").val()
-			},
-			async : false,
-			success : function(res) {
-				$("#semesterarea").html(res);
-		}
-	})
-}
-	
-</script>
 <body>
 	<div id="wrap">
-			<h2> 문제 풀이 </h2>
+		<h2> 랜덤모의고사 풀기 </h2>
 		<!-- canvas -->
-		<div id="canvas" style="text-align: center; padding: 100px 0 0 100px;'">
-		<table>
-			<tr>
-				<td>
+		<div id="canvas">
+			<!-- 학교/연도/회차 선택 페이지 -->
+			<form action="/question_pool/user/question/study/random.do" enctype="multipart/form-data"
+				style="text-align: center;">
+				<div style="text-align: center; padding: 100px 0 0 0;'">
 					<h4 style="font-size: 20px;">학교선택</h4>
 					<select name="school_no" id="school_no"
-					style="width: 150px; height: 30px;" onclick="getyear()">
+						style="width: 100px; height: 30px;">
 						<c:forEach var="vo" items="${list}">
 							<option value="${vo.school_no}">${vo.school_name}</option>
 						</c:forEach>
 					</select>
-				</td>
-				<td>
-				<div id="yeararea"></div>
-				</td>
-				<td>
-				<div id="semesterarea"></div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-				<form name="frm" id="frm" action="" onclick="return chk();" enctype="multipart/form-data">
+				</div>
 				<br/>
 				<br/>
-				<input type="button" value="문제 검색->" class="submit">
-				</form>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3">
 				<br/>
-				<br/>
-					<div id="examarea"></div>
-				</td>
-			</tr>			
-		</table>
+						<input type="submit" value="랜덤모의고사 시작" class="submit">
+			</form>
 		</div>
 		<!--//canvas -->
 	</div>
