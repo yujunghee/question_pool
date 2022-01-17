@@ -302,7 +302,7 @@ function test() {
 <body>
 <div id="wrap">
 	<div id="header">
-		<h1><a href="<%=userUtil.Property.contextPath%>user/index.do">개인 포트폴리오</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
+		<h1><a href="<%=userUtil.Property.contextPath%>user/index.do">Ladder Up</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
 		<ul class="topmenu">
 			<c:if test="${empty userInfo }">
 			<li class="login"><a href="/question_pool/user/login.do">로그인</a></li>
@@ -310,7 +310,7 @@ function test() {
 			</c:if>
 			<c:if test="${!empty userInfo }">
 			<li class="login"><a href="/question_pool/user/logout.do">로그아웃</a></li>
-			<li class="signup"><a href="/question_pool/user/mypage.do">마이페이지</a></li>
+			<li class="signup"><a href="/question_pool/user/mypage/index.do">마이페이지</a></li>
 			</c:if>			
 			
 	
@@ -340,13 +340,12 @@ function test() {
 						<dd><a href="javascript:;" onclick="clickMenu('back3', '단어장', '/back/spring.do', false)">단어장</a></dd>
 					</dl>
 					<dl style="width:15.666%;">
-						<dt><a href="javascript:;">개인 프로젝트</a></dt>
+						<dt><a href="javascript:;">커뮤니티</a></dt>
 						<dd class="frist"><a href="javascript:;" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio2', '갤러리', 'user/portfolio/gallery/index.do', false)">갤러리</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'Q&A', 'user/portfolio/qna/index.do', false)">Q&A</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio4', '답변게시판', '/portfolio/reply/index.do', false)">답변게시판</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio5', '댓글게시판', '/portfolio/comment/index.do', false)">댓글게시판</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio6', '회원관리', '/portfolio/member/index.do', false)">회원관리</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('portfolio2', '시험일정', '/user/board/testdate/testdate.do', false)">시험일정</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'Q&A', '/user/board/qa/qa.do', false)">Q&A</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'FAQ', '/user/board/faq/faq.do', false)">FAQ</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('portfolio4', '자유게시판', '/user/board/community/community.do', false)">자유게시판</a></dd>
 					</dl>
 				</div>
 			</div>
@@ -381,22 +380,38 @@ function test() {
 							<li id="back3_submenu" onclick="clickMenu('back3', '단어장', '/back/spring.do', false)">단어장</li>
 						</ul>
 					</dd>
-					<dt id="portfolio" class="gnb_menu">개인 프로젝트</dt>
+					<dt id="back" class="gnb_menu">Back-End</dt>
+					<dd class="gnb_submenu">
+						<ul>	
+							<li id="back1_submenu" onclick="clickMenu('back1', 'Java', '/back/java.do', false)">Java</li>
+							<li id="back2_submenu" onclick="clickMenu('back2', 'Servlet/JSP', '/back/jsp.do', false)">Servlet/JSP</li>
+							<li id="back3_submenu" onclick="clickMenu('back3', 'Spring', '/back/spring.do', false)">Spring</li>
+							<li id="back4_submenu" onclick="clickMenu('back4', 'DB', '/back/db.do', false)">DB</li>
+						</ul>
+					</dd>
+					<dt id="bigdata" class="gnb_menu">BigData</dt>
+					<dd class="gnb_submenu">
+						<ul>	
+							<li id="bigdata1_submenu" onclick="clickMenu('bigdata1', 'BigData', '/bigdata/bigdata.do', false)">BigData</li>
+							<li id="bigdata2_submenu" onclick="clickMenu('bigdata2', 'Hadoop', '/bigdata/hadoop.do', false)">Hadoop</li>
+							<li id="bigdata3_submenu" onclick="clickMenu('bigdata3', '데이터분석', '/bigdata/analysis.do', false)">데이터분석</li>
+						</ul>
+					</dd>
+					<dt id="portfolio" class="gnb_menu">커뮤니티</dt>
 					<dd class="gnb_submenu">
 						<ul>	
 							<li id="portfolio1_submenu" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</li>
-							<li id="portfolio2_submenu" onclick="clickMenu('portfolio2', '갤러리', '/portfolio/gallery/index.do', false)">갤러리</li>
-							<li id="portfolio3_submenu" onclick="clickMenu('portfolio3', 'Q&A', '/portfolio/qna/index.do', false)">Q&A</li>
-							<li id="portfolio4_submenu" onclick="clickMenu('portfolio4', '답변게시판', '/portfolio/reply/index.do', false)">답변게시판</li>
-							<li id="portfolio5_submenu" onclick="clickMenu('portfolio5', '댓글게시판', '/portfolio/comment/index.do', false)">댓글게시판</li>
-							<li id="portfolio6_submenu" onclick="clickMenu('portfolio6', '회원관리', '/portfolio/member/index.do', false)">회원관리</li>
+							<li id="portfolio2_submenu" onclick="clickMenu('portfolio2', '시험일정', '/user/board/testdate/testdate.do', false)">시험일정</li>
+							<li id="portfolio3_submenu" onclick="clickMenu('portfolio3', 'Q&A', '/user/board/qa/qa.do', false)">Q&A</li>
+							<li id="portfolio3_submenu" onclick="clickMenu('portfolio3', 'FAQ', '/user/board/faq/faq.do', false)">FAQ</li>
+							<li id="portfolio4_submenu" onclick="clickMenu('portfolio4', '자유게시판', '/user/board/community/community.do', false)">자유게시판</li>
 						</ul>
 					</dd>
 				</dl>
 			</div>
 			<div class="menuclose" onclick="menuToggle();"><img src="<%=userUtil.Property.contextPath%>/img/menu_close.png" /></div>
-			<div class="copy">Copyright (C) 2020<br />
-				서민구 Portfolio. 
+			<div class="copy">Copyright (C) 2022<br />
+				더조은종각4조 WebProject. 
 			</div>
 		</div>
 		<!--//menuWrap-->

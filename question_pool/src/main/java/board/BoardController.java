@@ -1,4 +1,4 @@
-package admin.board;
+package board;
 
 import java.io.File;
 import java.util.List;
@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import admin.AdminVo;
+import comment.CommentService;
+import comment.CommentVo;
+import user.UserVo;
 import util.Pagination;
 
 @Controller
@@ -23,6 +26,9 @@ public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
+	
+	@Autowired
+	CommentService cService;
 	
 
 	@GetMapping("/admin/board/index.do")
@@ -46,12 +52,12 @@ public class BoardController {
 			model.addAttribute("list",list);
 			model.addAttribute("totPage",totPage);
 			model.addAttribute("totCount",totCount);
-			model.addAttribute("pageArea",Pagination.getPageArea("notice.do", vo.getPage(), totPage, 10));
+			model.addAttribute("pageArea",Pagination.getPageArea("notice.do", vo.getPage(), totPage, 10));			
 			return "admin/board/notice/notice";
 	}
 	
 	@GetMapping("/user/board/notice/notice.do")
-	public String noticeListUser(Model model, HttpServletRequest req, NoticeVo vo) throws Exception{
+	public String UserNoticeList(Model model, HttpServletRequest req, NoticeVo vo) throws Exception{
 			
 			int totCount = boardService.noticeCount(vo);
 			int totPage = totCount / 10; //총페이지수 
@@ -192,6 +198,24 @@ public class BoardController {
 		return "admin/board/testdate/testdate";
 	}
 	
+	@GetMapping("/user/board/testdate/testdate.do")
+	public String userTdList(Model model, HttpServletRequest req, TestdateVo vo) throws Exception{
+		
+		int totCount = boardService.tdCount(vo);
+		int totPage = totCount / 10; //총페이지수 
+		if(totCount % 10 > 0) totPage++;
+		
+		int startIdx = (vo.getPage()-1)*10;
+		vo.setStartIdx(startIdx);				 		
+		
+		List<TestdateVo> list = boardService.tdList(vo);
+		model.addAttribute("list",list);
+		model.addAttribute("totPage",totPage);
+		model.addAttribute("totCount",totCount);
+		model.addAttribute("pageArea",Pagination.getPageArea("testdate.do", vo.getPage(), totPage, 10));
+		return "user/board/testdate/testdate";
+	}
+	
 	@RequestMapping("/admin/board/testdate/write.do")
 	public String tdWrite() {
 		return "admin/board/testdate/write";
@@ -232,6 +256,12 @@ public class BoardController {
 	public String tdView(Model model, @RequestParam int td_no) {
 		model.addAttribute("data", boardService.tdView(td_no));
 		return "admin/board/testdate/view";
+	}
+	
+	@GetMapping("/user/board/testdate/view.do")
+	public String userTdView(Model model, @RequestParam int td_no) {
+		model.addAttribute("data", boardService.tdView(td_no));
+		return "user/board/testdate/view";
 	}
 	
 	@GetMapping("/admin/board/testdate/edit.do")
@@ -310,13 +340,35 @@ public class BoardController {
 		return "admin/board/qa/qa";
 	}
 	
+	@GetMapping("/user/board/qa/qa.do")
+	public String userQaList(Model model, HttpServletRequest req, QaVo vo) throws Exception{
+		int totCount = boardService.qaCount(vo);
+		int totPage = totCount / 10; //총페이지수 
+		if(totCount % 10 > 0) totPage++;
+		
+		int startIdx = (vo.getPage()-1)*10;
+		vo.setStartIdx(startIdx);				 		
+		
+		List<QaVo> list = boardService.qaList(vo);
+		model.addAttribute("list",list);
+		model.addAttribute("totPage",totPage);
+		model.addAttribute("totCount",totCount);
+		model.addAttribute("pageArea",Pagination.getPageArea("qa.do", vo.getPage(), totPage, 10));
+		return "user/board/qa/qa";
+	}
+	
 	@RequestMapping("/admin/board/qa/write.do")
 	public String qaWrite() {
 		return "admin/board/qa/write";
 	}
 	
+	@RequestMapping("/user/board/qa/write.do")
+	public String userQaWrite() {
+		return "user/board/qa/write";
+	}
+	
 	@PostMapping("/admin/board/qa/insert.do")
-	public String qaInsert(QaVo vo, HttpServletRequest req, MultipartFile file, HttpSession sess) {
+	public String qaInsert(QaVo vo, HttpServletRequest req, HttpSession sess) {
 		vo.setAdmin_no(((AdminVo)sess.getAttribute("adminInfo")).getAdmin_no());
 		
 		int r = boardService.qaInsert(vo);
@@ -329,6 +381,22 @@ public class BoardController {
 			req.setAttribute("url", "write.do");
 		}		
 		return "admin/include/return";
+	}
+	
+	@PostMapping("/user/board/qa/insert.do")
+	public String userQaInsert(QaVo vo, HttpServletRequest req, HttpSession sess) {
+		vo.setUser_no(((user.UserVo)sess.getAttribute("userInfo")).getUser_no());
+		
+		int r = boardService.qaInsert(vo);
+				
+		if (r > 0) {
+			req.setAttribute("msg", "정상적으로 등록되었습니다.");
+			req.setAttribute("url", "qa.do");
+		} else {
+			req.setAttribute("msg", "등록 오류");
+			req.setAttribute("url", "write.do");
+		}		
+		return "user/include/return";
 	}
 	
 	@GetMapping("/admin/board/qa/view.do")
@@ -367,6 +435,50 @@ public class BoardController {
         }
 		return "admin/include/return";
 	}
+	
+	@GetMapping("/user/board/qa/view.do")
+	public String userqaView(Model model, @RequestParam int qa_no) {
+		model.addAttribute("data", boardService.qaView(qa_no));
+		CommentVo cv = new CommentVo();
+		cv.setQa_no(qa_no);
+		cv.setTablename("qa");
+		model.addAttribute("cList", cService.selectList(cv));
+		return "user/board/qa/view";
+	}
+	
+	@GetMapping("/user/board/qa/edit.do")
+	public String userqaEdit(Model model, @RequestParam int qa_no) {
+		model.addAttribute("data", boardService.qaView(qa_no)); 
+		return "user/board/qa/edit";
+	}
+	
+	@PostMapping("/user/board/qa/update.do")
+	public String userqaUpdate(Model model, QaVo vo) {		
+		int res = boardService.qaUpdate(vo);
+		if (res > 0) {
+			model.addAttribute("msg", "정상적으로 수정되었습니다.");
+			model.addAttribute("url", "view.do?qa_no="+vo.getQa_no()); // 성공했을때 상세페이지로 이동
+		} else {
+			model.addAttribute("msg", "수정 오류");
+			model.addAttribute("url", "edit.do?qa_no="+vo.getQa_no()); // 실패했을때 수정페이지로 이동
+		}
+		return "admin/include/return";
+	}
+	
+	
+	@RequestMapping("/user/board/qa/delete.do")
+	public String userQaDelete(Model model, QaVo vo) throws Exception {
+		int r = boardService.userQaDelete(vo);
+		System.out.println("con : "+r);
+		if (r > 0) {
+			model.addAttribute("msg", "정상적으로 삭제되었습니다.");
+			model.addAttribute("url", "qa.do"); // 성공했을때 목록페이지로 이동
+		} else {
+			model.addAttribute("msg", "삭제 오류");
+			model.addAttribute("url", "view.do?qa_no="+vo.getQa_no()); // 실패했을때 상세페이지로 이동
+		}
+		return "admin/include/return";
+	}
 
 // ----------------------------- QnA 영역 끝 ----------------------------------------
 
@@ -393,14 +505,36 @@ public class BoardController {
 		return "admin/board/community/community";
 	}
 	
+	@GetMapping("/user/board/community/community.do")
+	public String userCommunityList(Model model, HttpServletRequest req, CommunityVo vo) throws Exception{
+		int totCount = boardService.communityCount(vo);
+		int totPage = totCount / 10; //총페이지수 
+		if(totCount % 10 > 0) totPage++;
+		
+		int startIdx = (vo.getPage()-1)*10;
+		vo.setStartIdx(startIdx);				 		
+		
+		List<CommunityVo> list = boardService.communityList(vo);
+		model.addAttribute("list",list);
+		model.addAttribute("totPage",totPage);
+		model.addAttribute("totCount",totCount);
+		model.addAttribute("pageArea",Pagination.getPageArea("community.do", vo.getPage(), totPage, 10));
+		return "user/board/community/community";
+	}
+	
 	@RequestMapping("/admin/board/community/write.do")
 	public String communityWrite() {
 		return "admin/board/community/write";
 	}
 	
-	@PostMapping("/admin/board/community/insert.do")
-	public String communityInsert(CommunityVo vo, HttpServletRequest req, MultipartFile file, HttpSession sess) {
-		vo.setAdmin_no(((AdminVo)sess.getAttribute("adminInfo")).getAdmin_no());
+	@RequestMapping("/user/board/community/write.do")
+	public String userCommunityWrite() {
+		return "user/board/community/write";
+	}
+	
+	@PostMapping("/user/board/community/insert.do")
+	public String communityInsert(CommunityVo vo, HttpServletRequest req, HttpSession sess) {
+		vo.setUser_no(((user.UserVo)sess.getAttribute("userInfo")).getUser_no());
 		
 		int r = boardService.communityInsert(vo);
 				
@@ -420,6 +554,16 @@ public class BoardController {
 		return "admin/board/community/view";
 	}
 	
+	@GetMapping("/user/board/community/view.do")
+	public String userCommunityView(Model model, @RequestParam int community_no) {
+		model.addAttribute("data", boardService.communityView(community_no));
+		CommentVo cv = new CommentVo();
+		cv.setCommunity_no(community_no);
+		cv.setTablename("community");
+		model.addAttribute("cList", cService.selectList(cv));
+		return "user/board/community/view";
+	}
+	
 	@GetMapping("/admin/board/community/edit.do")
 	public String communityEdit(Model model, @RequestParam int community_no) {
 		model.addAttribute("data", boardService.communityView(community_no)); 
@@ -437,7 +581,26 @@ public class BoardController {
 			model.addAttribute("url", "edit.do?community_no="+vo.getCommunity_no()); // 실패했을때 수정페이지로 이동
 		}
 		return "admin/include/return";
-	}	
+	}
+	
+	@GetMapping("/user/board/community/edit.do")
+	public String userCommunityEdit(Model model, @RequestParam int community_no) {
+		model.addAttribute("data", boardService.communityView(community_no)); 
+		return "user/board/community/edit";
+	}
+	
+	@PostMapping("/user/board/community/update.do")
+	public String userCommunityUpdate(Model model, CommunityVo vo) {		
+		int res = boardService.communityUpdate(vo);
+		if (res > 0) {
+			model.addAttribute("msg", "정상적으로 수정되었습니다.");
+			model.addAttribute("url", "view.do?community_no="+vo.getCommunity_no()); // 성공했을때 상세페이지로 이동
+		} else {
+			model.addAttribute("msg", "수정 오류");
+			model.addAttribute("url", "edit.do?community_no="+vo.getCommunity_no()); // 실패했을때 수정페이지로 이동
+		}
+		return "admin/include/return";
+	}
 	
 	@RequestMapping("/admin/board/community/delete.do")
 	public String communityDelete(HttpServletRequest request, CommunityVo vo) throws Exception {
@@ -450,7 +613,125 @@ public class BoardController {
         }
 		return "admin/include/return";
 	}
+	
+	@RequestMapping("/user/board/community/delete.do")
+	public String userCommunityDelete(Model model, CommunityVo vo) throws Exception {
+		int r = boardService.userCommunityDelete(vo);
+		System.out.println("con : "+r);
+		if (r > 0) {
+			model.addAttribute("msg", "정상적으로 삭제되었습니다.");
+			model.addAttribute("url", "community.do"); // 성공했을때 목록페이지로 이동
+		} else {
+			model.addAttribute("msg", "삭제 오류");
+			model.addAttribute("url", "view.do?community_no="+vo.getCommunity_no()); // 실패했을때 상세페이지로 이동
+		}
+		return "admin/include/return";
+	}
 
 // ----------------------------- 커뮤니티 영역 끝 ----------------------------------------
+	
+	
+	
+// ----------------------------- FAQ 영역 시작 -----------------------------
+
+	@GetMapping("/admin/board/faq/faq.do")
+	public String faqList(Model model, HttpServletRequest req, FaqVo vo) throws Exception{
+			
+			int totCount = boardService.faqCount(vo);
+			int totPage = totCount / 10; //총페이지수 
+			if(totCount % 10 > 0) totPage++;
+			
+			int startIdx = (vo.getPage()-1)*10;
+			vo.setStartIdx(startIdx);				 		
+			
+			List<FaqVo> list = boardService.faqList(vo);
+			model.addAttribute("list",list);
+			model.addAttribute("totPage",totPage);
+			model.addAttribute("totCount",totCount);
+			model.addAttribute("pageArea",Pagination.getPageArea("faq.do", vo.getPage(), totPage, 10));			
+			return "admin/board/faq/faq";
+	}
+	
+	@GetMapping("/user/board/faq/faq.do")
+	public String UserfaqList(Model model, HttpServletRequest req, FaqVo vo) throws Exception{
+			
+			int totCount = boardService.faqCount(vo);
+			int totPage = totCount / 10; //총페이지수 
+			if(totCount % 10 > 0) totPage++;
+			
+			int startIdx = (vo.getPage()-1)*10;
+			vo.setStartIdx(startIdx);				 		
+			
+			List<FaqVo> list = boardService.faqList(vo);
+			model.addAttribute("list",list);
+			model.addAttribute("totPage",totPage);
+			model.addAttribute("totCount",totCount);
+			model.addAttribute("pageArea",Pagination.getPageArea("faq.do", vo.getPage(), totPage, 10));
+			return "user/board/faq/faq";
+	}
+	
+	@RequestMapping("/admin/board/faq/write.do")
+	public String faqWrite() {
+		return "admin/board/faq/write";
+	}
+	
+	@PostMapping("/admin/board/faq/insert.do")
+	public String faqInsert(FaqVo vo, HttpServletRequest req) {				
+		int r = boardService.faqInsert(vo);
+		System.out.println("r:"+r);
+		
+		if (r > 0) {
+			req.setAttribute("msg", "정상적으로 등록되었습니다.");
+			req.setAttribute("url", "faq.do");
+		} else {
+			req.setAttribute("msg", "등록 오류");
+			req.setAttribute("url", "write.do");
+		}		
+		return "admin/include/return";
+	}
+	
+	@GetMapping("/admin/board/faq/view.do")
+	public String faqView(Model model, @RequestParam int faq_no) {
+		model.addAttribute("data", boardService.faqView(faq_no));
+		return "admin/board/faq/view";
+	}
+	
+	@GetMapping("/user/board/faq/view.do")
+	public String faqViewUser(Model model, @RequestParam int faq_no) {
+		model.addAttribute("data", boardService.faqView(faq_no));
+		return "user/board/faq/view";
+	}
+	
+	@GetMapping("/admin/board/faq/edit.do")
+	public String faqEdit(Model model, @RequestParam int faq_no) {
+		model.addAttribute("data", boardService.faqView(faq_no)); 
+		return "admin/board/faq/edit";
+	}
+	
+	@PostMapping("/admin/board/faq/update.do")
+	public String faqUpdate(Model model, FaqVo vo, HttpServletRequest req) {		
+		int res = boardService.faqUpdate(vo);
+		if (res > 0) {
+			model.addAttribute("msg", "정상적으로 수정되었습니다.");
+			model.addAttribute("url", "view.do?faq_no="+vo.getFaq_no()); // 성공했을때 상세페이지로 이동
+		} else {
+			model.addAttribute("msg", "수정 오류");
+			model.addAttribute("url", "edit.do?faq_no="+vo.getFaq_no()); // 실패했을때 수정페이지로 이동
+		}
+		return "admin/include/return";
+	}	
+	
+	@RequestMapping("/admin/board/faq/delete.do")
+	public String faqDelete(HttpServletRequest request, FaqVo vo) throws Exception {
+		// 단일 및 다중선택 후 삭제 가능하도록 배열 처리
+        String[] ajaxMsg = request.getParameterValues("valueArr");        
+        int size = ajaxMsg.length;
+        for(int i=0; i<size; i++) {
+        	System.out.println("ajaxMsg[i]:"+ajaxMsg[i]);
+    		boardService.faqDelete(ajaxMsg[i]);
+        }
+		return "admin/include/return";
+	}
+// ----------------------------- FAQ 영역 끝 -----------------------------------------
 }	
 

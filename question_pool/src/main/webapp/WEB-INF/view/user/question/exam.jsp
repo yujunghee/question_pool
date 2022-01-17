@@ -15,7 +15,7 @@
 	<label><input type="radio" name="exam_no" value="${plist.exam_no}">${plist.school_name}의${plist.year}년도의${plist.semester}학기 시험</label>
 		</c:forEach>
 		<br/>
-		<input type="submit" value="시험시작" >
+		<input type="submit" value="시험시작" class="submit" >
 		</form>
 	
 </body>

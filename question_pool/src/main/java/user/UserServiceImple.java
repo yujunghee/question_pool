@@ -87,4 +87,35 @@ public class UserServiceImple implements UserService {
 		return userdao.userUpdate(vo);
 	}
 	
+	@Override
+	public UserVo searchId(UserVo vo) {
+		return userdao.searchId(vo);
+	}
+
+	@Override
+	public UserVo searchPwd(UserVo vo) {
+		// 이메일과 이름으로 DB에서 조회
+		UserVo uv = userdao.searchPwd(vo);
+		// 조회한 결과가 있으면 임시비밀번호 생성, 임시비밀번호로 변경, 이메일 발송
+		if (uv != null) {
+			// 임시비밀번호 생성
+			String tempPwd = "";
+			for (int i=0; i<3; i++) {
+				tempPwd += (char)((Math.random()*26)+65);
+			}
+			for (int i=0; i<3; i++) {
+				tempPwd += (int)((Math.random()*9));
+			}
+			// 임시비밀번호 변경
+			vo.setUser_pwd(tempPwd);
+			userdao.updateTempPwd(vo);
+			// 이메일 발송
+			SendMail.sendMail("question_pool@naver.com",
+								uv.getUser_email(), 
+								"Ladder Up 임시 비밀번호입니다.", 
+								"임시비밀번호:<span style='color:red;'>"+tempPwd+"</span>");
+		}
+		return uv;
+	}
+	
 }

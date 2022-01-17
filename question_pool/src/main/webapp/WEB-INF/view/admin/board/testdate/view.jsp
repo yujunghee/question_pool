@@ -72,8 +72,7 @@
 									<a class="btns" href="testdate.do"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="edit.do?td_no=${data.td_no }"><strong>수정</strong></a>
-									<a class="btns" style="cursor:pointer;" href=""><strong>답변</strong></a>
+									<a class="btns" style="cursor:pointer;" href="edit.do?td_no=${data.td_no }"><strong>수정</strong></a>									
 								</div>
 							</div>
 							<!--//btn-->

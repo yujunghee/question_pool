@@ -15,7 +15,7 @@
 				if (res.trim() == '1') {
 					alert('댓글이 등록되었습니다.');
 					commentList('community', ${data.community_no});
-					$("#content").val("");
+					$("td > #content").val("");
 				} else {
 					alert('등록 오류');
 				}

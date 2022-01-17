@@ -30,6 +30,11 @@ public class UserPayServiceImple implements UserPayService{
 		return payDao.refundUpdate(vo);
 	}
 
+	@Override
+	public int userGrade(UserPayVo vo) {
+		return payDao.userGrade(vo);
+	}
+
 
 
 }

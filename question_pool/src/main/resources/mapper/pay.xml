@@ -4,8 +4,15 @@
 
 
 	<select id="PaymentRecord" parameterType="payment.PayVo" resultType = "payment.PayVo">
-		SELECT user.user_name, user.user_email, product.category, product.price, payment.pay_date, payment.refund 
+		SELECT user.user_name, user.user_email, product.category, product.price, payment.pay_date, payment.refund, payment.refund_reason, user.user_no, payment.merchant_id, payment.pay_id
 		FROM user JOIN payment ON user.user_no = payment.user_no JOIN product ON payment.product_no = product.product_no
 	</select>
+	
+	<update id="cancelPay" parameterType="payment.PayVo">
+		UPDATE payment INNER JOIN user ON payment.user_no = user.user_no LEFT JOIN admin ON admin.admin_no = payment.admin_no
+		SET payment.refund = 2, user.user_grade = 0, payment.admin_no = #{admin_no}  WHERE user.user_no = #{user_no} AND payment.refund = 1	
+	</update>
+	
+	
 
 </mapper>

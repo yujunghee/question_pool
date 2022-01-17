@@ -33,4 +33,8 @@ public class UserPayDao {
 		return sst.update("userPay.refundUpdate", vo);
 	}
 	
+	public int userGrade(UserPayVo vo) {
+		return sst.update("userPay.userGrade", vo);
+	}
+	
 }

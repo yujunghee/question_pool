@@ -15,13 +15,16 @@
 				if (res.trim() == '1') {
 					alert('댓글이 등록되었습니다.');
 					commentList('notice', ${data.notice_no});
-					$("#content").val("");
+					$("td > #content").val("");
 				} else {
 					alert('등록 오류');
 				}
 			}
 		});
 	}
+	$(function() {
+		commentList('notice', ${data.notice_no});
+	});
 	function commentList(tablename, notice_no) {
 		$.ajax({
 			url:'/question_pool/comment/list.do',
@@ -30,10 +33,7 @@
 				$("#commentArea").html(res);
 			}
 		});
-	}
-	$(function() {
-		commentList('notice', ${data.notice_no});
-	});
+	}	
 	function goDel(c_no) {
 		if (confirm('댓글을 삭제하시겠습니까?')) {
 			$.ajax({
@@ -57,22 +57,18 @@
 <input type="hidden" name="notice_no" value="${data.notice_no}">
 	<!-- canvas -->
 	<div id="canvas">
-		<!-- S T A R T :: headerArea-->
-		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
-		<!-- E N D :: headerArea--> 
-		
 		<!-- S T A R T :: containerArea-->
-		<div id="container">
+		<div id="container" style="width:100%;">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [읽기]</h2>
+					<h2>공지사항 - [상세페이지]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<colgroup>
 									<col width="10%" />
 									<col width="15%" />

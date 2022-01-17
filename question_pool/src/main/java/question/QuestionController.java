@@ -331,6 +331,13 @@ public class QuestionController {
 	public String note() {
 		return "user/question/study/note";
 	}
+	//랜덤모의고사 학교선택페이지
+	@RequestMapping("user/question/random.do")
+	public String randomschool(SchoolVo vo, Model model) {
+		List<SchoolVo> list = schoolService.selectList(vo);
+		model.addAttribute("list", list);
+		return "user/question/study/school";
+	}
 	
 	
 	

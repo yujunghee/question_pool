@@ -13,6 +13,10 @@ public interface UserService {
 	int emailDuplicate(String emailDuplicate);
 	List<UserVo> userList(UserVo vo);
 	int userDelete(String user_no);
+	UserVo searchId(UserVo vo);
+	UserVo searchPwd(UserVo vo);
+	
+	
 	UserVo userView(int user_no);
 	int userCount(UserVo vo);
 	UserVo userEdit(int user_no);
