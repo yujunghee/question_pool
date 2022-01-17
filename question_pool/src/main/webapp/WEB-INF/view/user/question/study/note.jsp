@@ -46,7 +46,6 @@
 										<td>답</td>
 									</tr>	
 									<tr>
-										<td></td>
 									</tr>					
 								</tbody>
 							</table>
