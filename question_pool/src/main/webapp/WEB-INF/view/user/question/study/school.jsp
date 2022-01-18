@@ -38,7 +38,7 @@ h2::after {
 		<!-- canvas -->
 		<div id="canvas">
 			<!-- 학교/연도/회차 선택 페이지 -->
-			<form action="/question_pool/user/question/study/random.do" enctype="multipart/form-data"
+			<form action="randomIndex.do" enctype="multipart/form-data"
 				style="text-align: center;">
 				<div style="text-align: center; padding: 100px 0 0 0;'">
 					<h4 style="font-size: 20px;">학교선택</h4>

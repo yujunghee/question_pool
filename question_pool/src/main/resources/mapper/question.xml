@@ -86,4 +86,8 @@
 	<select id="selectAQlist" resultType="question.AnsweredQuestionVo" parameterType="question.AnsweredQuestionVo">
 		SELECT * FROM answered_question WHERE user_no=#{user_no} AND exam_no=#{exam_no}
 	</select>
+	
+	<select id="randomQuestion" resultType="question.QuestionVo" parameterType="int">
+		SELECT * FROM question WHERE exam_no IN (SELECT exam_no FROM exam WHERE school_no=#{school_no}) ORDER BY RAND() LIMIT 5
+	</select>
 </mapper>
