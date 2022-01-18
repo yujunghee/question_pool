@@ -12,7 +12,13 @@ public class CommentVo {
 	private String tablename;
 	private String content;
 	private int admin_no;
+	private String admin_name;
+	private int user_no;
+	private String user_name;
 	private int qa_no;
+	private int notice_no;
+	private int td_no;
+	private int community_no;
 	private Timestamp regdate;
-	private String name;
+	
 }

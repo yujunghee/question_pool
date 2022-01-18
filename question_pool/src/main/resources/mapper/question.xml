@@ -14,6 +14,10 @@
 		SELECT * FROM question WHERE question_no=#{question_no}
 	</select>
 	
+	<select id="selectExample" parameterType="int" resultType="question.ExampleVo">
+		SELECT * FROM example WHERE question_no=#{question_no}
+	</select>
+	
 	<update id="updateQuestion" parameterType="question.QuestionVo">
 		UPDATE question SET question_content=#{question_content}, passage=#{passage}, answer=#{answer}, explanation=#{explanation}
 		WHERE question_no=#{question_no}
@@ -34,11 +38,11 @@
 	</insert>
 	
 	<select id="selectQuestionlist" resultType="question.QuestionVo" parameterType="question.QuestionVo">
-		SELECT * FROM question ORDER BY question_no
+		SELECT * FROM question WHERE exam_no=#{exam_no} ORDER BY question_no 
 	</select>
 	
 	<select id="selectExamplelist" resultType="question.ExampleVo" parameterType="question.ExampleVo">
-		SELECT * FROM example WHERE question_no=#{question_no}
+		SELECT * FROM example
 	</select>
 	
 	<insert id="insert_school" parameterType="school.SchoolVo">
@@ -58,6 +62,9 @@
 		VALUES (#{year}, #{number_of_questions}, #{exam_time}, #{semester}, #{school_no})
 	</insert>
 	
+	<select id="selectSchool" resultType="school.SchoolVo" parameterType="int">
+		SELECT * FROM school WHERE school_no=#{school_no}
+	</select>
 	
 	<select id="selectyear" resultType="question.QuestionVo" parameterType="question.QuestionVo">
 		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no where exam.school_no = #{school_no}
@@ -65,7 +72,22 @@
 	<select id="selectsemester" resultType="question.QuestionVo" parameterType="question.QuestionVo">
 		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no where exam.year = #{year} 
 	</select>
+	<select id="showexam" parameterType="question.QuestionVo" resultType="question.QuestionVo">
+		select school_name, exam.semester, exam_no, year from exam join school on school.school_no=exam.school_no where exam_no = #{exam_no} 
+	</select>
 	
+	<!-- ======================= USER ============================= -->
 	
+	<insert id="insertAQ" parameterType="question.AnsweredQuestionVo">
+		INSERT INTO answered_question(user_answer, score, answered_date, memo, question_no, user_no, exam_no) 
+		VALUES(#{user_answer}, #{score}, NOW(), #{memo}, #{question_no}, #{user_no}, #{exam_no})
+	</insert>
 	
+	<select id="selectAQlist" resultType="question.AnsweredQuestionVo" parameterType="question.AnsweredQuestionVo">
+		SELECT * FROM answered_question WHERE user_no=#{user_no} AND exam_no=#{exam_no}
+	</select>
+	
+	<select id="randomQuestion" resultType="question.QuestionVo" parameterType="int">
+		SELECT * FROM question WHERE exam_no IN (SELECT exam_no FROM exam WHERE school_no=#{school_no}) ORDER BY RAND() LIMIT 5
+	</select>
 </mapper>

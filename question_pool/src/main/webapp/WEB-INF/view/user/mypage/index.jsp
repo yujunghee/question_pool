@@ -46,6 +46,7 @@
 </head>
 <body>
 	<div id="boardWrap" class="bbs">
+	<input type="hidden" name="user_no" value="${vo.user_no}">
 		<div class="main">
 			<div class="wid48 fl_l">
 				<div class="box notice" style="text-align:center;">

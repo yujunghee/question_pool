@@ -5,6 +5,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/smarteditor/js/HuskyEZCreator.js"></script>
+  <link rel="stylesheet" href="/question_pool/css/user/userJoin/reset.css"/>
+  <link rel="stylesheet" href="/question_pool/css/user/userJoin/common.css"/>
+  <link rel="stylesheet" href="/question_pool/css/user/userJoin/contents.css"/>
 <script>
 function loginCheck() {
 	if ($("#user_email").val() == '') {
@@ -55,8 +58,14 @@ function CookieVal(cookieName) {
       higth:100%;	
       text-align: center;
       margin: 0 auto;
-      padding: 100px 0px 0px 0px;
-      border: 0ch ;
+      padding: 30px 0px 300px 0px;
+      border: 1px solid #000;
+   	 border-radius: 2em;
+	border-top-left-radius: 3em;
+	border-top-right-radius: 3em;
+	border-bottom-left-radius: 3em;
+	border-bottom-right-radius: 3em;
+      
       }
 #bor{
 	 padding: 10px;
@@ -66,7 +75,8 @@ function CookieVal(cookieName) {
 <body onload="userid_chk();">
 <div id="login">
 	<div class="title">
-		<h1><span>Question_Pool</span></h1>
+		<div id = "imgdiv"><a href="/question_pool/user/index.do"><img src="../img/user/mainLogo.png" height="15%" width="15%" style="margin-left: auto; margin-right: auto; display: block;"></a></div>
+		<h1><span>Ladder Up</span></h1>	
 	</div>
 	<div class="login"> 
 	<form name="board" id="board" method="post" action="login.do" onsubmit="return loginCheck();">

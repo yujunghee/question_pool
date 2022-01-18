@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import admin.AdminVo;
 import school.SchoolService;
 import school.SchoolVo;
+import user.UserVo;
 
 @Controller
 public class QuestionController {
@@ -28,16 +29,24 @@ public class QuestionController {
 
 	@RequestMapping("/admin/question/index.do")
 	public String indexQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int exam_no) {
-		model.addAttribute("exam",questionService.selectExam(exam_no));
+		ExamVo xo = new ExamVo();
+		xo = questionService.selectExam(exam_no);
+		model.addAttribute("exam", xo);
+		model.addAttribute("school", schoolService.selectSchool(xo.getSchool_no()));
+		
 		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
-		List<ExampleVo> elist = new ArrayList<ExampleVo>();
+		List<ExampleVo> list = questionService.selectExamplelist(ev);
+	
 		for(int i=0; i<qlist.size(); i++) {
-			ev.setQuestion_no(qlist.get(i).getQuestion_no());
-			elist.addAll(questionService.selectExamplelist(ev));
+			List<ExampleVo> elist = new ArrayList<ExampleVo>();
+			for(int j=0; j<list.size(); j++) {
+				if(qlist.get(i).getQuestion_no() == list.get(j).getQuestion_no()) {
+					elist.add(list.get(j));
+				}
+			}
+			qlist.get(i).setEx(elist);
 		}
 		model.addAttribute("qlist", qlist);
-		model.addAttribute("elist", elist);
-		//model.addAttribute("data",questionService.selectQuestion(qv.getQuestion_no()));
 		return "admin/question/index";
 	}
 
@@ -54,7 +63,10 @@ public class QuestionController {
 
 	@GetMapping("/admin/question/write.do")
 	public String write(Model model, @RequestParam int exam_no) {
-		model.addAttribute("exam",questionService.selectExam(exam_no));
+		ExamVo ev = new ExamVo();
+		ev = questionService.selectExam(exam_no);
+		model.addAttribute("exam", ev);
+		model.addAttribute("school", schoolService.selectSchool(ev.getSchool_no()));
 		return "admin/question/write";
 	}
 
@@ -67,10 +79,9 @@ public class QuestionController {
 	public String edit(ExampleVo ev, Model model, @RequestParam int exam_no, @RequestParam int question_no) {
 		model.addAttribute("exam",questionService.selectExam(exam_no));
 		model.addAttribute("qv",questionService.selectQuestion(question_no));
-		ev.setQuestion_no(question_no);
-		List<ExampleVo> elist = questionService.selectExamplelist(ev);
+		List<ExampleVo> elist = questionService.selectExample(question_no);
 		model.addAttribute("elist",elist);
-		String[] examples = { "a", "b", "c", "d", "e" };
+		String[] examples = { "A", "B", "C", "D", "E" };
 		model.addAttribute("ex",examples);
 		return "admin/question/edit";
 	}
@@ -105,7 +116,7 @@ public class QuestionController {
 	public String insert(Model model, QuestionVo qv, ExampleVo ev, HttpServletRequest req, HttpSession sess, @RequestParam int exam_no) {
 		qv.setAdmin_no(((AdminVo)sess.getAttribute("adminInfo")).getAdmin_no());
 		model.addAttribute("exam",questionService.selectExam(exam_no));
-		String[] examples = { "a", "b", "c", "d", "e" };
+		String[] examples = { "A", "B", "C", "D", "E" };
 		String[] econtent = req.getParameterValues("example_content");
 		String[] content = req.getParameterValues("question_content");
 		String[] explanation = req.getParameterValues("explanation");
@@ -163,12 +174,6 @@ public class QuestionController {
 		return "admin/include/return";
 	}
 	
-//	@GetMapping("/admin/question/deleteAjax.do")
-//	public String deleteAjax(Model model, @RequestParam int question_no) {
-//		model.addAttribute("result", questionService.deleteQuestion(question_no));
-//		return "admin/include/result";
-//	}
-	
 	@GetMapping("/admin/school/write.do")
 	public String indexschool(Model model, SchoolVo vo) {
 
@@ -204,4 +209,183 @@ public class QuestionController {
 		}
 		return "admin/include/return";
 	}
+	
+	@RequestMapping("/admin/question/showmetheyear.do")
+	public String showmetheyear(SchoolVo vo, Model model, QuestionVo qv) {
+		model.addAttribute("cList", questionService.selectyear(qv));
+		return "admin/question/year"; // 문제등록(학교/연도/회차선택창으로 이동)
+	}
+	@RequestMapping("/admin/question/showmethesemester.do")
+	public String showmethesemester(SchoolVo vo, Model model, QuestionVo qv) {
+		model.addAttribute("dList", questionService.selectsemester(qv));
+		return "admin/question/semester"; // 문제등록(학교/연도/회차선택창으로 이동)
+	}
+	/*--------------------------USER------------------------------*/
+	
+	
+	@RequestMapping("/user/question/index.do")
+	public String indexUserQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int exam_no) {
+		ExamVo xo = new ExamVo();
+		xo = questionService.selectExam(exam_no);
+		model.addAttribute("exam", xo);
+		model.addAttribute("school", schoolService.selectSchool(xo.getSchool_no()));
+		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
+		List<ExampleVo> list = questionService.selectExamplelist(ev);
+		
+		for(int i=0; i<qlist.size(); i++) {
+			List<ExampleVo> elist = new ArrayList<ExampleVo>();
+			for(int j=0; j<list.size(); j++) {
+				if(qlist.get(i).getQuestion_no() == list.get(j).getQuestion_no()) {
+					elist.add(list.get(j));
+				}
+			}
+			qlist.get(i).setEx(elist);
+		}
+		model.addAttribute("qlist", qlist);
+		String[] examples = { "A", "B", "C", "D", "E" };
+		model.addAttribute("ex",examples);
+		return "user/question/index";
+	}
+
+	@RequestMapping("/user/question/pool.do")
+	public String userPool(SchoolVo vo, Model model, QuestionVo qv) {
+		List<SchoolVo> list = schoolService.selectList(vo);
+		model.addAttribute("list", list);
+		List<QuestionVo> qlist = questionService.selectyear(qv);
+		model.addAttribute("qlist", qlist);
+		List<QuestionVo> plist = questionService.selectsemester(qv);
+		model.addAttribute("plist", plist);
+		return "user/question/pool"; 
+	}
+	
+	@RequestMapping("user/question/insert.do")
+	public String insertAQ(HttpServletRequest req, QuestionVo qv, AnsweredQuestionVo av, @RequestParam int exam_no) {
+		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
+		System.out.println(qlist.size());
+		ExamVo xo = new ExamVo();
+		xo = questionService.selectExam(exam_no);
+		av.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
+		av.setExam_no(exam_no);
+		
+		// 오,정답 체크 & 배열로 insert처리
+		String[] answers = req.getParameterValues("example");
+		int r=0;
+		for(int i=0; i<qlist.size(); i++) {
+			if(!("").equals(answers[i])) {
+				av.setQuestion_no(qlist.get(i).getQuestion_no());
+				if((qlist.get(i).getAnswer()).equals(answers[i])) {
+					av.setScore(1); //정답
+				} else {
+					av.setScore(0); //오답
+				}
+				av.setUser_answer(answers[i]);
+			}
+			questionService.insertAQ(av);
+			r++;
+		}
+				
+		if (r > 0) {
+			req.setAttribute("msg", "정상적으로 제출되었습니다.");
+			req.setAttribute("url", "score.do?exam_no="+exam_no);
+		} else {
+			req.setAttribute("msg", "제출 오류");
+		}
+		return "admin/include/return";
+	}
+	
+	// 채점 페이지
+	@RequestMapping("/user/question/score.do")
+	public String score(QuestionVo qv, ExampleVo ev, AnsweredQuestionVo av, Model model, HttpServletRequest req, @RequestParam int exam_no) {
+		model.addAttribute("exam",questionService.selectExam(exam_no));
+		model.addAttribute("school", schoolService.selectSchool(exam_no));
+		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
+		List<ExampleVo> list = questionService.selectExamplelist(ev);
+	
+		av.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
+		av.setExam_no(exam_no);
+		List<AnsweredQuestionVo> alist = questionService.selectAQlist(av);
+
+		int cnt = 0; //정답갯수
+		
+		for(int i=0; i<qlist.size(); i++) {
+			List<ExampleVo> elist = new ArrayList<ExampleVo>();
+			if(alist.get(i).getScore() == 1) { cnt++; }
+			for(int j=0; j<list.size(); j++) {
+				if(qlist.get(i).getQuestion_no() == list.get(j).getQuestion_no()) {
+					elist.add(list.get(j));
+				}
+			}
+			qlist.get(i).setEx(elist);
+		}
+		model.addAttribute("qlist", qlist);
+		model.addAttribute("alist", alist);
+		String[] examples = { "A", "B", "C", "D", "E" };
+		model.addAttribute("ex",examples);
+		model.addAttribute("cnt",cnt);
+		
+		return "user/question/score";
+	}
+	
+	// 오답노트 페이지
+	@RequestMapping("user/question/note.do")
+	public String note() {
+		return "user/question/study/note";
+	}
+	
+	//랜덤모의고사 학교선택페이지
+	@RequestMapping("user/question/random.do")
+	public String randomschool(SchoolVo vo, Model model) {
+		List<SchoolVo> list = schoolService.selectList(vo);
+		model.addAttribute("list", list);
+		return "user/question/study/school";
+	}
+	
+	//랜덤모의고사 페이지
+	@RequestMapping("/user/question/randomIndex.do")
+	public String randomQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int school_no) {
+		model.addAttribute("school", schoolService.selectSchool(school_no));
+		
+		List<QuestionVo> qlist = questionService.randomQuestion(school_no);
+		System.out.println(qlist.size());
+		
+		for(int i=0; i<5; i++) {
+			if(qlist.get(i).getQuestion_ref() != null) {
+				int ref = qlist.get(i).getQuestion_ref();
+				qlist.add(i, questionService.selectQuestion(ref));
+				System.out.println(qlist.get(i).getQuestion_no());
+			}
+		}
+		
+		List<ExampleVo> list = questionService.selectExamplelist(ev);
+	
+		for(int i=0; i<qlist.size(); i++) {
+			List<ExampleVo> elist = new ArrayList<ExampleVo>();
+			for(int j=0; j<list.size(); j++) {
+				if(qlist.get(i).getQuestion_no() == list.get(j).getQuestion_no()) {
+					elist.add(list.get(j));
+				}
+			}
+			qlist.get(i).setEx(elist);
+		}
+		model.addAttribute("qlist", qlist);
+		return "user/question/study/random";
+	}
+	
+	
+	@RequestMapping("/user/question/showmetheyear.do")
+	public String showmetheyear1(SchoolVo vo, Model model, QuestionVo qv) {
+		model.addAttribute("cList", questionService.selectyear(qv));
+		return "user/question/year"; // 문제등록(학교/연도/회차선택창으로 이동)
+	}
+	@RequestMapping("/user/question/showmethesemester.do")
+	public String showmethesemester1(SchoolVo vo, Model model, QuestionVo qv) {
+		model.addAttribute("dList", questionService.selectsemester(qv));
+		return "user/question/semester"; // 문제등록(학교/연도/회차선택창으로 이동)
+	}
+	@RequestMapping("/user/question/showmetheexam.do")
+	public String showmetheexam(SchoolVo vo, Model model, QuestionVo qv) {
+		model.addAttribute("dList", questionService.showexam(qv));
+		return "user/question/exam"; // 문제등록(학교/연도/회차선택창으로 이동)
+	}
+	
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import admin.board.NoticeVo;
+import board.NoticeVo;
 
 
 public interface AdminService {

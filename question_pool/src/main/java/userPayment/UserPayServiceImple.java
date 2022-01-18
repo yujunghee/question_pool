@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 
 
+
 @Service
 public class UserPayServiceImple implements UserPayService{
 
@@ -24,11 +25,16 @@ public class UserPayServiceImple implements UserPayService{
 		return payDao.insert(vo);
 	}
 
+	@Override
+	public int refundUpdate(UserPayVo vo) {
+		return payDao.refundUpdate(vo);
+	}
 
-//	@Override
-//	public int insert(UserPayVo vo) {
-//		return payDao.insert(vo);
-//	}
+	@Override
+	public int userGrade(UserPayVo vo) {
+		return payDao.userGrade(vo);
+	}
+
 
 
 }

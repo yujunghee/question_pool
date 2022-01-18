@@ -123,7 +123,7 @@ function fn_paging(curPage){
 			                                </td>
 			                                <td class="date"><fmt:formatDate value="${list.qa_date }" pattern="yyyy-MM-dd"/></td>			                                
 			                                <td class="writer">
-			                                    ${list.admin_name }
+			                                    ${list.user_name }
 			                                </td>			                                
 			                                <td class="readcount">${list.qa_readcount }</td>
 			                            </tr>
@@ -150,8 +150,9 @@ function fn_paging(curPage){
 										<option value="">전체</option>
 										<option value="qa_title" <c:if test="${param.searchType == 'qa_title'}">selected</c:if>>제목</option>
 										<option value="qa_content" <c:if test="${param.searchType == 'qa_content'}">selected</c:if>>내용</option>
+										<option value="user_name" <c:if test="${param.searchType == 'user_name'}">selected</c:if>>작성자</option>
 									</select>
-									<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />
+									<input type="text" name="searchWord" value="${param.searchWord }" title="검색어를 입력해주세요" value placeholder="검색어를 입력해주세요"/>
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
 								</div>
 							</form>

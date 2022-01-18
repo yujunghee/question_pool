@@ -1,4 +1,4 @@
-package admin.board;
+package board;
 
 import java.util.List;
 import java.util.Map;
@@ -42,6 +42,7 @@ public interface BoardService {
 	QaVo qaEdit(int qa_no);
 	int qaUpdate(QaVo vo);
 	int qaDelete(String qa_no);
+	int userQaDelete(QaVo vo);
 		
 	// ----------------------- QnA 영역 끝 -------------------------
 	
@@ -56,6 +57,20 @@ public interface BoardService {
 	CommunityVo communityEdit(int community_no);
 	int communityUpdate(CommunityVo vo);
 	int communityDelete(String community_no);
+	int userCommunityDelete(CommunityVo vo);
 		
 	// ----------------------- 커뮤니티 영역 끝 -------------------------
+	
+	
+	// ----------------------- FAQ 영역 시작 -----------------------
+	
+	List<FaqVo> faqList(FaqVo vo);
+	int faqCount(FaqVo vo);
+	int faqInsert(FaqVo vo);
+	FaqVo faqView(int faq_no);
+	FaqVo faqEdit(int faq_no);
+	int faqUpdate(FaqVo vo);
+	int faqDelete(String faq_no);
+	
+	// ----------------------- FAQ 영역 끝 ------------------------
 }

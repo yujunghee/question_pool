@@ -9,7 +9,7 @@
 	<!-- 컴퍼넌트 스캔 -->
 
 
-	<context:component-scan base-package="admin, question, payment, userPayment, school, util, userMain, userTest, userUtil, user, comment"/>  
+	<context:component-scan base-package="admin, board, question, payment, userPayment, school, util, userMain, userTest, userUtil, user, comment"/>  
 
 	<!-- 어노테이션 활성화 -->
 	<mvc:annotation-driven/>
@@ -25,9 +25,9 @@
 	<!-- DBCP 빈등록 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/question_pool"/>
-		<property name="username" value="question_pool"/>
-		<property name="password" value="1234"/>
+		<property name="url" value="jdbc:mysql://15.164.104.226:3306/question_pool"/>
+		<property name="username" value="root"/>
+		<property name="password" value="root1234"/>
 	</bean>
 	
 	
@@ -53,9 +53,19 @@
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/admin/index.do"/>
+			<mvc:mapping path="/admin/*/*"/>
+			<mvc:mapping path="/admin/*"/>
+			<mvc:exclude-mapping path="/admin/login.do"/>
 			<bean class="util.LoginInterceptor"/>
 	</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+					<mvc:mapping path="/user/payment/*"/>
+					<mvc:exclude-mapping path="/user/login.do"/>
+					<bean class="util.UserLoginInterceptor"/>
+		</mvc:interceptor>
 	</mvc:interceptors>
 	<!-- 정적페이지 -->
 

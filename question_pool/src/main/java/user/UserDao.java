@@ -27,7 +27,17 @@ public class UserDao {
 	public int insert(UserVo vo) {
 		return sst.insert("user.insert", vo);
 	}
-	
+	//
+	public UserVo searchId(UserVo vo) {
+		return sst.selectOne("user.searchId", vo);
+	}
+	public UserVo searchPwd(UserVo vo) {
+		return sst.selectOne("user.searchPwd", vo);
+	}
+	public int updateTempPwd(UserVo vo) {
+		return sst.update("user.updateTempPwd", vo);
+	}
+	//
 	public String userConfirm(String userConfirm) {
 		return sst.selectOne("user.userConfirm", userConfirm);
 	}

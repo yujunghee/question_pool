@@ -1,10 +1,9 @@
 package userMain;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+
 
 @Controller
 public class MainController {
@@ -19,4 +18,13 @@ public class MainController {
 		return "user/main/index";
 	}
 	
+	@RequestMapping("/user/myinfo/index.do")
+	public String myinfoIndex() {
+		return "user/myinfo/index";
+	}
+	@RequestMapping("/user/myinfo/myinfo.do")
+	public String myinfo() {
+		return "user/myinfo/myinfo";
+	}
+
 }

@@ -1,4 +1,4 @@
-package admin.board;
+package board;
 
 import java.util.List;
 
@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class BoardServiceImpl implements BoardService {
 	
-	// ----------------------- 공지사항 영역 시작 -----------------------
-	
 	@Autowired
 	BoardDao boardDao;
+
+	
+	// ----------------------- 공지사항 영역 시작 -----------------------
 
 	@Override
 	public int noticeCount(NoticeVo vo) {
@@ -139,7 +140,12 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int qaDelete(String qa_no) { 		
 		return boardDao.qaDelete(qa_no);
-	}			 
+	}
+	
+	@Override
+	public int userQaDelete(QaVo vo) { 		
+		return boardDao.userQaDelete(vo);
+	}
 
 	// ----------------------- QnA 영역 끝 -----------------------
 	
@@ -183,7 +189,52 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int communityDelete(String community_no) { 		
 		return boardDao.communityDelete(community_no);
-	}			 
+	}
+	
+	@Override
+	public int userCommunityDelete(CommunityVo vo) { 		
+		return boardDao.userCommunityDelete(vo);
+	}
 
 	// ----------------------- 커뮤니티 영역 끝 -----------------------
+	
+	
+	// ----------------------- 공지사항 영역 시작 -----------------------
+
+	@Override
+	public int faqCount(FaqVo vo) {
+		return boardDao.faqCount(vo);
+	}
+	
+	@Override
+	public List<FaqVo> faqList(FaqVo vo) {
+		return boardDao.faqList(vo);
+	}
+
+	@Override
+	public int faqInsert(FaqVo vo) {
+		return boardDao.faqInsert(vo);
+	}
+
+	@Override
+	public FaqVo faqView(int faq_no) { 
+		return boardDao.faqSelectOne(faq_no);
+	}
+	@Override
+	public FaqVo faqEdit(int faq_no) {
+		return boardDao.faqSelectOne(faq_no);
+	}	
+
+	@Override
+	public int faqUpdate(FaqVo vo) {
+		return boardDao.faqUpdate(vo);
+	}
+	
+
+	@Override
+	public int faqDelete(String faq_no) { 		
+		return boardDao.faqDelete(faq_no);
+	}	 
+
+	// ----------------------- 공지사항 영역 끝 -----------------------
 }

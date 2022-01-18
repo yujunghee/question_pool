@@ -15,7 +15,7 @@ public class UserVo extends CommonVo{
 	private String user_pwd;
 	private String user_nick;
 	private String user_name;
-	private int user_tel;
+	private String user_tel;
 	private Timestamp user_regdate;
 	private String zipcode;
 	private String addr1;

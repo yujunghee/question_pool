@@ -190,12 +190,15 @@
 	    	$("#frm").submit();
 	    }
 	</script>
+	<style>
+	</style>
 </head>
 <body>
     <div class="wrap">
         <div class="sub">
             <div class="size">
-                <h3 class="sub_title">question_pool</h3>
+         	   <div id = "imgdiv"><a href="/question_pool/user/index.do"><img src="../img/user/mainLogo.png"  height="15%" width="15%" style="margin-left: auto; margin-right: auto; display: block;"></a></div>
+                <h3 class="sub_title">Ladder Up</h3>
                 <form name="frm" id="frm" action="insert.do" method="post">
                 <table class="board_write">
                     <caption>회원가입</caption>
@@ -237,7 +240,7 @@
                         <tr>
                             <th>*휴대폰 번호</th>
                             <td>
-                                <input type="text" name="user_tel" id="user_tel" value=""  maxlength="15" style="float:left;"><span class="ptxt"> 숫자만 입력해 주세요.</span>
+                                <input type="text" name="user_tel" id="user_tel" value="010-"  maxlength="15" style="float:left;"><span class="ptxt"> 숫자만 입력해 주세요.</span>
                             </td>
                         </tr>
                         <tr>

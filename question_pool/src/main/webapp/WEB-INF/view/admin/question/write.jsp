@@ -48,7 +48,7 @@
 		<input type="hidden" id="admin_no" name="admin_no" value="${adminInfo.admin_no}">
 			<div id="content">
 				<div class="con_tit">
-					<h2>문제등록-[ㅇㅇ대학교 ${exam.year}년도 ${exam.semester}학기]</h2>
+					<h2>문제등록-[${school.school_name} ${exam.year}년도 ${exam.semester}학기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -81,15 +81,15 @@
 									<tr>
 										<th scope="row"><label for="">보기</label></th>
 										<td colspan="10">
-											<input type="checkbox" name="example" value="a">&nbsp; 
+											<input type="checkbox" name="example" value="A">&nbsp; 
 											(A) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="checkbox" name="example" value="b">&nbsp; 
+											<input type="checkbox" name="example" value="B">&nbsp; 
 											(B) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="checkbox" name="example" value="c">&nbsp; 
+											<input type="checkbox" name="example" value="C">&nbsp; 
 											(C) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="checkbox" name="example" value="d">&nbsp; 
+											<input type="checkbox" name="example" value="D">&nbsp; 
 											(D) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="checkbox" name="example" value="e">&nbsp; 
+											<input type="checkbox" name="example" value="E">&nbsp; 
 											(E) <input type="text" name="example_content" style="width:500px;">
 										</td>
 									</tr>

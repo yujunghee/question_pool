@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import util.Pagination;
@@ -75,6 +76,36 @@ public class UserController {
 		model.addAttribute("result", userservice.emailDuplicate(email));
 		return "user/include/result";
 	}
+	
+	//
+	@RequestMapping(value="/user/searchId.do", method=RequestMethod.GET)
+	public String searchId() {
+		return "user/login/searchId";
+	}
+	@RequestMapping(value="/user/searchId.do", method=RequestMethod.POST)
+	public String searchId(Model model, UserVo vo) {
+		UserVo uv = userservice.searchId(vo);
+		//String email = "";
+		//if (uv != null) email = uv.getEmail();
+		model.addAttribute("result", uv == null ? "" : uv.getUser_email());
+		return "user/include/result";
+	}
+	
+	@RequestMapping(value="/user/searchPwd.do", method=RequestMethod.GET)
+	public String searchPwd() {
+		return "user/login/searchPwd";
+	}
+	@RequestMapping(value="/user/searchPwd.do", method=RequestMethod.POST)
+	public String searchPwd(Model model, UserVo vo) {
+		UserVo uv = userservice.searchPwd(vo);
+		//String email = "";
+		//if (uv != null) email = uv.getEmail();
+		model.addAttribute("result", uv == null ? "" : "ok");
+		return "user/include/result";
+	}
+	
+	
+	//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 인철작업공간
 
 	@GetMapping("/admin/member/index.do")
 	public String userList(Model model, UserVo vo ) throws Exception {
