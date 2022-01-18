@@ -32,8 +32,8 @@
     			url : "searchPwd.do",
     			method:"post",
     			data:{
-    				name:$("#user_name").val(),
-    				email:$("#user_email").val()
+    				user_name:$("#user_name").val(),
+    				user_email:$("#user_email").val()
     			},
     			success:function(res) {
     				if (res.trim() == 'ok') {
@@ -53,7 +53,8 @@
         <form action="login.do" method="post" id="board1" name="board1" onsubmit="return searchPwd();"><!-- header에서 id="board"이미 사용중이라서 board2로 함 -->
             <div class="sub">
                 <div class="size">
-                    <h3 class="sub_title">비밀번호 찾기</h3>
+                <div id = "imgdiv"><a href="/question_pool/user/index.do"><img src="../img/user/mainLogo.png"  height="15%" width="15%" style="margin-left: auto; margin-right: auto; display: block;"></a></div>
+                   <br> <h3 class="sub_title">비밀번호 찾기</h3>
                     
                     <div class="member">
                         <div class="box">

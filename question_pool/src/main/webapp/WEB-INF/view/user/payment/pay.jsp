@@ -41,11 +41,46 @@ function product(pname ,pay, product_no){
         alert(msg); 
 	});
 }
-
-
 </script>
-<body>  
-<input type="button" value="30일권" onclick="product('30일권',100, 1)"/><br>
-<input type="button" value="60일권" onclick="product('60일권',200, 2)"/><br>
+
+<style>
+#pro{
+  float: left;
+  margin-right: 60px;
+  background-color: #fffafa;
+}
+
+</style>
+<body> 
+<div>
+<div>
+		<h1 style="color:#808080">안녕하세요 저희 Ladder Up를 이용해주셔서 감사합니다.</h1>
+		<h3 style="color:#808080">저희 사이트는 편입을 준비하는 대학생 여러분들을 위해 조금이라도 도움을 드리고자 개설하게 되었습니다.
+		감사합니다.</h3>
+		<br><br><br>
+</div>
+	<div id="pro" align="center" style="width:30%; height: 300px; border: 1px solid orange; border-radius: 2em;">
+		<h2>One Month Product</h2>
+		<p> 한달동안 메모장, 사전, 오답노트, 랜덤모의고사 등의 편의 기능들을 사용할수 있습니다.
+		</p>
+		<br>
+		<br>
+		<input type="button" value="One Month Product 구매하기" onclick="product('One Month',100, 1)" style="background-color: #ffe6e6;"/>
+	</div>
+	
+	<div id="pro" align="center" style="width:30%; height: 300px; border: 1px solid orange; border-radius: 2em;">
+	<h2>three Month Product</h2>
+	<p> 3달동안 메모장, 사전, 오답노트, 랜덤모의고사 등의 편의 기능들을 사용할수 있습니다.
+	</p>
+	<br>
+	<br>
+	<input type="button" value="three Month Product 구매하기" onclick="product('three Month',200, 2)" style="background-color: #ffe6e6;"/>
+	</div>
+</div> 
+	<br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br>
+	<p style="color:#808080">정기결제 특성상 환불은 특별한 사유가 있을시 관리자 확인후 관리자에 의해 환불됨을 알려드립니다.</p>
+
+
 </body>
 </html>
