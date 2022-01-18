@@ -7,7 +7,6 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-
 <script>
   /*
 	function cancelPay() {
@@ -48,7 +47,7 @@
 		 function cancelPay(){
 			 var a = prompt('환불 할 사용자 번호를 입력해주세요.');
 					$.ajax({
-						type : 'POST',
+						type : 'GET',
 						url : 'cancelPay.do',
 						data : {
 							user_no : a,
@@ -100,11 +99,7 @@
         height: 40px; 
         line-height: 40px;
       }
-       .submit{
-       	width: 100px;
-        height: 50px;
-        float: right;
-      }	
+
       
 </style>
 <body>
@@ -114,7 +109,7 @@
         <ul class="">
             <li>
                 <ul class="">
-            	    <li>사용자 번호</li>
+            	    <li>이름</li>
                     <li>계정</li>
                     <li>상품</li>
                     <li>금액</li>
@@ -130,7 +125,7 @@
             <li>
                 <ul class="">
                 	<c:forEach var="vo" items="${data}">
-                	<li>${vo.user_no }</li>
+                	<li>${vo.pay_no }</li>
                     <li>${vo.user_email }</li>
                     <li>${vo.category }</li>
                     <li>${vo.price }</li>
@@ -154,14 +149,14 @@
                     <li>  </li> 
                     </c:if>
                     <c:if test="${vo.refund eq 1}">
-                    <li style="background-color: #f5f5dc">환불 요청</li> 
+                    <li><input class="submit" type="submit" value="환불 요청" id="cancelPay" onclick="location.href='cancelPay.do?user_no=${vo.user_no }&admin_no=${adminInfo.admin_no}'" ></li>
                     </c:if>
                     <c:if test="${vo.refund eq 2}">
                     <li>환불 완료</li> 
                     </c:if>
                     </c:forEach>
                 </ul>  
-                <input class="submit" type="submit" value="환불 요청" id="cancelPay" onclick="cancelPay()" size="2" >
+                ${pageArea }
             </li>
         </ul>
     </div>
