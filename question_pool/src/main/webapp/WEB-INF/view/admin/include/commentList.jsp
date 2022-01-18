@@ -22,7 +22,7 @@
 					            <td class="txt_l" style="text-align: left; width: 73%" >
 					                ${vo.content }                
 					            </td>
-					            <td class="writer">
+					            <td class="writer" style="width: 7%; text-align: center;">
 					            	<c:if test="${!empty vo.admin_no }">
 					                	${vo.admin_name }
 					                </c:if>
@@ -30,7 +30,7 @@
 					                	${vo.user_name }
 					                </c:if>
 					            </td>
-					            <td class="date" width="10%"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
+					            <td class="date" style="width: 11%; text-align: center;"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
 					            <c:if test="${(!empty userInfo && userInfo.user_no == vo.user_no) || (!empty adminInfo) }">            
 					            <td>            			                                   
 								  	<a class="btns" style="cursor:pointer;" href="javascript:goDel(${vo.c_no });"><strong>삭제</strong></a>

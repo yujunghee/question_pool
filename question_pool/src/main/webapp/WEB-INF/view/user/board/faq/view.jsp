@@ -11,22 +11,18 @@
 <input type="hidden" name="faq_no" value="${data.faq_no}">
 	<!-- canvas -->
 	<div id="canvas">
-		<!-- S T A R T :: headerArea-->
-		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
-		<!-- E N D :: headerArea--> 
-		
 		<!-- S T A R T :: containerArea-->
-		<div id="container">
+		<div id="container" style="width:100%;">
 			<div id="content">
 				<div class="con_tit">
-					<h2>FAQ - [상세]</h2>
+					<h2>FAQ - [상세페이지]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<colgroup>
 									<col width="10%" />
 									<col width="15%" />
@@ -45,7 +41,7 @@
 									<tr>
 										<th scope="row"><label for="">질문</label></th>
 										<td colspan="10">
-											${data.faq_title }
+											<strong>${data.faq_title }</strong>
 										</td>
 									</tr>
 									<tr>
@@ -54,15 +50,12 @@
 										<td colspan="10">											
 											${data.faq_content }
 										</td>
-									</tr>
+									</tr>									
 								</tbody>
-							</table>
+							</table>														
 							<div class="btn">
 								<div class="btnLeft">
 									<a class="btns" href="faq.do"><strong>목록</strong></a>
-								</div>
-								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="edit.do?faq_no=${data.faq_no }"><strong>수정</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

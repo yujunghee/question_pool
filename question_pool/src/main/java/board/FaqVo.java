@@ -8,7 +8,7 @@ import util.CommonVo;
 @Setter
 public class FaqVo extends CommonVo {
 	private int faq_no;
-	private int faq_division;
+	private String faq_division;
 	private String faq_title; 
 	private String faq_content;  
 	private int admin_no; 

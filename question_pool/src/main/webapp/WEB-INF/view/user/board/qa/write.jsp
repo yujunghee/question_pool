@@ -50,6 +50,17 @@
 								</colgroup>
 								<tbody>
 									<tr>
+										<th scope="row"><label for="">*분류</label></th>
+										<td colspan="10">
+											<select name="qa_division" style="height: 27px;">
+												<option value='편입'>편입</option>
+												<option value='문제'>문제</option>
+												<option value='결제'>결제</option>
+												<option value='기타'>기타</option>
+											</select>	
+										</td>
+									</tr>
+									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="10">
 											<input type="text" id="qa_title" name="qa_title" class="w100" title="제목을 입력해주세요" />	
