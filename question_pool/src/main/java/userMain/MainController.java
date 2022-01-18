@@ -19,22 +19,4 @@ public class MainController {
 		return "user/main/index";
 	}
 	
-	@RequestMapping("/user/myinfo/index.do")
-	public String myinfoIndex() {
-		return "user/myinfo/index";
-	}
-	@RequestMapping("/user/myinfo/myinfo.do")
-	public String myinfo() {
-		return "user/myinfo/myinfo";
-	}
-	
-	@RequestMapping("/user/mypage/index.do")
-	public String myPage() {
-		return "user/mypage/index";
-	}
-	
-	@RequestMapping("/user/mypage/myinfo.do")
-	public String myPageInfo() {
-		return "user/mypage/myinfo";
-	} 
 }
