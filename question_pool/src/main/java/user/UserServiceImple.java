@@ -118,4 +118,8 @@ public class UserServiceImple implements UserService {
 		return uv;
 	}
 	
+	@Override
+	public int mypageUpdate(UserVo vo) {
+		return userdao.mypageUpdate(vo);
+	}
 }
