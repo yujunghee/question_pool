@@ -302,7 +302,7 @@ function test() {
 <body>
 <div id="wrap">
 	<div id="header">
-		<h1><a href="<%=userUtil.Property.contextPath%>user/index.do">Ladder Up</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
+		<h1><a href="<%=userUtil.Property.contextPath%>/user/index.do">Ladder Up</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
 		<ul class="topmenu">
 			<c:if test="${empty userInfo }">
 			<li class="login"><a href="/question_pool/user/login.do">로그인</a></li>
