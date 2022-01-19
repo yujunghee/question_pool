@@ -21,4 +21,6 @@ public interface UserService {
 	int userCount(UserVo vo);
 	UserVo userEdit(int user_no);
 	int userUpdate(UserVo vo);
+	int mypageUpdate(UserVo vo);
+
 }

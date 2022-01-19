@@ -29,6 +29,8 @@
 		LIMIT ${startIdx},10
 	</select>
 	
+	<!-- //페이징처리 -->
+	
 	<insert id="noticeInsert" parameterType="board.NoticeVo">		
 		INSERT INTO notice (
 			notice_title, notice_content, notice_date, admin_no, notice_readcount, notice_file_org, notice_file_real 
@@ -142,6 +144,9 @@
 			</if>
 			<if test="searchType == 'user_name' ">
 				(SELECT user_name FROM user WHERE user_no=qa.user_no) LIKE '%${searchWord}%'
+			</if>			
+			<if test="qa_division != null and qa_division != '' ">
+				qa_division = "${qa_division}"
 			</if>
 			<if test="user_no > 0">
 				AND user_no = ${user_no}
@@ -161,15 +166,15 @@
 		, (SELECT COUNT(*) FROM comment WHERE qa_no=qa.qa_no) c_count
 		FROM qa
 		<include refid="boardWhere3"></include>
-		ORDER BY qa_date DESC
+		ORDER BY qa_no DESC
 		LIMIT ${startIdx},10
 	</select>
 	
 	<insert id="qaInsert" parameterType="board.QaVo">		
 		INSERT INTO qa (
-			qa_title, qa_content, qa_date, user_no, qa_readcount 
+			qa_division, qa_title, qa_content, qa_date, user_no, qa_readcount 
 			) VALUES (
-				#{qa_title}, #{qa_content}, NOW(), #{user_no}, #{qa_readcount}
+				#{qa_division}, #{qa_title}, #{qa_content}, NOW(), #{user_no}, #{qa_readcount}
 			) 
 	</insert>
 	
@@ -182,8 +187,9 @@
 	</update>
 	
 	<update id="qaUpdate" parameterType="board.QaVo">
-		UPDATE qa SET 
-			qa_title=#{qa_title} 
+		UPDATE qa SET
+			qa_division=#{qa_division} 
+			, qa_title=#{qa_title} 
 			, qa_content=#{qa_content}
 		WHERE qa_no = #{qa_no}
 	</update>
@@ -312,8 +318,9 @@
 	</select>
 	
 	<update id="faqUpdate" parameterType="board.FaqVo">
-		UPDATE faq SET 
-			faq_title=#{faq_title} 
+		UPDATE faq SET
+			faq_division=#{faq_division} 
+			, faq_title=#{faq_title} 
 			, faq_content=#{faq_content}
 		WHERE faq_no = #{faq_no}
 	</update>

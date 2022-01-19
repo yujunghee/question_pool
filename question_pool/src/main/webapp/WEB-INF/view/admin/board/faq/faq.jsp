@@ -98,10 +98,10 @@ function fn_paging(curPage){
 								</colgroup>
 								<thead>
 									<tr>										
-										<th scope="col" class="first"></th>
+										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk"/></th>
 										<th scope="col" style="width: 5%">번호</th>
 										<th scope="col" style="width: 10%">분류</th> 
-										<th scope="col" style="width: 85%">문의내용</th> 
+										<th scope="col" style="width: 85%">질문</th> 
 									</tr>
 								</thead>
 								<tbody>
@@ -117,7 +117,7 @@ function fn_paging(curPage){
 			                            <tr>
 			                            	<td scope="col" class="first"><input type="checkbox" name="RowCheck" value="${list.faq_no }"/></td>			                            	
 			                                <td>${list.faq_no }</td>
-			                                <td class="readcount">${list.faq_division }</td>
+			                                <td class="division">${list.faq_division }</td>
 			                                <td class="txt_l" onclick="location.href='view.do?faq_no=${list.faq_no }'" style="cursor: pointer; text-align: left;">
 			                                    <a href="view.do?faq_no=${list.faq_no }">&nbsp;&nbsp; ${list.faq_title }</a>
 			                                </td>
@@ -146,7 +146,7 @@ function fn_paging(curPage){
 										<option value="faq_title" <c:if test="${param.searchType == 'faq_title'}">selected</c:if>>제목</option>
 										<option value="faq_content" <c:if test="${param.searchType == 'faq_content'}">selected</c:if>>내용</option>
 									</select>
-									<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />
+									<input type="text" name="searchWord" value="${param.searchWord }" title="검색어를 입력해주세요" value placeholder="검색어를 입력해주세요"/>
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
 								</div>
 							</form>

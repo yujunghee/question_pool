@@ -190,11 +190,14 @@
 	    	$("#frm").submit();
 	    }
 	</script>
+	<style>
+	</style>
 </head>
 <body>
     <div class="wrap">
         <div class="sub">
             <div class="size">
+         	   <div id = "imgdiv"><a href="/question_pool/user/index.do"><img src="../img/user/mainLogo.png"  height="15%" width="15%" style="margin-left: auto; margin-right: auto; display: block;"></a></div>
                 <h3 class="sub_title">Ladder Up</h3>
                 <form name="frm" id="frm" action="insert.do" method="post">
                 <table class="board_write">

@@ -4,10 +4,11 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+import util.CommonVo;
 
 @Getter
 @Setter
-public class PayVo {
+public class PayVo extends CommonVo {
 
 	private int admin_no;
 	private String user_name;
@@ -21,6 +22,7 @@ public class PayVo {
 	private int product_no;
 	private String merchant_id;
 	private String pay_id;
+	private int pay_no;
 	
 
 }

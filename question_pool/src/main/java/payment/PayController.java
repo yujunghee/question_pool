@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import admin.AdminVo;
+import board.NoticeVo;
+import util.Pagination;
 
 
 
@@ -22,22 +24,28 @@ public class PayController {
 	PayService payService;
 	
 	@RequestMapping("/admin/payment/pay.do")
-	public String view(Model model,PayVo vo,HttpServletRequest req, HttpSession sess) throws Exception {
+	public String payment(Model model,PayVo vo,HttpServletRequest req, HttpSession sess) throws Exception {
 		vo.setAdmin_no(((AdminVo)sess.getAttribute("adminInfo")).getAdmin_no());
+
+		
+		
+		int totCount = payService.payCount(vo);
+		int totPage = totCount / 10; //총페이지수 
+		if(totCount % 10 > 0) totPage++;
+		
+		int startIdx = (vo.getPage()-1)*10;
+		vo.setStartIdx(startIdx);	
+		
 		List<PayVo> list = payService.paymentUser(vo);
 		model.addAttribute("data",list);
-//		HttpURLConnection conn = null;
-//		String access_token = null;
-//		URL url = new URL("https://api.iamport.kr/users/getToken");
-//		conn = (HttpURLConnection)url.openConnection();
-//		conn.setRequestProperty("Content-Type", "application/json");
-//		conn.setRequestProperty("Accept", "application/json");
-//		conn.setDoOutput(true);
-//		JSONObject obj = new JSONObject();	
+		model.addAttribute("totPage",totPage);
+		model.addAttribute("totCount",totCount);
+		model.addAttribute("pageArea",Pagination.getPageArea("pay.do", vo.getPage(), totPage, 10));			
+		
 		return "admin/payment/pay";
 	}
 	
-	@PostMapping("/admin/payment/cancelPay.do")
+	@RequestMapping("/admin/payment/cancelPay.do")
 	public String cancelPay(Model model, PayVo vo, HttpServletRequest req) {
 		int r = payService.cancelPay(vo);
 		if(r > 0) {

@@ -9,13 +9,45 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <style>
 .submit {
-	border: 1x solid #ff0080; /*---테두리 정의---*/
-	background-Color: #c0c0c0; /*--백그라운드 정의---*/
-	font: 12px 굴림; /*--폰트 정의---*/
-	font-weight: bold; /*--폰트 굵기---*/
-	color: #000000; /*--폰트 색깔---*/
-	width: 130;
-	height: 30; /*--버튼 크기---*/
+  width: 180px;
+  height: 55px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 800;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin: auto;
+  display: block;
+  }
+
+.submit:hover {
+  background-color: #ff0000;
+  box-shadow: 0px 15px 20px rgba(255, 216, 216, 1);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.subcon{
+  padding: 10px;
+}
+
+.examples:hover{
+	color: #ff9900;
+	font-weight: bold;
+}
+
+.qcon{
+	padding-bottom: 10px;
+	font-size: 15px;
+	font-weight: bold;
 }
 </style>
 <script>
@@ -34,9 +66,9 @@
 	$(function() {
 		$(".example").click(function() {
 			if ($(this).prop("checked")) {
-				var idx = $(this).parent().find(".example").index(this);
-				$(this).parent().find(".example").prop("checked",false);
-				$(this).parent().find(".example").eq(idx).prop("checked",true);
+				var idx = $(this).parent().parent().find(".example").index(this);
+				$(this).parent().parent().find(".example").prop("checked",false);
+				$(this).parent().parent().find(".example").eq(idx).prop("checked",true);
 			}
 		})
 	})
@@ -44,60 +76,45 @@
 </head>
 <body> 
 <div id="wrap">
-	<!-- canvas -->
 	<div id="canvas">
-		<!-- S T A R T :: headerArea-->
-		<!-- E N D :: headerArea--> 
-		<!-- S T A R T :: containerArea-->
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
 					<h2>[${school.school_name} ${exam.year}년도 ${exam.semester}학기] - 총 ${exam.number_of_questions}문항/${exam.exam_time}분</h2>
 					<input type="hidden" value="${userInfo.user_no}">
 				</div>
-				<!-- //con_tit -->
 				<div class="con">
-					<!-- 내용 : s -->
 					<div id="bbs">
-						<div id="bread">
-						<form method="post" name="frm" id="frm" action="insert.do?exam_no=${exam.exam_no}" enctype="multipart/form-data" onsubmit="return conf();">
-							<c:forEach var="qv" items="${qlist}" varStatus="status">
-							<input type="hidden" value="${qv.question_no}">
-								<p>${qv.passage }</p><br>
+						<div id="question">
+							<form method="post" name="frm" id="frm" action="insert.do?exam_no=${exam.exam_no}" enctype="multipart/form-data" onsubmit="return conf();">
+								<c:forEach var="qv" items="${qlist}" varStatus="status">
+								<input type="hidden" value="${qv.question_no}">
+									<div class="passage">${qv.passage }</div>
+									
+									<c:set var="string" value="${qv.question_content}"/>
+									<c:set var="string1" value="${fn:replace(string,'#','<u>')}"/>
+									<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
+									
+									<div class="subcon">
+										<div class="qcon">${status.count}. ${string2}</div>
+											<c:forEach var="ev" items="${qv.ex}" varStatus="status">
+												<div class="examples">
+													<input type="checkbox" class="example" name="example" value="${ex[status.index]}">&nbsp;
+														(${ev.example}) ${ev.example_content}
+												</div>
+											</c:forEach>
+									</div>
+								<br><br>
+								</c:forEach>
 								
-								<c:set var="string" value="${qv.question_content}"/>
-								<c:set var="string1" value="${fn:replace(string,'#','<u>')}"/>
-								<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
-								
-								<div class="chk">
-									<h1 style="width:500px;">${status.count}. ${string2}</h1>
-								
-									<c:forEach var="ev" items="${qv.ex}" varStatus="status">
-									<input type="checkbox" class="example" name="example" value="${ex[status.index]}">&nbsp;
-										(${ev.example}) ${ev.example_content}<br>
-									</c:forEach>
-								</div>
-							<br><br>
-							</c:forEach>
-							
-							<input type="submit" class="submit" value="채점하기">
-						</form>
-							<!--//btn-->
+								<input type="submit" class="submit" value="제출하기">
+							</form>
 						</div>
-						<!-- //bread -->
 					</div>
-					<!-- //bbs --> 
-					<!-- 내용 : e -->
 				</div>
-				<!--//con -->
 			</div>
-			<!--//content -->
 		</div>
-		<!--//container --> 
-		<!-- E N D :: containerArea-->
 	</div>
-	<!--//canvas -->
 </div>
-<!--//wrap -->
 </body>
 </html>

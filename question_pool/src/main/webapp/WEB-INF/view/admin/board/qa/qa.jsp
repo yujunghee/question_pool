@@ -152,7 +152,7 @@ function fn_paging(curPage){
 										<option value="qa_content" <c:if test="${param.searchType == 'qa_content'}">selected</c:if>>내용</option>
 										<option value="user_name" <c:if test="${param.searchType == 'user_name'}">selected</c:if>>작성자</option>
 									</select>
-									<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />
+									<input type="text" name="searchWord" value="${param.searchWord }" title="검색어를 입력해주세요" value placeholder="검색어를 입력해주세요"/>
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
 								</div>
 							</form>

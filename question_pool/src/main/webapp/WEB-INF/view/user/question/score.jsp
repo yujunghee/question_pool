@@ -11,6 +11,11 @@
 <style>
 h1{font-size:250%;}
 h2{font-size:150%;}
+.score{
+	text-align:center;
+	border: solid;
+	border-style:double;
+}
 </style>
 <body> 
 <div id="wrap">
@@ -29,8 +34,9 @@ h2{font-size:150%;}
 					<div id="bbs">
 						<div id="bread">
 						<form method="post" name="frm" id="frm" action="score.do" enctype="multipart/form-data">
-						<h1 style="color:red;"> 총 ${exam.number_of_questions}문제 중 맞은 문제 ${cnt}개</h1><br><hr>
-							
+						<div class="score">
+							<h1 style="color:red;"> 총 ${exam.number_of_questions}문제 중 맞은 문제 ${cnt}개</h1>
+						</div>
 							<h2>[해설보기]</h2>
 							<c:forEach var="qv" items="${qlist}" varStatus="status">
 							<input type="hidden" value="${qv.question_no}">

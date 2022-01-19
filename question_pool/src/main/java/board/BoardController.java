@@ -39,8 +39,7 @@ public class BoardController {
 // ----------------------------- 공지사항 영역 시작 -----------------------------
 	
 	@GetMapping("/admin/board/notice/notice.do")
-	public String noticeList(Model model, HttpServletRequest req, NoticeVo vo) throws Exception{
-			
+	public String noticeList(Model model, HttpServletRequest req, NoticeVo vo) throws Exception{			
 			int totCount = boardService.noticeCount(vo);
 			int totPage = totCount / 10; //총페이지수 
 			if(totCount % 10 > 0) totPage++;
@@ -57,8 +56,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/user/board/notice/notice.do")
-	public String UserNoticeList(Model model, HttpServletRequest req, NoticeVo vo) throws Exception{
-			
+	public String UserNoticeList(Model model, HttpServletRequest req, NoticeVo vo) throws Exception{			
 			int totCount = boardService.noticeCount(vo);
 			int totPage = totCount / 10; //총페이지수 
 			if(totCount % 10 > 0) totPage++;

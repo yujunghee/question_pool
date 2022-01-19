@@ -101,4 +101,9 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.selectAQlist(av);
 	}
 
+	@Override
+	public List<QuestionVo> randomQuestion(int school_no) {
+		return dao.randomQuestion(school_no);
+	}
+
 }

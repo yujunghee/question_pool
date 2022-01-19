@@ -331,6 +331,7 @@ public class QuestionController {
 	public String note() {
 		return "user/question/study/note";
 	}
+	
 	//랜덤모의고사 학교선택페이지
 	@RequestMapping("user/question/random.do")
 	public String randomschool(SchoolVo vo, Model model) {
@@ -339,6 +340,36 @@ public class QuestionController {
 		return "user/question/study/school";
 	}
 	
+	//랜덤모의고사 페이지
+	@RequestMapping("/user/question/randomIndex.do")
+	public String randomQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int school_no) {
+		model.addAttribute("school", schoolService.selectSchool(school_no));
+		
+		List<QuestionVo> qlist = questionService.randomQuestion(school_no);
+		System.out.println(qlist.size());
+		
+		for(int i=0; i<5; i++) {
+			if(qlist.get(i).getQuestion_ref() != null) {
+				int ref = qlist.get(i).getQuestion_ref();
+				qlist.add(i, questionService.selectQuestion(ref));
+				System.out.println(qlist.get(i).getQuestion_no());
+			}
+		}
+		
+		List<ExampleVo> list = questionService.selectExamplelist(ev);
+	
+		for(int i=0; i<qlist.size(); i++) {
+			List<ExampleVo> elist = new ArrayList<ExampleVo>();
+			for(int j=0; j<list.size(); j++) {
+				if(qlist.get(i).getQuestion_no() == list.get(j).getQuestion_no()) {
+					elist.add(list.get(j));
+				}
+			}
+			qlist.get(i).setEx(elist);
+		}
+		model.addAttribute("qlist", qlist);
+		return "user/question/study/random";
+	}
 	
 	
 	@RequestMapping("/user/question/showmetheyear.do")

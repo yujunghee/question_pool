@@ -59,6 +59,14 @@
 			<bean class="util.LoginInterceptor"/>
 	</mvc:interceptor>
 	</mvc:interceptors>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+					<mvc:mapping path="/user/payment/*"/>
+					<mvc:exclude-mapping path="/user/login.do"/>
+					<bean class="util.UserLoginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 	<!-- 정적페이지 -->
 
 </beans>

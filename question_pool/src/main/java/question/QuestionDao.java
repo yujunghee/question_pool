@@ -101,6 +101,7 @@ public class QuestionDao {
 	public QuestionVo selectExam(int exam_no) {
 		return sqlSessionTemplate.selectOne("question.selectExam", exam_no);
 	}
+	
 
 	//////////////////////////////////// USER////////////////////////////////////////
 
@@ -110,5 +111,9 @@ public class QuestionDao {
 	
 	public List<AnsweredQuestionVo> selectAQlist(AnsweredQuestionVo av){
 		return sqlSessionTemplate.selectList("question.selectAQlist",av);
+	}
+	
+	public List<QuestionVo> randomQuestion(int school_no) {
+		return sqlSessionTemplate.selectList("question.randomQuestion",school_no);
 	}
 }

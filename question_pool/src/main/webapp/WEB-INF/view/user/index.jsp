@@ -360,8 +360,8 @@ function test() {
 					<dt id="front" class="gnb_menu">문제풀기</dt>
 					<dd class="gnb_submenu">
 						<ul>	
-							<li id="front1_submenu" onclick="clickMenu('front1', 'HTML', '/user/question/pool.do', false)">문제풀기</li>
-							<li id="front2_submenu" onclick="clickMenu('front2', 'CSS', '/user/question/record.do', false)">점수내역</li>
+							<li id="front1_submenu" onclick="clickMenu('front1', '문제풀기', '/user/question/pool.do', false)">문제풀기</li>
+							<li id="front2_submenu" onclick="clickMenu('front2', '점수내역', '/user/question/record.do', false)">점수내역</li>
 						</ul>
 					</dd>
 					<dt id="project" class="gnb_menu">결제</dt>
@@ -378,23 +378,6 @@ function test() {
 							<li id="back1_submenu" onclick="clickMenu('back1', '랜덤 모의고사', '/user/question/random.do', false)">랜덤 모의고사</li>
 							<li id="back2_submenu" onclick="clickMenu('back2', '오답노트', '/user/question/note.do', false)">오답노트</li>
 							<li id="back3_submenu" onclick="clickMenu('back3', '단어장', '/back/spring.do', false)">단어장</li>
-						</ul>
-					</dd>
-					<dt id="back" class="gnb_menu">Back-End</dt>
-					<dd class="gnb_submenu">
-						<ul>	
-							<li id="back1_submenu" onclick="clickMenu('back1', 'Java', '/back/java.do', false)">Java</li>
-							<li id="back2_submenu" onclick="clickMenu('back2', 'Servlet/JSP', '/back/jsp.do', false)">Servlet/JSP</li>
-							<li id="back3_submenu" onclick="clickMenu('back3', 'Spring', '/back/spring.do', false)">Spring</li>
-							<li id="back4_submenu" onclick="clickMenu('back4', 'DB', '/back/db.do', false)">DB</li>
-						</ul>
-					</dd>
-					<dt id="bigdata" class="gnb_menu">BigData</dt>
-					<dd class="gnb_submenu">
-						<ul>	
-							<li id="bigdata1_submenu" onclick="clickMenu('bigdata1', 'BigData', '/bigdata/bigdata.do', false)">BigData</li>
-							<li id="bigdata2_submenu" onclick="clickMenu('bigdata2', 'Hadoop', '/bigdata/hadoop.do', false)">Hadoop</li>
-							<li id="bigdata3_submenu" onclick="clickMenu('bigdata3', '데이터분석', '/bigdata/analysis.do', false)">데이터분석</li>
 						</ul>
 					</dd>
 					<dt id="portfolio" class="gnb_menu">커뮤니티</dt>

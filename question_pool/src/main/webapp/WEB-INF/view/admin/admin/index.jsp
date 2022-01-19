@@ -26,6 +26,7 @@ $(function(){  // 전체 체크버튼
 		}
 	});
 });
+
 function del(){  // 단일 및 다중선택 후 삭제 가능하도록 배열 처리
 	var url = "delete.do";    // Controller로 보내고자 하는 URL (.dh부분은 자신이 설정한 값으로 변경해야됨)
 	var valueArr = new Array();
