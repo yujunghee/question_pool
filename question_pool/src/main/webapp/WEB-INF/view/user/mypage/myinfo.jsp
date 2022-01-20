@@ -107,10 +107,7 @@
                             <tr>
                                 <th>비밀번호</th>
                                 <td>
-                                <!-- 
-                                <input type="password" name="user_pwd" id="user_pwd" readonly value="${userInfo.user_pwd }" class="inNextBtn" style="float:left;">
-                                 -->
-                                <a href="javascript:enableTxt()" class="btn bgGray" style="float:left; width:auto; clear:none;" onclick="document.getElementById('user_pwd').value = ''">변경</a>                           		
+                                	<a href="mypwd.do" class="btn bgGray" style="float:left; width:auto; clear:none;">변경</a>                           		
                            		</td>
                             </tr>
                             <tr>
@@ -149,7 +146,7 @@
                     </form>
                     <div class="btnSet clear">
                         <div><a href="javascript:goSave();" class="btn"><strong>수정</strong></a>                     
-                        <a href="myinfoDelChk.do" class="btn">탈퇴</a></div>
+                        <a href="mydelchk.do" class="btn">탈퇴</a></div>
                     </div>
                 </div>
             </div>

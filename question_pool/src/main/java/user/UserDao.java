@@ -70,4 +70,8 @@ public class UserDao {
 	public int mypageUpdate(UserVo vo) {
 		return sst.update("user.mypageUpdate", vo);
 	}
+	
+	public int mypageDelete(int user_no) {		
+		return sst.delete("user.mypagedelete", user_no); 
+	}
 }

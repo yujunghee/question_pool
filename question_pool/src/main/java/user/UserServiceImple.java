@@ -122,4 +122,8 @@ public class UserServiceImple implements UserService {
 	public int mypageUpdate(UserVo vo) {
 		return userdao.mypageUpdate(vo);
 	}
+	
+	public int mypageDelete(int user_no) {
+		return userdao.mypageDelete(user_no);
+	}
 }

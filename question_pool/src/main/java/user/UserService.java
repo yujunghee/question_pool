@@ -22,5 +22,7 @@ public interface UserService {
 	UserVo userEdit(int user_no);
 	int userUpdate(UserVo vo);
 	int mypageUpdate(UserVo vo);
+	int mypageDelete(int user_no);
+	
 
 }
