@@ -16,7 +16,11 @@
 		<div id="container" style="width:100%;">
 			<div id="content">
 				<div class="pageTitle">
-					<h2>시험일정</h2>
+					<h2>시험일정</h2><br><br>  
+					<h3>
+						[Ladder Up]에서 알려 드립니다. <br> 
+						각 대학들의 시험일정을 확인해 보세요.
+					</h3>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">

@@ -344,8 +344,8 @@ function test() {
 						<dd class="frist"><a href="javascript:;" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio2', '시험일정', '/user/board/testdate/testdate.do', false)">시험일정</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'Q&A', '/user/board/qa/qa.do', false)">Q&A</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'FAQ', '/user/board/faq/faq.do', false)">FAQ</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio4', '자유게시판', '/user/board/community/community.do', false)">자유게시판</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('portfolio4', 'FAQ', '/user/board/faq/faq.do', false)">FAQ</a></dd>
+						<dd class="last"><a href="javascript:;" onclick="clickMenu('portfolio5', '자유게시판', '/user/board/community/community.do', false)">자유게시판</a></dd>
 					</dl>
 				</div>
 			</div>
@@ -386,8 +386,8 @@ function test() {
 							<li id="portfolio1_submenu" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</li>
 							<li id="portfolio2_submenu" onclick="clickMenu('portfolio2', '시험일정', '/user/board/testdate/testdate.do', false)">시험일정</li>
 							<li id="portfolio3_submenu" onclick="clickMenu('portfolio3', 'Q&A', '/user/board/qa/qa.do', false)">Q&A</li>
-							<li id="portfolio3_submenu" onclick="clickMenu('portfolio3', 'FAQ', '/user/board/faq/faq.do', false)">FAQ</li>
-							<li id="portfolio4_submenu" onclick="clickMenu('portfolio4', '자유게시판', '/user/board/community/community.do', false)">자유게시판</li>
+							<li id="portfolio4_submenu" onclick="clickMenu('portfolio4', 'FAQ', '/user/board/faq/faq.do', false)">FAQ</li>
+							<li id="portfolio5_submenu" onclick="clickMenu('portfolio5', '자유게시판', '/user/board/community/community.do', false)">자유게시판</li>
 						</ul>
 					</dd>
 				</dl>

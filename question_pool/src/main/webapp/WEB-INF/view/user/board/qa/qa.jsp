@@ -21,14 +21,22 @@ function division(){
 		<div id="container" style="width:100%;">
 			<div id="content">
 				<div class="pageTitle">
-					<h2>Q&A</h2>
+					<h2>Q&A</h2><br><br>  
+					<h3>
+						[Ladder Up] 고객님의 의견 수렴과 궁금하신 사항을 질문하는 공간입니다. <br> 등록 전에 'FAQ'를 참고해 주시기 바랍니다.						
+					</h3><br>
+					<div class="btn">
+						<div class="writebtn">
+							<a class="wbtn" href="../faq/faq.do"><strong>FAQ 바로가기</strong> </a>
+						</div>
+					</div>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
-					<div class="bbs">
+					<div class="bbs">					
 						<div class="list">							
-								<div class="search">
+								<div class="search" style="padding: 10;">
 									<form name="divisionfrm" id="divisionfrm" action="qa.do"  method="get">									
 									<select name="qa_division" id="qa_division" style="float: left; border: solid 1.5px;" onchange="division()">
 										<option value=''>전체</option>
@@ -49,9 +57,9 @@ function division(){
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
 									</form>
 								</div>							
-							<p><span><strong>총 ${totCount }개</strong>  |  ${qaVo.page }/${totPage }페이지</span></p>							
+							<p style="padding-top: 20px"><span><strong>총 ${totCount }개</strong>  |  ${qaVo.page }/${totPage }페이지</span></p>							
 							<form name="frm" id="frm" action="process.do" method="post">
-							<table width="100%"  cellspacing="0" cellpadding="0">
+							<table width="100%";  cellspacing="0"; cellpadding="0">
 								<colgroup>
 									<col class="w3"/>
 									<col class="w4"/>
