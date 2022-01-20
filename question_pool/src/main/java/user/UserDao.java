@@ -76,7 +76,12 @@ public class UserDao {
 		return sst.update("user.mypageUpdate", vo);
 	}
 	
+
+	public int mypageDelete(int user_no) {		
+		return sst.delete("user.mypagedelete", user_no); 
+
 	public List<ExamVo> myExamlist(int user_no){
 		return sst.selectList("user.myExamlist",user_no);
+
 	}
 }

@@ -130,9 +130,14 @@ public class UserServiceImple implements UserService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public int mypageDelete(int user_no) {
+		return userdao.mypageDelete(user_no);
+	}
+
 	@Override
 	public List<ExamVo> myExamlist(int user_no) {
 		return userdao.myExamlist(user_no);
 	}
-	
+
 }

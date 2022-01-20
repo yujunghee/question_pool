@@ -14,10 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import board.BoardService;
-import board.NoticeVo;
-import question.ExamVo;
-import school.SchoolService;
 import util.Pagination;
 
 @Controller
@@ -175,10 +171,10 @@ public class UserController {
 		int res = userservice.userUpdate(vo);
 		if (res > 0) {
 			model.addAttribute("msg", "정상적으로 수정되었습니다.");
-			model.addAttribute("url", "view.do?user_no="+vo.getUser_no()); // 성공했을때 상세페이지로 이동
+			model.addAttribute("url", "view.do?user_no="+vo.getUser_no()); 
 		} else {
 			model.addAttribute("msg", "수정 오류");
-			model.addAttribute("url", "edit.do?user_no="+vo.getUser_no()); // 실패했을때 수정페이지로 이동
+			model.addAttribute("url", "edit.do?user_no="+vo.getUser_no()); 
 		}
 		return "admin/include/return";
 	}
@@ -199,7 +195,7 @@ public class UserController {
 		int res = userservice.userUpdate(vo);
 		if (res > 0) {
 			model.addAttribute("msg", "정상적으로 수정되었습니다.");
-			model.addAttribute("url", "/user/mypage/index.do"); 
+			model.addAttribute("url", "index.do"); 
 		} else {
 			model.addAttribute("msg", "수정 오류");
 			model.addAttribute("url", "myinfo.do?user_no="+vo.getUser_no()); 
@@ -207,6 +203,23 @@ public class UserController {
 		return "user/include/return";
 	}
 	
+
+	@GetMapping("/user/mypage/mypwd.do")
+	public String updatePwd() {
+		return "user/mypage/myPwd";
+	}
+	
+	@GetMapping("/user/mypage/mydelchk.do")
+	public String myDelChk() {
+		return "user/mypage/myinfoDelChk";
+	}
+	
+	@GetMapping("/user/mypage/delete.do")
+	public String mypageDelete(Model model, UserVo vo) {
+		model.addAttribute("result", userservice.mypageDelete(vo.getUser_no()));
+		return "user/include/result";
+	}
+
 	@RequestMapping("/user/mypage/myExams.do")
 	public String myExams(UserVo vo, Model model) {
 		List<ExamVo> elist = userservice.myExamlist(vo.getUser_no());
@@ -217,4 +230,5 @@ public class UserController {
 		return "user/mypage/myExams";
 	}
 	
+
 }
