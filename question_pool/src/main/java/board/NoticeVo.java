@@ -1,7 +1,6 @@
 package board;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -117,5 +117,10 @@ public class UserServiceImple implements UserService {
 		}
 		return uv;
 	}
+	@Override
+	public int mypageUpdate(UserVo vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

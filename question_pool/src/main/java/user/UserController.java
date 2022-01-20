@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import board.BoardService;
+import board.NoticeVo;
 import util.Pagination;
 
 @Controller
@@ -21,6 +23,9 @@ public class UserController {
 
 	@Autowired
 	UserService userservice;
+	@Autowired
+	BoardService boardService;
+	
 	
 	@GetMapping("/user/login.do")
 	public String userlogin() {
@@ -31,7 +36,19 @@ public class UserController {
 		return "user/login/join";
 	}
 	@GetMapping("/user/index.do")
-	public String usermainpage() {
+	public String usermainpage(Model model, HttpServletRequest req, NoticeVo vo) throws Exception{
+		int totCount = boardService.noticeCount(vo);
+		int totPage = totCount / 3; //총페이지수 
+		if(totCount % 10 > 0) totPage++;
+		
+		int startIdx = (vo.getPage()-1)*10;
+		vo.setStartIdx(startIdx);				 		
+		
+		List<NoticeVo> list = boardService.noticeList(vo);
+		model.addAttribute("list",list);
+		model.addAttribute("totPage",totPage);
+		model.addAttribute("totCount",totCount);
+		model.addAttribute("pageArea",Pagination.getPageArea("notice.do", vo.getPage(), totPage, 5));
 		return "user/index";
 	}	
 	
@@ -162,4 +179,30 @@ public class UserController {
 		}
 		return "admin/include/return";
 	}
+	
+	@GetMapping("/user/mypage/index.do")
+	public String mypageIndex() {
+		return "user/mypage/index";
+	}
+	
+	@GetMapping("/user/mypage/myinfo.do")
+	public String mypageMyinfo() {
+		return "user/mypage/myinfo";
+	}
+	
+	@PostMapping("/user/mypage/myinfoUpdate.do")
+	public String mypageUpdate(Model model, UserVo vo, HttpServletRequest req) {
+
+		int res = userservice.userUpdate(vo);
+		if (res > 0) {
+			model.addAttribute("msg", "정상적으로 수정되었습니다.");
+			model.addAttribute("url", "/user/mypage/index.do"); 
+		} else {
+			model.addAttribute("msg", "수정 오류");
+			model.addAttribute("url", "myinfo.do?user_no="+vo.getUser_no()); 
+		}
+		return "user/include/return";
+	}
+	
+	
 }

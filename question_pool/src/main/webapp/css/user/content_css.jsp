@@ -84,8 +84,9 @@
 
 <%-- ----------------------추가부분 ---------------------  --%>
 .bbs .list .search{position:relative; width:100%; margin:0px; padding:9px 0; text-align:center; vertical-align:middle; height:50px;}
-.bbs .list .search input{width:160px; height:28px; border:1px solid .cccccc; vertical-align:middle; display:inline;}
-.bbs .list .search select{width:115px; height:28px; border:1px solid .cccccc; font-size:12px; vertical-align:middle; color:.706a5f; margin:0 5px 0 0; display:inline;}
+.bbs .list .search input{width:400px; height:28px; border:1px solid .cccccc; vertical-align:middle; display:inline;}
+.bbs .list .search select{width:70px; height:28px; border:1px solid .cccccc; font-size:12px; vertical-align:middle; color:.706a5f; margin:0 5px 0 0; display:inline;}
+.bbs .list .search select option{width:100px; height:28px; border:1px solid .cccccc; font-size:12px; vertical-align:middle; color:.706a5f; margin:0 5px 0 0; display:inline;}
 .bbs .list .search .sbtn{position:relative; width:64px; height:23px; top:0px; *top:-2px; left:0px; border:none; vertical-align:bottom;}
 .bbs .list .search .clinicList{ display:inline;}
 .bbs .color .search select{width:115px; height:30px; border:1px solid .cccccc; font-size:12px; vertical-align:middle; color:.706a5f; margin:0; display:inline;}

@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import board.NoticeVo;
+
 
 
 @Service
@@ -24,6 +26,16 @@ public class PayServiceImple implements PayService{
 	@Override
 	public int cancelPay(PayVo vo) {
 		return payDao.cancelPay(vo);
+	}
+	
+	@Override
+	public int payCount(PayVo vo) {
+		return payDao.payCount(vo);
+	}
+	
+	@Override
+	public List<PayVo> payList(PayVo vo) {
+		return payDao.payList(vo);
 	}
 
 

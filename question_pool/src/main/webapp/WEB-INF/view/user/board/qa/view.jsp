@@ -47,6 +47,12 @@
 								</colgroup>
 								<tbody>
 									<tr>
+										<th scope="row"><label for="">분류</label></th>
+										<td colspan="10">
+											${data.qa_division}
+										</td>
+									</tr>
+									<tr>
 										<th scope="row"><label for="">제목</label></th>
 										<td colspan="10">
 											${data.qa_title }

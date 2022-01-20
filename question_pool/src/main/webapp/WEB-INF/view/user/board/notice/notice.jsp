@@ -55,11 +55,11 @@
 										<c:forEach var="list" items="${list }">                                    
 			                            <input type="hidden" name="notice_no" value="${list.notice_no }">
 			                            <input type="hidden" name="admin_no" value="${list.admin_no }">
-			                            <tr>			                            				                            	
+			                            <tr onclick="location.href='view.do?notice_no=${list.notice_no }'" style="cursor: pointer;">			                            				                            	
 			                                <td>${list.notice_no }</td>
-			                                <td class="txt_l" onclick="location.href='view.do?notice_no=${list.notice_no }'" style="cursor: pointer;">
-			                                    <a href="view.do?notice_no=${list.notice_no }">${list.notice_title }</a>
-			                                </td>
+			                                <td class="txt_l">
+			                                	<a href="view.do?notice_no=${list.notice_no }" style="font-size: 15px">${list.notice_title }</a>
+		                                	</td>
 			                                <td class="date"><fmt:formatDate value="${list.notice_date }" pattern="yyyy-MM-dd"/></td>			                                
 			                                <td class="writer">
 			                                    ${list.admin_name }
@@ -80,11 +80,11 @@
 							<form name="searchForm" id="searchForm" action="notice.do"  method="get" >
 								<div class="search">
 									<select name="searchType" title="검색을 선택해주세요">										
+										<option value="">전체</option>
 										<option value="notice_title" <c:if test="${param.searchType == 'notice_title'}">selected</c:if>>제목</option>
 										<option value="notice_content" <c:if test="${param.searchType == 'notice_content'}">selected</c:if>>내용</option>
-										<option value="">제목or내용</option>
 									</select>									
-									<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />
+									<input type="text" name="searchWord" value="${param.searchWord }" title="검색어를 입력해주세요" value placeholder="검색어를 입력해주세요"/>
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />									
 								</div>
 							</form>							

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -129,12 +131,27 @@ function goContainer() {
 					<div class="box notice">
 						<h2>공지사항</h2>
 						<ul>
-							<li style="text-align:center;">등록된 공지사항이 없습니다.</li>
-							<li><a href="javascript:;" onclick="parent.clickMenu('board1', '공지사항', '/board/notice/view.do?idx=');">AAA <span>2020-01-01</span></a></li>
-							<li><a href="javascript:;" onclick="parent.clickMenu('board1', '공지사항', '/board/notice/view.do?idx=');">AAA <span>2020-01-01</span></a></li>
-							<li><a href="javascript:;" onclick="parent.clickMenu('board1', '공지사항', '/board/notice/view.do?idx=');">AAA <span>2020-01-01</span></a></li>
-							<li><a href="javascript:;" onclick="parent.clickMenu('board1', '공지사항', '/board/notice/view.do?idx=');">AAA <span>2020-01-01</span></a></li>
-							<li><a href="javascript:;" onclick="parent.clickMenu('board1', '공지사항', '/board/notice/view.do?idx=');">AAA <span>2020-01-01</span></a></li>
+							<li>
+								<c:if test="${empty list }">
+		                            <tr>
+		                                <td class="first" colspan="8">등록된 글이 없습니다.</td>
+		                            </tr>
+								</c:if>
+							</li>
+							<li>
+								<c:if test="${!empty list }">
+									<c:forEach var="list" items="${list }">                                    
+			                            <input type="hidden" name="notice_no" value="${list.notice_no }">
+			                            <input type="hidden" name="admin_no" value="${list.admin_no }">
+			                            <tr>			                            				                            	
+			                                <td class="txt_l" onclick="location.href='/question_pool/user/notice/view.do?notice_no=${list.notice_no }" style="cursor: pointer;">
+			                                    <a href="/question_pool/user/notice/view.do?notice_no=${list.notice_no }">${list.notice_title }</a>
+			                                </td>
+			                                <td class="date"><fmt:formatDate value="${list.notice_date }" pattern="yyyy-MM-dd"/></td>			                                
+			                            </tr>
+		                            </c:forEach>
+		                         </c:if>
+	                         </li>
 						</ul>
 					</div>
 					<div class="box notice">

@@ -56,10 +56,10 @@
 										<th scope="row"><label for="">*분류</label></th>
 										<td colspan="10">
 											<select name="faq_division" style="height: 27px;" >
-												<option value=1>편입</option>
-												<option value=2>문제</option>
-												<option value=3>결제</option>
-												<option value=4>기타</option>
+												<option value='편입'>편입</option>
+												<option value='문제'>문제</option>
+												<option value='결제'>결제</option>
+												<option value='기타'>기타</option>
 											</select>	
 										</td>
 									</tr>
