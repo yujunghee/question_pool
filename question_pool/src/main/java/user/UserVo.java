@@ -20,4 +20,9 @@ public class UserVo extends CommonVo{
 	private String zipcode;
 	private String addr1;
 	private String addr2;
+	private int user_grade;
+	private int refund;
+	private Timestamp pay_date;
+	private int due_date;
+	private int product_no;
 }

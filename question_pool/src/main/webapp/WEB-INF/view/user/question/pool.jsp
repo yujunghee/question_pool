@@ -5,6 +5,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
 <style>
+.w-btn-outline:active {
+    transform: scale(1.5);
+}
+.w-btn-outline:hover {
+    letter-spacing: 2px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+.w-btn-outline {
+    position: relative;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.w-btn-indigo {
+    background-color: aliceblue;
+    color: #1e6b7b;
+}
+.w-btn-indigo-outline {
+    border: 3px solid aliceblue;
+    color: #1e6b7b;
+}
+
+.w-btn-indigo-outline:hover {
+    color: #1e6b7b;
+    background: aliceblue;
+}
 .submit {
 	border: 0.5px solid #ff0080; /*---테두리 정의---*/
 	background-Color: #AB9D9D; /*--백그라운드 정의---*/
@@ -31,6 +63,48 @@ h2::after {
   background-image: linear-gradient(to left, #00b0ff 0%, #00e676 100%);
 }
 
+ select {
+          justify-content: center;
+    display: flex;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #444;
+    background-color: #fff;
+    padding: 0.3em 1.4em 0.2em 0.8em;
+    margin: 0;
+    border: 1px solid #aaa;
+    border-radius: 0.5em;
+    box-shadow: 0 1px 0 1px rgb(0 0 0 / 4%);
+    align-items: center;
+    }
+
+    select:hover {
+      border-color: #888;
+    }
+
+    select:focus {
+      border-color: #aaa;
+      box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+      box-shadow: 0 0 0 3px -moz-mac-focusring;
+      color: #222;
+      outline: none;
+    }
+
+    select:disabled {
+      opacity: 0.5;
+    }
+
+    label {
+      font-family: "Noto Sans KR", sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: #444;
+      margin-right: 0.5em;
+    }
 </style>
 </head>
 <script>
@@ -98,11 +172,11 @@ function chk(){
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td colspan="3">
 				<form name="frm" id="frm" action="" onclick="return chk();" enctype="multipart/form-data">
 				<br/>
 				<br/>
-				<input type="button" value="문제 검색->" class="submit">
+				<input type="button" value="문제 검색->" class="w-btn-outline w-btn-indigo-outline">
 				</form>
 				</td>
 			</tr>

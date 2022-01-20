@@ -21,6 +21,10 @@ public class UserController {
 
 	@Autowired
 	UserService userservice;
+	@Autowired
+	BoardService boardService;
+	@Autowired
+	SchoolService schoolService;
 	
 	@GetMapping("/user/login.do")
 	public String userlogin() {
@@ -31,7 +35,19 @@ public class UserController {
 		return "user/login/join";
 	}
 	@GetMapping("/user/index.do")
-	public String usermainpage() {
+	public String usermainpage(Model model, HttpServletRequest req, NoticeVo vo) throws Exception{
+		int totCount = boardService.noticeCount(vo);
+		int totPage = totCount / 3; //총페이지수 
+		if(totCount % 10 > 0) totPage++;
+		
+		int startIdx = (vo.getPage()-1)*10;
+		vo.setStartIdx(startIdx);				 		
+		
+		List<NoticeVo> list = boardService.noticeList(vo);
+		model.addAttribute("list",list);
+		model.addAttribute("totPage",totPage);
+		model.addAttribute("totCount",totCount);
+		model.addAttribute("pageArea",Pagination.getPageArea("notice.do", vo.getPage(), totPage, 5));
 		return "user/index";
 	}	
 	
@@ -155,11 +171,64 @@ public class UserController {
 		int res = userservice.userUpdate(vo);
 		if (res > 0) {
 			model.addAttribute("msg", "정상적으로 수정되었습니다.");
-			model.addAttribute("url", "view.do?user_no="+vo.getUser_no()); // 성공했을때 상세페이지로 이동
+			model.addAttribute("url", "view.do?user_no="+vo.getUser_no()); 
 		} else {
 			model.addAttribute("msg", "수정 오류");
-			model.addAttribute("url", "edit.do?user_no="+vo.getUser_no()); // 실패했을때 수정페이지로 이동
+			model.addAttribute("url", "edit.do?user_no="+vo.getUser_no()); 
 		}
 		return "admin/include/return";
 	}
+	
+	@GetMapping("/user/mypage/index.do")
+	public String mypageIndex() {
+		return "user/mypage/index";
+	}
+	
+	@GetMapping("/user/mypage/myinfo.do")
+	public String mypageMyinfo() {
+		return "user/mypage/myinfo";
+	}
+	
+	@PostMapping("/user/mypage/myinfoUpdate.do")
+	public String mypageUpdate(Model model, UserVo vo, HttpServletRequest req) {
+
+		int res = userservice.userUpdate(vo);
+		if (res > 0) {
+			model.addAttribute("msg", "정상적으로 수정되었습니다.");
+			model.addAttribute("url", "index.do"); 
+		} else {
+			model.addAttribute("msg", "수정 오류");
+			model.addAttribute("url", "myinfo.do?user_no="+vo.getUser_no()); 
+		}
+		return "user/include/return";
+	}
+	
+
+	@GetMapping("/user/mypage/mypwd.do")
+	public String updatePwd() {
+		return "user/mypage/myPwd";
+	}
+	
+	@GetMapping("/user/mypage/mydelchk.do")
+	public String myDelChk() {
+		return "user/mypage/myinfoDelChk";
+	}
+	
+	@GetMapping("/user/mypage/delete.do")
+	public String mypageDelete(Model model, UserVo vo) {
+		model.addAttribute("result", userservice.mypageDelete(vo.getUser_no()));
+		return "user/include/result";
+	}
+
+	@RequestMapping("/user/mypage/myExams.do")
+	public String myExams(UserVo vo, Model model) {
+		List<ExamVo> elist = userservice.myExamlist(vo.getUser_no());
+		model.addAttribute("elist",elist);
+		for(int i=0; i<elist.size(); i++) {
+			elist.get(i).setSchool_name((schoolService.selectSchool(elist.get(i).getSchool_no())).getSchool_name());
+		}
+		return "user/mypage/myExams";
+	}
+	
+
 }

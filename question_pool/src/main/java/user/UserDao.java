@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import question.ExamVo;
+
 
 @Repository
 public class UserDao {
@@ -16,6 +18,9 @@ public class UserDao {
 	//로그인("namespace.id")
 	public UserVo login(UserVo vo) {
 		return sst.selectOne("user.login",vo);
+	}
+	public int dueDate(UserVo vo) {
+		return sst.update("user.dueDate", vo);
 	}
 
 	//이메일 중복체크
@@ -65,5 +70,18 @@ public class UserDao {
 	
 	public int userUpdate(UserVo vo) {
 		return sst.update("user.userUpdate", vo);
+	}
+
+	public int mypageUpdate(UserVo vo) {
+		return sst.update("user.mypageUpdate", vo);
+	}
+	
+
+	public int mypageDelete(int user_no) {		
+		return sst.delete("user.mypagedelete", user_no); 
+
+	public List<ExamVo> myExamlist(int user_no){
+		return sst.selectList("user.myExamlist",user_no);
+
 	}
 }

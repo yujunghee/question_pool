@@ -7,6 +7,15 @@
 <%@ include file="/WEB-INF/view/user/include/headHtml.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
+
+$(function(){
+	$('#wrap').ready(function(){
+		if('${userInfo.user_grade}'== 2){
+			alert('사용기간이 만료되었습니다. 다시 결재후 이용해주세요')
+		}
+	})
+})
+
 function directionTop() {
 	$('html, body').animate({scrollTop: 0 }, 'slow');
 }
@@ -302,7 +311,7 @@ function test() {
 <body>
 <div id="wrap">
 	<div id="header">
-		<h1><a href="<%=userUtil.Property.contextPath%>user/index.do">Ladder Up</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
+		<h1><a href="<%=userUtil.Property.contextPath%>/user/index.do">Ladder Up</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
 		<ul class="topmenu">
 			<c:if test="${empty userInfo }">
 			<li class="login"><a href="/question_pool/user/login.do">로그인</a></li>
@@ -310,7 +319,7 @@ function test() {
 			</c:if>
 			<c:if test="${!empty userInfo }">
 			<li class="login"><a href="/question_pool/user/logout.do">로그아웃</a></li>
-			<li class="signup"><a href="/question_pool/user/mypage/index.do">마이페이지</a></li>
+			<li class="mypage"><a href="javascript:;" onclick="clickMenu('main2', 'Mypage', '/user/mypage/index.do', false)" >마이페이지 (${userInfo.user_email})</a></li> 
 			</c:if>			
 			
 	
@@ -337,7 +346,7 @@ function test() {
 						<dt><a href="javascript:;">추가학습</a></dt>
 						<dd class="frist"><a href="javascript:;" onclick="clickMenu('back1', '랜덤 모의고사', '/user/question/random.do', false)">랜덤 모의고사</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('back2', '오답노트', '/user/question/note.do', false)">오답노트</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('back3', '단어장', '/back/spring.do', false)">단어장</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('back3', '단어장', '/user/question/study/word.do', false)">단어장</a></dd>
 					</dl>
 					<dl style="width:15.666%;">
 						<dt><a href="javascript:;">커뮤니티</a></dt>
@@ -377,7 +386,7 @@ function test() {
 						<ul>	
 							<li id="back1_submenu" onclick="clickMenu('back1', '랜덤 모의고사', '/user/question/random.do', false)">랜덤 모의고사</li>
 							<li id="back2_submenu" onclick="clickMenu('back2', '오답노트', '/user/question/note.do', false)">오답노트</li>
-							<li id="back3_submenu" onclick="clickMenu('back3', '단어장', '/back/spring.do', false)">단어장</li>
+							<li id="back3_submenu" onclick="clickMenu('back3', '단어장', '/user/question/study/word.do', false)">단어장</li>
 						</ul>
 					</dd>
 					<dt id="portfolio" class="gnb_menu">커뮤니티</dt>

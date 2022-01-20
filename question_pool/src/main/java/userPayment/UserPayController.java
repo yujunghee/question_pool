@@ -38,15 +38,10 @@ public class UserPayController {
 		return "user/payment/refund";
 	}
 	@PostMapping("/user/payment/refundUpdate.do")
-	public String update(Model model, UserPayVo vo, HttpServletRequest req) {
-		int r = payService.refundUpdate(vo);
-		if(r > 0) {
+	public String update(Model model, UserPayVo vo, HttpServletRequest req, HttpSession sess) {
+			payService.refundUpdate(vo, sess);
 			model.addAttribute("msg","환불 요청되었습니다.");
-			model.addAttribute("url","refund.do"); // 성공 했을때 상세페이지 이동 
-		}else {
-			model.addAttribute("msg","환불 요청 오류. 다시시도해주세요");
-			model.addAttribute("url","refund.do"); //실패했을때 수정페이지 이동 
-		}
+			model.addAttribute("url","refund.do");
 		return "user/include/return";
 	}
 		
