@@ -67,14 +67,16 @@
 				</div>
 			</div>
 			<div class="wid48 fl_r">
-				<div class="box notice" style="text-align: center;">
-				<span class="material-icons md-48"><br>format_list_numbered<br></span>								
-					<ul>
-						<li><h2>Exams</h2></li>
-						<li>내가 푼 문제</li>
-						<li>회원님께서 푸신 문제들을 조회하는 공간입니다.<br><br></li>
-					</ul>
-				</div>
+				<a href="myExams.do">
+					<div class="box notice" style="text-align: center;">
+					<span class="material-icons md-48"><br>format_list_numbered<br></span>								
+						<ul>
+							<li><h2>Exams</h2></li>
+							<li>내가 푼 문제</li>
+							<li>회원님께서 푸신 문제들을 조회하는 공간입니다.<br><br></li>
+						</ul>
+					</div>
+				</a>
 				<div class="box notice" style="text-align: center;">
 				<span class="material-icons md-48"><br>card_membership<br></span>
 					<ul>

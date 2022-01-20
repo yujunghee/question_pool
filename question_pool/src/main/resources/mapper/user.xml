@@ -78,4 +78,8 @@
 		UPDATE user SET user_pwd = md5(#{user_pwd}) WHERE user_email = #{user_email} AND user_name = #{user_name}
 	</update>
 	
+	
+	<select id="myExamlist" parameterType="int" resultType="question.ExamVo">
+		SELECT * FROM exam WHERE exam_no IN (SELECT exam_no FROM answered_question WHERE user_no=#{user_no} GROUP BY exam_no)
+	</select>
 </mapper>

@@ -35,12 +35,12 @@ h2{font-size:150%;}
 						<div id="bread">
 						<form method="post" name="frm" id="frm" action="score.do" enctype="multipart/form-data">
 						<div class="score">
-							<h1 style="color:red;">[SCORE] : 총 ${exam.number_of_questions}문제 중 맞은 문제 ${cnt}개</h1>
+							<h1>[SCORE] : 총 ${exam.number_of_questions}문제 중 맞은 문제 ${cnt}개</h1>
 						</div>
 							<br><br>
 							<h2>[해설보기]</h2>
 							<c:forEach var="qv" items="${qlist}" varStatus="status">
-							<div style="padding:10px;">
+							<div style="width:800px; padding:10px;">
 							<input type="hidden" value="${qv.question_no}">
 										<p>${qv.passage }</p><br>
 										
@@ -49,27 +49,24 @@ h2{font-size:150%;}
 										<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
 										
 										<c:if test="${alist[status.index].score eq 0}">
-											<div style="width:500px; color:red;">
+											<div style="color:red;">
 												<p>${status.count}. ${string2}</p>
 												<c:forEach var="ev" items="${qv.ex}">
 													(${ev.example}) ${ev.example_content}<br>
 												</c:forEach>
-												<p>[해설] ${qv.explanation}</p>
-												<p>내가 고른 답 : (${alist[status.index].user_answer})</p>
-												<p>정답 : (${qv.answer})</p>
 											</div>
 										</c:if>
 										<c:if test="${alist[status.index].score eq 1}">
-											<div style="width:500px">
+											<div>
 												<p>${status.count}. ${string2}</p>
 												<c:forEach var="ev" items="${qv.ex}">
 													(${ev.example}) ${ev.example_content}<br>
 												</c:forEach>
-												<p>[해설] ${qv.explanation}</p>
-												<p>내가 고른 답 : (${alist[status.index].user_answer})</p>
-												<p>정답 : (${qv.answer})</p>
 											</div>
 										</c:if>
+											<p>[해설] ${qv.explanation}</p>
+											<p>내가 고른 답 : (${alist[status.index].user_answer})</p>
+											<p>정답 : (${qv.answer})</p>
 							</div>
 							</c:forEach>
 						</form>

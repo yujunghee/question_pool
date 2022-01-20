@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import admin.AdminVo;
+import question.ExamVo;
 import util.SendMail;
 
 @Service
@@ -121,6 +122,10 @@ public class UserServiceImple implements UserService {
 	public int mypageUpdate(UserVo vo) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	@Override
+	public List<ExamVo> myExamlist(int user_no) {
+		return userdao.myExamlist(user_no);
 	}
 	
 }

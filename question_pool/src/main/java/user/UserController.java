@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import board.BoardService;
 import board.NoticeVo;
+import question.ExamVo;
+import school.SchoolService;
 import util.Pagination;
 
 @Controller
@@ -25,7 +27,8 @@ public class UserController {
 	UserService userservice;
 	@Autowired
 	BoardService boardService;
-	
+	@Autowired
+	SchoolService schoolService;
 	
 	@GetMapping("/user/login.do")
 	public String userlogin() {
@@ -204,5 +207,14 @@ public class UserController {
 		return "user/include/return";
 	}
 	
+	@RequestMapping("/user/mypage/myExams.do")
+	public String myExams(UserVo vo, Model model) {
+		List<ExamVo> elist = userservice.myExamlist(vo.getUser_no());
+		model.addAttribute("elist",elist);
+		for(int i=0; i<elist.size(); i++) {
+			elist.get(i).setSchool_name((schoolService.selectSchool(elist.get(i).getSchool_no())).getSchool_name());
+		}
+		return "user/mypage/myExams";
+	}
 	
 }

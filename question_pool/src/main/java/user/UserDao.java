@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import question.ExamVo;
+
 
 @Repository
 public class UserDao {
@@ -69,5 +71,9 @@ public class UserDao {
 
 	public int mypageUpdate(UserVo vo) {
 		return sst.update("user.mypageUpdate", vo);
+	}
+	
+	public List<ExamVo> myExamlist(int user_no){
+		return sst.selectList("user.myExamlist",user_no);
 	}
 }
