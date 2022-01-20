@@ -19,6 +19,9 @@ public class UserDao {
 	public UserVo login(UserVo vo) {
 		return sst.selectOne("user.login",vo);
 	}
+	public int dueDate(UserVo vo) {
+		return sst.update("user.dueDate", vo);
+	}
 
 	//이메일 중복체크
 	public int userEmailCheck(String email) {

@@ -17,7 +17,7 @@
 	</update>
 	
 	<update id="refundUpdate" parameterType="userPayment.UserPayVo">
-		UPDATE payment SET refund = 1, refund_reason = #{refund_reason} WHERE user_no = #{user_no} ORDER BY pay_date DESC limit 1
+		UPDATE payment SET refund = 1, refund_reason = #{refund_reason} WHERE refund = 0 AND user_no = #{user_no} ORDER BY pay_date DESC limit 1
 	</update>
 	
 	

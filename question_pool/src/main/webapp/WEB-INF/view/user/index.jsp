@@ -7,6 +7,15 @@
 <%@ include file="/WEB-INF/view/user/include/headHtml.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
+
+$(function(){
+	$('#wrap').ready(function(){
+		if('${userInfo.user_grade}'== 2){
+			alert('사용기간이 만료되었습니다. 다시 결재후 이용해주세요')
+		}
+	})
+})
+
 function directionTop() {
 	$('html, body').animate({scrollTop: 0 }, 'slow');
 }
