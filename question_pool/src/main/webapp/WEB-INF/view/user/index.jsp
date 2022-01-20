@@ -337,7 +337,7 @@ function test() {
 						<dt><a href="javascript:;">추가학습</a></dt>
 						<dd class="frist"><a href="javascript:;" onclick="clickMenu('back1', '랜덤 모의고사', '/user/question/random.do', false)">랜덤 모의고사</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('back2', '오답노트', '/user/question/note.do', false)">오답노트</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('back3', '단어장', '/back/spring.do', false)">단어장</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('back3', '단어장', '/user/question/study/word.do', false)">단어장</a></dd>
 					</dl>
 					<dl style="width:15.666%;">
 						<dt><a href="javascript:;">커뮤니티</a></dt>
@@ -377,7 +377,7 @@ function test() {
 						<ul>	
 							<li id="back1_submenu" onclick="clickMenu('back1', '랜덤 모의고사', '/user/question/random.do', false)">랜덤 모의고사</li>
 							<li id="back2_submenu" onclick="clickMenu('back2', '오답노트', '/user/question/note.do', false)">오답노트</li>
-							<li id="back3_submenu" onclick="clickMenu('back3', '단어장', '/back/spring.do', false)">단어장</li>
+							<li id="back3_submenu" onclick="clickMenu('back3', '단어장', '/user/question/study/word.do', false)">단어장</li>
 						</ul>
 					</dd>
 					<dt id="portfolio" class="gnb_menu">커뮤니티</dt>

@@ -339,7 +339,16 @@ public class QuestionController {
 		model.addAttribute("list", list);
 		return "user/question/study/school";
 	}
-	
+	//단어장
+	@RequestMapping("/user/question/study/word.do")
+	public String word() {
+		return "user/question/study/word";
+	}
+	//단어장
+	@RequestMapping("/user/question/study/result.do")
+	public String wordresult() {
+		return "user/question/study/result";
+	}
 	//랜덤모의고사 페이지
 	@RequestMapping("/user/question/randomIndex.do")
 	public String randomQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int school_no) {

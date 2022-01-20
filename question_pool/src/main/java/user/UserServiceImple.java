@@ -123,8 +123,4 @@ public class UserServiceImple implements UserService {
 		return 0;
 	}
 	
-	@Override
-	public int mypageUpdate(UserVo vo) {
-		return userdao.mypageUpdate(vo);
-	}
 }
