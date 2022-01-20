@@ -179,4 +179,28 @@ public class UserController {
 		}
 		return "admin/include/return";
 	}
+	
+	@GetMapping("/user/mypage/index.do")
+	public String mypageIndex() {
+		return "user/mypage/index";
+	}
+	
+	@GetMapping("/user/mypage/myinfo.do")
+	public String mypageMyinfo() {
+		return "user/mypage/myinfo";
+	}
+	
+	@PostMapping("/user/mypage/myinfoUpdate.do")
+	public String mypageUpdate(Model model, UserVo vo, HttpServletRequest req) {
+
+		int res = userservice.userUpdate(vo);
+		if (res > 0) {
+			model.addAttribute("msg", "정상적으로 수정되었습니다.");
+			model.addAttribute("url", "/user/mypage/index.do"); 
+		} else {
+			model.addAttribute("msg", "수정 오류");
+			model.addAttribute("url", "myinfo.do?user_no="+vo.getUser_no()); 
+		}
+		return "user/include/return";
+	}
 }

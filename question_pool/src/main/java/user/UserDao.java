@@ -66,4 +66,8 @@ public class UserDao {
 	public int userUpdate(UserVo vo) {
 		return sst.update("user.userUpdate", vo);
 	}
+
+	public int mypageUpdate(UserVo vo) {
+		return sst.update("user.mypageUpdate", vo);
+	}
 }
