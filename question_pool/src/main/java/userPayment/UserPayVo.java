@@ -5,10 +5,11 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+import user.UserVo;
 
 @Getter
 @Setter
-public class UserPayVo {
+public class UserPayVo extends UserVo {
 
 	private int user_no;
 	private String user_email;
@@ -23,6 +24,7 @@ public class UserPayVo {
 	private String pay_id;
 	private int product_no;
 	private String merchant_id;
+	
 	
 	
 	

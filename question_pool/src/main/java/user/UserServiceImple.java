@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import admin.AdminVo;
 import util.SendMail;
 
 @Service
@@ -20,8 +19,15 @@ public class UserServiceImple implements UserService {
 	@Override
 	public boolean login(UserVo vo, HttpSession sess) {
 		UserVo uv = userdao.login(vo);
-		if(uv!=null) {
+		if(uv != null) {
 			sess.setAttribute("userInfo", uv);
+			if(uv.getProduct_no() == 1 && uv.getDue_date() >= 30) {
+				userdao.dueDate(uv);
+				uv.setUser_grade(2);
+			}else if(uv.getProduct_no() == 2 && uv.getDue_date() >= 90) {
+				userdao.dueDate(uv);
+				uv.setUser_grade(2);
+			}
 			return true;
 		}
 		return false;
