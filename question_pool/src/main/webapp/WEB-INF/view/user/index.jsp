@@ -311,11 +311,12 @@ function test() {
 <body>
 <div id="wrap">
 	<div id="header">
-		<h1><a href="<%=userUtil.Property.contextPath%>/user/index.do">Ladder Up</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
+		<div id = "imgdiv"><a href="/question_pool/user/index.do"><img src="../img/user/mainLogo.png" height="4%" width="4%" style="margin-left: 20px; margin-right: auto; display: block;"></a></div>
+		<h1 style="margin-left: 80px; margin-right: auto;"><a href="<%=userUtil.Property.contextPath%>/user/index.do">Ladder Up</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
 		<ul class="topmenu">
 			<c:if test="${empty userInfo }">
-			<li class="login"><a href="/question_pool/user/login.do">로그인</a></li>
-			<li class="signup"><a href="/question_pool/user/join.do">회원가입</a></li>
+			<li class="login" style="font-weight: bold;"><a href="/question_pool/user/login.do">로그인</a></li>
+			<li class="signup" style="font-weight: bold;"><a href="/question_pool/user/join.do">회원가입</a></li>
 			</c:if>
 			<c:if test="${!empty userInfo }">
 			<li class="login"><a href="/question_pool/user/logout.do">로그아웃</a></li>
@@ -403,7 +404,7 @@ function test() {
 			</div>
 			<div class="menuclose" onclick="menuToggle();"><img src="<%=userUtil.Property.contextPath%>/img/menu_close.png" /></div>
 			<div class="copy">Copyright (C) 2022<br />
-				더조은종각4조 WebProject. 
+				더조은종각 4조 WebProject. 
 			</div>
 		</div>
 		<!--//menuWrap-->

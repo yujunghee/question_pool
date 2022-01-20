@@ -7,9 +7,9 @@
 <script>
 </script>
 </head>
-<body>																		
+<body>									
 										<table>
-											<thead >
+											<thead style="border-bottom: solid 1.5px;">
 												<tr class="txt_l">
 					                                <th style="font-size: 30px; padding: 5; color: #0043db;" >${data.faq_title }</th>
 			                                	</tr>
