@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import comment.CommentVo;
 import util.Pagination;
 
 @Controller
@@ -22,6 +21,10 @@ public class UserController {
 
 	@Autowired
 	UserService userservice;
+	@Autowired
+	BoardService boardService;
+	@Autowired
+	SchoolService schoolService;
 	
 	@GetMapping("/user/login.do")
 	public String userlogin() {
@@ -32,7 +35,19 @@ public class UserController {
 		return "user/login/join";
 	}
 	@GetMapping("/user/index.do")
-	public String usermainpage() {
+	public String usermainpage(Model model, HttpServletRequest req, NoticeVo vo) throws Exception{
+		int totCount = boardService.noticeCount(vo);
+		int totPage = totCount / 3; //총페이지수 
+		if(totCount % 10 > 0) totPage++;
+		
+		int startIdx = (vo.getPage()-1)*10;
+		vo.setStartIdx(startIdx);				 		
+		
+		List<NoticeVo> list = boardService.noticeList(vo);
+		model.addAttribute("list",list);
+		model.addAttribute("totPage",totPage);
+		model.addAttribute("totCount",totCount);
+		model.addAttribute("pageArea",Pagination.getPageArea("notice.do", vo.getPage(), totPage, 5));
 		return "user/index";
 	}	
 	
@@ -188,6 +203,7 @@ public class UserController {
 		return "user/include/return";
 	}
 	
+
 	@GetMapping("/user/mypage/mypwd.do")
 	public String updatePwd() {
 		return "user/mypage/myPwd";
@@ -203,4 +219,16 @@ public class UserController {
 		model.addAttribute("result", userservice.mypageDelete(vo.getUser_no()));
 		return "user/include/result";
 	}
+
+	@RequestMapping("/user/mypage/myExams.do")
+	public String myExams(UserVo vo, Model model) {
+		List<ExamVo> elist = userservice.myExamlist(vo.getUser_no());
+		model.addAttribute("elist",elist);
+		for(int i=0; i<elist.size(); i++) {
+			elist.get(i).setSchool_name((schoolService.selectSchool(elist.get(i).getSchool_no())).getSchool_name());
+		}
+		return "user/mypage/myExams";
+	}
+	
+
 }

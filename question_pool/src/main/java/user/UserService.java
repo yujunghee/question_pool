@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import question.ExamVo;
+
 
 public interface UserService {
 
@@ -24,5 +26,8 @@ public interface UserService {
 	int mypageUpdate(UserVo vo);
 	int mypageDelete(int user_no);
 	
+
+	List<ExamVo> myExamlist(int user_no);
+
 
 }

@@ -1,9 +1,14 @@
 package userPayment;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import user.UserVo;
+
 
 
 
@@ -15,7 +20,8 @@ public class UserPayDao {
 	private SqlSessionTemplate sst;
 	
 	public UserPayVo paymentUser(UserPayVo vo) throws Exception {
-		return sst.selectOne("userPay.paymentUser", vo);
+		UserPayVo uv = sst.selectOne("userPay.paymentUser", vo);
+		 return uv;
 	}
 	
 	public int insert(UserPayVo vo) {
@@ -29,8 +35,8 @@ public class UserPayDao {
 		return r;
 	}
 	
-	public int refundUpdate(UserPayVo vo) {
-		return sst.update("userPay.refundUpdate", vo);
+	public int refundUpdate(UserVo uv, HttpSession sess) {
+		return sst.update("userPay.refundUpdate", uv);
 	}
 	
 	public int userGrade(UserPayVo vo) {
