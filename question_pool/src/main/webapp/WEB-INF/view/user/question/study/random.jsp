@@ -80,7 +80,7 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>[${school.school_name} 랜덤 모의고사] - 총 ??문항</h2>
+					<h2>[${school.school_name} 랜덤 모의고사]</h2>
 					<input type="hidden" value="${userInfo.user_no}">
 				</div>
 				<div class="con">

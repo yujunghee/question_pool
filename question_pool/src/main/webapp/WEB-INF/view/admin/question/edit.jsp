@@ -35,8 +35,7 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-				
-					<h2>문제수정-[${exam.school_no}대학교 ${exam.year}년도 ${exam.semester}학기]</h2>
+					<h2>문제수정-[${school.school_name}대학교 ${exam.year}년도 ${exam.semester}학기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -72,7 +71,12 @@
 										<td colspan="10">
 											<c:forEach var="ev" items="${elist}" varStatus="status">
 												<input type="hidden" name="example_no" value="${ev.example_no}">
-												<input type="checkbox" name="example" value="${ex[status.index]}">&nbsp; 
+												<c:if test="${qv.answer eq ex[status.index]}">
+													<input type="checkbox" name="example" value="${ex[status.index]}" checked>&nbsp; 
+												</c:if>
+												<c:if test="${qv.answer ne ex[status.index]}">
+													<input type="checkbox" name="example" value="${ex[status.index]}">&nbsp; 
+												</c:if>
 												(${ev.example})
 												<input type="text" name="example_content" value="${ev.example_content}">
 												<br>
@@ -82,7 +86,7 @@
 									<tr>
 										<th scope="row"><label for="">해설</label></th>
 										<td colspan="10">
-											<textarea id="explanation" name="explanation" value="${qv.explanation}" rows="10" style="width:100%;"></textarea>	
+											<textarea id="explanation" name="explanation" rows="10" style="width:100%;">${qv.explanation}</textarea>	
 										</td>
 									</tr>
 								</tbody>
