@@ -19,7 +19,13 @@
 <link rel="stylesheet" href="/question_pool/css/user/userJoin/contents.css"/>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-	function del(){  
+
+	function del(){
+		if ($("#user_pwd").val() == '') {
+			alert("비밀번호를 입력하세요");
+			$("#user_pwd").focus();
+			return;
+		}
 		if ($("#user_pwd").val() != $("#pw_check").val()) {
 			alert("비밀번호가 일치하지 않습니다.");
 			return;

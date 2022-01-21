@@ -16,8 +16,12 @@
 		<div id="container" style="width:100%;">
 			<div id="content">
 				<div class="pageTitle">
-					<h2>자유게시판</h2>
+					<h1>자유게시판</h1>
 				</div>
+				<h3>
+					[Ladder Up] 자유게시판입니다. <br> 
+					서비스/편입시험 후기, 각종 정보 등을 공유해보세요.
+				</h3>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
