@@ -116,10 +116,11 @@ h2::after {
 			<form action="randomIndex.do" enctype="multipart/form-data"
 				style="text-align: center;">
 				<div style="text-align: center; padding: 100px 0 0 0;'">
-					<h4 style="font-size: 20px;">학교선택</h4>
+					<h4 style="font-size: 30px;">학교선택</h4>
 				<h3>학교를 선택하시면 학교 기출문제중 년도와 상관없이 랜덤으로 문자가 제공됩니다.</h3>
+				<br>
 					<select name="school_no" id="school_no"
-						style="width: 150px; height: 30px; ">
+						style="width: 200px; height: 40px; font-size:20px">
 						<c:forEach var="vo" items="${list}">
 							<option value="${vo.school_no}">${vo.school_name}</option>
 						</c:forEach>

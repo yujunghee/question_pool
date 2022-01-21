@@ -37,15 +37,6 @@
     color: #1e6b7b;
     background: aliceblue;
 }
-.submit {
-	border: 0.5px solid #ff0080; /*---테두리 정의---*/
-	background-Color: #AB9D9D; /*--백그라운드 정의---*/
-	font: 12px 굴림; /*--폰트 정의---*/
-	font-weight: bold; /*--폰트 굵기---*/
-	color: #000000; /*--폰트 색깔---*/
-	width: 130;
-	height: 30; /*--버튼 크기---*/
-}
 h2 {
   position: relative;
   padding: 1rem 0.5rem;
@@ -156,9 +147,9 @@ function chk(){
 		<table>
 			<tr>
 				<td>
-					<h4 style="font-size: 20px;">학교선택</h4>
+					<h4 style="font-size: 30px;">학교선택</h4>
 					<select name="school_no" id="school_no"
-					style="width: 150px; height: 30px; " onclick="getyear()">
+					style="width: 200px; height: 40px; font-size:20px" onclick="getyear()">
 						<c:forEach var="vo" items="${list}">
 							<option value="${vo.school_no}">${vo.school_name}</option>
 						</c:forEach>
