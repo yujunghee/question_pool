@@ -23,11 +23,10 @@ color:white;}
 </head>
 <body>
 		<form action="/question_pool/user/question/index.do">
-	<h4 style="font-size: 20px;"> 시험 </h4>
+	<h4 style="font-size: 35px; padding:0 0 0 152px"> 시험 </h4>
 		<c:forEach var="plist" items="${dList}">
-	<label><img src="../../img/user/exam.png" style="width:100px; padding:0 0 0 70px;"><br><input type="submit" class="btn" name="exam_no" value="${plist.exam_no}">${plist.school_name}  ${plist.year}년도  ${plist.semester}학기</label>
+	<label style="font-size:25px"><img src="../../img/user/exam.png" style="width:150px; padding:0 0 0 125px;"><br><input type="submit" class="btn" name="exam_no" value="${plist.exam_no}">${plist.school_name}  ${plist.year}년도  ${plist.semester}학기</label>
 		</c:forEach>
-		<br/>
 		</form>
 	
 </body>

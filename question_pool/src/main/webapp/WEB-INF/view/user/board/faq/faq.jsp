@@ -7,7 +7,18 @@
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <%@ include file="/WEB-INF/view/user/include/headHtml.jsp" %>
-<script type="text/javascript">
+<script>
+function getA(faq_no){
+	$.ajax({
+		url : 'view.do',
+		data: {faq_no:faq_no},
+		async : false,
+		success : function(res) {			
+			$("#answer").show();
+			$("#answer").html(res);
+		}
+	})
+}
 </script>
 </head>
 <body> 
@@ -18,15 +29,41 @@
 		<div id="container" style="width:100%;">
 			<div id="content">
 				<div class="pageTitle">
-					<h2>FAQ</h2>
+					<h1>FAQ</h1>		
 				</div>
+				<h3>
+					[Ladder Up] 고객님들께서 자주 물으시는 질문과 답변을 모았습니다. <br> 
+					원하시는 내용이 없으면 'Q&A'를 이용하여 문의해주시기 바랍니다.						
+				</h3>
+				<div class="btn" style="margin: 20;">
+					<div class="writebtn">
+						<a class="wbtn" href="../qa/qa.do"><strong>Q&A 바로가기</strong> </a>
+					</div>
+				</div>
+				<div></div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
-					<div class="bbs">
+					<div class="bbs">					
+					<table>								
+						<tr id="answer" colspan="10" style="text-align: left; display: none; background-color: #eddae7; border: solid 1px;"></tr>
+					</table>				
 						<div class="list">
+							<!-- search --> 							
+							<form name="searchForm" id="searchForm" action="faq.do"  method="get" >
+								<div class="search">
+									<select name="searchType" title="검색을 선택해주세요">
+										<option value="">전체</option>										
+										<option value="faq_title" <c:if test="${param.searchType == 'faq_title'}">selected</c:if>>제목</option>
+										<option value="faq_content" <c:if test="${param.searchType == 'faq_content'}">selected</c:if>>내용</option>										
+									</select>									
+									<input type="text" name="searchWord" value="${param.searchWord }" title="검색어를 입력해주세요" value placeholder="검색어를 입력해주세요"/>
+									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />									
+								</div>
+							</form>							
+							<!-- //search -->
 							<p><span><strong>총 ${totCount }개</strong>  |  ${faqVo.page }/${totPage }페이지</span></p>							
-							<form name="frm" id="frm" action="process.do" method="post">
+							<form name="frm" id="frm" action="process.do" method="get">
 							<table width="100%"  cellspacing="0" cellpadding="0">
 								<colgroup>
 									<col class="w3"/>
@@ -51,16 +88,17 @@
 									</c:if>
 									<c:if test="${!empty list }">			                            
 										<c:forEach var="list" items="${list }">
-										<input type="hidden" name="faq_no" value="${list.faq_no }">                                    
-			                            <tr onclick="location.href='view.do?faq_no=${list.faq_no }'" style="cursor: pointer;">			                            				                            	
+										<input type="hidden" name="faq_no" id="faq_no" value="${list.faq_no }" >                                    
+			                            <tr id="freq" style="cursor: pointer;" onclick="getA(${list.faq_no })">			                            				                            	
 			                                <td>${list.faq_no }</td>
 			                                <td>
-			                                	${list.faq_division }
+			                                	${list.faq_division }			                                	
 			                                </td>			                                
 			                                <td class="txt_l" style="font-size: 15px">
-			                                	<a href="view.do?faq_no=${list.faq_no }">${list.faq_title }</a>
+			                                	<a>${list.faq_title }</a>
 		                                	</td>
-			                            </tr>
+			                            </tr>			                            
+		                            		
 			                            </c:forEach>
 			                         </c:if>
 								</tbody>
@@ -71,19 +109,7 @@
 							<div class="pagenate">
 							${pageArea }
 							</div>
-							<!-- //페이징 처리 -->							
-							<form name="searchForm" id="searchForm" action="faq.do"  method="get" >
-								<div class="search">
-									<select name="searchType" title="검색을 선택해주세요">
-										<option value="">전체</option>										
-										<option value="faq_title" <c:if test="${param.searchType == 'faq_title'}">selected</c:if>>제목</option>
-										<option value="faq_content" <c:if test="${param.searchType == 'faq_content'}">selected</c:if>>내용</option>										
-									</select>									
-									<input type="text" name="searchWord" value="${param.searchWord }" title="검색어를 입력해주세요" value placeholder="검색어를 입력해주세요"/>
-									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />									
-								</div>
-							</form>							
-							<!-- //search --> 
+							<!-- //페이징 처리 -->	 
 						</div>
 						<!-- //list -->
 					</div>

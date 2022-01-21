@@ -311,11 +311,12 @@ function test() {
 <body>
 <div id="wrap">
 	<div id="header">
-		<h1><a href="<%=userUtil.Property.contextPath%>/user/index.do">Ladder Up</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
+		<div id = "imgdiv"><a href="/question_pool/user/index.do"><img src="../img/user/mainLogo.png" height="4%" width="4%" style="margin-left: 20px; margin-right: auto; display: block;"></a></div>
+		<h1 style="margin-left: 80px; margin-right: auto;"><a href="<%=userUtil.Property.contextPath%>/user/index.do">Ladder Up</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
 		<ul class="topmenu">
 			<c:if test="${empty userInfo }">
-			<li class="login"><a href="/question_pool/user/login.do">로그인</a></li>
-			<li class="signup"><a href="/question_pool/user/join.do">회원가입</a></li>
+			<li class="login" style="font-weight: bold;"><a href="/question_pool/user/login.do">로그인</a></li>
+			<li class="signup" style="font-weight: bold;"><a href="/question_pool/user/join.do">회원가입</a></li>
 			</c:if>
 			<c:if test="${!empty userInfo }">
 			<li class="login"><a href="/question_pool/user/logout.do">로그아웃</a></li>
@@ -353,8 +354,8 @@ function test() {
 						<dd class="frist"><a href="javascript:;" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio2', '시험일정', '/user/board/testdate/testdate.do', false)">시험일정</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'Q&A', '/user/board/qa/qa.do', false)">Q&A</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio3', 'FAQ', '/user/board/faq/faq.do', false)">FAQ</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('portfolio4', '자유게시판', '/user/board/community/community.do', false)">자유게시판</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('portfolio4', 'FAQ', '/user/board/faq/faq.do', false)">FAQ</a></dd>
+						<dd class="last"><a href="javascript:;" onclick="clickMenu('portfolio5', '자유게시판', '/user/board/community/community.do', false)">자유게시판</a></dd>
 					</dl>
 				</div>
 			</div>
@@ -395,15 +396,15 @@ function test() {
 							<li id="portfolio1_submenu" onclick="clickMenu('portfolio1', '공지사항', '/user/board/notice/notice.do', false)">공지사항</li>
 							<li id="portfolio2_submenu" onclick="clickMenu('portfolio2', '시험일정', '/user/board/testdate/testdate.do', false)">시험일정</li>
 							<li id="portfolio3_submenu" onclick="clickMenu('portfolio3', 'Q&A', '/user/board/qa/qa.do', false)">Q&A</li>
-							<li id="portfolio3_submenu" onclick="clickMenu('portfolio3', 'FAQ', '/user/board/faq/faq.do', false)">FAQ</li>
-							<li id="portfolio4_submenu" onclick="clickMenu('portfolio4', '자유게시판', '/user/board/community/community.do', false)">자유게시판</li>
+							<li id="portfolio4_submenu" onclick="clickMenu('portfolio4', 'FAQ', '/user/board/faq/faq.do', false)">FAQ</li>
+							<li id="portfolio5_submenu" onclick="clickMenu('portfolio5', '자유게시판', '/user/board/community/community.do', false)">자유게시판</li>
 						</ul>
 					</dd>
 				</dl>
 			</div>
 			<div class="menuclose" onclick="menuToggle();"><img src="<%=userUtil.Property.contextPath%>/img/menu_close.png" /></div>
 			<div class="copy">Copyright (C) 2022<br />
-				더조은종각4조 WebProject. 
+				더조은종각 4조 WebProject. 
 			</div>
 		</div>
 		<!--//menuWrap-->

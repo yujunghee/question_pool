@@ -4,77 +4,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script>
+</script>
 </head>
-<body> 
-<div id="wrap">
-<input type="hidden" name="faq_no" value="${data.faq_no}">
-	<!-- canvas -->
-	<div id="canvas">
-		<!-- S T A R T :: containerArea-->
-		<div id="container" style="width:100%;">
-			<div id="content">
-				<div class="con_tit">
-					<h2>FAQ - [상세페이지]</h2>
-				</div>
-				<!-- //con_tit -->
-				<div class="con">
-					<!-- 내용 : s -->
-					<div id="bbs">
-						<div id="bread">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0">
-								<colgroup>
-									<col width="10%" />
-									<col width="15%" />
-									<col width="10%" />
-									<col width="15%" />
-									<col width="25%" />
-									<col width="25%" />
-								</colgroup>
-								<tbody>
-									<tr>
-										<th scope="row"><label for="">분류</label></th>
-										<td colspan="10">
-											${data.faq_division}
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">질문</label></th>
-										<td colspan="10">
-											<strong>${data.faq_title }</strong>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">답변</label></th>										
-											<p><span>글번호 :  <strong> ${data.faq_no}</strong>										
-										<td colspan="10">											
-											${data.faq_content }
-										</td>
-									</tr>									
-								</tbody>
-							</table>														
-							<div class="btn">
-								<div class="btnLeft">
-									<a class="btns" href="faq.do"><strong>목록</strong></a>
-								</div>
-							</div>
-							<!--//btn-->
-						</div>
-						<!-- //bread -->
-					</div>
-					<!-- //bbs --> 
-					<!-- 내용 : e -->
-				</div>
-				<!--//con -->
-			</div>
-			<!--//content -->
-		</div>
-		<!--//container --> 
-		<!-- E N D :: containerArea-->
-	</div>
-	<!--//canvas -->
-</div>
-<!--//wrap -->
-
+<body>									
+										<table>
+											<thead style="border-bottom: solid 1.5px;">
+												<tr class="txt_l">
+					                                <th style="font-size: 30px; padding: 5; color: #0043db;" >${data.faq_title }</th>
+			                                	</tr>
+		                                	</thead>
+											<tr>											
+												<td colspan="10" style="font-size: 20px; padding: 10;"> ${data.faq_content }</td>
+											</tr>
+										</table>										
 </body>
 </html>

@@ -18,7 +18,18 @@
 		<div id="container" style="width:100%;">
 			<div id="content">
 				<div class="pageTitle">
-					<h2>공지사항</h2>
+					<h1>공지사항</h1>					
+				</div>
+				<h3>
+					[Ladder Up]에서 알려 드립니다. <br> 
+					다양한 이벤트와 공지사항들을 확인해 보세요. <br>
+					시험일정 관련은 '시험일정'을 참고해 주시기 바랍니다.					
+				</h3><br>
+				<div class="btn">
+					<div class="writebtn">
+						<a class="wbtn" href="../testdate/testdate.do"><strong>시험일정 바로가기</strong> </a>
+					</div>
+				</div>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">

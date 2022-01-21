@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h4 style="font-size: 20px;">학기선택</h4>
-	<select name="exam_no" id="exam_no" style="width: 100px; height: 30px;">
+	<h4 style="font-size: 30px;">학기선택</h4>
+	<select name="exam_no" id="exam_no" style="width: 200px; height: 40px; font-size:20px">
 		<c:forEach var="plist" items="${dList}">
 			<option value="${plist.exam_no}">${plist.semester}</option>
 		</c:forEach>
