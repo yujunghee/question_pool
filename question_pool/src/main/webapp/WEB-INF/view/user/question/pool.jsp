@@ -158,7 +158,7 @@ function chk(){
 				<td>
 					<h4 style="font-size: 20px;">학교선택</h4>
 					<select name="school_no" id="school_no"
-					style="width: 150px; height: 30px;" onclick="getyear()">
+					style="width: 150px; height: 30px; " onclick="getyear()">
 						<c:forEach var="vo" items="${list}">
 							<option value="${vo.school_no}">${vo.school_name}</option>
 						</c:forEach>

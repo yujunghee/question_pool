@@ -27,7 +27,6 @@ color:white;}
 		<c:forEach var="plist" items="${dList}">
 	<label><img src="../../img/user/exam.png" style="width:100px; padding:0 0 0 70px;"><br><input type="submit" class="btn" name="exam_no" value="${plist.exam_no}">${plist.school_name}  ${plist.year}년도  ${plist.semester}학기</label>
 		</c:forEach>
-		<br/>
 		</form>
 	
 </body>
