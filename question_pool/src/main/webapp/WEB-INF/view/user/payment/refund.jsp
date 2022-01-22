@@ -6,6 +6,31 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+	function reSubmit() {
+		console.log('${userInfo.user_no}')
+		console.log('${userInfo.user_email}')
+		console.log('${userInfo.refund}')
+		console.log('${userInfo.due_date}')
+		console.log('${userInfo.product_no}')
+		
+		if('${userInfo.refund}' == 0){
+			alert('결제 후 이용해주세요.');
+			return;
+		}
+		if('${userInfo.refund}' == 2){
+			alert('환불요청이 되어있습니다. 관리자에게 문의하세요');
+			return;
+		}
+		if('${userInfo.refund}' == 3){
+			alert('이미 환불 받으셨습니다.');
+			return;
+		}
+		$("#frm").submit();
+	}
+</script>
 <body>
 		<h1>Ladder Up 환불규정</h1>
 		<p>안녕하세요 Ladder Up은 의 구매품목은 결제와 동시에 여러 기능을 사용할수 있음으로<br>
@@ -25,7 +50,7 @@
 		<br>
 		<br>
 		<br>
-		<input class="submit" type="submit" value="환불 요청">
 		</form>
+		<input class="refundbtn" type="button" value="환불 요청" onclick="reSubmit();">
 </body>
 </html>

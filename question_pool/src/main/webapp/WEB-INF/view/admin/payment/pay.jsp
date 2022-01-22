@@ -45,7 +45,6 @@
 		 */
 		 
 		 function cancelPay(){
-			 var a = prompt('환불 할 사용자 번호를 입력해주세요.');
 					$.ajax({
 						type : 'GET',
 						url : 'cancelPay.do',
@@ -148,10 +147,10 @@
                     <c:if test="${vo.refund eq 0}">
                     <li>  </li> 
                     </c:if>
-                    <c:if test="${vo.refund eq 1}">
+                    <c:if test="${vo.refund eq 2}">
                     <li><input class="submit" type="submit" value="환불 요청" id="cancelPay" onclick="location.href='cancelPay.do?user_no=${vo.user_no }&admin_no=${adminInfo.admin_no}'" ></li>
                     </c:if>
-                    <c:if test="${vo.refund eq 2}">
+                    <c:if test="${vo.refund eq 3}">
                     <li>환불 완료</li> 
                     </c:if>
                     </c:forEach>
