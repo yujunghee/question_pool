@@ -30,6 +30,12 @@
 	 	FROM comment
 		<include refid="commentWhere"></include>
 		ORDER BY regdate DESC
+	</select>
+	
+	<select id="myList" resultType="comment.CommentVo" parameterType="comment.CommentVo">
+		SELECT * FROM comment
+		WHERE user_no = #{user_no}				
+		ORDER BY regdate DESC
 	</select> 
 	
 	<insert id="insert" parameterType="comment.CommentVo">

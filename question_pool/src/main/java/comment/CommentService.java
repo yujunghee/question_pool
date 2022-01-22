@@ -15,6 +15,10 @@ public class CommentService {
 		return commentDao.selectList(vo);
 	}
 	
+	public List<CommentVo> myList(CommentVo vo) {
+		return commentDao.myList(vo);
+	}
+	
 	public int insert(CommentVo vo) {
 		return commentDao.insert(vo);
 	}

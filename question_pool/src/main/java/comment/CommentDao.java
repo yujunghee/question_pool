@@ -12,9 +12,11 @@ public class CommentDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public List<CommentVo> selectList(CommentVo cv) {
-//		List<CommentVo> list = sqlSessionTemplate.selectList("comment.selectList", cv);
-//		return list;
 		return sqlSessionTemplate.selectList("comment.selectList", cv);
+	}
+	
+	public List<CommentVo> myList(CommentVo cv) {
+		return sqlSessionTemplate.selectList("comment.myList", cv);
 	}
 	
 	public int insert(CommentVo cv) {
