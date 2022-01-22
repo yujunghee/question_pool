@@ -121,12 +121,12 @@
 							<div id="commentArea"></div>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="community.do"><strong>목록</strong></a>
+									<a class="btns" href="/question_pool/user/board/community/community.do"><strong>목록</strong></a>
 								</div>
 								<c:if test="${!empty userInfo && userInfo.user_no == data.user_no}">
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="edit.do?community_no=${data.community_no }"><strong>글수정</strong></a>
-									<a class="btns" style="cursor:pointer;" href="delete.do?community_no=${data.community_no }"><strong>글삭제</strong></a>
+									<a class="btns" style="cursor:pointer;" href="/question_pool/user/board/community/edit.do?community_no=${data.community_no }"><strong>글수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="/question_pool/user/board/community/delete.do?community_no=${data.community_no }"><strong>글삭제</strong></a>
 								</div>
 								</c:if>
 							</div>

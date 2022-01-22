@@ -96,12 +96,12 @@
 							<div id="commentArea"></div>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="qa.do"><strong>목록</strong></a>
+									<a class="btns" href="/question_pool/user/board/qa/qa.do"><strong>목록</strong></a>
 								</div>
 								<c:if test="${!empty userInfo && userInfo.user_no == data.user_no}">
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="edit.do?qa_no=${data.qa_no }"><strong>글수정</strong></a>
-									<a class="btns" style="cursor:pointer;" href="delete.do?qa_no=${data.qa_no }"><strong>글삭제</strong></a>
+									<a class="btns" style="cursor:pointer;" href="/question_pool/user/board/qa/edit.do?qa_no=${data.qa_no }"><strong>글수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="/question_pool/user/board/qa/delete.do?qa_no=${data.qa_no }"><strong>글삭제</strong></a>
 								</div>
 								</c:if>
 							</div>

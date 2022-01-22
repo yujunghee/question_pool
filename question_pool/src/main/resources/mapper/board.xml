@@ -148,7 +148,7 @@
 			<if test="qa_division != null and qa_division != '' ">
 				qa_division = "${qa_division}"
 			</if>
-			<if test="user_no > 0">
+			<if test="user_no > 0 and user_no != null">
 				AND user_no = ${user_no}
 			</if>
 		</where>

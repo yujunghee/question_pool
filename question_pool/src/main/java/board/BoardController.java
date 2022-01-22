@@ -338,8 +338,14 @@ public class BoardController {
 		return "admin/board/qa/qa";
 	}
 	
-	@GetMapping("/user/board/qa/qa.do")
-	public String userQaList(Model model, HttpServletRequest req, QaVo vo) throws Exception{
+	@GetMapping({"/user/board/qa/qa.do", "/user/mypage/myboard.do"})
+	public String userQaList(Model model, HttpServletRequest req, QaVo vo) throws Exception{		
+		String view = "user/board/qa/qa";
+		if ("/user/mypage/myboard.do".equals(req.getServletPath())) { // 마이페이지로 접속한 경우
+			vo.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
+			view = "/user/mypage/myboard";
+		}
+		
 		int totCount = boardService.qaCount(vo);
 		int totPage = totCount / 10; //총페이지수 
 		if(totCount % 10 > 0) totPage++;
@@ -351,8 +357,12 @@ public class BoardController {
 		model.addAttribute("list",list);
 		model.addAttribute("totPage",totPage);
 		model.addAttribute("totCount",totCount);
-		model.addAttribute("pageArea",Pagination.getPageArea("qa.do", vo.getPage(), totPage, 10));
-		return "user/board/qa/qa";
+		if ("/user/mypage/myboard.do".equals(req.getServletPath())) { // 마이페이지로 접속한 경우
+			model.addAttribute("pageArea",Pagination.getPageArea("myboard.do", vo.getPage(), totPage, 10));
+		} else {
+			model.addAttribute("pageArea",Pagination.getPageArea("qa.do", vo.getPage(), totPage, 10));	
+		}
+		return view;
 	}
 	
 	@RequestMapping("/admin/board/qa/write.do")
@@ -434,7 +444,7 @@ public class BoardController {
 		return "admin/include/return";
 	}
 	
-	@GetMapping("/user/board/qa/view.do")
+	@GetMapping({"/user/board/qa/view.do", "/user/mypage/view.do"})
 	public String userqaView(Model model, @RequestParam int qa_no) {
 		model.addAttribute("data", boardService.qaView(qa_no));
 		CommentVo cv = new CommentVo();
@@ -503,8 +513,14 @@ public class BoardController {
 		return "admin/board/community/community";
 	}
 	
-	@GetMapping("/user/board/community/community.do")
+	@GetMapping({"/user/board/community/community.do", "/user/mypage/mycomu.do"})
 	public String userCommunityList(Model model, HttpServletRequest req, CommunityVo vo) throws Exception{
+		String view = "user/board/community/community";
+		if ("/user/mypage/mycomu.do".equals(req.getServletPath())) { // 마이페이지로 접속한 경우
+			vo.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
+			view = "/user/mypage/mycomu";
+		}
+		
 		int totCount = boardService.communityCount(vo);
 		int totPage = totCount / 10; //총페이지수 
 		if(totCount % 10 > 0) totPage++;
@@ -516,8 +532,12 @@ public class BoardController {
 		model.addAttribute("list",list);
 		model.addAttribute("totPage",totPage);
 		model.addAttribute("totCount",totCount);
-		model.addAttribute("pageArea",Pagination.getPageArea("community.do", vo.getPage(), totPage, 10));
-		return "user/board/community/community";
+		if ("/user/mypage/mycomm.do".equals(req.getServletPath())) { // 마이페이지로 접속한 경우
+			model.addAttribute("pageArea",Pagination.getPageArea("mycomm.do", vo.getPage(), totPage, 10));
+		} else {
+			model.addAttribute("pageArea",Pagination.getPageArea("community.do", vo.getPage(), totPage, 10));	
+		}
+		return view;
 	}
 	
 	@RequestMapping("/admin/board/community/write.do")
@@ -552,7 +572,7 @@ public class BoardController {
 		return "admin/board/community/view";
 	}
 	
-	@GetMapping("/user/board/community/view.do")
+	@GetMapping({"/user/board/community/view.do", "/user/mypage/view2.do"})
 	public String userCommunityView(Model model, @RequestParam int community_no) {
 		model.addAttribute("data", boardService.communityView(community_no));
 		CommentVo cv = new CommentVo();

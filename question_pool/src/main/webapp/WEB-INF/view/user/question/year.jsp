@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h4 style="font-size: 20px;">년도선택</h4>
-	<select name="year" id="year" style="width: 100px; height: 30px;" onclick="getsemester()">
+	<h4 style="font-size: 30px;">년도선택</h4>
+	<select name="year" id="year" style="width: 200px; height: 40px; font-size:20px" onclick="getsemester()">
 		<c:forEach var="vo" items="${cList}">
 			<option value="${vo.year}">${vo.year}</option>
 		</c:forEach>

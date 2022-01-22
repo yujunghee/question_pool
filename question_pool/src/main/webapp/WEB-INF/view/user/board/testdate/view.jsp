@@ -14,7 +14,7 @@
 			success:function(res) {
 				if (res.trim() == '1') {
 					alert('댓글이 등록되었습니다.');
-					commentList('td', ${data.td_no});
+					commentList('testdate', ${data.td_no});
 					$("td > #content").val("");
 				} else {
 					alert('등록 오류');
@@ -23,7 +23,7 @@
 		});
 	}
 	$(function() {
-		commentList('td', ${data.td_no});
+		commentList('testdate', ${data.td_no});
 	});
 	function commentList(tablename, td_no) {
 		$.ajax({
@@ -42,7 +42,7 @@
 				success:function(res) {
 					if (res.trim() == '1') {
 						alert('정삭적으로 삭제되었습니다.');
-						commentList('td', ${data.td_no});						
+						commentList('testdate', ${data.td_no});						
 					} else {
 						alert('삭제 오류');
 					}
@@ -111,7 +111,7 @@
 							</table>
 							<c:if test="${!empty userInfo}">
 							<form method="post" name="frm" id="frm" action="" enctype="multipart/form-data" >
-			                <input type="hidden" name="tablename" value="td">
+			                <input type="hidden" name="tablename" value="testdate">
 			                <input type="hidden" name="td_no" value="${data.td_no }">
 			                <input type="hidden" name="user_no" value="${userInfo.user_no}">
 			                    <table class="board_write">
