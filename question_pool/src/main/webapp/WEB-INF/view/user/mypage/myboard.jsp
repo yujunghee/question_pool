@@ -7,13 +7,23 @@
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <%@ include file="/WEB-INF/view/user/include/headHtml.jsp" %>
+<style type="text/css">
+#division a {	
+	border: solid 1px #000000;
+	border-radius: 10px 10px 0 0;
+	font-size: 20px;
+	margin: -2;
+	padding: 0 20px 0 20px;
+	cursor: pointer;	
+} 
+</style>
 <script type="text/javascript">
 function myComu(){
 	$.ajax({
 		url : 'mycomu.do',
 		async : false,
 		success : function(res) {			
-			$(".bbs").html(res);
+			$(".list").html(res);
 		}
 	})
 }
@@ -22,11 +32,19 @@ function myComment(tablename, community_no, td_no, notice_no) {
 		url: 'mycomment.do',
 		data:{tablename:tablename, community_no:community_no, td_no:td_no, notice_no:notice_no},
 		success:function(res) {
-			$(".bbs").html(res);
+			$(".list").html(res);
 		}
 	});
 }
-
+$(document).ready(function () {
+    $('#division a').hover(function(){
+        $(this).css('color','#c91c1c');
+        $(this).css('font-weight','bold');        
+    }, function() {
+        $(this).css('color','');
+        $(this).css('font-weight','');
+    });
+});		
 </script>
 </head>
 <body> 
@@ -40,18 +58,20 @@ function myComment(tablename, community_no, td_no, notice_no) {
 					<h2>게시물관리</h2><br><br>					
 				</div>
 				<div class="btns">								
-					<div>					
-						<a class="btn" href="/question_pool/user/mypage/myboard.do"><strong>Q&A</strong></a>
-						<a class="btn" onclick="myComu()" style="margin-left: 3px"><strong>자유게시판</strong></a>						
-						<a class="btn" onclick="myComment()" style="margin-left: 3px"><strong>댓글</strong></a>						
-					</div>
+					
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div class="bbs">					
 						<div class="list">							
-							<p style="padding-top: 20px"><span><strong>총 ${totCount }개</strong>  |  ${qaVo.page }/${totPage }페이지</span></p>							
+							<p id="division">
+							<span>					
+								<a href="/question_pool/user/mypage/myboard.do" style="margin-left: 3; color: #c91c1c; border: solid 2px #000000;"><strong>Q&A</strong></a>
+								<a onclick="myComu()" >자유게시판</a>						
+								<a onclick="myComment()">댓글</a>						
+							</span>
+							</p>							
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%";  cellspacing="0"; cellpadding="0">
 								<colgroup>
@@ -103,6 +123,7 @@ function myComment(tablename, community_no, td_no, notice_no) {
 								</tbody>
 							</table>
 							</form>							
+							<p style="padding-top: 20px"><span><strong>총 ${totCount }개</strong>  |  ${qaVo.page }/${totPage }페이지</span></p>
 							<br>	
 							<div class="btn">
 								<div class="writebtn">

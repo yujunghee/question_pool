@@ -2,7 +2,41 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-					<table class="list">					    
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style type="text/css">
+#division a {	
+	border: solid 1px;
+	border-radius: 10px 10px 0 0;
+	font-size: 20px;
+	margin: -2;
+	padding: 0 20px 0 20px;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#division a').hover(function(){
+        $(this).css('color','#c91c1c');
+        $(this).css('font-weight','bold');        
+    }, function() {
+        $(this).css('color','');
+        $(this).css('font-weight','');
+    });
+});
+</script>
+</head>
+					<div class="list">
+					<p id="division">
+					<span>					
+						<a href="/question_pool/user/mypage/myboard.do" style="margin-left: 3; ">Q&A</a>
+						<a onclick="myComu()" >자유게시판</a>						
+						<a onclick="myComment()" style="color: #c91c1c; border: solid 2px #000000;"><strong>댓글</strong></a>						
+					</span>
+					</p>
+					<table>										    
 					    <thead>
 							<tr>									
 								<th scope="col" class="first" style="width: 8%;">게시판</th>
@@ -46,4 +80,5 @@
 					        </c:forEach>
 					    </c:if>                    
 					    </tbody>
-					</table>
+					    </table>
+					</div>

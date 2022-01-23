@@ -6,10 +6,36 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style type="text/css">
+#division a {	
+	border: solid 1px;
+	border-radius: 10px 10px 0 0;
+	font-size: 20px;
+	margin: -2;
+	padding: 0 20px 0 20px;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#division a').hover(function(){
+        $(this).css('color','#c91c1c');
+        $(this).css('font-weight','bold');        
+    }, function() {
+        $(this).css('color','');
+        $(this).css('font-weight','');
+    });
+});
+</script>
 </head>
 <body> 
 						<div class="list">
-							<p><span><strong>총 ${totCount }개</strong>  |  ${communityVo.page }/${totPage }페이지</span></p>							
+							<p id="division">
+							<span>					
+								<a href="/question_pool/user/mypage/myboard.do" style="margin-left: 3; ">Q&A</a>
+								<a onclick="myComu()"  style="color: #c91c1c !important; border: solid 2px #000000;"><strong>자유게시판</strong></a>						
+								<a onclick="myComment()">댓글</a>						
+							</span>
+							</p>							
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%"  cellspacing="0" cellpadding="0">
 								<colgroup>
@@ -58,7 +84,8 @@
 			                         </c:if>
 								</tbody>
 							</table>
-							</form>							
+							</form>
+							<p><span><strong>총 ${totCount }개</strong>  |  ${communityVo.page }/${totPage }페이지</span></p>							
 							<br>	
 							<div class="btn">
 								<div class="writebtn">
