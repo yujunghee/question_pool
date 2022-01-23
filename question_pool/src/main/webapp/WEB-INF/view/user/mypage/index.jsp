@@ -77,7 +77,7 @@
 						</ul>
 					</div>
 				</a>
-				<div class="box notice" style="text-align: center;">
+				<div class="box notice" style="text-align: center; cursor: pointer;" onclick="location.href='/question_pool/user/mypage/payRecord.do'">
 				<span class="material-icons md-48"><br>card_membership<br></span>
 					<ul>
 						<li><h2>Membership</h2></li>

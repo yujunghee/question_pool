@@ -234,5 +234,10 @@ public class UserController {
 		return "user/mypage/myExams";
 	}
 	
+	@RequestMapping("/user/mypage/payRecord.do")
+	public String payRecord() {
+		return "user/mypage/payRecord";
+	}
+	
 
 }
