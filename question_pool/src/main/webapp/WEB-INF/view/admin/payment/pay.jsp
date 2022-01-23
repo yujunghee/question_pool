@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script>
   /*
@@ -45,7 +44,6 @@
 		 */
 		 
 		 function cancelPay(){
-			 var a = prompt('환불 할 사용자 번호를 입력해주세요.');
 					$.ajax({
 						type : 'GET',
 						url : 'cancelPay.do',
@@ -63,6 +61,11 @@
 					}
 				})
 		}
+		 
+
+    	function refundSee(){
+    		$("#searchForm").submit();
+    	}
 
 </script>
 <style>
@@ -105,7 +108,20 @@
 <body>
 <%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 <div class="container1">
+
+	<form name="searchForm" id="searchForm" action="pay.do"  method="get" >
+			<div class="search" style="float: right;")>
+				<select name="refund" onchange="refundSee()">
+					<option value="0">전체보기</option>
+					<option value="0">전체보기</option>
+					<option value="2">환불요청</option>
+					<option value="3">환불완료</option>
+				</select>
+			</div>
+		</form>
+		<br>
    <div class="pay">  
+                       
         <ul class="">
             <li>
                 <ul class="">
@@ -125,7 +141,7 @@
             <li>
                 <ul class="">
                 	<c:forEach var="vo" items="${data}">
-                	<li>${vo.pay_no }</li>
+                	<li>${vo.user_name }</li>
                     <li>${vo.user_email }</li>
                     <li>${vo.category }</li>
                     <li>${vo.price }</li>
@@ -145,13 +161,13 @@
                     <c:if test="${vo.refund_reason eq 4}">
                     <li>단순 변심</li>
                     </c:if>
-                    <c:if test="${vo.refund eq 0}">
+                    <c:if test="${vo.refund eq 1}">
                     <li>  </li> 
                     </c:if>
-                    <c:if test="${vo.refund eq 1}">
+                    <c:if test="${vo.refund eq 2}">
                     <li><input class="submit" type="submit" value="환불 요청" id="cancelPay" onclick="location.href='cancelPay.do?user_no=${vo.user_no }&admin_no=${adminInfo.admin_no}'" ></li>
                     </c:if>
-                    <c:if test="${vo.refund eq 2}">
+                    <c:if test="${vo.refund eq 3}">
                     <li>환불 완료</li> 
                     </c:if>
                     </c:forEach>

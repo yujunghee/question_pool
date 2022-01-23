@@ -13,6 +13,7 @@ public class MainController {
 		return "user/index";
 	}
 	
+	
 	@RequestMapping("/user/main/index.do")
 	public String mainIndex() {
 		return "user/main/index";
