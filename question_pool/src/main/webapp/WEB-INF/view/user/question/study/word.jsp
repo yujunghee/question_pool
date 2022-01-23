@@ -35,7 +35,7 @@ app.post('/search', async(req, res)=>{
   query = req.body.query;
   // get query input
 
-  var api_url = 'https://openapi.naver.com/v1/search/blog?query=' + encodeURI(query);
+  var api_url = 'https://openapi.naver.com/v1/search/encyc.xml?query=' + hello;
   var options = {
     headers : {'X-Naver-Client-Id':client_id, 'X-Naver-Client-Secret': client_secret}
   }; // headers for get request
@@ -60,7 +60,7 @@ app.post('/search', async(req, res)=>{
 
 
  app.listen(3000, function () {
-   console.log('http://127.0.0.1:3000/search/blog?query=검색어 app listening on port 3000!');
+   console.log('https://openapi.naver.com/v1/search/encyc.xml?query=검색어 app listening on port 3000!');
  });
 </script>
 <style>
@@ -129,7 +129,7 @@ app.post('/search', async(req, res)=>{
   <div class="container">
     <div class="search-header">단어장</div>
     <div class="search-content">
-      <form action="result.do" method="post" content-type>
+      <form action="result.do" method="post" >
         <input id="search-input" name="query" type="text" placeholder="  search..."><button id="search-btn"><span id="btn-icon">search</button>
       </form>
     </div>
