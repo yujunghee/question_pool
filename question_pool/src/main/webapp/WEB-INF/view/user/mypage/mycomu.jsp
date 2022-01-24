@@ -16,8 +16,8 @@
 }
 </style>
 <script type="text/javascript">
-$(function () {
-    $('#division a').hover(function(){
+$(document).ready(function () {
+    $('#division #tab').hover(function(){
         $(this).css('color','#c91c1c');
         $(this).css('font-weight','bold');        
     }, function() {
@@ -31,9 +31,9 @@ $(function () {
 						<div class="list">
 							<p id="division">
 							<span>					
-								<a href="/question_pool/user/mypage/myboard.do" style="margin-left: 3; ">Q&A</a>
+								<a id="tab" href="/question_pool/user/mypage/myboard.do" style="margin-left: 3; ">Q&A</a>
 								<a onclick="myComu()"  style="color: #c91c1c !important; border: solid 2px #000000;"><strong>자유게시판</strong></a>						
-								<a onclick="myComment()">댓글</a>						
+								<a id="tab" onclick="myComment()">댓글</a>						
 							</span>
 							</p>							
 							<form name="frm" id="frm" action="process.do" method="post">
@@ -89,7 +89,7 @@ $(function () {
 							<br>	
 							<div class="btn">
 								<div class="writebtn">
-									<a class="wbtn" href="../community/community.do"><strong>자유게시판바로가기</strong> </a>
+									<a class="wbtn" href="/question_pool/user/board/community/community.do"><strong>자유게시판바로가기</strong> </a>
 								</div>
 							</div>							
 							<!--//btn-->
