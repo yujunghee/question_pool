@@ -7,6 +7,25 @@
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <%@ include file="/WEB-INF/view/user/include/headHtml.jsp" %>
+<style type="text/css">
+#answer, .search {
+          justify-content: center;
+    display: flex;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #444;
+    background-color: #edebeb;
+    padding: 0.3em 1.4em 0.2em 0.8em;
+    margin: 0;
+    border: 1px solid #aaa;
+    border-radius: 0.5em;
+    box-shadow: 0 1px 0 1px rgb(0 0 0 / 4%);
+    align-items: center;
+    }
+</style>
 <script>
 function getA(faq_no){
 	$.ajax({
@@ -44,10 +63,8 @@ function getA(faq_no){
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
-					<div class="bbs">					
-					<table>								
-						<tr id="answer" colspan="10" style="text-align: left; display: none; background-color: #eddae7; border: solid 1px;"></tr>
-					</table>				
+					<div class="bbs">							
+						<div id="answer" colspan="10" style="text-align: left; display: none;"></div>		
 						<div class="list">
 							<!-- search --> 							
 							<form name="searchForm" id="searchForm" action="faq.do"  method="get" >
@@ -57,7 +74,7 @@ function getA(faq_no){
 										<option value="faq_title" <c:if test="${param.searchType == 'faq_title'}">selected</c:if>>제목</option>
 										<option value="faq_content" <c:if test="${param.searchType == 'faq_content'}">selected</c:if>>내용</option>										
 									</select>									
-									<input type="text" name="searchWord" value="${param.searchWord }" title="검색어를 입력해주세요" value placeholder="검색어를 입력해주세요"/>
+									<input type="text" name="searchWord" value="${param.searchWord }" title="검색어를 입력해주세요" value placeholder="검색어를 입력해주세요" style="width: 500px"/>
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />									
 								</div>
 							</form>							
