@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
-
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
   <meta charset="utf-8">
   <title>Naver Blog Searching</title>
   <style>
@@ -57,11 +59,11 @@
 <body>
   <div class="container">
     <div class="search-header"><a href="/">Search Topics</a></div>
-    <div clas="search-content">
+    <div class="search-content">
       {% for item in items %}
         <div class="search-result">
           <div class="title">
-            <a href={{item.link}}><strong>{{item.title}}</strong></a>
+            <a href={item.link}><strong>{item.title}</strong></a>
           </div>
           <div class="description">
             {{item.description}}

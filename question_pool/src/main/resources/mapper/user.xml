@@ -11,7 +11,8 @@
 	</insert>
 	
 	<select id="login" parameterType="user.UserVo" resultType="user.UserVo">
-		SELECT * FROM user WHERE user_email= #{user_email} AND user_pwd=md5(#{user_pwd})
+		SELECT *, DATEDIFF(NOW(), pay_date) AS due_date FROM
+		user left join payment on user.user_no = payment.user_no WHERE user_email= #{user_email} AND user_pwd=md5(#{user_pwd}) ORDER BY pay_date DESC limit 1
 	</select>
 	
 	<update id="dueDate" parameterType="user.UserVo">
