@@ -37,8 +37,9 @@
 												(${ev.example}) ${ev.example_content}<br>
 										</c:forEach>
 										<br>
-										<p>해설 : ${qv.explanation}</p>
-										<p>정답 : (${qv.answer})</p>
+										<p style="width:600px;">[해설] : ${qv.explanation}</p>
+										<br>
+										<p>[정답] : (${qv.answer})</p>
 										<a href="edit.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제수정"></a>
 										<a href="delete.do?exam_no=${exam.exam_no}&question_no=${qv.question_no}"><input type="button" value="문제삭제"></a>
 										<br><br>

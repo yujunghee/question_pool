@@ -116,4 +116,8 @@ public class QuestionDao {
 	public List<QuestionVo> randomQuestion(int school_no) {
 		return sqlSessionTemplate.selectList("question.randomQuestion",school_no);
 	}
+	
+	public List<QuestionVo> refQuestion(int question_ref){
+		return sqlSessionTemplate.selectList("question.refQuestion",question_ref);
+	}
 }

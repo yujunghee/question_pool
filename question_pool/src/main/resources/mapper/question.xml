@@ -90,4 +90,9 @@
 	<select id="randomQuestion" resultType="question.QuestionVo" parameterType="int">
 		SELECT * FROM question WHERE exam_no IN (SELECT exam_no FROM exam WHERE school_no=#{school_no}) ORDER BY RAND() LIMIT 5
 	</select>
+	
+	<select id="refQuestion" resultType="question.QuestionVo" parameterType="int">
+		SELECT * FROM question WHERE question_no=#{question_ref} OR question_ref=#{question_ref}
+	</select>
+	
 </mapper>

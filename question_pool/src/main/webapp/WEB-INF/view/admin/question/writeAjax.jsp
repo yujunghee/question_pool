@@ -6,6 +6,17 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script src="/question_pool/js/common.js"></script>
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script>
+	$(function() {
+		$(".example").click(function() {
+			if ($(this).prop("checked")) {
+				var idx = $(this).parent().parent().find(".example").index(this);
+				$(this).parent().parent().find(".example").prop("checked",false);
+				$(this).parent().parent().find(".example").eq(idx).prop("checked",true);
+			}
+		})
+	})
+</script>
 </head>
 <body> 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
@@ -28,16 +39,18 @@
 		<tr>
 			<th scope="row"><label for="">보기</label></th>
 			<td colspan="10">
-				<input type="checkbox" name="example" value="A">&nbsp; 
+			<div class="examples">
+				<input type="checkbox" class="example" name="example" value="A">&nbsp; 
 				(A) <input type="text" name="example_content" style="width:500px;"><br><br>
-				<input type="checkbox" name="example" value="B">&nbsp; 
+				<input type="checkbox" class="example" name="example" value="B">&nbsp; 
 				(B) <input type="text" name="example_content" style="width:500px;"><br><br>
-				<input type="checkbox" name="example" value="C">&nbsp; 
+				<input type="checkbox" class="example" name="example" value="C">&nbsp; 
 				(C) <input type="text" name="example_content" style="width:500px;"><br><br>
-				<input type="checkbox" name="example" value="D">&nbsp; 
+				<input type="checkbox" class="example" name="example" value="D">&nbsp; 
 				(D) <input type="text" name="example_content" style="width:500px;"><br><br>
-				<input type="checkbox" name="example" value="E">&nbsp; 
+				<input type="checkbox" class="example" name="example" value="E">&nbsp; 
 				(E) <input type="text" name="example_content" style="width:500px;">
+			</div>
 			</td>
 		</tr>
 		<tr>

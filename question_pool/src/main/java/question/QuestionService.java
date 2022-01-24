@@ -28,4 +28,5 @@ public interface QuestionService {
 	int insertAQ(AnsweredQuestionVo av);
 	List<AnsweredQuestionVo> selectAQlist(AnsweredQuestionVo av);
 	List<QuestionVo> randomQuestion(int school_no);
+	List<QuestionVo> refQuestion(int question_ref);
 }

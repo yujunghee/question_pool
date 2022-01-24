@@ -77,7 +77,10 @@ public class QuestionController {
 
 	@GetMapping("/admin/question/edit.do")
 	public String edit(ExampleVo ev, Model model, @RequestParam int exam_no, @RequestParam int question_no) {
-		model.addAttribute("exam",questionService.selectExam(exam_no));
+		ExamVo xo = new ExamVo();
+		xo = questionService.selectExam(exam_no);
+		model.addAttribute("exam",xo);
+		model.addAttribute("school", schoolService.selectSchool(xo.getSchool_no()));
 		model.addAttribute("qv",questionService.selectQuestion(question_no));
 		List<ExampleVo> elist = questionService.selectExample(question_no);
 		model.addAttribute("elist",elist);
@@ -355,15 +358,16 @@ public class QuestionController {
 		model.addAttribute("school", schoolService.selectSchool(school_no));
 		
 		List<QuestionVo> qlist = questionService.randomQuestion(school_no);
-		System.out.println(qlist.size());
+		List<QuestionVo> reflist = new ArrayList<QuestionVo>();
 		
 		for(int i=0; i<5; i++) {
 			if(qlist.get(i).getQuestion_ref() != null) {
 				int ref = qlist.get(i).getQuestion_ref();
-				qlist.add(i, questionService.selectQuestion(ref));
-				System.out.println(qlist.get(i).getQuestion_no());
+				reflist.addAll(questionService.refQuestion(ref));
 			}
 		}
+		qlist.addAll(reflist);
+		System.out.println(qlist.size());
 		
 		List<ExampleVo> list = questionService.selectExamplelist(ev);
 	

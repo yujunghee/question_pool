@@ -12,6 +12,14 @@
 	var oEditors;
 	$(function(){
 		oEditors = setEditor("passage");
+		
+		$(".example").click(function() {
+			if ($(this).prop("checked")) {
+				var idx = $(this).parent().parent().find(".example").index(this);
+				$(this).parent().parent().find(".example").prop("checked",false);
+				$(this).parent().parent().find(".example").eq(idx).prop("checked",true);
+			}
+		})
 	});
 	
 	function goSave(){
@@ -81,16 +89,18 @@
 									<tr>
 										<th scope="row"><label for="">보기</label></th>
 										<td colspan="10">
-											<input type="checkbox" name="example" value="A">&nbsp; 
+										<div class="examples">
+											<input type="checkbox" class="example" name="example" value="A">&nbsp; 
 											(A) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="checkbox" name="example" value="B">&nbsp; 
+											<input type="checkbox" class="example" name="example" value="B">&nbsp; 
 											(B) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="checkbox" name="example" value="C">&nbsp; 
+											<input type="checkbox" class="example" name="example" value="C">&nbsp; 
 											(C) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="checkbox" name="example" value="D">&nbsp; 
+											<input type="checkbox" class="example" name="example" value="D">&nbsp; 
 											(D) <input type="text" name="example_content" style="width:500px;"><br><br>
-											<input type="checkbox" name="example" value="E">&nbsp; 
+											<input type="checkbox" class="example" name="example" value="E">&nbsp; 
 											(E) <input type="text" name="example_content" style="width:500px;">
+										</div>
 										</td>
 									</tr>
 									<tr>

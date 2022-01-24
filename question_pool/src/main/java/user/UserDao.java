@@ -1,5 +1,6 @@
 package user;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -15,9 +16,10 @@ public class UserDao {
 	@Autowired
 	SqlSessionTemplate sst;
 
-	//로그인("namespace.id")
 	public UserVo login(UserVo vo) {
-		return sst.selectOne("user.login",vo);
+		UserVo uv = sst.selectOne("user.login",vo);
+
+		return uv;
 	}
 	public int dueDate(UserVo vo) {
 		return sst.update("user.dueDate", vo);

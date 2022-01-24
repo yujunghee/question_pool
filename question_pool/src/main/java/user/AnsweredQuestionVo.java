@@ -1,4 +1,4 @@
-package user.question;
+package user;
 
 public class AnsweredQuestionVo {
 
