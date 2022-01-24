@@ -12,7 +12,7 @@
 	
 	<select id="login" parameterType="user.UserVo" resultType="user.UserVo">
 		SELECT *, DATEDIFF(NOW(), pay_date) as due_date FROM
-		user right join payment on user.user_no = payment.user_no WHERE user_email= #{user_email} AND user_pwd=md5(#{user_pwd}) ORDER BY pay_date DESC limit 1
+		user left join payment on user.user_no = payment.user_no WHERE user_email= #{user_email} AND user_pwd=md5(#{user_pwd}) ORDER BY pay_date DESC limit 1
 	</select>
 	
 	<update id="dueDate" parameterType="user.UserVo">

@@ -326,12 +326,6 @@ public class QuestionController {
 		return "user/question/score";
 	}
 	
-	// 오답노트 페이지
-	@RequestMapping("user/question/note.do")
-	public String note() {
-		return "user/question/study/note";
-	}
-	
 	//랜덤모의고사 학교선택페이지
 	@RequestMapping("user/question/random.do")
 	public String randomschool(SchoolVo vo, Model model) {
@@ -339,16 +333,7 @@ public class QuestionController {
 		model.addAttribute("list", list);
 		return "user/question/study/school";
 	}
-	//단어장
-	@RequestMapping("/user/question/study/word.do")
-	public String word() {
-		return "user/question/study/word";
-	}
-	//단어장
-	@RequestMapping("/user/question/study/result.do")
-	public String wordresult() {
-		return "user/question/study/result";
-	}
+	
 	//랜덤모의고사 페이지
 	@RequestMapping("/user/question/randomIndex.do")
 	public String randomQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int school_no) {
@@ -396,5 +381,12 @@ public class QuestionController {
 		model.addAttribute("dList", questionService.showexam(qv));
 		return "user/question/exam"; // 문제등록(학교/연도/회차선택창으로 이동)
 	}
-	
+
+	// 오답노트 페이지
+	@RequestMapping("user/question/note.do")
+	public String showWAlist(QuestionVo qv, ExampleVo ev, AnsweredQuestionVo av, Model model, HttpServletRequest req) {		
+		av.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
+		model.addAttribute("WAlist", questionService.);
+		return "user/question/study/note";
+	}
 }

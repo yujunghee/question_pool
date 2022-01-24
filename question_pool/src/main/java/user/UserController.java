@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import board.BoardService;
+import board.NoticeVo;
+import question.ExamVo;
+import school.SchoolService;
 import util.Pagination;
 
 @Controller
