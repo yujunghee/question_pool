@@ -8,8 +8,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <%@ include file="/WEB-INF/view/user/include/headHtml.jsp" %>
 <style type="text/css">
-#answer, .search {
-          justify-content: center;
+#answer {
+    justify-content: center;
     display: flex;
     -moz-appearance: none;
     -webkit-appearance: none;

@@ -36,7 +36,7 @@ function myComment(tablename, community_no, td_no, notice_no) {
 		}
 	});
 }
-$(document).ready(function () {
+$(function () {
     $('#division a').hover(function(){
         $(this).css('color','#c91c1c');
         $(this).css('font-weight','bold');        
@@ -57,6 +57,9 @@ $(document).ready(function () {
 				<div class="pageTitle">
 					<h2>게시물관리</h2><br><br>					
 				</div>
+				<h3>
+					내가 쓴 게시글 및 댓글을 확인하실 수 있습니다.
+				</h3>
 				<div class="btns">								
 					
 				</div>

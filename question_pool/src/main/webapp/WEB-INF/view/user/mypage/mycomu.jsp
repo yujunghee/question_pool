@@ -16,7 +16,7 @@
 }
 </style>
 <script type="text/javascript">
-$(document).ready(function () {
+$(function () {
     $('#division a').hover(function(){
         $(this).css('color','#c91c1c');
         $(this).css('font-weight','bold');        
