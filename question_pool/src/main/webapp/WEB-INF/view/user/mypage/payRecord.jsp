@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,8 +29,6 @@
 		})
 	})
  	function rePay(a){
- 		console.log(a)
- 		console.log('aaaa')
 		if(a == 1){
 			var aaa = 30 - '${userInfo.due_date}'
 			 document.write(aaa+'일 남았습니다.' + '(남은기간 모두 소비시. 자동연장됩니다.)')
@@ -85,7 +84,7 @@
 		                        <tr>
 		                            <th>결제 날짜</th>
 		                            <td>
-		                            ${userInfo.pay_date}
+		                            <fmt:formatDate value="${userInfo.pay_date}" pattern="yyyy-MM-dd"/>
 		                            </td>
 		                        </tr>
 		                         <tr>
@@ -108,6 +107,11 @@
 	                           		<c:if test="${userInfo.refund eq 3}">
 	                                 <td>
 										환불 완료.
+	                           		 </td>
+	                           		</c:if>
+	                           		<c:if test="${userInfo.refund eq 4}">
+	                                 <td>
+										환불이 거절되었습니다. (관리자에게 문의해주세요.)
 	                           		 </td>
 	                           		</c:if>
 	                           		
