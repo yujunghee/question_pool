@@ -13,6 +13,9 @@
 			<if test="refund == 3 ">
 				refund = 3
 			</if>
+			<if test="refund == 4 ">
+				refund = 4
+			</if>
 		</where>
 	 </sql>	
 
@@ -26,6 +29,11 @@
 	<update id="cancelPay" parameterType="payment.PayVo">
 		UPDATE payment INNER JOIN user ON payment.user_no = user.user_no LEFT JOIN admin ON admin.admin_no = payment.admin_no
 		SET payment.refund = 3, user.user_grade = 0, payment.admin_no = #{admin_no}  WHERE user.user_no = #{user_no} AND payment.refund = 2	
+	</update>
+	
+	<update id="cancelPay2" parameterType="payment.PayVo">
+		UPDATE payment INNER JOIN user ON payment.user_no = user.user_no LEFT JOIN admin ON admin.admin_no = payment.admin_no
+		SET payment.refund = 4, user.user_grade = 0, payment.admin_no = #{admin_no}  WHERE user.user_no = #{user_no} AND payment.refund = 2	
 	</update>
 	
 	 <select id="payCount" resultType="int" parameterType="payment.PayVo">

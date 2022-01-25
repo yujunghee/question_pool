@@ -112,10 +112,10 @@
 	<form name="searchForm" id="searchForm" action="pay.do"  method="get" >
 			<div class="search" style="float: right;")>
 				<select name="refund" onchange="refundSee()">
-					<option value="0">전체보기</option>
-					<option value="0">전체보기</option>
-					<option value="2">환불요청</option>
-					<option value="3">환불완료</option>
+					<option value="0"<c:if test="${param.refund == '0'}">selected</c:if>>전체보기</option>
+					<option value="2"<c:if test="${param.refund == '2'}">selected</c:if>>환불요청</option>
+					<option value="3"<c:if test="${param.refund == '3'}">selected</c:if>>환불완료</option>
+					<option value="4"<c:if test="${param.refund == '4'}">selected</c:if>>환불거절</option>
 				</select>
 			</div>
 		</form>
@@ -165,10 +165,16 @@
                     <li>  </li> 
                     </c:if>
                     <c:if test="${vo.refund eq 2}">
-                    <li><input class="submit" type="submit" value="환불 요청" id="cancelPay" onclick="location.href='cancelPay.do?user_no=${vo.user_no }&admin_no=${adminInfo.admin_no}'" ></li>
+                    <li>
+                    <input class="submit" type="submit" value="환불 승인" id="cancelPay" onclick="location.href='cancelPay.do?user_no=${vo.user_no }&admin_no=${adminInfo.admin_no}'" >
+                    <input class="submit" type="submit" value="환불 거절" id="cancelPay2" onclick="location.href='cancelPay2.do?user_no=${vo.user_no }&admin_no=${adminInfo.admin_no}'" >
+                    </li>
                     </c:if>
                     <c:if test="${vo.refund eq 3}">
-                    <li>환불 완료</li> 
+                    <li>환불 승인</li> 
+                    </c:if>
+                    <c:if test="${vo.refund eq 4}">
+                    <li>환불 거절</li> 
                     </c:if>
                     </c:forEach>
                 </ul>  
