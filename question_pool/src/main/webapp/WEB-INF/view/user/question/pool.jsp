@@ -155,6 +155,8 @@ function chk(){
 					<h4 style="font-size: 30px;">학교선택</h4>
 					<select name="school_no" id="school_no"
 					style="width: 200px; height: 40px; font-size:20px" onclick="getyear()">
+					<option value="" selected disabled hidden>==선택하세요==</option>
+
 						<c:forEach var="vo" items="${list}">
 							<option value="${vo.school_no}">${vo.school_name}</option>
 						</c:forEach>

@@ -12,6 +12,22 @@ public class AnsweredQuestionVo {
 	private int question_no;
 	private int user_no;
 	private int exam_no;
+	private String word;
+	private String mean;
+	private int word_no;
+
+	public String getWord() {
+		return word;
+	}
+	public void setWord(String word) {
+		this.word = word;
+	}
+	public String getMean() {
+		return mean;
+	}
+	public void setMean(String mean) {
+		this.mean = mean;
+	}
 	
 	public int getAq_no() {
 		return aq_no;
@@ -60,6 +76,12 @@ public class AnsweredQuestionVo {
 	}
 	public void setExam_no(int exam_no) {
 		this.exam_no = exam_no;
+	}
+	public int getWord_no() {
+		return word_no;
+	}
+	public void setWord_no(int word_no) {
+		this.word_no = word_no;
 	}
 	
 }

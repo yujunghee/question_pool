@@ -43,4 +43,9 @@ public class UserPayDao {
 		return sst.update("userPay.userGrade", vo);
 	}
 	
+	public UserPayVo refLogin(UserPayVo vo) {
+		UserPayVo uv = sst.selectOne("userPay.refLogin",vo);
+		return uv;
+	}
+	
 }

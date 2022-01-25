@@ -20,6 +20,7 @@ public class QuestionVo extends ExamVo{
 	public void setQv(List<QuestionVo> qv) {
 		this.qv = qv;
 	}
+
 	public List<ExampleVo> getEx() {
 		return ex;
 	}

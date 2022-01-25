@@ -37,7 +37,7 @@ function myComment(tablename, community_no, td_no, notice_no) {
 	});
 }
 $(document).ready(function () {
-    $('#division a').hover(function(){
+    $('#division #tab').hover(function(){
         $(this).css('color','#c91c1c');
         $(this).css('font-weight','bold');        
     }, function() {
@@ -57,9 +57,9 @@ $(document).ready(function () {
 				<div class="pageTitle">
 					<h2>게시물관리</h2><br><br>					
 				</div>
-				<div class="btns">								
-					
-				</div>
+				<h3>
+					내가 쓴 게시글 및 댓글을 확인하실 수 있습니다.
+				</h3>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
@@ -68,8 +68,8 @@ $(document).ready(function () {
 							<p id="division">
 							<span>					
 								<a href="/question_pool/user/mypage/myboard.do" style="margin-left: 3; color: #c91c1c; border: solid 2px #000000;"><strong>Q&A</strong></a>
-								<a onclick="myComu()" >자유게시판</a>						
-								<a onclick="myComment()">댓글</a>						
+								<a id="tab" onclick="myComu()" >자유게시판</a>						
+								<a id="tab" onclick="myComment()">댓글</a>						
 							</span>
 							</p>							
 							<form name="frm" id="frm" action="process.do" method="post">
@@ -127,7 +127,7 @@ $(document).ready(function () {
 							<br>	
 							<div class="btn">
 								<div class="writebtn">
-									<a class="wbtn" href="../qa/qa.do"><strong>Q&A바로가기</strong> </a>
+									<a class="wbtn" href="/question_pool/user/board/qa/qa.do"><strong>Q&A바로가기</strong> </a>
 								</div>
 							</div>							
 							<!--//btn-->

@@ -29,6 +29,11 @@ public class PayServiceImple implements PayService{
 	}
 	
 	@Override
+	public int cancelPay2(PayVo vo) {
+		return payDao.cancelPay2(vo);
+	}
+	
+	@Override
 	public int payCount(PayVo vo) {
 		return payDao.payCount(vo);
 	}

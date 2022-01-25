@@ -18,7 +18,6 @@ public class UserDao {
 
 	public UserVo login(UserVo vo) {
 		UserVo uv = sst.selectOne("user.login",vo);
-
 		return uv;
 	}
 	public int dueDate(UserVo vo) {

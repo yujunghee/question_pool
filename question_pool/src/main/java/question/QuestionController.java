@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import admin.AdminVo;
+import board.NoticeVo;
 import school.SchoolService;
 import school.SchoolVo;
 import user.UserVo;
@@ -341,16 +342,6 @@ public class QuestionController {
 		model.addAttribute("list", list);
 		return "user/question/study/school";
 	}
-	//단어장
-	@RequestMapping("/user/question/study/word.do")
-	public String word() {
-		return "user/question/study/word";
-	}
-	//단어장
-	@RequestMapping("/user/question/study/result.do")
-	public String wordresult() {
-		return "user/question/study/result";
-	}
 	//랜덤모의고사 페이지
 	@RequestMapping("/user/question/randomIndex.do")
 	public String randomQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int school_no) {
@@ -475,5 +466,20 @@ public class QuestionController {
 		model.addAttribute("dList", questionService.showexam(qv));
 		return "user/question/exam"; // 문제등록(학교/연도/회차선택창으로 이동)
 	}
-	
+	@RequestMapping("/user/question/study/insertwords.do")
+	public String showmetheexam(question.AnsweredQuestionVo qv, HttpServletRequest req) {
+		int r = questionService.insertwords(qv);
+		if (r > 0) {
+			req.setAttribute("msg", "정상적으로 등록되었습니다.");
+			req.setAttribute("url", "/question_pool/user/question/study/word.do");
+		}
+		return "admin/include/return2"; 
+	}
+	//단어장
+	@RequestMapping("/user/question/study/word.do")
+	public String word(AnsweredQuestionVo qv, Model model) {
+		List<AnsweredQuestionVo> list = questionService.viewwords(qv);
+		model.addAttribute("list",list);
+		return "user/question/study/word";
+	}
 }

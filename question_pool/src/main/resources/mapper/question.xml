@@ -104,4 +104,15 @@
 		SELECT * FROM random_question r JOIN question q ON r.question_no=q.question_no AND school_no=#{school_no} AND user_no=#{user_no}
 	</select>
 	
+	<insert id="insertwords" parameterType="question.AnsweredQuestionVo">
+		INSERT INTO words (
+			word, mean, user_no
+		) VALUES (
+			 #{word},#{mean},#{user_no}
+		)
+	</insert>	
+	
+	<select id="viewwords" resultType="question.AnsweredQuestionVo" parameterType="int">
+		SELECT * FROM words where user_no=#{user_no}
+	</select>	
 </mapper>

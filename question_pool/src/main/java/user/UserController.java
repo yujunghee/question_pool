@@ -241,6 +241,4 @@ public class UserController {
 	public String payRecord() {
 		return "user/mypage/payRecord";
 	}
-	
-
 }

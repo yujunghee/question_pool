@@ -24,6 +24,10 @@ public class PayDao {
 		return sst.update("pay.cancelPay", vo);
 	}
 	
+	public int cancelPay2(PayVo vo) {
+		return sst.update("pay.cancelPay2", vo);
+	}
+	
 	public int payCount(PayVo vo) {
 		return sst.selectOne("pay.payCount", vo);
 	}
