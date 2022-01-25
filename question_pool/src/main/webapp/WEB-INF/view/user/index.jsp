@@ -11,7 +11,7 @@
 $(function(){
 	$('#wrap').ready(function(){
 		if('${userInfo.user_grade}'== 2){
-			alert('사용기간이 만료되었습니다. 다시 결재후 이용해주세요')
+			alert('사용기간이 만료되었습니다. 다시 결제후 이용해주세요')
 		}
 	})
 })
