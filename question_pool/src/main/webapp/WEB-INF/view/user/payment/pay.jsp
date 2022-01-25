@@ -31,7 +31,8 @@ function product(pname ,pay, product_no){
 						pay_id : rsp.imp_uid,
 						merchant_id : rsp.merchant_uid,
 						user_no : ${data.user_no},
-						product_no : product_no
+						product_no : product_no, 
+						user_email : "${userInfo.user_email}"
 					},
 		    	})
 				msg += pname+' 결제되었습니다 감사합니다.'
