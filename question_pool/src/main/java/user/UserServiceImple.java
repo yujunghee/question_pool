@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import admin.AdminVo;
 import question.ExamVo;
+import school.SchoolVo;
 import util.SendMail;
 
 @Service
@@ -138,6 +139,10 @@ public class UserServiceImple implements UserService {
 	@Override
 	public List<ExamVo> myExamlist(int user_no) {
 		return userdao.myExamlist(user_no);
+	}
+	@Override
+	public List<SchoolVo> myRandomExam(int user_no) {
+		return userdao.myRandomExam(user_no);
 	}
 
 }

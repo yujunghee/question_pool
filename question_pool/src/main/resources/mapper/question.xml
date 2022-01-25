@@ -88,11 +88,20 @@
 	</select>
 	
 	<select id="randomQuestion" resultType="question.QuestionVo" parameterType="int">
-		SELECT * FROM question WHERE exam_no IN (SELECT exam_no FROM exam WHERE school_no=#{school_no}) ORDER BY RAND() LIMIT 5
+		SELECT * FROM question WHERE exam_no IN (SELECT exam_no FROM exam WHERE school_no=#{school_no}) AND question_ref IS NULL ORDER BY RAND() LIMIT 5
 	</select>
 	
 	<select id="refQuestion" resultType="question.QuestionVo" parameterType="int">
-		SELECT * FROM question WHERE question_no=#{question_ref} OR question_ref=#{question_ref}
+		SELECT * FROM question WHERE question_ref=#{question_no}
+	</select>
+	
+	<insert id="insertRandom" parameterType="question.RandomQuestionVo">
+		INSERT INTO random_question(user_answer, score, answered_date, memo, question_no, user_no, school_no)	
+		VALUES(#{user_answer}, #{score}, NOW(), #{memo}, #{question_no}, #{user_no}, #{school_no})
+	</insert>
+	
+	<select id="selectRandom" resultType="question.RandomQuestionVo" parameterType="question.RandomQuestionVo">
+		SELECT * FROM random_question r JOIN question q ON r.question_no=q.question_no AND school_no=#{school_no} AND user_no=#{user_no}
 	</select>
 	
 </mapper>

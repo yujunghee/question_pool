@@ -111,4 +111,14 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.refQuestion(question_ref);
 	}
 
+	@Override
+	public int insertRandom(RandomQuestionVo rv) {
+		return dao.insertRandom(rv);
+	}
+
+	@Override
+	public List<RandomQuestionVo> selectRandom(RandomQuestionVo rv) {
+		return dao.selectRandom(rv);
+	}
+
 }

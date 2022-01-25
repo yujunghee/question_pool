@@ -1,6 +1,5 @@
 package user;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import question.ExamVo;
+import school.SchoolVo;
 
 
 @Repository
@@ -85,6 +85,9 @@ public class UserDao {
 
 	public List<ExamVo> myExamlist(int user_no){
 		return sst.selectList("user.myExamlist",user_no);
-
+	}
+	
+	public List<SchoolVo> myRandomExam(int user_no){
+		return sst.selectList("user.myRandomExam",user_no);
 	}
 }
