@@ -399,8 +399,12 @@ function test() {
 				</dl>
 			</div>
 			<div class="menuclose" onclick="menuToggle();"><img src="<%=userUtil.Property.contextPath%>/img/menu_close.png" /></div>
-			<div class="copy">Copyright (C) 2022<br />
-				더조은종각 4조 WebProject. 
+			<div class="copy">
+				<p>(주)LadderCompany</p>
+	            <p>서울특별시 종로구 삼일대로17길 51 스타골드빌딩 3층,4층,5층</p>
+	            <p>02-738-5001 | 02-738-5001</p>
+	            <p>대표자 김깐부 | 개인정보책임자 이깐부</p>
+	            <p>사업자번호 111-86-22222</p> 
 			</div>
 		</div>
 		<!--//menuWrap-->

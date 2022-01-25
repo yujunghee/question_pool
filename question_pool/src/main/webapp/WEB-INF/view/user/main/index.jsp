@@ -153,7 +153,8 @@ $(function() {
     background-size: cover;
 }
 
-.fl_l {    
+
+.fl_r {    
     background-color: #fff;
     padding: 0.3em 1.4em 1.2em 0.8em;
     margin: 0;
@@ -161,6 +162,34 @@ $(function() {
     border-radius: 0.5em;
     align-items: center;
 }
+.notice {
+	background-image: url("/question_pool/img/user/goexam.png");
+	height: 180px;
+}
+.notice h2, a {
+	color: #001433;
+	text-align: center;
+	font-family: fantasy;
+	line-height: 50px;
+	font-weight: bold;
+}
+.notice .exambts {
+	width: 40%;
+	align-self: center;
+	margin-left: 30%;
+    background-color: #a08fa6;
+    color: a6506e;
+    padding: 0.3em 1.4em 0.2em 0.8em;    
+    border: 1px solid #aaa;
+    border-radius: 0.5em;
+    box-shadow: 0 2px 0 1px rgb(0 0 0 / 4%);
+    text-align: center;	
+    font-family: serif;
+    font-size: 20px;
+    font-style: oblique;
+}
+
+
 </style>
 </head>
 <body>
@@ -176,45 +205,12 @@ $(function() {
 		                <div class="swiper-button-prev"></div>
 		            </div>
 		        </div>
-<div id="boardWrap" class="bbs">
-				
+<div id="boardWrap" class="bbs">				
 				<div class="wid48 fl_l">
 					<div class="box notice">
-						<h2>공지사항</h2>
-						<ul>
-							<li>
-								<c:if test="${empty list }">
-		                            <tr>
-		                                <td class="first" colspan="8">등록된 글이 없습니다.</td>
-		                            </tr>
-								</c:if>
-							</li>
-							<li>
-								<c:if test="${!empty list }">
-									<c:forEach var="list" items="${list }">                                    
-			                            <input type="hidden" name="notice_no" value="${list.notice_no }">
-			                            <input type="hidden" name="admin_no" value="${list.admin_no }">
-			                            <tr>			                            				                            	
-			                                <td class="txt_l" onclick="location.href='/question_pool/user/notice/view.do?notice_no=${list.notice_no }" style="cursor: pointer;">
-			                                    <a href="/question_pool/user/notice/view.do?notice_no=${list.notice_no }">${list.notice_title }</a>
-			                                </td>
-			                                <td class="date"><fmt:formatDate value="${list.notice_date }" pattern="yyyy-MM-dd"/></td>			                                
-			                            </tr>
-		                            </c:forEach>
-		                         </c:if>
-	                         </li>
-						</ul>
-					</div>
-					<div class="box notice">
-						<h2>Q&A</h2>
-						<ul>
-							<li style="text-align:center;">등록된 Q&A가 없습니다.</li>
-							<li><a href="javascript:;" onclick="parent.clickMenu('board2', 'Q&A', '/board/qna/view.do?idx=');">BBB <span>2020-01-01</span></a></li>
-							<li><a href="javascript:;" onclick="parent.clickMenu('board2', 'Q&A', '/board/qna/view.do?idx=');">BBB <span>2020-01-01</span></a></li>
-							<li><a href="javascript:;" onclick="parent.clickMenu('board2', 'Q&A', '/board/qna/view.do?idx=');">BBB <span>2020-01-01</span></a></li>
-							<li><a href="javascript:;" onclick="parent.clickMenu('board2', 'Q&A', '/board/qna/view.do?idx=');">BBB <span>2020-01-01</span></a></li>
-							<li><a href="javascript:;" onclick="parent.clickMenu('board2', 'Q&A', '/board/qna/view.do?idx=');">BBB <span>2020-01-01</span></a></li>
-						</ul>
+						<h2>Ladder Up</h2>
+						<h2 style="font-weight: bold;">편입영어 기출문제</h2>
+						<div class="exambts"><a href="/user/question/pool.do">문제풀기</a></div>
 					</div>
 					<div class="linkBox">
 						<ul>
@@ -351,7 +347,7 @@ $(function() {
 						</table>
 					</div>
 				</div>
-			</div>
+			</div>		
 </div>
 <!--//contentsWrap-->
 </body>

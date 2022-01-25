@@ -11,13 +11,9 @@
 										<table style="border-radius: 3px;">
 											<thead style="border-bottom: solid 1.5px;">
 												<tr class="txt_l">
-<<<<<<< HEAD
-					                                <th style="font-size: 30px; padding: 5; font-weight: bold;" >Q. ${data.faq_title }</th>
-=======
 					                                <th style="font-size: 24px; padding: 5; font-weight: bold;" >
 					                                	<img src="<%=request.getContextPath()%>/img/Q_1.png" style="padding-bottom: 5px"> ${data.faq_title }
 					                                </th>
->>>>>>> branch 'master' of https://github.com/yujunghee/question_pool.git
 			                                	</tr>
 		                                	</thead>
 											<tr>											
