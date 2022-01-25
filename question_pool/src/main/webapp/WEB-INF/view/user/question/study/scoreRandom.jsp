@@ -41,7 +41,8 @@ h2{font-size:150%;}
 						<div id="bread">
 						<form method="post" name="frm" id="frm" action="score.do" enctype="multipart/form-data">
 						<div class="score">
-							<h1><img src="/question_pool/img/user/pencil.png" height="40px;">[SCORE] : 총 ${exam.number_of_questions}문제 중 맞은 문제 ${cnt}개</h1>
+							<h1><img src="/question_pool/img/user/pencil.png" height="40px;">
+							[SCORE] : 맞은 문제 ${cnt}개</h1>
 						</div>
 							<br><br>
 							<h2>[해설보기]</h2>
@@ -54,7 +55,7 @@ h2{font-size:150%;}
 										<c:set var="string1" value="${fn:replace(string,'#','<u>')}"/>
 										<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
 										
-										<c:if test="${alist[status.index].score eq 0}">
+										<c:if test="${qv.score eq 0}">
 											<div style="color:red;">
 												<p>${status.count}. ${string2}</p>
 												<c:forEach var="ev" items="${qv.ex}">
@@ -62,7 +63,7 @@ h2{font-size:150%;}
 												</c:forEach>
 											</div>
 										</c:if>
-										<c:if test="${alist[status.index].score eq 1}">
+										<c:if test="${qv.score eq 1}">
 											<div>
 												<p>${status.count}. ${string2}</p>
 												<c:forEach var="ev" items="${qv.ex}">
@@ -71,7 +72,7 @@ h2{font-size:150%;}
 											</div>
 										</c:if>
 											<p>[해설] ${qv.explanation}</p>
-											<p>내가 고른 답 : (${alist[status.index].user_answer})</p>
+											<p>내가 고른 답 : (${qv.user_answer})</p>
 											<p>정답 : (${qv.answer})</p>
 							</div>
 							</c:forEach>

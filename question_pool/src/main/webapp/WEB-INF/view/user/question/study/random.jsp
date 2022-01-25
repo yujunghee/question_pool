@@ -86,9 +86,10 @@
 				<div class="con">
 					<div id="bbs">
 						<div id="question">
-							<form method="post" name="frm" id="frm" action="insert.do?exam_no=${exam.exam_no}" enctype="multipart/form-data" onsubmit="return conf();">
-								<c:forEach var="qv" items="${qlist}" varStatus="status">
-								<input type="hidden" value="${qv.question_no}">
+							<form method="post" name="frm" id="frm" action="insertRandom.do?school_no=${school.school_no}" enctype="multipart/form-data" onsubmit="return conf();">
+							<c:set var="cnt" value="1"/>
+								<c:forEach var="qv" items="${qlist}">
+								<input type="hidden" name="question_no" value="${qv.question_no}">
 									<div class="passage">${qv.passage }</div>
 									
 									<c:set var="string" value="${qv.question_content}"/>
@@ -96,7 +97,8 @@
 									<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
 									
 									<div class="subcon">
-										<div class="qcon">${status.count}. ${string2}</div>
+										<div class="qcon">${cnt}. ${string2}</div>
+										<c:set var="cnt" value="${cnt+1 }"/>
 											<c:forEach var="ev" items="${qv.ex}" varStatus="status">
 												<div class="examples">
 													<input type="checkbox" class="example" name="example" value="${ex[status.index]}">&nbsp;
@@ -104,6 +106,27 @@
 												</div>
 											</c:forEach>
 									</div>
+									<c:if test="${!empty qv.qv}">
+										<c:forEach var="ref" items="${qv.qv}">
+											<input type="hidden" name="question_no" value="${ref.question_no}">
+											<div class="passage">${ref.passage }</div>
+											
+											<c:set var="string" value="${ref.question_content}"/>
+											<c:set var="string1" value="${fn:replace(string,'#','<u>')}"/>
+											<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
+											
+											<div class="subcon">
+												<div class="qcon">${cnt}. ${string2}</div>
+												<c:set var="cnt" value="${cnt+1 }"/>
+													<c:forEach var="ev" items="${ref.ex}" varStatus="status">
+														<div class="examples">
+															<input type="checkbox" class="example" name="example" value="${ex[status.index]}">&nbsp;
+																(${ev.example}) ${ev.example_content}
+														</div>
+													</c:forEach>
+											</div>
+										</c:forEach>
+									</c:if>
 								<br><br>
 								</c:forEach>
 								

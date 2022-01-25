@@ -21,14 +21,14 @@ function division(){
 		<div id="container" style="width:100%;">
 			<div id="content">
 				<div class="pageTitle">
-					<h2>Q&A</h2><br><br>  
-					<h3>
-						[Ladder Up] 고객님의 의견 수렴과 궁금하신 사항을 질문하는 공간입니다. <br> 등록 전에 'FAQ'를 참고해 주시기 바랍니다.						
-					</h3><br>
-					<div class="btn">
-						<div class="writebtn">
-							<a class="wbtn" href="../faq/faq.do"><strong>FAQ 바로가기</strong> </a>
-						</div>
+					<h2>Q&A</h2>	
+				</div>
+				<h3>
+					[Ladder Up] 고객님의 의견 수렴과 궁금하신 사항을 질문하는 공간입니다. <br> 등록 전에 'FAQ'를 참고해 주시기 바랍니다.						
+				</h3><br>
+				<div class="btn">
+					<div class="writebtn">
+						<a class="wbtn" href="../faq/faq.do"><strong>FAQ 바로가기</strong> </a>
 					</div>
 				</div>
 				<!-- //con_tit -->

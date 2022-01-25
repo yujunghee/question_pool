@@ -11,7 +11,7 @@
 $(function(){
 	$('#wrap').ready(function(){
 		if('${userInfo.user_grade}'== 2){
-			alert('사용기간이 만료되었습니다. 다시 결재후 이용해주세요')
+			alert('사용기간이 만료되었습니다. 다시 결제후 이용해주세요')
 		}
 	})
 })
@@ -335,19 +335,17 @@ function test() {
 					<dl style="width:13.666%;">
 						<dt><a href="javascript:;">문제풀기</a></dt>
 						<dd class="frist"><a href="javascript:;" onclick="clickMenu('front1', '문제풀기', '/user/question/pool.do', false)">문제풀기</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('front2', '점수내역', '/user/question/record.do', false)">점수내역</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('front2', '랜덤 모의고사', '/user/question/random.do', false)">랜덤 모의고사</a></dd>
 					</dl>
 					<dl style="width:13.666%;">
 						<dt><a href="javascript:;">결제</a></dt>
 						<dd class="frist"><a href="javascript:;" onclick="clickMenu('project1', '상품보기', '/user/payment/pay.do', false)">상품보기</a></dd>
 						<dd><a href="javascript:;" onclick="clickMenu('project2', '환불요청', '/user/payment/refund.do', false)">환불요청</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('project3', '프로젝트 설계', '/project/architecture.do', false)">프로젝트 설계</a></dd>
 					</dl>
 					<dl style="width:14.666%;">
 						<dt><a href="javascript:;">추가학습</a></dt>
-						<dd class="frist"><a href="javascript:;" onclick="clickMenu('back1', '랜덤 모의고사', '/user/question/random.do', false)">랜덤 모의고사</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('back2', '오답노트', '/user/question/note.do', false)">오답노트</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('back3', '단어장', '/user/question/study/word.do', false)">단어장</a></dd>
+						<dd class="frist"><a href="javascript:;" onclick="clickMenu('back1', '오답노트', '/user/question/note.do', false)">오답노트</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('back2', '단어장', '/user/question/study/word.do', false)">단어장</a></dd>
 					</dl>
 					<dl style="width:15.666%;">
 						<dt><a href="javascript:;">커뮤니티</a></dt>
@@ -371,7 +369,7 @@ function test() {
 					<dd class="gnb_submenu">
 						<ul>	
 							<li id="front1_submenu" onclick="clickMenu('front1', '문제풀기', '/user/question/pool.do', false)">문제풀기</li>
-							<li id="front2_submenu" onclick="clickMenu('front2', '점수내역', '/user/question/record.do', false)">점수내역</li>
+							<li id="front2_submenu" onclick="clickMenu('front2', '랜덤 모의고사', '/user/question/random.do', false)">랜덤 모의고사</li>
 						</ul>
 					</dd>
 					<dt id="project" class="gnb_menu">결제</dt>
@@ -379,15 +377,13 @@ function test() {
 						<ul>	
 							<li id="project1_submenu" onclick="clickMenu('project1', '상품보기', '/user/payment/pay.do', false)">상품보기</li>
 							<li id="project2_submenu" onclick="clickMenu('project2', '환불요청', '/user/payment/refund.do', false)">환불요청</li>
-							<li id="project3_submenu" onclick="clickMenu('project3', '프로젝트 설계', '/project/architecture.do', false)">프로젝트 설계</li>
 						</ul>
 					</dd>
 					<dt id="back" class="gnb_menu">추가학습</dt>
 					<dd class="gnb_submenu">
 						<ul>	
-							<li id="back1_submenu" onclick="clickMenu('back1', '랜덤 모의고사', '/user/question/random.do', false)">랜덤 모의고사</li>
-							<li id="back2_submenu" onclick="clickMenu('back2', '오답노트', '/user/question/note.do', false)">오답노트</li>
-							<li id="back3_submenu" onclick="clickMenu('back3', '단어장', '/user/question/study/word.do', false)">단어장</li>
+							<li id="back1_submenu" onclick="clickMenu('back1', '오답노트', '/user/question/note.do', false)">오답노트</li>
+							<li id="back2_submenu" onclick="clickMenu('back2', '단어장', '/user/question/study/word.do', false)">단어장</li>
 						</ul>
 					</dd>
 					<dt id="portfolio" class="gnb_menu">커뮤니티</dt>

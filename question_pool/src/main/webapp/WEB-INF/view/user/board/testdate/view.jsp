@@ -91,7 +91,7 @@
 											${data.td_content }											
 											
 											<c:if test="${!empty data.td_file_real }">											
-												<img src="/question_pool/upload/${data.td_file_org }">											
+												<img src="/question_pool/upload/${data.td_file_real }">											
 											</c:if>
 											<c:if test="${empty data.td_file_real }">											
 												<img src="">											

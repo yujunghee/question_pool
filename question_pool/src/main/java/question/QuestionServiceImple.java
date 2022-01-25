@@ -32,6 +32,10 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.selectyear(qv);
 	}
 	@Override
+	public List<AnsweredQuestionVo> viewwords(AnsweredQuestionVo qv) {
+		return dao.viewwords(qv);
+	}
+	@Override
 	public List<QuestionVo> showexam(QuestionVo qv) {
 		return dao.showexam(qv);
 	}
@@ -111,4 +115,18 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.refQuestion(question_ref);
 	}
 
+	@Override
+	public int insertRandom(RandomQuestionVo rv) {
+		return dao.insertRandom(rv);
+	}
+
+	@Override
+	public List<RandomQuestionVo> selectRandom(RandomQuestionVo rv) {
+		return dao.selectRandom(rv);
+	}
+
+	@Override
+	public int insertwords(question.AnsweredQuestionVo qv) {
+		return dao.insertwords(qv);
+	}
 }

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import user.UserVo;
+
 //import user.UserDao;
 //import user.UserVo;
 
@@ -33,10 +35,24 @@ public class UserPayServiceImple implements UserPayService{
 	}
 
 	@Override
-	public int refundUpdate(UserPayVo vo, HttpSession sess) {
-//		UserVo uv = userdao.login(vo);
-//		sess.setAttribute("userInfo", uv);
-		return payDao.refundUpdate(vo, sess);
+	public boolean refundUpdate(UserPayVo vo, HttpSession sess) {
+			payDao.refundUpdate(vo, sess);
+			UserVo uv = payDao.refLogin(vo);
+			if(uv != null) {
+				sess.setAttribute("userInfo", uv);
+				return true;
+			}
+			return false;
+	}
+	
+	@Override
+	public boolean pay(UserPayVo vo, HttpSession sess) {
+			UserVo uv = payDao.pay(vo);
+			if(uv != null) {
+				sess.setAttribute("userInfo", uv);
+				return true;
+			}
+			return false;
 	}
 
 	@Override

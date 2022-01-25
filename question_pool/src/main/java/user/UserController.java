@@ -18,6 +18,7 @@ import board.BoardService;
 import board.NoticeVo;
 import question.ExamVo;
 import school.SchoolService;
+import school.SchoolVo;
 import util.Pagination;
 
 @Controller
@@ -225,14 +226,19 @@ public class UserController {
 	}
 
 	@RequestMapping("/user/mypage/myExams.do")
-	public String myExams(UserVo vo, Model model) {
-		List<ExamVo> elist = userservice.myExamlist(vo.getUser_no());
-		model.addAttribute("elist",elist);
+	public String myExams(HttpServletRequest req, Model model) {
+		List<ExamVo> elist = userservice.myExamlist(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
+		List<SchoolVo> slist = userservice.myRandomExam(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
 		for(int i=0; i<elist.size(); i++) {
 			elist.get(i).setSchool_name((schoolService.selectSchool(elist.get(i).getSchool_no())).getSchool_name());
 		}
+		model.addAttribute("elist",elist);
+		model.addAttribute("slist",slist);
 		return "user/mypage/myExams";
 	}
 	
-
+	@RequestMapping("/user/mypage/payRecord.do")
+	public String payRecord() {
+		return "user/mypage/payRecord";
+	}
 }

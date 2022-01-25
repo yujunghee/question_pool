@@ -9,13 +9,7 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-	function reSubmit() {
-		console.log('${userInfo.user_no}')
-		console.log('${userInfo.user_email}')
-		console.log('${userInfo.refund}')
-		console.log('${userInfo.due_date}')
-		console.log('${userInfo.product_no}')
-		
+	function reSubmit() {		
 		if('${userInfo.refund}' == 0){
 			alert('결제 후 이용해주세요.');
 			return;
@@ -26,6 +20,10 @@
 		}
 		if('${userInfo.refund}' == 3){
 			alert('이미 환불 받으셨습니다.');
+			return;
+		}
+		if('${userInfo.refund}' == 4){
+			alert('환불이 거절되었습니다.(관리자에게 문의하세요.)');
 			return;
 		}
 		$("#frm").submit();
@@ -40,6 +38,7 @@
 		<h3>동의하시면 환불요청을 진행해주세요.</h3>
 		<form name="frm" id="frm" action="refundUpdate.do" method="post">
 		<input type="hidden" id="user_no" name="user_no" value="${userInfo.user_no}">
+		<input type="hidden" id="user_email" name="user_email" value="${userInfo.user_email}">
 		<select name="refund_reason">
 		    <option value="1">실수로 잘못 결제함</option>
 		    <option value="2">다른 사이트 이용</option>

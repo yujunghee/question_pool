@@ -8,8 +8,8 @@
 		) VALUES (
 			 #{user_email},md5(#{user_pwd}),#{user_nick},#{user_name},#{user_tel},NOW(), #{zipcode}, #{addr1}, #{addr2}
 		)
-	</insert>
-
+	</insert>		
+				
 	<select id="login" parameterType="user.UserVo" resultType="user.UserVo">
 		SELECT *, DATEDIFF(NOW(), pay_date) AS due_date FROM
 		user left join payment on user.user_no = payment.user_no WHERE user_email= #{user_email} AND user_pwd=md5(#{user_pwd}) ORDER BY pay_date DESC limit 1
@@ -89,6 +89,10 @@
 		
 	<select id="myExamlist" parameterType="int" resultType="question.ExamVo">
 		SELECT * FROM exam WHERE exam_no IN (SELECT exam_no FROM answered_question WHERE user_no=#{user_no} GROUP BY exam_no)
+	</select>
+	
+	<select id="myRandomExam" parameterType="int" resultType="school.SchoolVo">
+		SELECT * FROM school WHERE school_no IN (SELECT school_no FROM random_question WHERE user_no=#{user_no} GROUP BY school_no)
 	</select>
 
 </mapper>

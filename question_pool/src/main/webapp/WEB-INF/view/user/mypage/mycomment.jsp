@@ -17,7 +17,7 @@
 </style>
 <script type="text/javascript">
 $(document).ready(function () {
-    $('#division a').hover(function(){
+    $('#division #tab').hover(function(){
         $(this).css('color','#c91c1c');
         $(this).css('font-weight','bold');        
     }, function() {
@@ -30,9 +30,15 @@ $(document).ready(function () {
 					<div class="list">
 					<p id="division">
 					<span>					
+<<<<<<< HEAD
 						<a href="/question_pool/user/mypage/myboard.do" style="margin-left: 3; border: solid 1px #000000;">Q&A</a>
 						<a onclick="myComu()" style="border: solid 1px #000000;">자유게시판</a>						
 						<a onclick="myComment()" style="color: #c91c1c; border: solid 3px #000000;"><strong>댓글</strong></a>						
+=======
+						<a id="tab" href="/question_pool/user/mypage/myboard.do" style="margin-left: 3; ">Q&A</a>
+						<a id="tab" onclick="myComu()" >자유게시판</a>						
+						<a onclick="myComment()" style="color: #c91c1c; border: solid 2px #000000;"><strong>댓글</strong></a>						
+>>>>>>> branch 'master' of https://github.com/yujunghee/question_pool.git
 					</span>
 					</p>
 					<table>										    

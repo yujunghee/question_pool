@@ -137,6 +137,15 @@ $(function() {
         },
     });
 });
+$(document).ready(function () {
+	$.ajax({
+		url : 'mainPool.do',
+		async : false,
+		success : function(res) {
+			$(".poolArea").html(res);
+		}
+	})
+});
 </script>
 <style type="text/css">
 .main {
@@ -160,11 +169,11 @@ $(function() {
     border: 2px solid #aaa;
     border-radius: 0.5em;
     align-items: center;
-}
+    }
 </style>
 </head>
 <body>
-<div class="main">
+				<div class="main">
 		            <div class="swiper">
 		                <div class="swiper-wrapper">
 		                  <div class="swiper-slide" style="background-image: url('/question_pool/img/user/main03.png');"></div>
@@ -176,45 +185,11 @@ $(function() {
 		                <div class="swiper-button-prev"></div>
 		            </div>
 		        </div>
-<div id="boardWrap" class="bbs">
-				
+			<div id="boardWrap" class="bbs">				
 				<div class="wid48 fl_l">
 					<div class="box notice">
-						<h2>공지사항</h2>
-						<ul>
-							<li>
-								<c:if test="${empty list }">
-		                            <tr>
-		                                <td class="first" colspan="8">등록된 글이 없습니다.</td>
-		                            </tr>
-								</c:if>
-							</li>
-							<li>
-								<c:if test="${!empty list }">
-									<c:forEach var="list" items="${list }">                                    
-			                            <input type="hidden" name="notice_no" value="${list.notice_no }">
-			                            <input type="hidden" name="admin_no" value="${list.admin_no }">
-			                            <tr>			                            				                            	
-			                                <td class="txt_l" onclick="location.href='/question_pool/user/notice/view.do?notice_no=${list.notice_no }" style="cursor: pointer;">
-			                                    <a href="/question_pool/user/notice/view.do?notice_no=${list.notice_no }">${list.notice_title }</a>
-			                                </td>
-			                                <td class="date"><fmt:formatDate value="${list.notice_date }" pattern="yyyy-MM-dd"/></td>			                                
-			                            </tr>
-		                            </c:forEach>
-		                         </c:if>
-	                         </li>
-						</ul>
-					</div>
-					<div class="box notice">
-						<h2>Q&A</h2>
-						<ul>
-							<li style="text-align:center;">등록된 Q&A가 없습니다.</li>
-							<li><a href="javascript:;" onclick="parent.clickMenu('board2', 'Q&A', '/board/qna/view.do?idx=');">BBB <span>2020-01-01</span></a></li>
-							<li><a href="javascript:;" onclick="parent.clickMenu('board2', 'Q&A', '/board/qna/view.do?idx=');">BBB <span>2020-01-01</span></a></li>
-							<li><a href="javascript:;" onclick="parent.clickMenu('board2', 'Q&A', '/board/qna/view.do?idx=');">BBB <span>2020-01-01</span></a></li>
-							<li><a href="javascript:;" onclick="parent.clickMenu('board2', 'Q&A', '/board/qna/view.do?idx=');">BBB <span>2020-01-01</span></a></li>
-							<li><a href="javascript:;" onclick="parent.clickMenu('board2', 'Q&A', '/board/qna/view.do?idx=');">BBB <span>2020-01-01</span></a></li>
-						</ul>
+						<div class="poolArea">						
+						</div>
 					</div>
 					<div class="linkBox">
 						<ul>
@@ -225,40 +200,6 @@ $(function() {
 					</div>
 				</div>
 				<div class="wid48 fl_r">
-					<div class="box bl">
-						<h2>회원관리</h2>
-						<table>
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>이름</th>
-									<th>연락처</th>
-									<th>가입일</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>test</td>
-									<td><a href="">홍길동</a></td>
-									<td>010-1234-5678</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td>test</td>
-									<td><a href="">홍길동</a></td>
-									<td>010-1234-5678</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td>test</td>
-									<td><a href="">홍길동</a></td>
-									<td>010-1234-5678</td>
-									<td>2020-01-01</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<!--//바로가기-->
 					<div class="box bl">
 						<h2>최근 게시글</h2>
 						<div class="blTab">

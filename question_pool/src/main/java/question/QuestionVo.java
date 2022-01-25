@@ -12,7 +12,15 @@ public class QuestionVo extends ExamVo{
 	private String explanation;
 	private int admin_no;
 	private List<ExampleVo> ex;
+	private List<QuestionVo> qv;
 	
+	public List<QuestionVo> getQv() {
+		return qv;
+	}
+	public void setQv(List<QuestionVo> qv) {
+		this.qv = qv;
+	}
+
 	public List<ExampleVo> getEx() {
 		return ex;
 	}
