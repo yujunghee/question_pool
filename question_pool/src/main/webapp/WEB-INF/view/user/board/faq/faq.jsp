@@ -46,7 +46,7 @@ function getA(faq_no){
 					<!-- 내용 : s -->
 					<div class="bbs">					
 					<table>								
-						<tr id="answer" colspan="10" style="text-align: left; display: none; background-color: #eddae7; border: solid 1px;"></tr>
+						<tr id="answer" colspan="10" style="text-align: left; display: none; background-color: #dddddd; border: solid 1px;"></tr>
 					</table>				
 						<div class="list">
 							<!-- search --> 							

@@ -8,8 +8,7 @@
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style type="text/css">
-#division a {	
-	border: solid 1px;
+#division a {
 	border-radius: 10px 10px 0 0;
 	font-size: 20px;
 	margin: -2;
@@ -31,9 +30,9 @@ $(document).ready(function () {
 					<div class="list">
 					<p id="division">
 					<span>					
-						<a href="/question_pool/user/mypage/myboard.do" style="margin-left: 3; ">Q&A</a>
-						<a onclick="myComu()" >자유게시판</a>						
-						<a onclick="myComment()" style="color: #c91c1c; border: solid 2px #000000;"><strong>댓글</strong></a>						
+						<a href="/question_pool/user/mypage/myboard.do" style="margin-left: 3; border: solid 1px #000000;">Q&A</a>
+						<a onclick="myComu()" style="border: solid 1px #000000;">자유게시판</a>						
+						<a onclick="myComment()" style="color: #c91c1c; border: solid 3px #000000;"><strong>댓글</strong></a>						
 					</span>
 					</p>
 					<table>										    
