@@ -95,4 +95,15 @@
 		SELECT * FROM question WHERE question_no=#{question_ref} OR question_ref=#{question_ref}
 	</select>
 	
+	<insert id="insertwords" parameterType="question.AnsweredQuestionVo">
+		INSERT INTO words (
+			word, mean, user_no
+		) VALUES (
+			 #{word},#{mean},#{user_no}
+		)
+	</insert>	
+	
+	<select id="viewwords" resultType="question.AnsweredQuestionVo" parameterType="int">
+		SELECT * FROM words where user_no=#{user_no}
+	</select>	
 </mapper>

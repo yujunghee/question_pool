@@ -13,6 +13,7 @@ public class QuestionVo extends ExamVo{
 	private int admin_no;
 	private List<ExampleVo> ex;
 	
+	
 	public List<ExampleVo> getEx() {
 		return ex;
 	}
