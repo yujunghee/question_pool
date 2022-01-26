@@ -49,14 +49,16 @@
 	<input type="hidden" name="user_no" value="${vo.user_no}">
 		<div class="main">
 			<div class="wid48 fl_l">
-				<div class="box notice" style="text-align:center;">
-				<span class="material-icons md-48"><br> assignment_ind<br> </span>
-					<ul>
-						<li><a href="/question_pool/user/mypage/myinfo.do"><h2>Profile</h2></a></li>
-						<li><a href="/question_pool/user/mypage/myinfo.do">회원정보</a></li>
-						<li><a href="/question_pool/user/mypage/myinfo.do">회원님의 개인정보를 관리하는 공간입니다<br><br></a></li>
-					</ul>
-				</div>
+				<a href="myinfo.do">
+					<div class="box notice" style="text-align:center;" >
+					<span class="material-icons md-48"><br> assignment_ind<br> </span>
+						<ul>
+							<li><h2>Profile</h2></li>
+							<li>회원정보</li>
+							<li>회원님의 개인정보를 관리하는 공간입니다<br><br></li>
+						</ul>
+					</div>
+				</a>
 				<div class="box notice" style="text-align: center; cursor: pointer;" onclick="location.href='/question_pool/user/mypage/myboard.do'">
 					<span class="material-icons md-48"><br>border_color<br></span>
 					<ul onclick="location.href='myboard.do" style="cursor: pointer;">

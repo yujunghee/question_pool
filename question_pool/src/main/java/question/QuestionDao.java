@@ -120,4 +120,8 @@ public class QuestionDao {
 	public List<QuestionVo> refQuestion(int question_ref){
 		return sqlSessionTemplate.selectList("question.refQuestion",question_ref);
 	}
+	
+	public List<QuestionVo> selectWAlist(QuestionVo qv){
+		return sqlSessionTemplate.selectList("question.selectWAlist", qv);
+	}
 }

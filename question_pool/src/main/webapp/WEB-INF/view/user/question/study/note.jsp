@@ -23,26 +23,16 @@
 </style>
 
 <script>
-var counter = 1;
-var dynamicInput = [];
-
-function addInput(){
-    var newdiv = document.createElement('div');
-    newdiv.id = dynamicInput[counter];
-    newdiv.innerHTML = "<textarea class='card card-body' name='myInputs[]' onkeyup='textAreaAdjust(this)' style='overflow:hidden' rows='4' cols='60'> </textarea>";
-    document.getElementById('formulario').appendChild(newdiv);
-}
-  
-  function removeInput(id){
-    var elem = document.getElementById(id);
-    return elem.parentNode.removeChild(elem);
-  }
   
 function textAreaAdjust(element) {
 	  element.style.height = "1px";
 	  element.style.height = (25+element.scrollHeight)+"px";
 	}
 
+window.onload=function(){
+	  document.getElementById("showall").click();
+	};
+	
 </script>
 
 </head>
@@ -58,7 +48,7 @@ function textAreaAdjust(element) {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>[${school.school_name} ${exam.year}년도 ${exam.semester}학기]</h2>
+					<h2>[${userInfo.user_nick }님의 오답노트입니다.]</h2>
 					<input type="hidden" value="${userInfo.user_no}">
 				</div>
 				<!-- //con_tit -->
@@ -67,35 +57,51 @@ function textAreaAdjust(element) {
 					<div id="bbs">
 						<div id="bread">
 <!--  						<form method="post" name="frm" id="frm" action="insert.do?exam_no=${exam.exam_no}" enctype="multipart/form-data" onsubmit="return conf();">-->
+															<c:forEach var="wlist" items="${wlist}">
+									<input type="hidden" name="question_no"
+										value="${wlist.question_no }">
+										
+							
 							<p>
 							  <button class="btn-btn-primary"  type="button" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">문제</button>
 							  <button class="btn-btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">정답 및 분석</button>
-							  <button class="btn-btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">모두 보기</button>
+							  <button id="showall" class="btn-btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">모두 보기</button>
 							</p>
 							<div class="row">
 							  <div class="col">
 							    <div class="collapse multi-collapse" id="multiCollapseExample1">
 							      <div class="card card-body">
-							      문제 불러오기
+
+									<div class="passage">${wlist.passage }</div>
+									
+									<c:set var="string" value="${wlist.question_content}"/>
+									<c:set var="string1" value="${fn:replace(string,'#','<u>')}"/>
+									<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
+									
+									<div class="subcon">
+										<div class="qcon">${status.count}. ${string2}</div>
+											<c:forEach var="ev" items="${wlist.ex}" varStatus="status">
+												<div class="examples">
+														(${ev.example}) ${ev.example_content}
+												</div>
+											</c:forEach>
+									</div>
 							      </div>
 							    </div>
 							  </div>
 							  <div class="col">
 							    <div class="collapse multi-collapse" id="multiCollapseExample2">
-
-							      		<form method="POST" id="formulario">
-									     <div id="dynamicInput[0]">
-									        <textarea class="card card-body" name="myInputs[]" onkeyup="textAreaAdjust(this)" style="overflow:hidden" rows="4" cols="60">답, 해설 불러오기
-									        </textarea>
-									        <br>
-									   		내 메모 <input type="button" id="inputbtn" value="+" onClick="addInput();" size="5" >
-									   		<input type="button" id="inputbtn" value="-" onClick="removeInput();" size="5"> 
-									    </div>									  
-								    </form>
+							    <div class="card card-body">
+											${wlist.answer}
+											${wlist.explanation}
+											<br><br>내 메모<br>	
+											${wlist.memo }
+							      		
 								    </div>
 							    </div>
 							  </div>
-							</div>
+							  </div>
+							</c:forEach>
 						</form>
 							<!--//btn-->
 						</div>

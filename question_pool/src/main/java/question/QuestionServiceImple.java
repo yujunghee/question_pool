@@ -110,5 +110,9 @@ public class QuestionServiceImple implements QuestionService {
 	public List<QuestionVo> refQuestion(int question_ref) {
 		return dao.refQuestion(question_ref);
 	}
-
+	
+	@Override
+	public List<QuestionVo> selectWAlist(QuestionVo qv){
+		return dao.selectWAlist(qv);
+	}
 }

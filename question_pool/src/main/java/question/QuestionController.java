@@ -331,7 +331,24 @@ public class QuestionController {
 	
 	// 오답노트 페이지
 	@RequestMapping("user/question/note.do")
-	public String note() {
+	public String note(QuestionVo qv, ExampleVo ev, Model model, HttpServletRequest req) {
+		
+		qv.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
+		List<QuestionVo> wlist = questionService.selectWAlist(qv);
+		List<ExampleVo> list = questionService.selectExamplelist(ev);
+		for(int i=0; i<wlist.size(); i++) {
+			List<ExampleVo> elist = new ArrayList<ExampleVo>();
+			for(int j=0; j<list.size(); j++) {
+				if(wlist.get(i).getQuestion_no() == list.get(j).getQuestion_no()) {
+					elist.add(list.get(j));
+				}
+			}
+			wlist.get(i).setEx(elist);
+		}
+		model.addAttribute("wlist", wlist);		
+		String[] examples = { "A", "B", "C", "D", "E" };
+		model.addAttribute("ex",examples);
+		
 		return "user/question/study/note";
 	}
 	
