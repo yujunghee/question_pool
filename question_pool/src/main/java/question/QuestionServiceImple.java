@@ -128,5 +128,10 @@ public class QuestionServiceImple implements QuestionService {
 	@Override
 	public int insertwords(question.AnsweredQuestionVo qv) {
 		return dao.insertwords(qv);
+	}	
+	
+	@Override
+	public List<QuestionVo> selectWAlist(QuestionVo qv){
+			return dao.selectWAlist(qv);
 	}
 }

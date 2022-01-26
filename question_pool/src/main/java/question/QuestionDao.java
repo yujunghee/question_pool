@@ -135,4 +135,8 @@ public class QuestionDao {
 	public List<RandomQuestionVo> selectRandom(RandomQuestionVo rv){
 		return sqlSessionTemplate.selectList("question.selectRandom",rv);
 	}
+	
+	public List<QuestionVo> selectWAlist(QuestionVo qv){
+		return sqlSessionTemplate.selectList("question.selectWAlist", qv);
+	}
 }

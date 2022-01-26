@@ -1,5 +1,6 @@
 package question;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import school.SchoolVo;
@@ -32,5 +33,6 @@ public interface QuestionService {
 	List<QuestionVo> randomQuestion(int school_no);
 	List<QuestionVo> refQuestion(int question_ref);
 	int insertRandom(RandomQuestionVo rv);
-	List<RandomQuestionVo> selectRandom(RandomQuestionVo rv);
+	List<RandomQuestionVo> selectRandom(RandomQuestionVo rv);	
+	List<QuestionVo> selectWAlist(QuestionVo qv);
 }

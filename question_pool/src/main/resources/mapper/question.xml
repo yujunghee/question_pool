@@ -114,5 +114,21 @@
 	
 	<select id="viewwords" resultType="question.AnsweredQuestionVo" parameterType="int">
 		SELECT * FROM words where user_no=#{user_no}
-	</select>	
+	</select>
+	
+	<select id="selectWAlist" resultType="question.QuestionVo" parameterType="question.QuestionVo">
+		SELECT
+			q.question_no,
+			q.question_ref, 
+			q.passage, 
+			q.question_content, 
+			q.answer, 
+			q.explanation,
+			aq.memo
+		FROM answered_question aq
+			JOIN
+			question q on q.question_no=aq.question_no where user_no=#{user_no} and score=0;
+	</select>
+	
+	
 </mapper>
