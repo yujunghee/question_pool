@@ -71,34 +71,6 @@ function changeTab(v) {
 	$("#"+v+"_tab").show();
 }
 
-function selectNation(v) {
-	if (v == "export") {
-		$("#nation1 option").remove();
-		$("#nation1").append("<option value='korea'>KOREA</option>");
-		$("#nation1").data('selectric').refresh();
-		selectPort('nation1','port1', '');
-		
-		$("#nation2 option").remove();
-		$("#nation2").append("<option value='japan'>JAPAN</option>");
-		$("#nation2").append("<option value='china'>CHINA</option>");
-		$("#nation2").data('selectric').refresh();
-		selectPort('nation2','port2', 'JPTYO');
-		
-	} else if (v == "import") {
-		$("#nation1 option").remove();
-		$("#nation1").append("<option value='japan'>JAPAN</option>");
-		$("#nation1").append("<option value='china'>CHINA</option>");
-		
-		$("#nation1").data('selectric').refresh();
-		selectPort('nation1','port1', 'JPTYO');
-		
-		$("#nation2 option").remove();
-		$("#nation2").append("<option value='korea'>KOREA</option>");
-		$("#nation2").data('selectric').refresh();
-		selectPort('nation2','port2', '');
-	}
-}
-
 function goSchedule() {
 	var n1 = $("#nation1").val();
 	var n2 = $("#nation2").val();
@@ -129,7 +101,7 @@ $(function() {
 	var swiper = new Swiper(".swiper", {
         loop:true,
         autoplay : {
-            delay:3000
+            delay:7000
         },
         navigation: {
         nextEl: ".swiper-button-next",
@@ -154,6 +126,45 @@ $(function() {
 }
 
 
+#goexam {
+	background-image: url("/question_pool/img/user/goexam2.jpg");
+	height: 180px;
+	text-align: center;	
+	margin-bottom: 4%;
+}
+.notice .goexam1 {
+	font-size: 25px;
+	text-align: center;	
+	font-weight: bold;
+	margin-top:6%;
+	font-style: italic;
+	color: #fff;	
+}
+
+.notice .goexam2 {
+	font-size: 25px;
+	text-align: center;	
+	font-weight: bold;
+	color: #606b94;
+	margin-bottom: 2%;	
+}
+
+.notice .exambts {
+	cursor: pointer;
+	width: 60%;
+	align-self: center;
+	color: #fff;	
+	margin-left: 20%;
+    background-color: #001433 ;
+    padding: 0.1em 0.1em 0.1em 0.1em;    
+    border: 0.1px solid #001433 ;
+    border-radius: 0.5em;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: sans-serif;   
+}
+
 .fl_r {    
     background-color: #fff;
     padding: 0.3em 1.4em 1.2em 0.8em;
@@ -161,193 +172,142 @@ $(function() {
     border: 2px solid #aaa;
     border-radius: 0.5em;
     align-items: center;
+    height: 370px;
 }
-.notice {
-	background-image: url("/question_pool/img/user/goexam.png");
+#gopay {
+	background-image: url("/question_pool/img/user/memberShip.png");
 	height: 180px;
+	cursor: pointer;
 }
-.notice h2, a {
-	color: #001433;
-	text-align: center;
-	font-family: fantasy;
-	line-height: 50px;
-	font-weight: bold;
-}
-.notice .exambts {
-	width: 40%;
+#gopay p {
 	align-self: center;
-	margin-left: 30%;
-    background-color: #a08fa6;
-    color: a6506e;
-    padding: 0.3em 1.4em 0.2em 0.8em;    
-    border: 1px solid #aaa;
-    border-radius: 0.5em;
-    box-shadow: 0 2px 0 1px rgb(0 0 0 / 4%);
-    text-align: center;	
-    font-family: serif;
-    font-size: 20px;
-    font-style: oblique;
+	color: #fff;
+    padding: 0.3em 0.3em 0.3em 0.3em;
+    text-align: center;
+    padding-top: 40%;
+    font-size: 15px;
+    font-weight: bold;    
 }
 
+#notice_tab {
+	border-spacing: 3px 5px;
+}
+
+#notice_tab thead tr {
+	border-bottom: solid 1px #000;
+}
+
+#notice_tab tr {
+	cursor: pointer;
+	border-spacing: 5px;
+}
+
+#qna_tab {
+	border-spacing: 3px 5px;
+}
+
+#qna_tab thead tr {
+	border-bottom: solid 1px #000;
+}
+
+#qna_tab tr {
+	cursor: pointer;
+	border-spacing: 5px;
+} 
+ 
 
 </style>
 </head>
 <body>
 <div class="main">
-		            <div class="swiper">
-		                <div class="swiper-wrapper">
-		                  <div class="swiper-slide" style="background-image: url('/question_pool/img/user/main03.png');"></div>
-		                  <div class="swiper-slide" style="background-image: url('/question_pool/img/user/main06.png');"></div>
-		                  <div class="swiper-slide" style="background-image: url('/question_pool/img/user/main04.png');"></div>
-		                  <div class="swiper-slide" style="background-image: url('/question_pool/img/user/main05.png');"></div>
-		                </div>
-		                <div class="swiper-button-next"></div>
-		                <div class="swiper-button-prev"></div>
-		            </div>
-		        </div>
+	<div class="swiper">
+	    <div class="swiper-wrapper">
+	      <div class="swiper-slide" style="background-image: url('/question_pool/img/user/main03.png');"></div>
+	      <div class="swiper-slide" style="background-image: url('/question_pool/img/user/main06.png');"></div>
+	      <div class="swiper-slide" style="background-image: url('/question_pool/img/user/main04.png');"></div>
+	      <div class="swiper-slide" style="background-image: url('/question_pool/img/user/main05.png');"></div>
+	        </div>
+	        <div class="swiper-button-next"></div>
+	        <div class="swiper-button-prev"></div>
+	    </div>
+	</div>
 <div id="boardWrap" class="bbs">				
-				<div class="wid48 fl_l">
-					<div class="box notice">
-						<h2>Ladder Up</h2>
-						<h2 style="font-weight: bold;">편입영어 기출문제</h2>
-						<div class="exambts"><a href="/user/question/pool.do">문제풀기</a></div>
-					</div>
-					<div class="linkBox">
-						<ul>
-							<li class="link01"><a href="">Profile</a></li>
-							<li class="link02"><a href="">Java</a></li>
-							<li class="link03"><a href="">BigData</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="wid48 fl_r">
-					<div class="box bl">
-						<h2>회원관리</h2>
-						<table>
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>이름</th>
-									<th>연락처</th>
-									<th>가입일</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>test</td>
-									<td><a href="">홍길동</a></td>
-									<td>010-1234-5678</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td>test</td>
-									<td><a href="">홍길동</a></td>
-									<td>010-1234-5678</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td>test</td>
-									<td><a href="">홍길동</a></td>
-									<td>010-1234-5678</td>
-									<td>2020-01-01</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<!--//바로가기-->
-					<div class="box bl">
-						<h2>최근 게시글</h2>
-						<div class="blTab">
-							<ul>
-								<li id="curbl_notice" class="on" onclick="changeTab('notice');">공지</li>
-								<li id="curbl_qna" onclick="changeTab('qna');">Q&A</li>
-							</ul>
-						</div>
-						<table id="notice_tab">
-							<thead>
-								<tr>
-									<th>제목</th>
-									<th>작성자</th>
-									<th>작성일</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><a href="">공지사항입니다.</a></td>
-									<td>홍길동</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td><a href="">공지사항입니다.</a></td>
-									<td>홍길동</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td><a href="">공지사항입니다.</a></td>
-									<td>홍길동</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td><a href="">공지사항입니다.</a></td>
-									<td>홍길동</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td><a href="">공지사항입니다.</a></td>
-									<td>홍길동</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td><a href="">공지사항입니다.</a></td>
-									<td>홍길동</td>
-									<td>2020-01-01</td>
-								</tr>
-							</tbody>
-						</table>
-						<table id="qna_tab" style="display:none;">
-							<thead>
-								<tr>
-									<th>제목</th>
-									<th>작성자</th>
-									<th>작성일</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><a href="">Q&A입니다.</a></td>
-									<td>홍길동</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td><a href="">Q&A입니다.</a></td>
-									<td>홍길동</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td><a href="">Q&A입니다.</a></td>
-									<td>홍길동</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td><a href="">Q&A입니다.</a></td>
-									<td>홍길동</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td><a href="">Q&A입니다.</a></td>
-									<td>홍길동</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td><a href="">Q&A입니다.</a></td>
-									<td>홍길동</td>
-									<td>2020-01-01</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>		
+	<div class="wid33 fl_l">
+		<div id="goexam" class="box notice">
+			<div class="goexam1">Ladder Up</div>
+			<div class="goexam2">편입영어 기출문제</div>
+			<div class="exambts" onclick="location.href='/question_pool/user/question/pool.do'">문제풀기</div>
+		</div>
+		<div class="linkBox">
+			<div id="gopay" onclick="location.href='/question_pool/user/payment/pay.do'">
+				<p>결제시 혜택 확인하기러가기</p>
+			</div>
+		</div>
+	</div>
+	<div class="wid65 fl_r">
+		<div class="box bl">
+			<h2>최근 게시글</h2>
+			<div class="blTab">
+				<ul>
+					<li id="curbl_notice" class="on" onclick="changeTab('notice');">공지</li>
+			<li id="curbl_qna" onclick="changeTab('qna');">Q&A</li>
+		</ul>
+	</div>
+	<table id="notice_tab">
+		<thead>
+			<tr>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+			</tr>
+		</thead>
+		<tbody>
+			<form name="frm" id="frm" action="process.do" method="get">
+				<c:forEach var="nlist" items="${nlist }">                                    
+                    <input type="hidden" name="notice_no" value="${nlist.notice_no }">
+                    <input type="hidden" name="admin_no" value="${nlist.admin_no }">
+                    <tr onclick="location.href='/question_pool/user/board/notice/view.do?notice_no=${nlist.notice_no }'">
+                        <td class="txt_l">
+                        	<a>${nlist.notice_title }</a>
+                       	</td>
+                        <td class="writer" style="text-align: center;">
+                            ${nlist.admin_name }
+                        </td>			                                
+                        <td class="date" style="text-align: center;"><fmt:formatDate value="${nlist.notice_date }" pattern="yyyy-MM-dd"/></td>    
+                    </tr>
+                    </c:forEach>
+                 </form>
+		</tbody>
+	</table>
+	<table id="qna_tab" style="display:none;">
+		<thead>
+			<tr>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+			</tr>
+		</thead>
+		<tbody>
+			<form name="frm" id="frm" action="process.do" method="get">
+				<c:forEach var="qlist" items="${qlist }">                                    
+                    <input type="hidden" name="qa_no" value="${qlist.qa_no }">
+                    <input type="hidden" name="user_no" value="${qlist.user_no }">
+                    <tr onclick="location.href='/question_pool/user/board/qa/view.do?qa_no=${qlist.qa_no }'">
+                        <td class="txt_l">
+                        	<a>${qlist.qa_title }</a>
+                       	</td>
+                        <td class="writer" style="text-align: center;">
+                            ${qlist.user_name }
+                        </td>			                                
+                        <td class="date" style="text-align: center;"><fmt:formatDate value="${qlist.qa_date }" pattern="yyyy-MM-dd"/></td>    
+                    </tr>
+                    </c:forEach>
+                 </form>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>		
 </div>
 <!--//contentsWrap-->
 </body>

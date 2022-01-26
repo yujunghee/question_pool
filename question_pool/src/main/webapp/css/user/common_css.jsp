@@ -149,9 +149,10 @@ input[type=button] {cursor:pointer !important;}
 .wid20{width:20% !important;}
 .wid29{width:29% !important;}
 .wid30{width:30% !important;}
+.wid33{width:33% !important;}
 .wid39{width:39% !important;}
 .wid40{width:40% !important;}
-.wid48{width:48.5% !important;}
+.wid48{width:40% !important;}
 .wid49{width:49% !important;}
 .wid50{width:50% !important;}
 .wid59{width:59% !important;}

@@ -102,7 +102,7 @@ address,caption,cite,code,dfn,em,var {
 }
 table {
  width:100%; 
- border-collapse: collapse;
+ border-collapse: separate;
 }
 img { 
  vertical-align:middle; 

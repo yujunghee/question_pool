@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import board.BoardService;
+import board.NoticeVo;
+import board.QaVo;
 import question.QuestionService;
 import question.QuestionVo;
 import school.SchoolService;
@@ -22,6 +25,9 @@ public class MainController {
 
 	@Autowired
 	SchoolService schoolService;
+	
+	@Autowired
+	BoardService boardService;
 
 	@RequestMapping("/user/index.do")
 	public String index() {
@@ -30,7 +36,11 @@ public class MainController {
 	
 	
 	@RequestMapping("/user/main/index.do")
-	public String mainIndex() {
+	public String mainIndex(NoticeVo nv, QaVo qv, Model model) {
+		List<NoticeVo> nlist = boardService.noticeList(nv);
+		model.addAttribute("nlist",nlist);
+		List<QaVo> qlist = boardService.qaList(qv);
+		model.addAttribute("qlist",qlist);
 		return "user/main/index";
 	}
 	

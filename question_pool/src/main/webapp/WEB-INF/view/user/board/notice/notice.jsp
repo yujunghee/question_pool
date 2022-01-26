@@ -37,7 +37,7 @@
 					<div class="bbs">
 						<div class="list">
 							<p><span><strong>총 ${totCount }개</strong>  |  ${noticeVo.page }/${totPage }페이지</span></p>							
-							<form name="frm" id="frm" action="process.do" method="post">
+							<form name="frm" id="frm" action="process.do" method="get">
 							<table width="100%"  cellspacing="0" cellpadding="0">
 								<colgroup>
 									<col class="w3"/>
