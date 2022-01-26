@@ -33,6 +33,12 @@ li{
 							<li><img src="/question_pool/img/user/pencil.png" width="30px;">${ev.school_name} ${ev.year}년도 ${ev.semester}학기</li>
 							</a>
 						</c:forEach>
+						<c:forEach var="sv" items="${slist}">
+							<a href="/question_pool/user/question/scoreRandom.do?school_no=${sv.school_no}&user_no=${userInfo.user_no}">
+							<li><img src="/question_pool/img/user/pencil.png" width="30px;">${sv.school_name} 랜덤 모의고사</li>
+							</a>
+						</c:forEach>
+						
 					</ul>
 				</div>
 			</div>

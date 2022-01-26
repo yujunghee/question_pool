@@ -9,6 +9,7 @@ public interface QuestionService {
 
 	/* Admin */
 	int insertQuestion(QuestionVo qv);
+	int insertwords(question.AnsweredQuestionVo qv);
 	int insertExample(ExampleVo ev);
 	QuestionVo selectQuestion(int question_no);
 	List<ExampleVo> selectExample(int question_no);
@@ -16,6 +17,7 @@ public interface QuestionService {
 	int updateExample(ExampleVo ev);
 	int deleteQuestion(int question_no);
 	List<QuestionVo> selectQuestionlist(QuestionVo qv);
+	List<AnsweredQuestionVo> viewwords(AnsweredQuestionVo qv);
 	List<QuestionVo> selectyear(QuestionVo qv);
 	List<QuestionVo> showexam(QuestionVo qv);
 	List<QuestionVo> selectsemester(QuestionVo qv);
@@ -30,5 +32,7 @@ public interface QuestionService {
 	List<AnsweredQuestionVo> selectAQlist(AnsweredQuestionVo av);
 	List<QuestionVo> randomQuestion(int school_no);
 	List<QuestionVo> refQuestion(int question_ref);
+	int insertRandom(RandomQuestionVo rv);
+	List<RandomQuestionVo> selectRandom(RandomQuestionVo rv);	
 	List<QuestionVo> selectWAlist(QuestionVo qv);
 }

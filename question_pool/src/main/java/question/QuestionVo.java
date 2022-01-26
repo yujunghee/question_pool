@@ -12,6 +12,7 @@ public class QuestionVo extends ExamVo{
 	private String explanation;
 	private int admin_no;
 	private List<ExampleVo> ex;
+	private List<QuestionVo> qv;
 	
 	//오답노트용
 	private int user_no; 
@@ -29,6 +30,14 @@ public class QuestionVo extends ExamVo{
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
 	}
+
+	public List<QuestionVo> getQv() {
+		return qv;
+	}
+	public void setQv(List<QuestionVo> qv) {
+		this.qv = qv;
+	}
+
 	public List<ExampleVo> getEx() {
 		return ex;
 	}

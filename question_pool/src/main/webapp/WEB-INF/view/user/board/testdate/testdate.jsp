@@ -21,8 +21,7 @@
 				<h3>
 					[Ladder Up]에서 알려 드립니다. <br> 
 					각 대학들의 시험일정을 확인해 보세요. <br>
-					그외 공지사항은 '공지사항'을 참고해 주시기 바랍니다.
-					<img src="/question_pool/img/user/mainLogo.png" height="15%" width="15%" style="margin-left: auto; margin-right: 10; float: right; display: block;">
+					그외 공지사항은 '공지사항'을 참고해 주시기 바랍니다.					
 				</h3><br>				
 				<div class="btn">
 					<div class="writebtn">

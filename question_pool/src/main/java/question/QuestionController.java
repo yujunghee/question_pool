@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import admin.AdminVo;
+import board.NoticeVo;
 import school.SchoolService;
 import school.SchoolVo;
 import user.UserVo;
@@ -264,7 +265,6 @@ public class QuestionController {
 	@RequestMapping("user/question/insert.do")
 	public String insertAQ(HttpServletRequest req, QuestionVo qv, AnsweredQuestionVo av, @RequestParam int exam_no) {
 		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
-		System.out.println(qlist.size());
 		ExamVo xo = new ExamVo();
 		xo = questionService.selectExam(exam_no);
 		av.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
@@ -359,35 +359,33 @@ public class QuestionController {
 		model.addAttribute("list", list);
 		return "user/question/study/school";
 	}
-	//단어장
-	@RequestMapping("/user/question/study/word.do")
-	public String word() {
-		return "user/question/study/word";
-	}
-	//단어장
-	@RequestMapping("/user/question/study/result.do")
-	public String wordresult() {
-		return "user/question/study/result";
-	}
 	//랜덤모의고사 페이지
 	@RequestMapping("/user/question/randomIndex.do")
 	public String randomQuestion(QuestionVo qv, ExampleVo ev, Model model, @RequestParam int school_no) {
 		model.addAttribute("school", schoolService.selectSchool(school_no));
 		
 		List<QuestionVo> qlist = questionService.randomQuestion(school_no);
-		List<QuestionVo> reflist = new ArrayList<QuestionVo>();
+		List<ExampleVo> list = questionService.selectExamplelist(ev);
+		List<ExampleVo> refEx = new ArrayList<ExampleVo>();
 		
-		for(int i=0; i<5; i++) {
-			if(qlist.get(i).getQuestion_ref() != null) {
-				int ref = qlist.get(i).getQuestion_ref();
-				reflist.addAll(questionService.refQuestion(ref));
+		for(int i=0; i<3; i++) {
+			List<QuestionVo> refQ = questionService.refQuestion(qlist.get(i).getQuestion_no());
+			
+			qlist.get(i).setQv(refQ);
+			
+			if(qlist.get(i).getQv().size() != 0) {
+				for(int j=0; j<qlist.get(i).getQv().size(); j++) {
+					for(int k=0; k<list.size(); k++) {
+						if(qlist.get(i).getQv().get(j).getQuestion_no() == list.get(k).getQuestion_no()) {
+							refEx.add(list.get(k));
+						}
+					}
+					qlist.get(i).getQv().get(j).setEx(refEx);
+					refEx = new ArrayList<ExampleVo>();
+				}
 			}
 		}
-		qlist.addAll(reflist);
-		System.out.println(qlist.size());
 		
-		List<ExampleVo> list = questionService.selectExamplelist(ev);
-	
 		for(int i=0; i<qlist.size(); i++) {
 			List<ExampleVo> elist = new ArrayList<ExampleVo>();
 			for(int j=0; j<list.size(); j++) {
@@ -398,9 +396,77 @@ public class QuestionController {
 			qlist.get(i).setEx(elist);
 		}
 		model.addAttribute("qlist", qlist);
+		String[] examples = { "A", "B", "C", "D", "E" };
+		model.addAttribute("ex",examples);
 		return "user/question/study/random";
 	}
 	
+	//랜덤모의고사 insert
+	@RequestMapping("user/question/insertRandom.do")
+	public String insertRandom(HttpServletRequest req, QuestionVo qv, RandomQuestionVo rv, @RequestParam int school_no) {
+		rv.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
+		rv.setSchool_no(school_no);
+		
+		String[] qno = req.getParameterValues("question_no");
+		String[] answers = req.getParameterValues("example");
+
+		int r=0;
+		for(int i=0; i<qno.length; i++) {
+			if(!("").equals(answers[i])) {
+				rv.setQuestion_no(Integer.parseInt(qno[i]));
+				qv = questionService.selectQuestion(rv.getQuestion_no());
+				if((qv.getAnswer()).equals(answers[i])) {
+					rv.setScore(1); //정답
+				} else {
+					rv.setScore(0); //오답
+				}
+				rv.setUser_answer(answers[i]);
+			}
+			questionService.insertRandom(rv);
+			r++;
+			
+		}
+				
+		if (r > 0) {
+			req.setAttribute("msg", "정상적으로 제출되었습니다.");
+			req.setAttribute("url", "scoreRandom.do?school_no="+school_no+"&user_no="+rv.getUser_no());
+		} else {
+			req.setAttribute("msg", "제출 오류");
+		}
+		return "admin/include/return";
+	}
+	
+	// 랜덤모의고사 채점 페이지
+	@RequestMapping("/user/question/scoreRandom.do")
+	public String scoreRandom(QuestionVo qv, ExampleVo ev, RandomQuestionVo rv, Model model, HttpServletRequest req, @RequestParam int school_no) {
+		model.addAttribute("school", schoolService.selectSchool(school_no));
+//		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
+	
+		rv.setSchool_no(school_no);
+		rv.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
+		
+		List<RandomQuestionVo> qlist = questionService.selectRandom(rv);
+		List<ExampleVo> list = questionService.selectExamplelist(ev);
+
+		int cnt = 0; //정답갯수
+		
+		for(int i=0; i<qlist.size(); i++) {
+			List<ExampleVo> elist = new ArrayList<ExampleVo>();
+			if(qlist.get(i).getScore() == 1) { cnt++; }
+			for(int j=0; j<list.size(); j++) {
+				if(qlist.get(i).getQuestion_no() == list.get(j).getQuestion_no()) {
+					elist.add(list.get(j));
+				}
+			}
+			qlist.get(i).setEx(elist);
+		}
+		model.addAttribute("qlist", qlist);
+		String[] examples = { "A", "B", "C", "D", "E" };
+		model.addAttribute("ex",examples);
+		model.addAttribute("cnt",cnt);
+		
+		return "user/question/study/scoreRandom";
+	}
 	
 	@RequestMapping("/user/question/showmetheyear.do")
 	public String showmetheyear1(SchoolVo vo, Model model, QuestionVo qv) {
@@ -417,5 +483,20 @@ public class QuestionController {
 		model.addAttribute("dList", questionService.showexam(qv));
 		return "user/question/exam"; // 문제등록(학교/연도/회차선택창으로 이동)
 	}
-	
+	@RequestMapping("/user/question/study/insertwords.do")
+	public String showmetheexam(question.AnsweredQuestionVo qv, HttpServletRequest req) {
+		int r = questionService.insertwords(qv);
+		if (r > 0) {
+			req.setAttribute("msg", "정상적으로 등록되었습니다.");
+			req.setAttribute("url", "/question_pool/user/question/study/word.do");
+		}
+		return "admin/include/return2"; 
+	}
+	//단어장
+	@RequestMapping("/user/question/study/word.do")
+	public String word(AnsweredQuestionVo qv, Model model) {
+		List<AnsweredQuestionVo> list = questionService.viewwords(qv);
+		model.addAttribute("list",list);
+		return "user/question/study/word";
+	}
 }

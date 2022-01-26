@@ -137,6 +137,15 @@ $(function() {
         },
     });
 });
+$(document).ready(function () {
+	$.ajax({
+		url : 'mainPool.do',
+		async : false,
+		success : function(res) {
+			$(".poolArea").html(res);
+		}
+	})
+});
 </script>
 <style type="text/css">
 .main {
@@ -153,47 +162,18 @@ $(function() {
     background-size: cover;
 }
 
-
-.fl_r {    
+.fl_l {    
     background-color: #fff;
     padding: 0.3em 1.4em 1.2em 0.8em;
     margin: 0;
     border: 2px solid #aaa;
     border-radius: 0.5em;
     align-items: center;
-}
-.notice {
-	background-image: url("/question_pool/img/user/goexam.png");
-	height: 180px;
-}
-.notice h2, a {
-	color: #001433;
-	text-align: center;
-	font-family: fantasy;
-	line-height: 50px;
-	font-weight: bold;
-}
-.notice .exambts {
-	width: 40%;
-	align-self: center;
-	margin-left: 30%;
-    background-color: #a08fa6;
-    color: a6506e;
-    padding: 0.3em 1.4em 0.2em 0.8em;    
-    border: 1px solid #aaa;
-    border-radius: 0.5em;
-    box-shadow: 0 2px 0 1px rgb(0 0 0 / 4%);
-    text-align: center;	
-    font-family: serif;
-    font-size: 20px;
-    font-style: oblique;
-}
-
-
+    }
 </style>
 </head>
 <body>
-<div class="main">
+				<div class="main">
 		            <div class="swiper">
 		                <div class="swiper-wrapper">
 		                  <div class="swiper-slide" style="background-image: url('/question_pool/img/user/main03.png');"></div>
@@ -205,12 +185,11 @@ $(function() {
 		                <div class="swiper-button-prev"></div>
 		            </div>
 		        </div>
-<div id="boardWrap" class="bbs">				
+			<div id="boardWrap" class="bbs">				
 				<div class="wid48 fl_l">
 					<div class="box notice">
-						<h2>Ladder Up</h2>
-						<h2 style="font-weight: bold;">편입영어 기출문제</h2>
-						<div class="exambts"><a href="/user/question/pool.do">문제풀기</a></div>
+						<div class="poolArea">						
+						</div>
 					</div>
 					<div class="linkBox">
 						<ul>
@@ -221,40 +200,6 @@ $(function() {
 					</div>
 				</div>
 				<div class="wid48 fl_r">
-					<div class="box bl">
-						<h2>회원관리</h2>
-						<table>
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>이름</th>
-									<th>연락처</th>
-									<th>가입일</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>test</td>
-									<td><a href="">홍길동</a></td>
-									<td>010-1234-5678</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td>test</td>
-									<td><a href="">홍길동</a></td>
-									<td>010-1234-5678</td>
-									<td>2020-01-01</td>
-								</tr>
-								<tr>
-									<td>test</td>
-									<td><a href="">홍길동</a></td>
-									<td>010-1234-5678</td>
-									<td>2020-01-01</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<!--//바로가기-->
 					<div class="box bl">
 						<h2>최근 게시글</h2>
 						<div class="blTab">
@@ -347,7 +292,7 @@ $(function() {
 						</table>
 					</div>
 				</div>
-			</div>		
+			</div>
 </div>
 <!--//contentsWrap-->
 </body>

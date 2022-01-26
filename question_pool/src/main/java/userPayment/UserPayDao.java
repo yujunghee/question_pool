@@ -48,4 +48,8 @@ public class UserPayDao {
 		return uv;
 	}
 	
+	public UserPayVo pay(UserPayVo vo) {
+		UserPayVo uv = sst.selectOne("userPay.refLogin",vo);
+		return uv;
+	}
 }

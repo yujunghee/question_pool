@@ -140,23 +140,21 @@ function chk(){
 	
 </script>
 <body>
-	<div id="wrap">
-			<h2> 문제 풀이 </h2>
-				<div class="btn" style="text-align:right; padding: 0 90px 0 0;">
+	<div id="wrap" style="min-width: 400px; width: 480px; height: 300px; ">
+			<h2> 문제 풀기 </h2>
+				<div class="btn" style="text-align:right; padding: 0 20px 0 0;">
 					<div class="writebtn">
 						<a class="wbtn" href="random.do"><strong>랜덤모의고사 바로가기</strong> </a>
 					</div>
 				</div>
 		<!-- canvas -->
-		<div id="canvas" style="text-align: center; padding: 100px 0 0 100px;'">
+		<div id="canvas" style="text-align: center; padding: 30px 0 0 30px;'">
 		<table>
 			<tr>
 				<td>
 					<h4 style="font-size: 30px;">학교선택</h4>
 					<select name="school_no" id="school_no"
 					style="width: 200px; height: 40px; font-size:20px" onclick="getyear()">
-					<option value="" selected disabled hidden>==선택하세요==</option>
-
 						<c:forEach var="vo" items="${list}">
 							<option value="${vo.school_no}">${vo.school_name}</option>
 						</c:forEach>

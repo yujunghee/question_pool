@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import question.ExamVo;
+import school.SchoolVo;
 
 
 public interface UserService {
@@ -28,6 +29,6 @@ public interface UserService {
 	
 
 	List<ExamVo> myExamlist(int user_no);
-
+	List<SchoolVo> myRandomExam(int user_no);
 
 }

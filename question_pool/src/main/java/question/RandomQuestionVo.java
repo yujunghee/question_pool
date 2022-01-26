@@ -2,38 +2,22 @@ package question;
 
 import java.sql.Timestamp;
 
-public class AnsweredQuestionVo {
+public class RandomQuestionVo extends QuestionVo {
 
-	private int aq_no;
+	private int random_no;
 	private String user_answer;
 	private int score;
 	private Timestamp answered_date;
 	private String memo;
 	private int question_no;
 	private int user_no;
-	private int exam_no;
-	private String word;
-	private String mean;
-	private int word_no;
-
-	public String getWord() {
-		return word;
-	}
-	public void setWord(String word) {
-		this.word = word;
-	}
-	public String getMean() {
-		return mean;
-	}
-	public void setMean(String mean) {
-		this.mean = mean;
-	}
+	private int school_no;
 	
-	public int getAq_no() {
-		return aq_no;
+	public int getRandom_no() {
+		return random_no;
 	}
-	public void setAq_no(int aq_no) {
-		this.aq_no = aq_no;
+	public void setRandom_no(int random_no) {
+		this.random_no = random_no;
 	}
 	public String getUser_answer() {
 		return user_answer;
@@ -71,17 +55,11 @@ public class AnsweredQuestionVo {
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
 	}
-	public int getExam_no() {
-		return exam_no;
+	public int getSchool_no() {
+		return school_no;
 	}
-	public void setExam_no(int exam_no) {
-		this.exam_no = exam_no;
-	}
-	public int getWord_no() {
-		return word_no;
-	}
-	public void setWord_no(int word_no) {
-		this.word_no = word_no;
+	public void setSchool_no(int school_no) {
+		this.school_no = school_no;
 	}
 	
 }

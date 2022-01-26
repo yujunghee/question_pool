@@ -44,6 +44,16 @@ public class UserPayServiceImple implements UserPayService{
 			}
 			return false;
 	}
+	
+	@Override
+	public boolean pay(UserPayVo vo, HttpSession sess) {
+			UserVo uv = payDao.pay(vo);
+			if(uv != null) {
+				sess.setAttribute("userInfo", uv);
+				return true;
+			}
+			return false;
+	}
 
 	@Override
 	public int userGrade(UserPayVo vo) {

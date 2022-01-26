@@ -47,6 +47,10 @@ public class QuestionDao {
 		return sqlSessionTemplate.selectList("question.selectExample",question_no);
 	}
 
+	public List<AnsweredQuestionVo> viewwords(AnsweredQuestionVo qv) {
+		return sqlSessionTemplate.selectList("question.viewwords",qv);
+	}
+
 	public int updateQuestion(QuestionVo qv) {
 		return sqlSessionTemplate.update("question.updateQuestion", qv);
 	}
@@ -102,7 +106,10 @@ public class QuestionDao {
 		return sqlSessionTemplate.selectOne("question.selectExam", exam_no);
 	}
 	
-
+	public int insertwords(question.AnsweredQuestionVo qv) {
+		return sqlSessionTemplate.insert("question.insertwords", qv);
+	}
+	
 	//////////////////////////////////// USER////////////////////////////////////////
 
 	public int insertAQ(AnsweredQuestionVo av) {
@@ -119,6 +126,14 @@ public class QuestionDao {
 	
 	public List<QuestionVo> refQuestion(int question_ref){
 		return sqlSessionTemplate.selectList("question.refQuestion",question_ref);
+	}
+	
+	public int insertRandom(RandomQuestionVo rv) {
+		return sqlSessionTemplate.insert("question.insertRandom",rv);
+	}
+	
+	public List<RandomQuestionVo> selectRandom(RandomQuestionVo rv){
+		return sqlSessionTemplate.selectList("question.selectRandom",rv);
 	}
 	
 	public List<QuestionVo> selectWAlist(QuestionVo qv){
