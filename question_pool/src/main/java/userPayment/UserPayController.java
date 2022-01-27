@@ -60,6 +60,7 @@ public class UserPayController {
 			req.setAttribute("msg", "결제 오류");
 			req.setAttribute("url", "join.do");
 		}
+		payService.pay(vo, sess);
 		
 		return "user/payment/pay";
 		}

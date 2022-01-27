@@ -91,5 +91,8 @@
 		SELECT * FROM exam WHERE exam_no IN (SELECT exam_no FROM answered_question WHERE user_no=#{user_no} GROUP BY exam_no)
 	</select>
 	
+	<select id="myRandomExam" parameterType="int" resultType="school.SchoolVo">
+		SELECT * FROM school WHERE school_no IN (SELECT school_no FROM random_question WHERE user_no=#{user_no} GROUP BY school_no)
+	</select>
 
 </mapper>

@@ -7,7 +7,7 @@ a:hover{transition: 0.5s !important;}
 /* ==================================================
 	공통레이아웃
 ================================================== */
-#wrap{width:100%; position:relative; width:1200px; margin:0; height:100%; }
+#wrap{width:100%; position:relative; width:1400px; margin:0; height:100%; }
 
 /* ==================================================
 	header
@@ -24,7 +24,7 @@ a:hover{transition: 0.5s !important;}
 /* ==================================================
 	contents
 ================================================== */
-#container{clear:both; position:relative; width:1500px; height:100%;  margin-top:-62px; padding-top:62px; }
+#container{clear:both; position:relative; width:1400px; height:100%;  margin-top:-62px; padding-top:62px; }
 #menuWrap{position:relative; width:220px; float:left; min-height:100%; background:#f5f5f5; border-right:1px solid #dddddd; position:relative;}
 #contentsWrap{position:relative; float:left; height:100%; padding-left:25px; /*width:955px*/}
 #menuWrap .allmenu{background:#484b56 url(<%=userUtil.Property.contextPath%>/img/ico_allmenu.png) no-repeat 20px center; height:58px; line-height:58px;color:#fff; font-size:16px; padding-left:50px; position:relative;}
@@ -149,9 +149,10 @@ input[type=button] {cursor:pointer !important;}
 .wid20{width:20% !important;}
 .wid29{width:29% !important;}
 .wid30{width:30% !important;}
+.wid33{width:33% !important;}
 .wid39{width:39% !important;}
 .wid40{width:40% !important;}
-.wid48{width:48.5% !important;}
+.wid48{width:40% !important;}
 .wid49{width:49% !important;}
 .wid50{width:50% !important;}
 .wid59{width:59% !important;}

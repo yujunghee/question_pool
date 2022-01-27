@@ -38,6 +38,6 @@ public class CommentController {
 	@GetMapping("/comment/delete.do")	
 	public String delete(Model model, CommentVo vo) {
 		model.addAttribute("result", service.delete(vo.getC_no()));
-		return "include/result";
+		return "admin/include/result";
 	}
 }

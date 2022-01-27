@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import admin.AdminVo;
 import question.ExamVo;
+import school.SchoolVo;
 import util.SendMail;
 
 @Service
@@ -29,6 +30,9 @@ public class UserServiceImple implements UserService {
 			}else if(uv.getProduct_no() == 2 && uv.getDue_date() >= 90) {
 				userdao.dueDate(uv);
 				uv.setUser_grade(2);
+			}else if(uv.getProduct_no() == 99 && uv.getDue_date() >= 1) {
+				userdao.dueDate(uv);
+				uv.setUser_grade(2);
 			}
 			return true;
 		}
@@ -38,18 +42,16 @@ public class UserServiceImple implements UserService {
 	public String userEmailCheck(String email) {
 		if (email != null) {
 			String confirm = "";
-			for (int i=0; i<3; i++) {
+			for (int i=0; i<4; i++) {
 				confirm += (char)((Math.random()*26)+65);
-			}
-			for (int i=0; i<3; i++) {
 				confirm += (int)((Math.random()*9));
 			}
 
 			// 이메일 발송
 			SendMail.sendMail("question_pool@naver.com",
 									email, 
-								"question_pool 인증번호입니다. 감사합니다", 
-								"인증번호:<span style='color:red;'>"+confirm+"</span>");
+								"Ladder Up 인증번호입니다. 감사합니다", 
+								"인증번호:<span style='color:blue;'>"+confirm+"</span>");
 			return confirm;
 		}
 		return "";
@@ -138,6 +140,10 @@ public class UserServiceImple implements UserService {
 	@Override
 	public List<ExamVo> myExamlist(int user_no) {
 		return userdao.myExamlist(user_no);
+	}
+	@Override
+	public List<SchoolVo> myRandomExam(int user_no) {
+		return userdao.myRandomExam(user_no);
 	}
 
 }

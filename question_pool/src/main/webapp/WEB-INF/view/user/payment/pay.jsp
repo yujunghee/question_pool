@@ -10,37 +10,66 @@
 </head>
 <script>
 function product(pname ,pay, product_no){
-	//가맹점 식별코드
-	IMP.init('imp01855034');
-	IMP.request_pay({
-	    pg : 'nice',
-	    pay_method : 'card',
-	    merchant_uid : 'merchant_' + new Date().getTime(),
-	    name : pname, //결제창에서 보여질 이름
-	    amount : pay, //실제 결제되는 가격
-	    buyer_email : '${data.user_email}',
-	    buyer_name : '${data.user_name}', 
-	    buyer_tel : '${data.user_tel}',
-	}, function(rsp) {
-   		 var msg = '';
-	    if ( rsp.success ) {
-		    	$.ajax({
-		    		 type: 'POST',
-					url : 'payInsert.do',
-					data : {
-						pay_id : rsp.imp_uid,
-						merchant_id : rsp.merchant_uid,
-						user_no : ${data.user_no},
-						product_no : product_no
-					},
-		    	})
-				msg += pname+' 결제되었습니다 감사합니다.'
-	    } else {
-	         msg += rsp.error_msg+ '  다시 시도해주세요.';
-	    }
-        alert(msg); 
-	});
+	if(${userInfo.user_grade} == 1 ){
+		alert("남은기간을 모두 이용하고 결제해주세요. 감사합니다")
+	}else {
+		//가맹점 식별코드 due_date
+		IMP.init('imp01855034');
+		IMP.request_pay({
+		    pg : 'nice',
+		    pay_method : 'card',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : pname, //결제창에서 보여질 이름
+		    amount : pay, //실제 결제되는 가격
+		    buyer_email : '${data.user_email}',
+		    buyer_name : '${data.user_name}', 
+		    buyer_tel : '${data.user_tel}',
+		}, function(rsp) {
+	   		 var msg = '';
+		    if ( rsp.success ) {
+			    	$.ajax({
+			    		 type: 'POST',
+						url : 'payInsert.do',
+						data : {
+							pay_id : rsp.imp_uid,
+							merchant_id : rsp.merchant_uid,
+							user_no : ${data.user_no},
+							product_no : product_no, 
+							user_email : "${userInfo.user_email}"
+						},
+			    	})
+					msg += pname+' 결제되었습니다 감사합니다.'
+		    } else {
+		         msg += rsp.error_msg+ '  다시 시도해주세요.';
+		    }
+	        alert(msg); 
+		});
+	}
 }
+
+function Expr(product_no){
+			if(${data.product_no} == 99){
+				alert('이미 체험권을 사용하셨습니다.')
+			}else{
+				var msg = '';
+				if (confirm("일일 체험권을 사용하시겠습니까??") == true) {
+			    	$.ajax({
+			    		 type: 'POST',
+						url : 'payInsert.do',
+						data : {
+							user_no : ${data.user_no},
+							product_no : product_no, 
+							user_email : "${userInfo.user_email}"
+						},
+			    	})
+			    	msg += '체험권 사용이 시작되었습니다.'
+			    } else {
+			         msg += '취소되었습니다.';
+			    }
+		        alert(msg);	
+			}
+		}
+
 </script>
 
 <style>
@@ -78,8 +107,10 @@ function product(pname ,pay, product_no){
 	</div>
 </div> 
 	<br><br><br><br><br><br><br><br><br><br><br>
-	<br><br><br><br><br><br><br><br>
+	<br><br><br><br><br>
+	<br><br><br>
 	<p style="color:#808080">정기결제 특성상 환불은 특별한 사유가 있을시 관리자 확인후 관리자에 의해 환불됨을 알려드립니다.</p>
+	<input type="button" value="하루 체험하기" onclick="Expr(99)"/>
 
 
 </body>

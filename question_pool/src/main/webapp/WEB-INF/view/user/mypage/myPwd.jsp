@@ -51,10 +51,7 @@
     	});
     });
      
-	function enableTxt() {
-		  document.getElementById("user_pwd").readOnly = false;
-		  document.frm.user_pwd.focus();
-		}
+
 
     </script>
 </head>
@@ -72,14 +69,13 @@
                         </colgroup>
                         <tbody>
                         	<tr>
-                                <th>비밀번호</th>
+                                <th>새 비밀번호</th>
                                 <td> 
-                                	<input type="password" name="user_pwd" id="user_pwd" readonly value="${userInfo.user_pwd }" class="inNextBtn" style="float:left;">
-                                	<a href="javascript:enableTxt()" class="btn bgGray" style="float:left; width:auto; clear:none;" onclick="document.getElementById('user_pwd').value = ''">재설정</a>                           		
+                                	<input type="password" name="user_pwd" id="user_pwd" class="inNextBtn" style="float:left;">
                            		</td>
                             </tr>
 	                        <tr>
-	                            <th>비밀번호<span>확인</span></th>
+	                            <th>새 비밀번호<span>확인</span></th>
 	                            <td><input type="password" name="pw_check" id="pw_check" style="float:left;"></td>
 	                        </tr>
                         </tbody>

@@ -72,8 +72,8 @@
 .bbs .list td{text-align:center; font-size:12px; padding:5px; height:52px; border-bottom:1px solid #dddddd; border-right:1px solid #dddddd;}
 .bbs .list td.title {text-align:left; padding-left:20px;}
 .bbs .list td:last-child{border-right:none;}
-.bbs .list td a{color:#0043db;}
-.bbs .list tbody tr:hover{background:<%=userUtil.Property.overcolor%>;} /*마우스오버 배경칼라지정*/
+.bbs .list td a{color:#000;}
+.bbs .list tbody tr:hover{background:#f5f5f5;} /*마우스오버 배경칼라지정*/
 .trCheck {background:#f9e9e9;}
 .bbs .list .overNo tbody tr:hover{background:none !important;}
 .bbs .list  h3{background:url(<%=userUtil.Property.contextPath%>/img/list_h3.png) no-repeat left center; padding-left:24px; color:#484b56; font-size:16px; margin-bottom:10px;}

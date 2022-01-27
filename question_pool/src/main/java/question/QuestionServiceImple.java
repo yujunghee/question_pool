@@ -116,8 +116,23 @@ public class QuestionServiceImple implements QuestionService {
 	}
 
 	@Override
+	public int insertRandom(RandomQuestionVo rv) {
+		return dao.insertRandom(rv);
+	}
+
+	@Override
+	public List<RandomQuestionVo> selectRandom(RandomQuestionVo rv) {
+		return dao.selectRandom(rv);
+	}
+
+	@Override
 	public int insertwords(question.AnsweredQuestionVo qv) {
 		return dao.insertwords(qv);
+	}	
+	
+	@Override
+	public List<QuestionVo> selectWAlist(QuestionVo qv){
+			return dao.selectWAlist(qv);
 	}
 	
 	@Override

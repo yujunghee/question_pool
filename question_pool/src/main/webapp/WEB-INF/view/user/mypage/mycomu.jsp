@@ -8,7 +8,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style type="text/css">
 #division a {	
-	border: solid 1px;
 	border-radius: 10px 10px 0 0;
 	font-size: 20px;
 	margin: -2;
@@ -31,9 +30,15 @@ $(document).ready(function () {
 						<div class="list">
 							<p id="division">
 							<span>					
+<<<<<<< HEAD
+								<a href="/question_pool/user/mypage/myboard.do" style="margin-left: 3; border: solid 1px #000000;">Q&A</a>
+								<a onclick="myComu()"  style="color: #c91c1c !important; border: solid 3px #000000;"><strong>자유게시판</strong></a>						
+								<a onclick="myComment()" style="border: solid 1px #000000;">댓글</a>						
+=======
 								<a id="tab" href="/question_pool/user/mypage/myboard.do" style="margin-left: 3; ">Q&A</a>
 								<a onclick="myComu()"  style="color: #c91c1c !important; border: solid 2px #000000;"><strong>자유게시판</strong></a>						
 								<a id="tab" onclick="myComment()">댓글</a>						
+>>>>>>> branch 'master' of https://github.com/yujunghee/question_pool.git
 							</span>
 							</p>							
 							<form name="frm" id="frm" action="process.do" method="post">

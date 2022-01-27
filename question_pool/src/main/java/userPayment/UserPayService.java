@@ -9,5 +9,6 @@ public interface UserPayService {
 	int insert(UserPayVo vo);
 //	int refundUpdate(UserPayVo vo, HttpSession sess);
 	boolean refundUpdate(UserPayVo vo, HttpSession sess);
+	boolean pay(UserPayVo vo, HttpSession sess);
 	int userGrade(UserPayVo vo);
 }

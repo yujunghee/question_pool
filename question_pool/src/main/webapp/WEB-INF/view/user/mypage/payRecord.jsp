@@ -38,6 +38,10 @@
 			 document.write(aaa+'일 남았습니다.' + '(남은기간 모두 소비시. 자동연장됩니다.)')
 			return aaa
 		}
+		else if(a == 99) {
+			document.write('체험권을 사용중입니다. 사용을 원하시면 정기권을 구매해주세요.')
+			return aaa
+		}
  		alert('결제기간 오류입니다. 관리자에게 문의해주세요.')
 		return false
  	}
@@ -80,9 +84,16 @@
 	                           		 </script>
 	                           		 </td>
 	                           		</c:if>
+	                           		<c:if test="${userInfo.product_no eq 99}">
+	                                 <td>
+	                                 <script>
+	                           	     rePay(99);
+	                           		 </script>
+	                           		 </td>
+	                           		</c:if>
 	                            </tr>
 		                        <tr>
-		                            <th>결제 날짜</th>
+		                            <th>사용 날짜</th>
 		                            <td>
 		                            <fmt:formatDate value="${userInfo.pay_date}" pattern="yyyy-MM-dd"/>
 		                            </td>
