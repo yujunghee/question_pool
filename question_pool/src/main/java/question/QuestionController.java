@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import admin.AdminVo;
 import board.NoticeVo;
+import comment.CommentVo;
 import school.SchoolService;
 import school.SchoolVo;
 import user.UserVo;
@@ -406,5 +407,16 @@ public class QuestionController {
 		List<AnsweredQuestionVo> list = questionService.viewwords(qv);
 		model.addAttribute("list",list);
 		return "user/question/study/word";
+	}
+	@GetMapping("/user/question/study/delete.do")	
+	public String delete(Model model, AnsweredQuestionVo qv, HttpServletRequest req, @RequestParam int word_no) {
+		int r = questionService.delete(word_no);
+		if (r > 0) {
+			req.setAttribute("msg", "정상적으로 삭제되었습니다.");
+			req.setAttribute("url", "/question_pool/user/question/study/word.do");
+		} else {
+			req.setAttribute("msg", "삭제 오류");
+		}
+		return "admin/include/return2";
 	}
 }

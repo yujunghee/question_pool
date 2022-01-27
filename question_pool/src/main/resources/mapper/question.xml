@@ -104,6 +104,9 @@
 	</insert>	
 	
 	<select id="viewwords" resultType="question.AnsweredQuestionVo" parameterType="int">
-		SELECT * FROM words where user_no=#{user_no}
+		SELECT * FROM words where user_no=#{user_no} order by word_no desc
 	</select>	
+	<delete id="delete" parameterType="int">
+		DELETE FROM words WHERE word_no=#{word_no}
+	</delete>	
 </mapper>

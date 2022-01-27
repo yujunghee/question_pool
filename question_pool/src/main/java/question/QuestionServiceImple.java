@@ -119,4 +119,9 @@ public class QuestionServiceImple implements QuestionService {
 	public int insertwords(question.AnsweredQuestionVo qv) {
 		return dao.insertwords(qv);
 	}
+	
+	@Override
+	public int delete(int word_no) {
+		return dao.delete(word_no);
+	}
 }
