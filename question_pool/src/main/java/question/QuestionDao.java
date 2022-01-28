@@ -13,6 +13,10 @@ public class QuestionDao {
 
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
+	
+	public int delete(int word_no) {		
+		return sqlSessionTemplate.delete("question.delete", word_no); 
+	}
 
 	public List<QuestionVo> selectList(QuestionVo qv) {
 		List<QuestionVo> list = sqlSessionTemplate.selectList("question.selectexam", qv);

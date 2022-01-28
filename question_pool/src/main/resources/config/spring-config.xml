@@ -64,8 +64,8 @@
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
+			<mvc:mapping path="/user/question/study/word.do"/>
 			<mvc:mapping path="/user/payment/*"/>
-			<mvc:mapping path="/user/question/*"/>
 			<mvc:exclude-mapping path="/user/login.do"/>
 			<bean class="util.UserLoginInterceptor"/>
 		</mvc:interceptor>

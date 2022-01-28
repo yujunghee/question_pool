@@ -59,7 +59,7 @@
 			                            <input type="hidden" name="user_no" value="${list.user_no }">
 			                            <tr>			                            				                            	
 			                                <td>${list.community_no }</td>
-			                                <td class="txt_l" onclick="location.href='view.do?community_no=${list.community_no }'" style="cursor: pointer;">
+			                                <td class="txt_l" onclick="location.href='view.do?community_no=${list.community_no }'" style="cursor: pointer; font-family: dotum;">
 			                                    <a href="view.do?community_no=${list.community_no }">${list.community_title } &nbsp;
 			                                    <c:if test="${list.c_count != 0}">
 			                                    	<strong>[${list.c_count }]</strong>

@@ -69,7 +69,7 @@
 			                            <tr onclick="location.href='view.do?notice_no=${list.notice_no }'" style="cursor: pointer;">			                            				                            	
 			                                <td>${list.notice_no }</td>
 			                                <td class="txt_l">
-			                                	<a href="view.do?notice_no=${list.notice_no }" style="font-size: 15px">${list.notice_title }</a>
+			                                	<a href="view.do?notice_no=${list.notice_no }" style="font-size: 13px; font-family: dotum;"><img src="/question_pool/img/admin/top_ico.gif"> ${list.notice_title }</a>
 		                                	</td>
 			                                <td class="date"><fmt:formatDate value="${list.notice_date }" pattern="yyyy-MM-dd"/></td>			                                
 			                                <td class="writer">

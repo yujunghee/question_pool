@@ -16,6 +16,7 @@ public interface QuestionService {
 	int updateQuestion(QuestionVo qv);
 	int updateExample(ExampleVo ev);
 	int deleteQuestion(int question_no);
+	int delete(int word_no);
 	List<QuestionVo> selectQuestionlist(QuestionVo qv);
 	List<AnsweredQuestionVo> viewwords(AnsweredQuestionVo qv);
 	List<QuestionVo> selectyear(QuestionVo qv);

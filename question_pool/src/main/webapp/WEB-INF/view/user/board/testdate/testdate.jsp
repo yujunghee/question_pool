@@ -66,7 +66,7 @@
 			                            <input type="hidden" name="admin_no" value="${list.admin_no }">
 			                            <tr>			                            				                            	
 			                                <td>${list.td_no }</td>
-			                                <td class="txt_l" onclick="location.href='view.do?td_no=${list.td_no }'" style="cursor: pointer;">
+			                                <td class="txt_l" onclick="location.href='view.do?td_no=${list.td_no }'" style="cursor: pointer; font-family: dotum;">
 			                                    <a href="view.do?td_no=${list.td_no }">${list.td_title }</a>
 			                                </td>
 			                                <td class="date"><fmt:formatDate value="${list.td_date }" pattern="yyyy-MM-dd"/></td>			                                

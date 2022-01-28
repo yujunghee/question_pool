@@ -146,9 +146,9 @@
 	    		$("#user_pwd").focus();
 	    		return;
 	    	}
-	    	var reg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+	    	var reg = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{1,50}).{10,50}$/;
 	    	if( !reg.test($("#user_pwd").val()) ) {
-	    	    alert("비밀번호는 문자+숫자 조합으로 8자이상 입력해 주세요.");
+	    	    alert("비밀번호는 숫자,문자,특수문자를 조합으로 10자이상 입력해 주세요.");
 	    	    //$("#pwd").val("");
 	    	    $("#user_pwd").focus();
 	    	    return;
@@ -166,6 +166,12 @@
 	    		alert('별명을 입력해 주세요');
 	    		$("#user_nick").focus();
 	    		return;
+	    	}
+	     	var telno = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+	    	if( !telno.test($("#user_tel").val()) ) {
+	    	    alert("올바른 전화번호가 아닙니다.");
+	    	    $("#user_tel").focus();
+	    	    return;
 	    	}
 	    	if ($("#user_tel").val().trim() == '') {
 	    		alert('휴대폰번호를 입력해 주세요');
@@ -189,6 +195,18 @@
 	    	}
 	    	$("#frm").submit();
 	    }
+	    
+	    function pwdco() {
+	    	var reg = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{1,50}).{10,50}$/;
+	    	if( !reg.test($("#user_pwd").val()) ) {
+	    	    alert("비밀번호는 숫자,문자,특수문자를 조합으로 10자이상 입력해 주세요.");
+	    	    //$("#pwd").val("");
+	    	    $("#user_pwd").focus();
+	    	    return;
+	    	}else{
+	    		alert("사용가능한 비밀번호입니다.")
+	    	}
+	    }
 	</script>
 	<style>
 	</style>
@@ -208,43 +226,45 @@
                     </colgroup>
                     <tbody>
                         <tr>
-                            <th>*이메일</th>
+                            <th>๑이메일๑</th>
                             <td>
                                 <input type="text" name="user_email" id="user_email" class="inNextBtn" style="float:left;">
                                 <span class="emailDuplicate"><a href="javascript:;" id="emailDuplicate" class="btn bgGray" style="float:left; width:auto; clear:none;">메일인증</a></span>
                             </td>
                         </tr>
                          <tr>
-                            <th>*인증번호</th>
+                            <th>๑인증번호๑</th>
                             <td>
                                 <input type="text" name="confirm" id="confirm" class="inNextBtn" style="float:left;">
                                 <span class="confirmbtm"><a href="javascript:;" id="confirmbtm" class="btn bgGray" style="float:left; width:auto; clear:none;"	>확인</a></span>
                             </td>
                         </tr>
                         <tr>
-                            <th>*비밀번호</th>
-                            <td><input type="password" name="user_pwd" id="user_pwd" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문 조합으로 8자 이상으로 입력해주세요.</span> </td>
-                        </tr>
-                        <tr>
-                            <th>*비밀번호<span>확인</span></th>
-                            <td><input type="password" name="pw_check" id="pw_check" style="float:left;"></td>
-                        </tr>
-                        <tr>
-                            <th>*이름</th>
-                            <td><input type="text" name="user_name" id="user_name" style="float:left;"> </td>
-                        </tr>
-                         <tr>
-                            <th>*별명</th>
-                            <td><input type="text" name="user_nick" id="user_nick" style="float:left;"> </td>
-                        </tr>
-                        <tr>
-                            <th>*휴대폰 번호</th>
-                            <td>
-                                <input type="text" name="user_tel" id="user_tel" value="010-"  maxlength="15" style="float:left;"><span class="ptxt"> 숫자만 입력해 주세요.</span>
+                            <th>๑비밀번호๑</th>
+                            <td><input type="password" name="user_pwd" id="user_pwd" style="float:left;"> <span class="ptxt"></span> 
+                            <span class="pwdco"><a href="javascript:pwdco();" id="pwdco" class="btn bgGray" style="float:left; width:auto; clear:none;">비밀번호 확인</a></span>
                             </td>
                         </tr>
                         <tr>
-                        	<th rowspan="3">주소</th>
+                            <th>๑비밀번호<span>확인๑</span></th>
+                            <td><input type="password" name="pw_check" id="pw_check" style="float:left;"></td>
+                        </tr>
+                        <tr>
+                            <th>๑이름๑</th>
+                            <td><input type="text" name="user_name" id="user_name" style="float:left;"> </td>
+                        </tr>
+                         <tr>
+                            <th>๑별명๑</th>
+                            <td><input type="text" name="user_nick" id="user_nick" style="float:left;"> </td>
+                        </tr>
+                        <tr>
+                            <th>๑휴대폰 번호๑</th>
+                            <td>
+                                <input type="text" name="user_tel" id="user_tel" value=""  maxlength="15" style="float:left;"><span class="ptxt"> 숫자만 입력해 주세요.</span>
+                            </td>
+                        </tr>
+                        <tr>
+                        	<th rowspan="3">๑주소๑</th>
                         	<td>
                         		<input type="text" name="zipcode" id="zipcode" class="inNextBtn" style="float:left;">
                                 <span class="email_check"><a href="javascript:zipcode();" class="btn bgGray" style="float:left; width:auto; clear:none;">우편번호</a></span>

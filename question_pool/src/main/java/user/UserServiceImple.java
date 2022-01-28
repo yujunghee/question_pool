@@ -42,18 +42,16 @@ public class UserServiceImple implements UserService {
 	public String userEmailCheck(String email) {
 		if (email != null) {
 			String confirm = "";
-			for (int i=0; i<3; i++) {
+			for (int i=0; i<4; i++) {
 				confirm += (char)((Math.random()*26)+65);
-			}
-			for (int i=0; i<3; i++) {
 				confirm += (int)((Math.random()*9));
 			}
 
 			// 이메일 발송
 			SendMail.sendMail("question_pool@naver.com",
 									email, 
-								"question_pool 인증번호입니다. 감사합니다", 
-								"인증번호:<span style='color:red;'>"+confirm+"</span>");
+								"Ladder Up 인증번호입니다. 감사합니다", 
+								"인증번호:<span style='color:blue;'>"+confirm+"</span>");
 			return confirm;
 		}
 		return "";
