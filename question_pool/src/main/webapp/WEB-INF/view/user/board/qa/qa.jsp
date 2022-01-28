@@ -91,10 +91,13 @@ function division(){
 			                            <tr>			                            				                            	
 			                                <td>${list.qa_no }</td>
 			                                <td>${list.qa_division }</td>
-			                                <td class="txt_l" onclick="location.href='view.do?qa_no=${list.qa_no }'" style="cursor: pointer;">
-			                                    <a href="view.do?qa_no=${list.qa_no }">${list.qa_title } &nbsp;
+			                                <td class="txt_l" onclick="location.href='view.do?qa_no=${list.qa_no }'" style="cursor: pointer; font-family: dotum;">
+			                                    <a href="view.do?qa_no=${list.qa_no }">Q. ${list.qa_title } &nbsp;
 			                                    <c:if test="${list.c_count > 0}">			                                    	
-			                                    	<strong>[답변완료]</strong>	
+			                                    	<img src="/question_pool/img/admin/counsel_regist_on.png">	
+			                                    </c:if>
+			                                    <c:if test="${list.c_count == 0}">			                                    	
+			                                    	<img src="/question_pool/img/admin/counsel_waiting_on.png">	
 			                                    </c:if>
 			                                    </a>
 			                                </td>

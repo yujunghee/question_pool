@@ -145,7 +145,7 @@ $(function() {
 	font-size: 25px;
 	text-align: center;	
 	font-weight: bold;
-	color: #606b94;
+	color: #edd84c;
 	margin-bottom: 2%;	
 }
 
@@ -193,7 +193,7 @@ $(function() {
 	border-spacing: 3px 5px;
 }
 
-#notice_tab thead tr {
+#notice_tab thead tr{
 	border-bottom: solid 1px #000;
 }
 
@@ -206,7 +206,7 @@ $(function() {
 	border-spacing: 3px 5px;
 }
 
-#qna_tab thead tr {
+#qna_tab thead {
 	border-bottom: solid 1px #000;
 }
 
@@ -240,7 +240,7 @@ $(function() {
 		</div>
 		<div class="linkBox">
 			<div id="gopay" onclick="location.href='/question_pool/user/payment/pay.do'">
-				<p>결제시 혜택 확인하기러가기</p>
+				<p>결제시 혜택 확인하러가기</p>
 			</div>
 		</div>
 	</div>
@@ -261,22 +261,20 @@ $(function() {
 				<th>작성일</th>
 			</tr>
 		</thead>
-		<tbody>
-			<form name="frm" id="frm" action="process.do" method="get">
-				<c:forEach var="nlist" items="${nlist }">                                    
-                    <input type="hidden" name="notice_no" value="${nlist.notice_no }">
-                    <input type="hidden" name="admin_no" value="${nlist.admin_no }">
-                    <tr onclick="location.href='/question_pool/user/board/notice/view.do?notice_no=${nlist.notice_no }'">
-                        <td class="txt_l">
-                        	<a>${nlist.notice_title }</a>
-                       	</td>
-                        <td class="writer" style="text-align: center;">
-                            ${nlist.admin_name }
-                        </td>			                                
-                        <td class="date" style="text-align: center;"><fmt:formatDate value="${nlist.notice_date }" pattern="yyyy-MM-dd"/></td>    
-                    </tr>
-                    </c:forEach>
-                 </form>
+		<tbody>			
+			<c:forEach var="nlist" items="${nlist }">                                    
+	            <input type="hidden" name="notice_no" value="${nlist.notice_no }">
+	            <input type="hidden" name="admin_no" value="${nlist.admin_no }">
+	            <tr onclick="location.href='/question_pool/user/board/notice/view.do?notice_no=${nlist.notice_no }'">
+	                <td class="txt_l">
+	                	<a><img src="/question_pool/img/admin/top_ico.gif">${nlist.notice_title }</a>
+	               	</td>
+	                <td class="writer" style="text-align: center;">
+	                    ${nlist.admin_name }
+	                </td>			                                
+	                <td class="date" style="text-align: center;"><fmt:formatDate value="${nlist.notice_date }" pattern="yyyy-MM-dd"/></td>    
+	            </tr>
+            </c:forEach>         
 		</tbody>
 	</table>
 	<table id="qna_tab" style="display:none;">

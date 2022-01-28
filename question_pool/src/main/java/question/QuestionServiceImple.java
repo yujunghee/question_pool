@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import admin.AdminVo;
 import school.SchoolVo;
 
 @Service
@@ -137,6 +136,11 @@ public class QuestionServiceImple implements QuestionService {
 	}
 	
 	@Override
+	public int delete(int word_no) {
+		return dao.delete(word_no);
+	}
+	
+	@Override
 	public int wrongCount(QuestionVo qv) {
 		return dao.wrongCount(qv);
 	}
@@ -151,5 +155,4 @@ public class QuestionServiceImple implements QuestionService {
 		return dao.noteUpdate(qv);
 	}
 		
-
 }

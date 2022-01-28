@@ -9,13 +9,37 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 </head>
 <style>
-.list{
-	font-size:20px;
-	font-weight: bold;
+table.type10 {
+  border-collapse: collapse;
+  width: 70%;
+  text-align:center;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin-left: auto; margin-right: auto;
 }
-li{
-	padding:10px;
+table.type10 thead th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #fff;
+  background: #e7708d;
+  margin: 20px 10px;
 }
+table.type10 tbody th {
+  width: 150px;
+  padding: 10px;
+}
+table.type10 td {
+  width: 350px;
+  padding: 10px;
+  vertical-align: top;
+}
+table.type10 .even {
+  background: #fdf3f5;
+}
+tr:hover { background-color: #F5F5F5; } 
 </style>
 <body> 
 <div id="wrap">
@@ -28,17 +52,35 @@ li{
 				</div>
 				<div class="con">
 					<ul class="list">
-						<c:forEach var="ev" items="${elist}">
-							<a href="/question_pool/user/question/score.do?exam_no=${ev.exam_no}">
-							<li><img src="/question_pool/img/user/pencil.png" width="30px;">${ev.school_name} ${ev.year}년도 ${ev.semester}학기</li>
-							</a>
-						</c:forEach>
-						<c:forEach var="sv" items="${slist}">
-							<a href="/question_pool/user/question/scoreRandom.do?school_no=${sv.school_no}&user_no=${userInfo.user_no}">
-							<li><img src="/question_pool/img/user/pencil.png" width="30px;">${sv.school_name} 랜덤 모의고사</li>
-							</a>
-						</c:forEach>
-						
+					<table border="1" width="70%" class="type10">
+				      	<thead>
+							<tr>
+								<th>내가 푼 문제</th>
+							</tr>
+						</thead>
+						<tbody>									
+							<c:if test="${empty elist}">
+								 <tr>
+						            <td>푼 문제가 없습니다.</td>
+						        </tr>
+							</c:if>
+							<c:if test="${!empty elist}">
+								<c:forEach var="ev" items="${elist}">
+									<tr>
+										<td><a href="/question_pool/user/question/score.do?exam_no=${ev.exam_no}">
+										<li><img src="/question_pool/img/user/pencil.png" width="30px;">${ev.school_name} ${ev.year}년도 ${ev.semester}학기</li>
+										</a></td>
+									</tr>
+								</c:forEach>
+								<c:forEach var="sv" items="${slist}">
+									<tr>
+										<td><a href="/question_pool/user/question/scoreRandom.do?school_no=${sv.school_no}&user_no=${userInfo.user_no}">
+										<li><img src="/question_pool/img/user/pencil.png" width="30px;">${sv.school_name} 랜덤 모의고사</li>
+										</a></td>
+									</tr>
+								</c:forEach>
+							</c:if>
+						</tbody>
 					</ul>
 				</div>
 			</div>

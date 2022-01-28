@@ -41,7 +41,8 @@ function chk2(frm){
 		$.ajax({
 			url : 'showmethesemester.do',
 			data : {
-				year : $("#year").val()
+				year : $("#year").val(),
+				school_no : $("#school_no").val()
 			},
 			async : false,
 			success : function(res) {

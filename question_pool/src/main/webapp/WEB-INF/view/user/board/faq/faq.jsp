@@ -57,7 +57,7 @@ function getA(faq_no){
 					<!-- 내용 : s -->
 					<div class="bbs">					
 					<table>								
-						<tr id="answer" colspan="10"></tr>
+						<tr id="answer" colspan="10" style="display: none;"></tr>
 					</table>	
 						<div class="list">
 							<!-- search --> 							
@@ -105,7 +105,7 @@ function getA(faq_no){
 			                                <td>
 			                                	${list.faq_division }			                                	
 			                                </td>			                                
-			                                <td class="txt_l" style="font-size: 15px">
+			                                <td class="txt_l" style="font-size: 13px; font-family: dotum;">
 			                                	<a>${list.faq_title }</a>
 		                                	</td>
 			                            </tr>			                            

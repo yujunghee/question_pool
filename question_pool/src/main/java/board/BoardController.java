@@ -36,6 +36,7 @@ public class BoardController {
 		return "admin/board/notice/notice";
 	}
 	
+	
 // ----------------------------- 공지사항 영역 시작 -----------------------------
 	
 	@GetMapping("/admin/board/notice/notice.do")

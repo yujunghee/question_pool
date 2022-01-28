@@ -25,7 +25,7 @@
 		, (SELECT admin_name FROM admin WHERE admin_no=notice.admin_no) admin_name
 		FROM notice
 		<include refid="boardWhere1"></include>
-		ORDER BY notice_date DESC
+		ORDER BY notice_no DESC
 		LIMIT ${startIdx},10
 	</select>
 	
@@ -91,7 +91,7 @@
 		, (SELECT admin_name FROM admin WHERE admin_no=testdate.admin_no) admin_name
 		FROM testdate
 		<include refid="boardWhere2"></include>
-		ORDER BY td_date DESC
+		ORDER BY td_no DESC
 		LIMIT ${startIdx},10
 	</select>
 	
@@ -239,7 +239,7 @@
 		, (SELECT COUNT(*) FROM comment WHERE community_no=community.community_no) c_count
 		FROM community
 		<include refid="boardWhere4"></include>		
-		ORDER BY community_date DESC
+		ORDER BY community_no DESC
 		LIMIT ${startIdx},10
 	</select>
 	

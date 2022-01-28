@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import admin.AdminVo;
 import board.NoticeVo;
+import comment.CommentVo;
 import school.SchoolService;
 import school.SchoolVo;
 import user.UserVo;
@@ -415,7 +416,7 @@ public class QuestionController {
 		List<ExampleVo> list = questionService.selectExamplelist(ev);
 		List<ExampleVo> refEx = new ArrayList<ExampleVo>();
 		
-		for(int i=0; i<3; i++) {
+		for(int i=0; i<4; i++) {
 			List<QuestionVo> refQ = questionService.refQuestion(qlist.get(i).getQuestion_no());
 			
 			qlist.get(i).setQv(refQ);
@@ -487,8 +488,7 @@ public class QuestionController {
 	@RequestMapping("/user/question/scoreRandom.do")
 	public String scoreRandom(QuestionVo qv, ExampleVo ev, RandomQuestionVo rv, Model model, HttpServletRequest req, @RequestParam int school_no) {
 		model.addAttribute("school", schoolService.selectSchool(school_no));
-//		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
-	
+
 		rv.setSchool_no(school_no);
 		rv.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
 		
@@ -545,5 +545,16 @@ public class QuestionController {
 		List<AnsweredQuestionVo> list = questionService.viewwords(qv);
 		model.addAttribute("list",list);
 		return "user/question/study/word";
+	}
+	@GetMapping("/user/question/study/delete.do")	
+	public String delete(Model model, AnsweredQuestionVo qv, HttpServletRequest req, @RequestParam int word_no) {
+		int r = questionService.delete(word_no);
+		if (r > 0) {
+			req.setAttribute("msg", "정상적으로 삭제되었습니다.");
+			req.setAttribute("url", "/question_pool/user/question/study/word.do");
+		} else {
+			req.setAttribute("msg", "삭제 오류");
+		}
+		return "admin/include/return2";
 	}
 }

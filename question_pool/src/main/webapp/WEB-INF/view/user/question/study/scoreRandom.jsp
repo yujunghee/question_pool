@@ -39,7 +39,6 @@ h2{font-size:150%;}
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-						<form method="post" name="frm" id="frm" action="score.do" enctype="multipart/form-data">
 						<div class="score">
 							<h1><img src="/question_pool/img/user/pencil.png" height="40px;">
 							[SCORE] : 맞은 문제 ${cnt}개</h1>
@@ -76,7 +75,6 @@ h2{font-size:150%;}
 											<p>정답 : (${qv.answer})</p>
 							</div>
 							</c:forEach>
-						</form>
 							<!--//btn-->
 						</div>
 						<!-- //bread -->

@@ -305,7 +305,12 @@ function test() {
 }
 </script>
 <style>
-	
+.sns_area {
+	margin-left: 20px;
+}
+.sns_area a {
+	margin-left: 5px;
+}	
 </style>
 </head>
 <body>
@@ -345,7 +350,7 @@ function test() {
 					<dl style="width:14.666%;">
 						<dt><a href="javascript:;">추가학습</a></dt>
 						<dd class="frist"><a href="javascript:;" onclick="clickMenu('back1', '오답노트', '/user/question/note.do', false)">오답노트</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('back2', '단어장', '/user/question/study/word.do', false)">단어장</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('back2', '단어장', '/user/question/study/word.do?user_no=${userInfo.user_no}">단어장</a></dd>
 					</dl>
 					<dl style="width:15.666%;">
 						<dt><a href="javascript:;">커뮤니티</a></dt>
@@ -383,7 +388,7 @@ function test() {
 					<dd class="gnb_submenu">
 						<ul>	
 							<li id="back1_submenu" onclick="clickMenu('back1', '오답노트', '/user/question/note.do', false)">오답노트</li>
-							<li id="back2_submenu" onclick="clickMenu('back2', '단어장', '/user/question/study/word.do', false)">단어장</li>
+							<li id="back2_submenu" onclick="clickMenu('back2', '단어장', '/user/question/study/word.do?user_no=${userInfo.user_no}', false)">단어장</li>
 						</ul>
 					</dd>
 					<dt id="portfolio" class="gnb_menu">커뮤니티</dt>
@@ -403,9 +408,14 @@ function test() {
 				<p>(주)LadderCompany</p>
 	            <p>서울특별시 종로구 삼일대로17길 51 스타골드빌딩 3층,4층,5층</p>
 	            <p>02-738-5001 | 02-738-5001</p>
-	            <p>대표자 김깐부 | 개인정보책임자 이깐부</p>
+	            <p>대표자 김깐부</p>
 	            <p>사업자번호 111-86-22222</p> 
 			</div>
+			<div class="sns_area">
+                <a href=""><img src="/question_pool/img/facebook.png"></a>
+                <a href=""><img src="/question_pool/img/twitter.png"></a>
+                <a href=""><img src="/question_pool/img/youtube.png"></a>
+            </div>
 		</div>
 		<!--//menuWrap-->
 		<div id="contentsWrap">
