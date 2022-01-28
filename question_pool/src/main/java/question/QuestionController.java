@@ -247,6 +247,7 @@ public class QuestionController {
 			qlist.get(i).setEx(elist);
 		}
 		model.addAttribute("qlist", qlist);
+		model.addAttribute("num",qlist.size());
 		String[] examples = { "A", "B", "C", "D", "E" };
 		model.addAttribute("ex",examples);
 		return "user/question/index";
@@ -369,7 +370,7 @@ public class QuestionController {
 		List<ExampleVo> list = questionService.selectExamplelist(ev);
 		List<ExampleVo> refEx = new ArrayList<ExampleVo>();
 		
-		for(int i=0; i<4; i++) {
+		for(int i=0; i<3; i++) {
 			List<QuestionVo> refQ = questionService.refQuestion(qlist.get(i).getQuestion_no());
 			
 			qlist.get(i).setQv(refQ);

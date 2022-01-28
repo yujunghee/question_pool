@@ -52,7 +52,7 @@
 </style>
 <script>
 	function conf(){
-		if($('.example:checked').length != ${exam.number_of_questions}){
+		if($('.example:checked').length != $('.question_no').length){
 			alert('모든 답안을 체크해주세요.');
 			return false;
 		}else{
@@ -89,7 +89,7 @@
 							<form method="post" name="frm" id="frm" action="insertRandom.do?school_no=${school.school_no}" enctype="multipart/form-data" onsubmit="return conf();">
 							<c:set var="cnt" value="1"/>
 								<c:forEach var="qv" items="${qlist}">
-								<input type="hidden" name="question_no" value="${qv.question_no}">
+								<input type="hidden" class="question_no" name="question_no" value="${qv.question_no}">
 									<div class="passage">${qv.passage }</div>
 									
 									<c:set var="string" value="${qv.question_content}"/>
@@ -108,7 +108,7 @@
 									</div>
 									<c:if test="${!empty qv.qv}">
 										<c:forEach var="ref" items="${qv.qv}">
-											<input type="hidden" name="question_no" value="${ref.question_no}">
+											<input type="hidden" class="question_no" name="question_no" value="${ref.question_no}">
 											<div class="passage">${ref.passage }</div>
 											
 											<c:set var="string" value="${ref.question_content}"/>

@@ -52,7 +52,7 @@
 </style>
 <script>
 	function conf(){
-		if($('.example:checked').length != ${exam.number_of_questions}){
+		if($('.example:checked').length != ${num}){
 			alert('모든 답안을 체크해주세요.');
 			return false;
 		}else{
