@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,6 +19,7 @@ import board.NoticeVo;
 import school.SchoolService;
 import school.SchoolVo;
 import user.UserVo;
+import util.Pagination;
 
 @Controller
 public class QuestionController {
@@ -334,8 +336,18 @@ public class QuestionController {
 	public String note(QuestionVo qv, ExampleVo ev, Model model, HttpServletRequest req) {
 		
 		qv.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
+
+		int totCount = questionService.wrongCount(qv);
+		int totPage = totCount / 10; //총페이지수 
+		if(totCount % 10 > 0) totPage++;
+		
+		int startIdx = (qv.getPage()-1)*10;
+		qv.setStartIdx(startIdx);	
+
+		
 		List<QuestionVo> wlist = questionService.selectWAlist(qv);
 		List<ExampleVo> list = questionService.selectExamplelist(ev);
+		
 		for(int i=0; i<wlist.size(); i++) {
 			List<ExampleVo> elist = new ArrayList<ExampleVo>();
 			for(int j=0; j<list.size(); j++) {
@@ -345,12 +357,47 @@ public class QuestionController {
 			}
 			wlist.get(i).setEx(elist);
 		}
-		model.addAttribute("wlist", wlist);		
+		model.addAttribute("wlist", wlist);
 		String[] examples = { "A", "B", "C", "D", "E" };
 		model.addAttribute("ex",examples);
-		
+		model.addAttribute("totPage",totPage);
+		model.addAttribute("totCount",totCount);
+		model.addAttribute("pageArea",Pagination.getPageArea("note.do", qv.getPage(), totPage, 10));
+				
 		return "user/question/study/note";
 	}
+	
+	//오답노트 삭제
+	@RequestMapping("user/question/noteDelete.do")
+	public String noteDelete(HttpServletRequest request, QuestionVo vo) throws Exception {
+        String[] ajaxMsg = request.getParameterValues("valueArr");        
+        int size = ajaxMsg.length;
+        for(int i=0; i<size; i++) {
+        	System.out.println("ajaxMsg[i]:"+ajaxMsg[i]);
+        	questionService.noteDelete(ajaxMsg[i]);
+        }
+		return "user/include/return";
+	}	
+	
+	//오답노트 메모
+	@GetMapping("user/question/noteUpdate.do")
+	public String noteUpdate(Model model, QuestionVo qv, HttpServletRequest req) {
+		qv.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
+		
+		int res = questionService.noteUpdate(qv);
+		System.out.println("res : "+res);
+		System.out.println("no : "+qv.getQuestion_no());
+		
+		if (res > 0) {
+			model.addAttribute("msg", "정상적으로 저장되었습니다.");
+			model.addAttribute("url", "note.do?user_no="+qv.getUser_no()); 
+		} else {
+			model.addAttribute("msg", "저장 오류");
+			model.addAttribute("url", "note.do"); 
+		}
+		return "admin/include/return";
+	}
+	
 	
 	//랜덤모의고사 학교선택페이지
 	@RequestMapping("user/question/random.do")
