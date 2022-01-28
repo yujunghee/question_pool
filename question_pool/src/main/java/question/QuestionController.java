@@ -440,8 +440,7 @@ public class QuestionController {
 	@RequestMapping("/user/question/scoreRandom.do")
 	public String scoreRandom(QuestionVo qv, ExampleVo ev, RandomQuestionVo rv, Model model, HttpServletRequest req, @RequestParam int school_no) {
 		model.addAttribute("school", schoolService.selectSchool(school_no));
-//		List<QuestionVo> qlist = questionService.selectQuestionlist(qv);
-	
+
 		rv.setSchool_no(school_no);
 		rv.setUser_no(((UserVo)req.getSession().getAttribute("userInfo")).getUser_no());
 		
