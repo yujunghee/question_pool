@@ -139,4 +139,20 @@ public class QuestionServiceImple implements QuestionService {
 	public int delete(int word_no) {
 		return dao.delete(word_no);
 	}
+	
+	@Override
+	public int wrongCount(QuestionVo qv) {
+		return dao.wrongCount(qv);
+	}
+		
+	@Override
+	public int noteDelete(String user_no) {
+		return dao.noteDelete(user_no);
+	}
+			
+	@Override
+	public int noteUpdate(QuestionVo qv) {
+		return dao.noteUpdate(qv);
+	}
+		
 }

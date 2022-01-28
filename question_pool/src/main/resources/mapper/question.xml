@@ -130,7 +130,31 @@
 			aq.memo
 		FROM answered_question aq
 			JOIN
-			question q on q.question_no=aq.question_no where user_no=#{user_no} and score=0;
+			question q on q.question_no=aq.question_no where user_no=#{user_no} and score=0
+			LIMIT ${startIdx},10
 	</select>
 	
+	<select id="wrongCount" resultType="int" parameterType="question.QuestionVo">
+	 	SELECT COUNT(*) 
+		FROM answered_question aq
+			JOIN
+			question q on q.question_no=aq.question_no where user_no=#{user_no} and score=0
+	</select>
+	
+	<delete id="noteDelete">
+		DELETE aq
+		FROM answered_question aq
+			JOIN question q 
+			on q.question_no=aq.question_no and user_no=#{user_no} and score=0	
+			WHERE aq.question_no=#{question_no}
+			
+	</delete>
+	
+	<update id="noteUpdate" parameterType="question.QuestionVo">
+		UPDATE answered_question
+		SET
+			memo=#{memo} 
+		WHERE user_no=#{user_no} and question_no=#{question_no}
+	</update>	
+ 	
 </mapper>

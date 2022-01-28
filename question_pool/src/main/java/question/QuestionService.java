@@ -3,6 +3,7 @@ package question;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import admin.AdminVo;
 import school.SchoolVo;
 
 public interface QuestionService {
@@ -36,4 +37,10 @@ public interface QuestionService {
 	int insertRandom(RandomQuestionVo rv);
 	List<RandomQuestionVo> selectRandom(RandomQuestionVo rv);	
 	List<QuestionVo> selectWAlist(QuestionVo qv);
+	int wrongCount(QuestionVo qv);
+	int noteUpdate(QuestionVo qv);
+	int noteDelete(String user_no);
+
+	
+
 }
