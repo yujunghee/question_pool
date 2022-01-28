@@ -88,7 +88,7 @@
 	</select>
 	
 	<select id="randomQuestion" resultType="question.QuestionVo" parameterType="int">
-		SELECT * FROM question WHERE exam_no IN (SELECT exam_no FROM exam WHERE school_no=#{school_no}) AND question_ref IS NULL ORDER BY RAND() LIMIT 5
+		SELECT * FROM question WHERE exam_no IN (SELECT exam_no FROM exam WHERE school_no=#{school_no}) AND question_ref IS NULL ORDER BY RAND() LIMIT 4
 	</select>
 	
 	<select id="refQuestion" resultType="question.QuestionVo" parameterType="int">
