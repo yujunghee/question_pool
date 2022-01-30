@@ -33,6 +33,7 @@ public class UserServiceImple implements UserService {
 			}else if(uv.getProduct_no() == 99 && uv.getDue_date() >= 1) {
 				userdao.dueDate(uv);
 				uv.setUser_grade(2);
+				uv.setUser_exp(2);
 			}
 			return true;
 		}

@@ -9,22 +9,32 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-	function reSubmit() {		
-		if('${userInfo.refund}' == 0){
-			alert('결제 후 이용해주세요.');
+	function reSubmit() {	
+		console.log('${userInfo.user_exp}')
+		if('${userInfo.user_exp}' == 1){
+			alert('체험권은 환불이 불가능합니다.');
 			return;
-		}
-		if('${userInfo.refund}' == 2){
-			alert('환불요청이 되어있습니다. 관리자에게 문의하세요');
-			return;
-		}
-		if('${userInfo.refund}' == 3){
-			alert('이미 환불 받으셨습니다.');
-			return;
-		}
-		if('${userInfo.refund}' == 4){
-			alert('환불이 거절되었습니다.(관리자에게 문의하세요.)');
-			return;
+		}else{
+			if('${userInfo.refund}' == 0){
+				alert('결제 후 이용해주세요.');
+				return;
+			}
+			if('${userInfo.refund}' == 2){
+				alert('환불요청이 되어있습니다. 관리자에게 문의하세요');
+				return;
+			}
+			if('${userInfo.refund}' == 3){
+				alert('이미 환불 받으셨습니다.');
+				return;
+			}
+			if('${userInfo.refund}' == 4){
+				alert('환불이 거절되었습니다.(관리자에게 문의하세요.)');
+				return;
+			}
+			if('${userInfo.refund}' == 99){
+				alert('체험권은 환불이 불가능합니다.');
+				return;
+			}
 		}
 		$("#frm").submit();
 	}

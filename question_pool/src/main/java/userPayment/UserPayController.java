@@ -50,10 +50,8 @@ public class UserPayController {
 	public String insert(UserPayVo vo, HttpServletRequest req, HttpSession sess) {
 		vo.setUser_no(((UserVo)sess.getAttribute("userInfo")).getUser_no());
 		int r = payService.insert(vo);
-		int q =payService.userGrade(vo);
-		// 정상적으로 등록되었습니다. alert 띄우고 
-		// index.do 로 이동 
-		if(r > 0 && q > 0) {
+		payService.userGrade(vo, sess);
+		if(r > 0) {
 		req.setAttribute("msg", "결제되었습니다. 감사합니다");
 		req.setAttribute("url", "index.do");
 		} else {

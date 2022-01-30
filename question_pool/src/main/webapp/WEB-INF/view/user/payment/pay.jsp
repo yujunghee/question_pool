@@ -35,7 +35,8 @@ function product(pname ,pay, product_no){
 							merchant_id : rsp.merchant_uid,
 							user_no : ${data.user_no},
 							product_no : product_no, 
-							user_email : "${userInfo.user_email}"
+							user_email : "${userInfo.user_email}",
+							refund : 1
 						},
 			    	})
 					msg += pname+' 결제되었습니다 감사합니다.'
@@ -48,9 +49,13 @@ function product(pname ,pay, product_no){
 }
 
 function Expr(product_no){
-			if(${data.product_no} == 99){
-				alert('이미 체험권을 사용하셨습니다.')
-			}else{
+			if(${userInfo.user_exp} == 1){
+				alert('체험권을 사용하고 있습니다.')
+			}else if(${userInfo.user_exp} == 2){
+				alert('이미 체험권을 사용하셨습니다. 결제 후 이용해주세요.')
+			}
+			else{
+				console.log(${data.product_no})
 				var msg = '';
 				if (confirm("일일 체험권을 사용하시겠습니까??") == true) {
 			    	$.ajax({
@@ -59,8 +64,14 @@ function Expr(product_no){
 						data : {
 							user_no : ${data.user_no},
 							product_no : product_no, 
-							user_email : "${userInfo.user_email}"
-						},
+							user_email : "${userInfo.user_email}",
+							refund : 99
+							},
+						success:function(data){
+							document.location.href = document.location.href;
+							document.location.reload();
+							history.go(0);
+						}
 			    	})
 			    	msg += '체험권 사용이 시작되었습니다.'
 			    } else {
