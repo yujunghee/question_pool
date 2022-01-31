@@ -303,6 +303,16 @@ function test() {
 	$("#export4_submenu").trigger("click");
 	$("#export5_submenu").trigger("click");
 }
+$(document).ready(function(){ 
+	var currentPosition = parseInt($(".quickmenu").css("top")); 
+	$(window).scroll(function() { 
+		var position = $(window).scrollTop(); 
+		$(".quickmenu").stop().animate({"top":position+currentPosition+"px"},1000); 
+		});
+    $(".goTop").click(function(){
+        $("html").animate({scrollTop:0},300);
+    });
+});
 </script>
 <style>
 .sns_area {
@@ -311,6 +321,22 @@ function test() {
 .sns_area a {
 	margin-left: 5px;
 }	
+.quickmenu {
+    position:absolute;
+    top:126px;
+    z-index:9998;
+    top: 189px;
+    left: 1551.5px;
+    font-family: 'Noto Sans KR', sans-serif;
+    box-sizing: border-box;
+}
+    .quickmenu {position:absolute;width:90px;top:50%;margin-top:-50px;right:10px;background:#fff;}
+	.quickmenu ul {position:relative;float:left;width:100%;display:inline-block;*display:inline;border:1px solid #ddd;}
+	.quickmenu ul li {float:left;width:100%;border-bottom:1px solid #ddd;text-align:center;display:inline-block;*display:inline;}
+	.quickmenu ul li a {position:relative;float:left;width:100%;height:30px;line-height:30px;text-align:center;color:#999;font-size:9.5pt;}
+	.quickmenu ul li a:hover {color:#000;}
+	.quickmenu ul li:last-child {border-bottom:0;}
+	.quickmenu ul li img{}
 </style>
 </head>
 <body>
@@ -442,5 +468,20 @@ function test() {
 	</div>
 	<!--//container-->
 </div>
+<div class="quickmenu">
+		<ul>
+			<li><img src="../img/user/quick_01.jpg"></li>
+            <li id="project1_submenu" onclick="clickMenu('project1', '상품보기', '/user/payment/pay.do', false)">
+            <img src="../img/user/quick5.jpg" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
+            </li>
+            <li id="front1_submenu" onclick="clickMenu('front1', '문제풀기', '/user/question/pool.do', false)">
+            <img src="../img/user/quick6.jpg" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
+            </li>
+            <li id="front2_submenu" onclick="clickMenu('front2', '랜덤 모의고사', '/user/question/random.do', false)">
+            <img src="../img/user/quick4.jpg" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
+            </li>
+            <li><img src="../img/user/quick_05.jpg" style="cursor:pointer;" class="goTop"></li>
+       </ul>
+</div>  
 </body>
 </html>
