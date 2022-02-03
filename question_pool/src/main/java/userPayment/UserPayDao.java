@@ -52,4 +52,8 @@ public class UserPayDao {
 		UserPayVo uv = sst.selectOne("userPay.refLogin",vo);
 		return uv;
 	}
+	public UserPayVo usergr(UserPayVo vo) {
+		UserPayVo uv = sst.selectOne("userPay.refLogin",vo);
+		return uv;
+	}
 }

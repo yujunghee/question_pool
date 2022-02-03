@@ -16,7 +16,11 @@
 	</select>
 	
 	<update id="dueDate" parameterType="user.UserVo">
-		UPDATE user SET user_grade = 2 WHERE user.user_no = #{user_no}
+		UPDATE user SET user_grade = 2 
+		<if test="product_no == 99"> 
+			, user_exp = 2
+		</if>
+		WHERE user.user_no = #{user_no}
 	</update>
 	
 	

@@ -18,6 +18,8 @@
 			</if>
 		</where>
 	 </sql>	
+	 
+	 
 
 	<select id="PaymentRecord" parameterType="payment.PayVo" resultType = "payment.PayVo">
 		SELECT *

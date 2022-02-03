@@ -176,6 +176,9 @@
                     <c:if test="${vo.refund eq 4}">
                     <li>환불 거절</li> 
                     </c:if>
+                    <c:if test="${vo.refund eq 99}">
+                    <li>  </li> 
+                    </c:if>
                     </c:forEach>
                 </ul>  
                 ${pageArea }

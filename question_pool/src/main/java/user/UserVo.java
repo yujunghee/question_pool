@@ -25,4 +25,5 @@ public class UserVo extends CommonVo{
 	private Timestamp pay_date;
 	private int due_date;
 	private int product_no;
+	private int user_exp;
 }
