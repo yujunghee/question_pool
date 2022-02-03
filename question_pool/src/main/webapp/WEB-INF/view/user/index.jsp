@@ -3,7 +3,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<title><%=userUtil.Property.title %></title>
+<title>Ladder Up</title>
 <%@ include file="/WEB-INF/view/user/include/headHtml.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
