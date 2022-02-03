@@ -91,17 +91,11 @@
                             <col width="20%" />
                             <col width="*" />
                         </colgroup>
-                        <tbody>
-                           <tr>
-                                <th>회원번호</th>
-                                <td>
-                                    <input type="text" name="user_no" id="user_no" readonly value="${userInfo.user_no }" >
-                                </td>
-                            </tr>                         
+                        <tbody>                    
                             <tr>
                                 <th>이메일</th>
                                 <td>
-                                    <input type="text" name="user_email" id="user_email" readonly value="${userInfo.user_email }" class="inNextBtn" style="float:left;" >
+                                    ${userInfo.user_email }
                                 </td>
                             </tr>
                             <tr>
@@ -112,7 +106,7 @@
                             </tr>
                             <tr>
                                 <th>*이름</th>
-                                <td><input type="text" name="user_name" id="user_name" value="${userInfo.user_name }" style="float:left;"> </td>
+                                <td>${userInfo.user_name } </td>
                             </tr>
                              <tr>
                                 <th>*별명</th>

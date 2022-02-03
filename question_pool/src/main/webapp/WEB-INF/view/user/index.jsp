@@ -481,6 +481,6 @@ $(document).ready(function(){
             <img src="../img/user/quick8.png" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
             </li>
        </ul>
-</div>  
+</div> 
 </body>
 </html>
