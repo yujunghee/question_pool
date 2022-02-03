@@ -67,12 +67,13 @@ function CookieVal(cookieName) {
 	border-bottom-right-radius: 3em;
       
       }
-#bor{
+#bor{ 
 	 padding: 10px;
 }
 </style>
 </head>
 <body onload="userid_chk();">
+<br><br><br><br>
 <div id="login">
 	<div class="title">
 		<div id = "imgdiv"><a href="/question_pool/user/index.do"><img src="../img/user/mainLogo.png" height="15%" width="15%" style="margin-left: auto; margin-right: auto; display: block;"></a></div>
@@ -101,14 +102,14 @@ function CookieVal(cookieName) {
 						</dd>
 					</dl>
 				</div>
-				<!-- //infoBox -->
-				<input type="image" src="<%=request.getContextPath()%>/img/admin/member_login_btn.gif" alt="로그인" class="loginBtn" />
+				<!-- //infoBox -->  	  
+				<input type="image" src="<%=request.getContextPath()%>/img/user/log4.png" style="width: 8%; height: 8%;" alt="로그인" class="loginBtn" />
 			</div>
 			<!-- //bgBox -->
 			<div class="joinList">
 				<input type="checkbox" name="reg" id="reg"/> <label for="reg">아이디 저장</label>
 			</div>
-			<div>
+			<div>    
 			                        <a href="join.do" class="btn">회원가입</a> 
                                     <a href="searchId.do" class="btn">이메일/비밀번호 찾기</a>
 			</div>
