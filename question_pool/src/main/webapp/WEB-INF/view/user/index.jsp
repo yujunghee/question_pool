@@ -470,17 +470,16 @@ $(document).ready(function(){
 </div>
 <div class="quickmenu">
 		<ul>
-			<li><img src="../img/user/quick_01.jpg"></li>
+			<li><img src="../img/user/quick7.png" style="width: 90px;heigth:70px;"></li>
             <li id="project1_submenu" onclick="clickMenu('project1', '상품보기', '/user/payment/pay.do', false)">
-            <img src="../img/user/quick5.jpg" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
+            <img src="../img/user/quick10.png" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
             </li>
             <li id="front1_submenu" onclick="clickMenu('front1', '문제풀기', '/user/question/pool.do', false)">
-            <img src="../img/user/quick6.jpg" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
+            <img src="../img/user/quick9.png" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
             </li>
             <li id="front2_submenu" onclick="clickMenu('front2', '랜덤 모의고사', '/user/question/random.do', false)">
-            <img src="../img/user/quick4.jpg" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
+            <img src="../img/user/quick8.png" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
             </li>
-            <li><img src="../img/user/quick_05.jpg" style="cursor:pointer;" class="goTop"></li>
        </ul>
 </div>  
 </body>
