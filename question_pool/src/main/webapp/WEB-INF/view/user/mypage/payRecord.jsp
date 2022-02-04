@@ -23,24 +23,33 @@
 	$(function(){
 		$('#sub').ready(function(){
 			if('${userInfo.product_no}'== 0){
-				alert('결제 후 이용해주세요.')
+				alert('첫 결제 후 이용해주세요.')
 				history.back();
 			}
 		})
 	})
  	function rePay(a){
-		if(a == 1){
+		if(a == 1 && '${userInfo.user_grade}' == 1){
 			var aaa = 30 - '${userInfo.due_date}'
-			 document.write(aaa+'일 남았습니다.' + '(남은기간 모두 소비시. 자동연장됩니다.)')
-			return aaa
-		}else if(a == 2) {
+			 document.write(aaa+'일 남았습니다.' + '(남은기간 모두 소비시. 자동해지됩니다.)')
+			return
+		}else if(a == 2 && '${userInfo.user_grade}' == 1) {
 			var aaa = 90 - '${userInfo.due_date}'
-			 document.write(aaa+'일 남았습니다.' + '(남은기간 모두 소비시. 자동연장됩니다.)')
-			return aaa
+			 document.write(aaa+'일 남았습니다.' + '(남은기간 모두 소비시. 자동해지됩니다.)')
+			return
 		}
-		else if(a == 99) {
+		else if(a == 99 && '${userInfo.user_grade}' == 1) {
 			document.write('체험권을 사용중입니다. 사용을 원하시면 정기권을 구매해주세요.')
-			return aaa
+			return
+		}else if(a == 99 && '${userInfo.user_grade}' == 2) {
+			document.write('체험권 사용이 만료되었습니다.(결제 후 이용해주세요)')
+			return
+		}else if('${userInfo.user_grade}' == 0) {
+			document.write('결제 후 확인해주세요.')
+			return
+		}else if('${userInfo.user_grade}' == 2) {
+			document.write('사용기간이 만료되었습니다.')
+			return
 		}
  		alert('결제기간 오류입니다. 관리자에게 문의해주세요.')
 		return false
@@ -64,9 +73,21 @@
 	                        <tbody>
 	                        	<tr>
 	                                <th>이용 기간</th>
+	                                <c:if test="${userInfo.user_grade eq 1}">
 	                                <td> 
 	                                ${userInfo.due_date}일 이용하셨습니다.
 	                           		</td>
+	                           		</c:if>
+	                           		<c:if test="${userInfo.user_grade eq 2}">
+	                                <td> 
+	                                사용기간이 만료되었습니다.
+	                           		</td>
+	                           		</c:if>
+	                           		<c:if test="${userInfo.user_grade ne 1} || ${userInfo.user_grade ne 2}">
+	                                <td> 
+	                                결제 후 이용해주세요.
+	                           		</td>
+	                           		</c:if>
 	                            </tr>
 	                            <tr>
 	                                <th>남은 기간</th>

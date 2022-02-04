@@ -6,6 +6,7 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 </head>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
 <script>
   /*
 	function cancelPay() {
@@ -166,7 +167,7 @@
                     </c:if>
                     <c:if test="${vo.refund eq 2}">
                     <li>
-                    <input class="submit" type="submit" value="환불 승인" id="cancelPay" onclick="location.href='cancelPay.do?user_no=${vo.user_no }&admin_no=${adminInfo.admin_no}'" >
+                    <input class="submit" type="submit" value="환불 승인" id="cancelPay" onclick="location.href='cancelPay.do?user_no=${vo.user_no }&admin_no=${adminInfo.admin_no}'" >&nbsp&nbsp
                     <input class="submit" type="submit" value="환불 거절" id="cancelPay2" onclick="location.href='cancelPay2.do?user_no=${vo.user_no }&admin_no=${adminInfo.admin_no}'" >
                     </li>
                     </c:if>

@@ -18,10 +18,18 @@
     <link rel="stylesheet" href="/question_pool/css/user/userJoin/common.css"/>
     <link rel="stylesheet" href="/question_pool/css/user/userJoin/contents.css"/>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 	<script>
     function zipcode() {
         new daum.Postcode({
             oncomplete: function(data) {
+            	var cbox = document.getElementById("user_pwdSel");
+            	var tmp = $('#user_pwdSel').prop('checked');
+            	console.log($("#user_pwdSel").val());
+            	console.log(cbox);
+            	console.log(tmp);
                 var addr = ''; 
                 var extraAddr = ''; 
 
@@ -52,25 +60,29 @@
         }).open();
     }
     
+    
 	function goSave() {
-    	if ($("#user_pwd").val() == '') {
-    		alert("비밀번호를 입력하세요");
-    		$("#user_pwd").focus();
-    		return;
-    	}
+		var hash = CryptoJS.MD5($("#user_pwd").val());
+		var reg = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{1,50}).{10,50}$/;
+    	if($('[name=user_pwdSel]').prop('checked')){
+			if ('${userInfo.user_pwd}' != hash) {
+		    		alert("비밀번호를 확인해 주세요.");
+		    		$("#user_pwd").focus();
+		    		return;
+		    	}else if($("#user_rePwd").val() != $("#user_rePwd2").val() || $("#user_rePwd").val() == '' ){
+						alert('새 비밀번호를 확인해 주세요.')
+						return;
+				}else if( !reg.test($("#user_rePwd").val()) ) {
+			    	    alert("비밀번호는 숫자,문자,특수문자를 조합으로 10자이상 입력해 주세요.");
+			    	    $("#user_rePwd").focus();
+			    	    return;
+			    	}
+				}
+			
     	var data = $("#frm").serialize();
     	$("#frm").submit();		
     }
 	
-    $(function(){
-    	$("#frm").ajaxForm({
-    		url:'myinfoUpdate.do',
-    		success:function(res) {
-    		alert('정상적으로 수정되었습니다.');
-    		location.href='myinfo.do?user_no=${userInfo.user_no}';
-    		}
-    	});
-    });
      
 	function enableTxt() {
 		  document.getElementById("user_pwd").readOnly = false;
@@ -81,10 +93,12 @@
 </head>
     <body>
     	<input type="hidden" name="user_no" value="${userInfo.user_no}">
-            <div class="sub">
+            <div class="sub" id="sub">
                 <div class="size">
                     <h3 class="sub_title">내 정보 보기</h3>
-                    <form name="frm" id="frm" action="myinfoUpdate.do" method="post">                   
+                    <form name="frm" id="frm" action="myinfoUpdate.do" method="post">     
+                    <input type="hidden" id="user_no" name="user_no" value="${userInfo.user_no}">
+                  	<input type="hidden" id="user_email" name="user_email" value="${userInfo.user_email}">              
                     <table class="board_write">
                         <caption>내 정보 수정</caption>
                         <colgroup>
@@ -99,9 +113,22 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>비밀번호</th>
+                                <th>현재 비밀번호</th>
                                 <td>
-                                	<a href="mypwd.do" class="btn bgGray" style="float:left; width:auto; clear:none;">변경</a>                           		
+                                	<input type="password" name="user_pwd" id="user_pwd" value=""style="float:left;">      
+                                	&nbsp비밀번호 변경&nbsp<input type="checkbox" name="user_pwdSel" id="user_pwdSel" value="1" />           
+                           		</td>
+                           	</tr>
+                           	<tr>
+                           		<th>새 비밀번호</th>
+                                <td>
+                                	<input type="password" name="user_rePwd" id="user_rePwd" value=""style="float:left;">                        		
+                           		</td>
+                            </tr>
+                            <tr>
+                           		<th>새 비밀번호 확인</th>
+                                <td>
+                                	<input type="password" name="user_rePwd2" id="user_rePwd2" value=""style="float:left;">                        		
                            		</td>
                             </tr>
                             <tr>
@@ -140,7 +167,7 @@
                     </form>
                     <div class="btnSet clear">
                         <div><a href="javascript:goSave();" class="btn"><strong>수정</strong></a>                     
-                        <a href="mydelchk.do" class="btn">탈퇴</a></div>
+                        <a href="mydelchk.do" class="btn">회원탈퇴</a></div>
                     </div>
                 </div>
             </div>

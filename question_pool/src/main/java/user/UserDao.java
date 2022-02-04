@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import question.ExamVo;
 import school.SchoolVo;
+import userPayment.UserPayVo;
 
 
 @Repository
@@ -88,5 +89,11 @@ public class UserDao {
 	
 	public List<SchoolVo> myRandomExam(int user_no){
 		return sst.selectList("user.myRandomExam",user_no);
+	}
+	
+	
+	public UserVo reLogin(UserVo vo) {
+		UserVo uv = sst.selectOne("user.reLogin",vo);
+		return uv;
 	}
 }
