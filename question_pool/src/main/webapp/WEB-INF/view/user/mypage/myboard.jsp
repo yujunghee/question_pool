@@ -67,8 +67,8 @@ $(document).ready(function () {
 							<p id="division">
 							<span>					
 								<a href="/question_pool/user/mypage/myboard.do" style="margin-left: 3; color: #c91c1c; border: solid 2px #000000;"><strong>Q&A</strong></a>
-								<a id="tab" onclick="myComu()" >자유게시판</a>						
-								<a id="tab" onclick="myComment()">댓글</a>						
+								<a id="tab" onclick="myComu()" style="border: solid 1px #000000;">자유게시판</a>						
+								<a id="tab" onclick="myComment()" style="border: solid 1px #000000;">댓글</a>						
 							</span>
 							</p>							
 							<form name="frm" id="frm" action="process.do" method="post">

@@ -3,7 +3,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<title><%=userUtil.Property.title %></title>
+<title>Ladder Up</title>
 <%@ include file="/WEB-INF/view/user/include/headHtml.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
@@ -481,6 +481,6 @@ $(document).ready(function(){
             <img src="../img/user/quick8.png" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
             </li>
        </ul>
-</div>  
+</div> 
 </body>
 </html>
