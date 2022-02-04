@@ -121,6 +121,7 @@ h2::after {
 				<br>
 					<select name="school_no" id="school_no"
 						style="width: 200px; height: 40px; font-size:20px">
+						<option value="" selected disabled hidden>==선택하세요==</option>
 						<c:forEach var="vo" items="${list}">
 							<option value="${vo.school_no}">${vo.school_name}</option>
 						</c:forEach>
