@@ -103,7 +103,7 @@ p, h3, h1{
 </div>
 	<div id="pro" align="center" style="width:30%; height: 250px; border: 1px solid orange; border-radius: 2em;">
 		<h2>One Month Product</h2>
-		<p> 한달동안 메모장, 사전, 오답노트, 랜덤모의고사 등의 편의 기능들을 사용할수 있습니다.
+		<p> 한달동안 메모장, 사전, <br>오답노트, 랜덤모의고사 등의 <br>추가 기능들을 사용할수 있습니다.
 		</p>
 		<br>
 		<input type="button" value="One Month Product 구매하기" onclick="product('One Month',100, 1)" style="background-color: #ffe6e6;"/>
@@ -111,7 +111,7 @@ p, h3, h1{
 	
 	<div id="pro" align="center" style="width:30%; height: 250px; border: 1px solid orange; border-radius: 2em;">
 	<h2>three Month Product</h2>
-	<p> 3달동안 메모장, 사전, 오답노트, 랜덤모의고사 등의 편의 기능들을 사용할수 있습니다.
+	<p> 3달동안 메모장, 사전, <br>오답노트, 랜덤모의고사 등의 <br>추가 기능들을 사용할수 있습니다.
 	</p>
 	<br>
 	<input type="button" value="three Month Product 구매하기" onclick="product('three Month',200, 2)" style="background-color: #ffe6e6;"/>
