@@ -16,11 +16,19 @@
 	</select>
 	
 	<update id="dueDate" parameterType="user.UserVo">
-		UPDATE user SET user_grade = 2 
+		UPDATE payment INNER JOIN user ON payment.user_no = user.user_no SET user_grade = 2
+		<if test="refund == 1"> 
+			,payment.refund = 100
+		</if>
 		<if test="product_no == 99"> 
 			, user_exp = 2
 		</if>
-		WHERE user.user_no = #{user_no}
+		<if test="refund == 1"> 
+			WHERE user.user_no = #{user_no} AND refund = 1
+		</if>
+		<if test="refund != 1"> 
+			WHERE user.user_no = #{user_no} 
+		</if>
 	</update>
 	
 	
@@ -30,7 +38,7 @@
 	
 	<select id="emailDuplicate" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM user WHERE user_email = #{user_email}
-	</select>
+	</select> 
 
 	 <sql id="boardWhere">
 	 	<where>

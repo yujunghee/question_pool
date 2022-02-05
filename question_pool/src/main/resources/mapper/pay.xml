@@ -7,7 +7,12 @@
 		SELECT *
 		FROM user JOIN payment ON user.user_no = payment.user_no JOIN product ON payment.product_no = product.product_no 
 		<if test="refund != 0">
-		where refund = #{refund} 
+			<if test="refund == 5">
+			where user_grade = 2
+			</if>
+			<if test="refund != 5">
+			where refund = #{refund} 
+			</if>
 		</if>
 		ORDER BY pay_date DESC LIMIT ${startIdx},10
 	</select>

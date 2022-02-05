@@ -96,8 +96,9 @@
 									<p><span style="float: left;"><strong>총 ${totCount }개</strong>  |  ${adminVo.page }/${totPage }페이지</span></p>		
 										<select name="refund" onchange="refundSee()"style="float: right;">
 											<option value="0"<c:if test="${param.refund == '0'}">selected</c:if>>전체 보기</option>
-											<option value="1"<c:if test="${param.refund == '1'}">selected</c:if>>결제</option>
 											<option value="99"<c:if test="${param.refund == '99'}">selected</c:if>>체험권</option>
+											<option value="1"<c:if test="${param.refund == '1'}">selected</c:if>>사용중</option>
+											<option value="100"<c:if test="${param.refund == '100'}">selected</c:if>>사용 만료</option>
 											<option value="2"<c:if test="${param.refund == '2'}">selected</c:if>>환불 요청</option>
 											<option value="3"<c:if test="${param.refund == '3'}">selected</c:if>>환불 완료</option>
 											<option value="4"<c:if test="${param.refund == '4'}">selected</c:if>>환불 거절</option>
@@ -151,6 +152,9 @@
 						                    </c:if>
 		                                 	<c:if test="${vo.refund eq 1}">
 						                    <td>사용중</td> 
+						                    </c:if>
+						                    <c:if test="${vo.refund eq 100}">
+						                    <td>사용 만료</td> 
 						                    </c:if>
 						                    <c:if test="${vo.refund eq 2}">
 						                 	<td>
