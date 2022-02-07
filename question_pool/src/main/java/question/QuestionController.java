@@ -418,6 +418,7 @@ public class QuestionController {
 		List<ExampleVo> refEx = new ArrayList<ExampleVo>();
 		
 		for(int i=0; i<3; i++) {
+			
 			List<QuestionVo> refQ = questionService.refQuestion(qlist.get(i).getQuestion_no());
 			
 			qlist.get(i).setQv(refQ);

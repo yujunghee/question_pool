@@ -59,7 +59,7 @@
 			<mvc:mapping path="/admin/*"/>
 			<mvc:exclude-mapping path="/admin/login.do"/>
 			<bean class="util.LoginInterceptor"/>
-	</mvc:interceptor>
+		</mvc:interceptor>
 	</mvc:interceptors>
 	
 	<mvc:interceptors>

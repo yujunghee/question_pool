@@ -41,7 +41,9 @@
 
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
-
+.box notice {
+	width: 300px;
+}
 </style>
 </head>
 <body>
