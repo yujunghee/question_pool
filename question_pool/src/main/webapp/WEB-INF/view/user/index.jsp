@@ -313,6 +313,62 @@ $(document).ready(function(){
         $("html").animate({scrollTop:0},300);
     });
 });
+
+//쿠키( 아이디저장)
+function loginProcess(){ 
+	var id = $("#user_email").val();
+	 var pwd = $("#user_pwd").val();
+	 var idChk = $("#saveBtn").is(":checked");
+	 
+	if(id == ""){
+		 alert("Enter mail");
+		 $("#user_email").focus();
+		 return false;
+	}else if(pwd ==""){
+		 alert("Enter password");
+		 $("#user_pwd").focus();
+		 return false;
+	 }else if(idChk){
+		 setCookie("Cookie_mail", id, 7);
+	 }else{
+		 deleteCookie("Cookie_mail");
+	 }
+	 $("#loginForm").submit();
+};
+$(function(){  
+	var mail = getCookie("Cookie_mail");
+if(mail){
+	$("#user_email").val(mail);
+	$("#saveBtn").attr("checked", true);
+	} 
+});
+function setCookie(cookieName, value, exdays){
+	var exdate = new Date();
+	exdate.setDate(exdate.getDate() + exdays);
+	var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+	document.cookie = cookieName + "=" + cookieValue; 
+	} 
+function getCookie(cookieName) {
+	cookieName = cookieName + '=';
+	var cookieData = document.cookie;
+	var start = cookieData.indexOf(cookieName);
+	var cookieValue = '';
+	if(start != -1){
+		start += cookieName.length;
+		var end = cookieData.indexOf(';', start);
+	if(end == -1)end = cookieData.length;
+	cookieValue = cookieData.substring(start, end); 
+	} 
+	return unescape(cookieValue);
+}
+function deleteCookie(cookieName){
+	var expireDate = new Date();
+	expireDate.setDate(expireDate.getDate() - 1);
+	document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString(); 
+}
+
+
+
 </script>
 <style>
 	.sns_area {
@@ -417,7 +473,7 @@ $(document).ready(function(){
 				<h1><span>LOG IN</span></h1>	
 			</div>
 			<div class="mainLogin">  
-	<form name="board" id="board" method="post" action="login.do" onsubmit="return loginCheck();" style="width:100%;higth:100%">
+	<form name=loginForm id="loginForm" method="post" action="login.do" onsubmit="return loginCheck();" style="width:100%;higth:100%">
 		<fieldset> 
 			
 			<div class="bgBox" style="text-align: center;">
@@ -441,9 +497,9 @@ $(document).ready(function(){
 				</div>
 				<!-- //infoBox -->  
 				<div style="text-align: right; padding: 5px;">
-				<input type="checkbox" name="reg" id="reg" style="text-align: left;"/> <label for="reg" style=" font-size:12px;">아이디 저장</label> 
+				<input type="checkbox" name="saveBtn" id="saveBtn" style="text-align: left;"/> <label for="reg" style=" font-size:12px;">아이디 저장</label> 
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<input type="submit" value="로그인" style="width: 28%; height: 30%; font-size:12px;" alt="로그인" class="loginBtn" id="logBtnid"  />	  &nbsp&nbsp&nbsp
+				<input type="submit" onclick="loginProcess();" value="로그인" style="width: 28%; height: 30%; font-size:12px;" alt="로그인" class="loginBtn" id="logBtnid"  />	  &nbsp&nbsp&nbsp
 				</div>
 			</div>
 			<!-- //bgBox --> 
