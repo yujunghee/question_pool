@@ -314,27 +314,29 @@ $(document).ready(function(){
     });
 });
 
-//쿠키( 아이디저장)
+//쿠키(아이디저 장)
 function loginProcess(){ 
-	var id = $("#user_email").val();
+	if ($("#user_email").val() == '') {
+		alert('이메일을 입력해 주세요');
+		$("#user_email").focus();
+		return false;
+	}
+	if ($("#user_pwd").val() == '') {
+		alert('비밀번호를 입력해 주세요');
+		$("#user_pwd").focus();
+		return false;
+	}
+	 var id = $("#user_email").val();
 	 var pwd = $("#user_pwd").val();
 	 var idChk = $("#saveBtn").is(":checked");
 	 
-	if(id == ""){
-		 alert("Enter mail");
-		 $("#user_email").focus();
-		 return false;
-	}else if(pwd ==""){
-		 alert("Enter password");
-		 $("#user_pwd").focus();
-		 return false;
-	 }else if(idChk){
+	if(idChk){
 		 setCookie("Cookie_mail", id, 7);
 	 }else{
 		 deleteCookie("Cookie_mail");
 	 }
 	 $("#loginForm").submit();
-};
+};  
 $(function(){  
 	var mail = getCookie("Cookie_mail");
 if(mail){
@@ -426,7 +428,7 @@ function deleteCookie(cookieName){
 <body>
 <div id="wrap">
 	<div id="header">
-		<div id = "imgdiv"><a href="/question_pool/user/index.do"><img src="../img/user/mainLogo.png" height="4%" width="4%" style="margin-left: 20px; margin-right: auto; display: block;"></a></div>
+		<div id = "imgdiv"><a href="/question_pool/user/index.do"><img src="../img/user/mainLogo.png" height="4%" width="4%" style="margin-left: 20px; margin-right: auto;"></a></div>
 		<h1 style="margin-left: 80px; margin-right: auto;"><a href="<%=userUtil.Property.contextPath%>/user/index.do">Ladder Up</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
 		<ul class="topmenu">
 			<c:if test="${!empty userInfo }">
@@ -480,7 +482,7 @@ function deleteCookie(cookieName){
 				<div class="infoBox" >
 					<dl>	
 						<dt >
-							<label for="user_eamil" ><strong style=" float:left">&nbsp&nbsp&nbsp&nbsp이메일</strong></label> 
+							<label for="user_eamil" ><strong style=" float:left">&nbsp;&nbsp;&nbsp;&nbsp;이메일</strong></label> 
 						</dt>
 						<dd style="text-align: center;">
 							<input type="text" id="user_email" name="user_email" value="" title="이메일을 입력해주세요." style="ime-mode:inactive;width:85%;height:30px;"/>
@@ -488,7 +490,7 @@ function deleteCookie(cookieName){
 					</dl>
 					<dl> 
 						<dt>
-							<label for="password"><strong style=" float:left">&nbsp&nbsp&nbsp&nbsp비밀번호</strong></label>
+							<label for="password"><strong style=" float:left">&nbsp;&nbsp;&nbsp;&nbsp;비밀번호</strong></label>
 						</dt>
 						<dd style="text-align: center;">
 							<input type="password" id="user_pwd" name="user_pwd" value="" title="비밀번호를 입력해주세요." style="width:85%;height:30px;" />
@@ -496,10 +498,10 @@ function deleteCookie(cookieName){
 					</dl> 
 				</div>
 				<!-- //infoBox -->  
-				<div style="text-align: right; padding: 5px;">
+				<div style="text-align: right; padding: 5px;"> 
 				<input type="checkbox" name="saveBtn" id="saveBtn" style="text-align: left;"/> <label for="reg" style=" font-size:12px;">아이디 저장</label> 
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<input type="submit" onclick="loginProcess();" value="로그인" style="width: 28%; height: 30%; font-size:12px;" alt="로그인" class="loginBtn" id="logBtnid"  />	  &nbsp&nbsp&nbsp
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="submit" onclick="return loginProcess();" value="로그인" style="width: 28%; height: 30%; font-size:12px;" alt="로그인" class="loginBtn" id="logBtnid"  />&nbsp;&nbsp;&nbsp;&nbsp;
 				</div>
 			</div>
 			<!-- //bgBox --> 
