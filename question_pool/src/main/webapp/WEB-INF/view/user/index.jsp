@@ -315,21 +315,21 @@ $(document).ready(function(){
 });
 </script>
 <style>
-.sns_area {
-	margin-left: 20px;
-}
-.sns_area a {
-	margin-left: 5px;
-}	
-.quickmenu {
-    position:absolute;
-    top:126px;
-    z-index:9998;
-    top: 189px;
-    left: 1551.5px;
-    font-family: 'Noto Sans KR', sans-serif;
-    box-sizing: border-box;
-}
+	.sns_area {
+		margin-left: 20px;
+	}
+	.sns_area a {
+		margin-left: 5px;
+	}	
+	.quickmenu {
+	    position:absolute;
+	    top:126px;
+	    z-index:9998;
+	    top: 189px;
+	    left: 1551.5px;
+	    font-family: 'Noto Sans KR', sans-serif;
+	    box-sizing: border-box;
+	}
     .quickmenu {position:absolute;width:90px;top:50%;margin-top:-50px;right:10px;background:#fff;}
 	.quickmenu ul {position:relative;float:left;width:100%;display:inline-block;*display:inline;border:1px solid #ddd;}
 	.quickmenu ul li {float:left;width:100%;border-bottom:1px solid #ddd;text-align:center;display:inline-block;*display:inline;}
@@ -337,6 +337,34 @@ $(document).ready(function(){
 	.quickmenu ul li a:hover {color:#000;}
 	.quickmenu ul li:last-child {border-bottom:0;}
 	.quickmenu ul li img{}
+	
+	.mainLogin{
+		width:100%; 
+		height:100%;
+		margin: 0px; auto;
+        padding: 5px;
+        box-sizing: border-box;
+        color: #515151; 
+        text-align: center;
+        
+	} 
+	#loginTitle{
+		width:100%; 
+		height:100%; 
+		margin: 0px; auto;
+        padding: 0px;
+        box-sizing: border-box;
+        color: #515151; 
+        text-align: center;
+		border-bottom: 1px solid  #001433;
+		color: #001433; 
+	}
+	#logBtnid{  
+		border: 1px solid  #aaaaaa;
+		border-top-left-radius: 1em;
+		border-bottom-right-radius: 1em;
+	}
+
 </style>
 </head>
 <body>
@@ -345,10 +373,6 @@ $(document).ready(function(){
 		<div id = "imgdiv"><a href="/question_pool/user/index.do"><img src="../img/user/mainLogo.png" height="4%" width="4%" style="margin-left: 20px; margin-right: auto; display: block;"></a></div>
 		<h1 style="margin-left: 80px; margin-right: auto;"><a href="<%=userUtil.Property.contextPath%>/user/index.do">Ladder Up</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
 		<ul class="topmenu">
-			<c:if test="${empty userInfo }">
-			<li class="login" style="font-weight: bold;"><a href="/question_pool/user/login.do">로그인</a></li>
-			<li class="signup" style="font-weight: bold;"><a href="/question_pool/user/join.do">회원가입</a></li>
-			</c:if>
 			<c:if test="${!empty userInfo }">
 			<li class="login"><a href="/question_pool/user/logout.do">로그아웃</a></li>
 			<li class="mypage"><a href="javascript:;" onclick="clickMenu('main2', 'Mypage', '/user/mypage/index.do', false)" >마이페이지 (${userInfo.user_email})</a></li> 
@@ -361,7 +385,7 @@ $(document).ready(function(){
 	<!--//header-->
 	<div id="container">
 		<div id="menuWrap">
-			<div class="allmenu">전체메뉴
+			<div class="allmenu">전체메뉴	
 				<div class="allmenu_con">
 					<dl style="width:13.666%;">
 						<dt><a href="javascript:;">문제풀기</a></dt>
@@ -388,6 +412,54 @@ $(document).ready(function(){
 					</dl>
 				</div>
 			</div>
+			<c:if test="${empty userInfo }">
+			<div class="loginTitle" id="loginTitle">
+				<h1><span>LOG IN</span></h1>	
+			</div>
+			<div class="mainLogin">  
+	<form name="board" id="board" method="post" action="login.do" onsubmit="return loginCheck();" style="width:100%;higth:100%">
+		<fieldset> 
+			
+			<div class="bgBox" style="text-align: center;">
+				<div class="infoBox" >
+					<dl>	
+						<dt >
+							<label for="user_eamil" ><strong style=" float:left">&nbsp&nbsp&nbsp&nbsp이메일</strong></label> 
+						</dt>
+						<dd style="text-align: center;">
+							<input type="text" id="user_email" name="user_email" value="" title="이메일을 입력해주세요." style="ime-mode:inactive;width:85%;height:30px;"/>
+						</dd> 
+					</dl>
+					<dl> 
+						<dt>
+							<label for="password"><strong style=" float:left">&nbsp&nbsp&nbsp&nbsp비밀번호</strong></label>
+						</dt>
+						<dd style="text-align: center;">
+							<input type="password" id="user_pwd" name="user_pwd" value="" title="비밀번호를 입력해주세요." style="width:85%;height:30px;" />
+						</dd>
+					</dl> 
+				</div>
+				<!-- //infoBox -->  
+				<div style="text-align: right; padding: 5px;">
+				<input type="checkbox" name="reg" id="reg" style="text-align: left;"/> <label for="reg" style=" font-size:12px;">아이디 저장</label> 
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<input type="submit" value="로그인" style="width: 28%; height: 30%; font-size:12px;" alt="로그인" class="loginBtn" id="logBtnid"  />	  &nbsp&nbsp&nbsp
+				</div>
+			</div>
+			<!-- //bgBox --> 
+	
+			<div style="width:100%;height:100%; text-align: center;">   
+			                        <a href="join.do" class="aaa"  style="width:20px;height:35px;font-size:12px;text-align: center;">회원가입</a> &nbsp
+                                    <a href="searchId.do" class="aaa"  style="width:100px;height:35px;font-size:12px;text-align: center;">이메일/비밀번호 찾기</a>
+			</div>
+			<!-- //joinList -->
+			<input type="hidden" name="url" id="url" value="<%//=url%>"/>
+			<input type="hidden" name="param" id="param" value="<%//=param%>"/>
+			<input type="hidden" name="ip" id="ip" value="<%=request.getRemoteAddr()%>"/> 
+		</fieldset>
+	</form>
+	</div>
+	</c:if>
 			<div class="gnb">
 				<dl>
 					<dt id="main" class="gnb_menu">Main</dt>

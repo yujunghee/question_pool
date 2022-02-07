@@ -64,7 +64,7 @@
 		 
 
   	function refundSee(){
-  		$("#frm").submit();
+  		$("#searchForm").submit();
   	}
 
 </script>
@@ -91,7 +91,7 @@
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="blist">					
-								<form name="frm" id="frm" action="pay.do"  method="get" >
+								<form name="searchForm" id="searchForm" action="pay.do"  method="get" >
 									<div class="search" style="float: right;">
 									<p><span style="float: left;"><strong>총 ${totCount }개</strong>  |  ${adminVo.page }/${totPage }페이지</span></p>		
 										<select name="refund" onchange="refundSee()"style="float: right;">
@@ -151,7 +151,7 @@
 						                    <td>단순 변심</td>
 						                    </c:if>
 		                                 	<c:if test="${vo.refund eq 1}">
-						                    <td>사용중</td> 
+						                    <td>사용중</td>  
 						                    </c:if>
 						                    <c:if test="${vo.refund eq 100}">
 						                    <td>사용 만료</td> 
