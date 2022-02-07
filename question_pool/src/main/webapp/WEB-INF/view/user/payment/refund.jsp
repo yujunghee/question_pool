@@ -9,22 +9,32 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-	function reSubmit() {		
-		if('${userInfo.refund}' == 0){
-			alert('결제 후 이용해주세요.');
+	function reSubmit() {	
+		console.log('${userInfo.user_exp}')
+		if('${userInfo.user_exp}' == 1){
+			alert('체험권은 환불이 불가능합니다.');
 			return;
-		}
-		if('${userInfo.refund}' == 2){
-			alert('환불요청이 되어있습니다. 관리자에게 문의하세요');
-			return;
-		}
-		if('${userInfo.refund}' == 3){
-			alert('이미 환불 받으셨습니다.');
-			return;
-		}
-		if('${userInfo.refund}' == 4){
-			alert('환불이 거절되었습니다.(관리자에게 문의하세요.)');
-			return;
+		}else{
+			if('${userInfo.refund}' == 0){
+				alert('결제 후 이용해주세요.');
+				return;
+			}
+			if('${userInfo.refund}' == 2){
+				alert('환불요청이 되어있습니다. 관리자에게 문의하세요');
+				return;
+			}
+			if('${userInfo.refund}' == 3){
+				alert('이미 환불 받으셨습니다.');
+				return;
+			}
+			if('${userInfo.refund}' == 4){
+				alert('환불이 거절되었습니다.(관리자에게 문의하세요.)');
+				return;
+			}
+			if('${userInfo.refund}' == 99){
+				alert('체험권은 환불이 불가능합니다.');
+				return;
+			}
 		}
 		$("#frm").submit();
 	}
@@ -48,8 +58,18 @@
 		<br>
 		<br>
 		<br>
-		<br>
 		</form>
 		<input class="refundbtn" type="button" value="환불 요청" onclick="reSubmit();">
+		<br>
+		<br>
+		<br>
+		<br>
+		<p style="color:red; font-size:6px;"><br>
+			@%#$%!%!#^%$!#%^%$#&^!#%#$%$#^&*^&*#%@<br>
+			#$%^%$&%#^&!#$%#$%^$%&%^$*^!#%$#$^%*#@%<br>
+			%$#&%^&(*$&^!%$!#%*&*($*&@^%$@))<br>
+			*&%^&$^!(%$&($#$%(#$(^$#&%#$!))))<br>
+			문의사항이나 불편사항이 있을시 010-0000-1234로 연락주시기 바랍니다.
+		</p>
 </body>
 </html>

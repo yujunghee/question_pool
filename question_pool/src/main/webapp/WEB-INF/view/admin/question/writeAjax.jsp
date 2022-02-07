@@ -32,7 +32,7 @@
 		<tr>
 			<th scope="row"><label for="">참조문제</label></th>
 			<td colspan="10">
-				<input type="text" id="question_content" name="question_content" class="w100" title="문제를 입력해주세요" />	
+				<textarea id="question_content" name="question_content" rows="3" class="w100" title="문제를 입력해주세요"></textarea>
 			</td>
 		</tr>
 		<div id="writeArea"></div>

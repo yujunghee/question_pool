@@ -126,7 +126,6 @@ public class UserController {
 	}
 	
 	
-	//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 인철작업공간
 
 	@GetMapping("/admin/member/index.do")
 	public String userList(Model model, UserVo vo ) throws Exception {
@@ -171,10 +170,10 @@ public class UserController {
 	}
 	
 	@PostMapping("/admin/member/update.do")
-	public String userUpdate(Model model, UserVo vo, HttpServletRequest req) {
+	public String userUpdate(Model model, UserVo vo, HttpServletRequest req, HttpSession sess) {
 
-		int res = userservice.userUpdate(vo);
-		if (res > 0) {
+		boolean res = userservice.userUpdate(vo, sess);
+		if (res) {
 			model.addAttribute("msg", "정상적으로 수정되었습니다.");
 			model.addAttribute("url", "view.do?user_no="+vo.getUser_no()); 
 		} else {
@@ -195,10 +194,10 @@ public class UserController {
 	}
 	
 	@PostMapping("/user/mypage/myinfoUpdate.do")
-	public String mypageUpdate(Model model, UserVo vo, HttpServletRequest req) {
+	public String mypageUpdate(Model model, UserVo vo, HttpServletRequest req, HttpSession sess) {
 
-		int res = userservice.userUpdate(vo);
-		if (res > 0) {
+		boolean res = userservice.userUpdate(vo, sess);
+		if (res) {
 			model.addAttribute("msg", "정상적으로 수정되었습니다.");
 			model.addAttribute("url", "index.do"); 
 		} else {

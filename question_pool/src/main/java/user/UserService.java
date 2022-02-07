@@ -23,7 +23,7 @@ public interface UserService {
 	UserVo userView(int user_no);
 	int userCount(UserVo vo);
 	UserVo userEdit(int user_no);
-	int userUpdate(UserVo vo);
+	boolean userUpdate(UserVo vo, HttpSession sess);
 	int mypageUpdate(UserVo vo);
 	int mypageDelete(int user_no);
 	

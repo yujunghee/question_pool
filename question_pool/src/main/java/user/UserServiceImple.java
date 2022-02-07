@@ -7,9 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import admin.AdminVo;
 import question.ExamVo;
 import school.SchoolVo;
+import userPayment.UserPayVo;
 import util.SendMail;
 
 @Service
@@ -33,6 +33,7 @@ public class UserServiceImple implements UserService {
 			}else if(uv.getProduct_no() == 99 && uv.getDue_date() >= 1) {
 				userdao.dueDate(uv);
 				uv.setUser_grade(2);
+				uv.setUser_exp(2);
 			}
 			return true;
 		}
@@ -92,10 +93,20 @@ public class UserServiceImple implements UserService {
 		return userdao.userSelectOne(user_no);
 	}	
 	
+//	@Override
+//	public int userUpdate(UserVo vo) {
+//		return userdao.userUpdate(vo);
+//	}
 	@Override
-	public int userUpdate(UserVo vo) {
-		return userdao.userUpdate(vo);
-	}
+	public boolean userUpdate(UserVo vo,HttpSession sess) {
+		userdao.userUpdate(vo);
+		UserVo uv = userdao.reLogin(vo);
+		if(uv != null) {
+			sess.setAttribute("userInfo", uv);
+			return true;
+		}
+		return false;
+}
 	
 	@Override
 	public UserVo searchId(UserVo vo) {

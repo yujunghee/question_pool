@@ -6,6 +6,7 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 </head>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
 <script>
   /*
 	function cancelPay() {
@@ -113,6 +114,8 @@
 			<div class="search" style="float: right;")>
 				<select name="refund" onchange="refundSee()">
 					<option value="0"<c:if test="${param.refund == '0'}">selected</c:if>>전체보기</option>
+					<option value="1"<c:if test="${param.refund == '1'}">selected</c:if>>결제</option>
+					<option value="99"<c:if test="${param.refund == '99'}">selected</c:if>>체험권</option>
 					<option value="2"<c:if test="${param.refund == '2'}">selected</c:if>>환불요청</option>
 					<option value="3"<c:if test="${param.refund == '3'}">selected</c:if>>환불완료</option>
 					<option value="4"<c:if test="${param.refund == '4'}">selected</c:if>>환불거절</option>
@@ -162,11 +165,11 @@
                     <li>단순 변심</li>
                     </c:if>
                     <c:if test="${vo.refund eq 1}">
-                    <li>  </li> 
+                    <li>사용중</li> 
                     </c:if>
                     <c:if test="${vo.refund eq 2}">
                     <li>
-                    <input class="submit" type="submit" value="환불 승인" id="cancelPay" onclick="location.href='cancelPay.do?user_no=${vo.user_no }&admin_no=${adminInfo.admin_no}'" >
+                    <input class="submit" type="submit" value="환불 승인" id="cancelPay" onclick="location.href='cancelPay.do?user_no=${vo.user_no }&admin_no=${adminInfo.admin_no}'" >&nbsp&nbsp
                     <input class="submit" type="submit" value="환불 거절" id="cancelPay2" onclick="location.href='cancelPay2.do?user_no=${vo.user_no }&admin_no=${adminInfo.admin_no}'" >
                     </li>
                     </c:if>
@@ -175,6 +178,9 @@
                     </c:if>
                     <c:if test="${vo.refund eq 4}">
                     <li>환불 거절</li> 
+                    </c:if>
+                    <c:if test="${vo.refund eq 99}">
+                    <li>체험권</li> 
                     </c:if>
                     </c:forEach>
                 </ul>  

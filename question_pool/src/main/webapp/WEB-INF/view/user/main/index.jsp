@@ -101,7 +101,7 @@ $(function() {
 	var swiper = new Swiper(".swiper", {
         loop:true,
         autoplay : {
-            delay:7000
+            delay:5000
         },
         navigation: {
         nextEl: ".swiper-button-next",
@@ -190,7 +190,7 @@ $(function() {
 }
 
 #notice_tab {
-	border-spacing: 3px 5px;
+	border-spacing: 3px 4px;
 }
 
 #notice_tab thead tr{
@@ -199,7 +199,6 @@ $(function() {
 
 #notice_tab tr {
 	cursor: pointer;
-	border-spacing: 5px;
 }
 
 #qna_tab {

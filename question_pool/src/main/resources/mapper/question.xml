@@ -70,10 +70,10 @@
 		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no where exam.school_no = #{school_no}
 	</select>
 	<select id="selectsemester" resultType="question.QuestionVo" parameterType="question.QuestionVo">
-		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no where exam.year = #{year} 
+		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no where exam.year = #{year} and exam.school_no = #{school_no}
 	</select>
 	<select id="showexam" parameterType="question.QuestionVo" resultType="question.QuestionVo">
-		select school_name, exam.semester, exam_no, year from exam join school on school.school_no=exam.school_no where exam_no = #{exam_no} 
+		select school_name, exam.semester, exam_no, year from exam join school on school.school_no=exam.school_no where exam_no = #{exam_no}
 	</select>
 	
 	<!-- ======================= USER ============================= -->
@@ -88,7 +88,7 @@
 	</select>
 	
 	<select id="randomQuestion" resultType="question.QuestionVo" parameterType="int">
-		SELECT * FROM question WHERE exam_no IN (SELECT exam_no FROM exam WHERE school_no=#{school_no}) AND question_ref IS NULL ORDER BY RAND() LIMIT 5
+		SELECT * FROM question WHERE exam_no IN (SELECT exam_no FROM exam WHERE school_no=#{school_no}) AND question_ref IS NULL ORDER BY RAND() LIMIT 4
 	</select>
 	
 	<select id="refQuestion" resultType="question.QuestionVo" parameterType="int">
@@ -113,8 +113,11 @@
 	</insert>	
 	
 	<select id="viewwords" resultType="question.AnsweredQuestionVo" parameterType="int">
-		SELECT * FROM words where user_no=#{user_no}
-	</select>
+		SELECT * FROM words where user_no=#{user_no} order by word_no desc
+	</select>	
+	<delete id="delete" parameterType="int">
+		DELETE FROM words WHERE word_no=#{word_no}
+	</delete>	
 	
 	<select id="selectWAlist" resultType="question.QuestionVo" parameterType="question.QuestionVo">
 		SELECT
@@ -127,8 +130,31 @@
 			aq.memo
 		FROM answered_question aq
 			JOIN
-			question q on q.question_no=aq.question_no where user_no=#{user_no} and score=0;
+			question q on q.question_no=aq.question_no where user_no=#{user_no} and score=0
+			LIMIT ${startIdx},10
 	</select>
 	
+	<select id="wrongCount" resultType="int" parameterType="question.QuestionVo">
+	 	SELECT COUNT(*) 
+		FROM answered_question aq
+			JOIN
+			question q on q.question_no=aq.question_no where user_no=#{user_no} and score=0
+	</select>
 	
+	<delete id="noteDelete">
+		DELETE aq
+		FROM answered_question aq
+			JOIN question q 
+			on q.question_no=aq.question_no and user_no=#{user_no} and score=0	
+			WHERE aq.question_no=#{question_no}
+			
+	</delete>
+	
+	<update id="noteUpdate" parameterType="question.QuestionVo">
+		UPDATE answered_question
+		SET
+			memo=#{memo} 
+		WHERE user_no=#{user_no} and question_no=#{question_no}
+	</update>	
+ 	
 </mapper>

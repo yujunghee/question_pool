@@ -29,6 +29,7 @@ public class UserLoginInterceptor implements HandlerInterceptor {
 			out.println("<script>");
 			out.println("alert('로그인 후 이용가능')");
 			out.println("	parent.window.close();");
+			out.println("location.href='"+req.getContextPath()+"/user/login.do';");
 			out.println("</script>");
 			return false;
 		}else { //로그인 된 상태

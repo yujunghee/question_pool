@@ -260,7 +260,7 @@
                         <tr>
                             <th>๑휴대폰 번호๑</th>
                             <td>
-                                <input type="text" name="user_tel" id="user_tel" value=""  maxlength="15" style="float:left;"><span class="ptxt"> 숫자만 입력해 주세요.</span>
+                                <input type="text" name="user_tel" id="user_tel" value=""  maxlength="15" style="float:left;"><span class="ptxt"></span>
                             </td>
                         </tr>
                         <tr>

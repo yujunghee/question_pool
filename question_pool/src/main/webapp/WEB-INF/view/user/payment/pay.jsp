@@ -35,7 +35,8 @@ function product(pname ,pay, product_no){
 							merchant_id : rsp.merchant_uid,
 							user_no : ${data.user_no},
 							product_no : product_no, 
-							user_email : "${userInfo.user_email}"
+							user_email : "${userInfo.user_email}",
+							refund : 1
 						},
 			    	})
 					msg += pname+' 결제되었습니다 감사합니다.'
@@ -48,9 +49,13 @@ function product(pname ,pay, product_no){
 }
 
 function Expr(product_no){
-			if(${data.product_no} == 99){
-				alert('이미 체험권을 사용하셨습니다.')
-			}else{
+			if(${userInfo.user_exp} == 1){
+				alert('체험권을 사용하고 있습니다.')
+			}else if(${userInfo.user_exp} == 2){
+				alert('이미 체험권을 사용하셨습니다. 결제 후 이용해주세요.')
+			}
+			else{
+				console.log(${data.product_no})
 				var msg = '';
 				if (confirm("일일 체험권을 사용하시겠습니까??") == true) {
 			    	$.ajax({
@@ -59,8 +64,14 @@ function Expr(product_no){
 						data : {
 							user_no : ${data.user_no},
 							product_no : product_no, 
-							user_email : "${userInfo.user_email}"
-						},
+							user_email : "${userInfo.user_email}",
+							refund : 99
+							},
+						success:function(data){
+							document.location.href = document.location.href;
+							document.location.reload();
+							history.go(0);
+						}
 			    	})
 			    	msg += '체험권 사용이 시작되었습니다.'
 			    } else {
@@ -78,7 +89,9 @@ function Expr(product_no){
   margin-right: 60px;
   background-color: #fffafa;
 }
-
+p, h3, h1{
+	font-family:굴림체;
+}
 </style>
 <body> 
 <div>
@@ -88,30 +101,32 @@ function Expr(product_no){
 		감사합니다.</h3>
 		<br><br><br>
 </div>
-	<div id="pro" align="center" style="width:30%; height: 300px; border: 1px solid orange; border-radius: 2em;">
+	<div id="pro" align="center" style="width:30%; height: 250px; border: 1px solid orange; border-radius: 2em;">
 		<h2>One Month Product</h2>
-		<p> 한달동안 메모장, 사전, 오답노트, 랜덤모의고사 등의 편의 기능들을 사용할수 있습니다.
+		<p> 한달동안 메모장, 사전, <br>오답노트, 랜덤모의고사 등의 <br>추가 기능들을 사용할수 있습니다.
 		</p>
-		<br>
 		<br>
 		<input type="button" value="One Month Product 구매하기" onclick="product('One Month',100, 1)" style="background-color: #ffe6e6;"/>
 	</div>
 	
-	<div id="pro" align="center" style="width:30%; height: 300px; border: 1px solid orange; border-radius: 2em;">
+	<div id="pro" align="center" style="width:30%; height: 250px; border: 1px solid orange; border-radius: 2em;">
 	<h2>three Month Product</h2>
-	<p> 3달동안 메모장, 사전, 오답노트, 랜덤모의고사 등의 편의 기능들을 사용할수 있습니다.
+	<p> 3달동안 메모장, 사전, <br>오답노트, 랜덤모의고사 등의 <br>추가 기능들을 사용할수 있습니다.
 	</p>
-	<br>
 	<br>
 	<input type="button" value="three Month Product 구매하기" onclick="product('three Month',200, 2)" style="background-color: #ffe6e6;"/>
 	</div>
+	<br><br><br><br><br>
 </div> 
+	<div id="pro" align="center" style="width:13%; height: 130px; border: 1px solid orange; border-radius: 2em;">
+		<p> 무료1일권
+		</p>
+		<input type="button" value="Daily Experience" onclick="Expr(99)" style="background-color: #ffe6e6;" />
+		</div>
 	<br><br><br><br><br><br><br><br><br><br><br>
 	<br><br><br><br><br>
-	<br><br><br>
-	<p style="color:#808080">정기결제 특성상 환불은 특별한 사유가 있을시 관리자 확인후 관리자에 의해 환불됨을 알려드립니다.</p>
-	<input type="button" value="하루 체험하기" onclick="Expr(99)"/>
-
+	<p style="color:red">정기결제 특성상 환불은 특별한 사유가 있을시 관리자 확인후 관리자에 의해 환불됨을 알려드립니다.</p>
+	
 
 </body>
 </html>

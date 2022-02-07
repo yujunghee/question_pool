@@ -23,6 +23,7 @@ public class PayVo extends CommonVo {
 	private String merchant_id;
 	private String pay_id;
 	private int pay_no;
+	private int user_grade;
 	
 
 }

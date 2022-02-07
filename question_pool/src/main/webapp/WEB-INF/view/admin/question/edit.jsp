@@ -57,7 +57,7 @@
 									<tr>
 										<th scope="row"><label for="">문제</label></th>
 										<td colspan="10">
-											<input type="text" id="question_content" name="question_content" class="w100" value="${qv.question_content}" />	
+											<textarea id="question_content" name="question_content" class="w100" rows="3" title="문제를 입력해주세요">${qv.question_content}</textarea>
 										</td>
 									</tr>
 									<tr>

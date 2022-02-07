@@ -16,7 +16,19 @@
 	</select>
 	
 	<update id="dueDate" parameterType="user.UserVo">
-		UPDATE user SET user_grade = 2 WHERE user.user_no = #{user_no}
+		UPDATE payment INNER JOIN user ON payment.user_no = user.user_no SET user_grade = 2
+		<if test="refund == 1"> 
+			,payment.refund = 100
+		</if>
+		<if test="product_no == 99"> 
+			, user_exp = 2
+		</if>
+		<if test="refund == 1"> 
+			WHERE user.user_no = #{user_no} AND refund = 1
+		</if>
+		<if test="refund != 1"> 
+			WHERE user.user_no = #{user_no} 
+		</if>
 	</update>
 	
 	
@@ -26,7 +38,7 @@
 	
 	<select id="emailDuplicate" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM user WHERE user_email = #{user_email}
-	</select>
+	</select> 
 
 	 <sql id="boardWhere">
 	 	<where>
@@ -62,24 +74,30 @@
 	 	<include refid="boardWhere"></include> 	
 	 </select>	
 	
+	 
 	<update id="userUpdate" parameterType="user.UserVo">
 		UPDATE user SET 
 			 user_tel =#{user_tel}
+			, user_nick =#{user_nick}
 			, zipcode =#{zipcode}
 			, addr1 =#{addr1}
 			, addr2 =#{addr2}
+			<if test="user_pwdSel == 1"> 
+			, user_pwd = md5(#{user_rePwd})
+			</if>
 		WHERE user_no = #{user_no}
 	</update>
 	
 	<update id="mypageUpdate" parameterType="user.UserVo">
 		UPDATE user SET 
-			user_pwd = md5(#{user_pwd})
-			, user_name =#{user_name}
-			, user_nick =#{user_nick}
+			, user_nick =#{user_nick} 
 			, user_tel =#{user_tel}
 			, zipcode =#{zipcode}
 			, addr1 =#{addr1}
 			, addr2 =#{addr2}
+			<if test="user_pwdSel == '1' "> 
+			, user_pwd = md5(#{user_rePwd})
+			</if>
 		WHERE user_no = #{user_no}
 	</update>
 
@@ -93,6 +111,11 @@
 	
 	<select id="myRandomExam" parameterType="int" resultType="school.SchoolVo">
 		SELECT * FROM school WHERE school_no IN (SELECT school_no FROM random_question WHERE user_no=#{user_no} GROUP BY school_no)
+	</select>
+	
+	<select id="reLogin" parameterType="user.UserVo" resultType="user.UserVo">
+		SELECT *, DATEDIFF(NOW(), pay_date) AS due_date FROM
+		user left join payment on user.user_no = payment.user_no WHERE user_email = #{user_email} ORDER BY pay_date DESC limit 1
 	</select>
 
 </mapper>

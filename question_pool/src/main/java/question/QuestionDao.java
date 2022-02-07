@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import admin.AdminVo;
 import school.SchoolVo;
 
 @Repository
@@ -13,6 +14,10 @@ public class QuestionDao {
 
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
+	
+	public int delete(int word_no) {		
+		return sqlSessionTemplate.delete("question.delete", word_no); 
+	}
 
 	public List<QuestionVo> selectList(QuestionVo qv) {
 		List<QuestionVo> list = sqlSessionTemplate.selectList("question.selectexam", qv);
@@ -139,4 +144,17 @@ public class QuestionDao {
 	public List<QuestionVo> selectWAlist(QuestionVo qv){
 		return sqlSessionTemplate.selectList("question.selectWAlist", qv);
 	}
+	
+	public int wrongCount(QuestionVo qv) {
+		return sqlSessionTemplate.selectOne("question.wrongCount", qv);
+	}
+	
+	public int noteUpdate(QuestionVo qv) {
+		return sqlSessionTemplate.update("question.noteUpdate", qv);
+	}
+	
+	public int noteDelete(String user_no) {		
+		return sqlSessionTemplate.delete("question.noteDelete", user_no);
+	}
+
 }

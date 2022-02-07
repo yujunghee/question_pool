@@ -42,7 +42,7 @@ public class PayController {
 		model.addAttribute("totCount",totCount);
 		model.addAttribute("pageArea",Pagination.getPageArea("pay.do", vo.getPage(), totPage, 10));			
 		
-		return "admin/payment/pay";
+		return "admin/payment/index";
 	}
 	
 	@RequestMapping("/admin/payment/cancelPay.do")
