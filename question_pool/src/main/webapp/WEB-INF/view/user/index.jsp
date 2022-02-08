@@ -369,6 +369,18 @@ function deleteCookie(cookieName){
 	document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString(); 
 }
 
+function loginForm(){
+	$.ajax({
+		url : 'login.do',
+		data : {user_email:$("#user_email").val(), user_pwd:$("#user_pwd").val()}
+		async : false,
+		success : function(res) {	
+			alert('aaaaaaa')
+			$(".topmenu").html(res);
+		}
+	})
+}
+
 
 
 </script>
@@ -430,12 +442,7 @@ function deleteCookie(cookieName){
 	<div id="header">
 		<div id = "imgdiv"><a href="/question_pool/user/index.do"><img src="../img/user/mainLogo.png" height="4%" width="4%" style="margin-left: 20px; margin-right: auto;"></a></div>
 		<h1 style="margin-left: 80px; margin-right: auto;"><a href="<%=userUtil.Property.contextPath%>/user/index.do">Ladder Up</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
-		<ul class="topmenu">
-			<c:if test="${!empty userInfo }">
-			<li class="login"><a href="/question_pool/user/logout.do">로그아웃</a></li>
-			<li class="mypage"><a href="javascript:;" onclick="clickMenu('main2', 'Mypage', '/user/mypage/index.do', false)" >마이페이지 (${userInfo.user_email})</a></li> 
-			</c:if>			
-			
+		<ul class="topmenu">		
 	
 			
 		</ul>
@@ -475,7 +482,7 @@ function deleteCookie(cookieName){
 				<h1><span>LOG IN</span></h1>	
 			</div>
 			<div class="mainLogin">  
-	<form name=loginForm id="loginForm" method="post" action="login.do" onsubmit="return loginCheck();" style="width:100%;higth:100%">
+	<form name=loginForm id="loginForm" method="post" action="" onclick="return loginchack();" style="width:100%;higth:100%">
 		<fieldset> 
 			
 			<div class="bgBox" style="text-align: center;">
