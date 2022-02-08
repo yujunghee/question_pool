@@ -393,7 +393,7 @@ $(document).ready(function(){
 					<dt id="main" class="gnb_menu">Main</dt>
 					<dd class="gnb_submenu">
 						<ul>
-							<li id="main1_submenu" onclick="clickMenu('main1', '메인', '/main/index.do', false)">Main</li>
+							<li id="main1_submenu" onclick="clickMenu('main1', '메인', '/user/main/index.do', false)">Main</li>
 						</ul>
 					</dd>
 					<dt id="front" class="gnb_menu">문제풀기</dt>
