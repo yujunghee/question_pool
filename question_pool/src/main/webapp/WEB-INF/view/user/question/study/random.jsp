@@ -57,6 +57,7 @@
 	padding-bottom: 10px;
 	font-size: 15px;
 	font-weight: bold;
+	width: 700px;
 }
 </style>
 <script>
@@ -139,8 +140,8 @@
 												<c:set var="cnt" value="${cnt+1 }"/>
 													<c:forEach var="ev" items="${ref.ex}" varStatus="status">
 														<div class="examples">
-															<input type="checkbox" class="example" name="example" value="${ex[status.index]}">&nbsp;
-																(${ev.example}) ${ev.example_content}
+															<input type="checkbox" class="example" id="chk${idx}" name="example" value="${ex[status.index]}">&nbsp;
+																<label for="chk${idx}">(${ev.example}) ${ev.example_content}</label>
 														</div>
 													</c:forEach>
 											</div>

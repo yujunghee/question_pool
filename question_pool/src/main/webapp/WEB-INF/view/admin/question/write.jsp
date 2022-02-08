@@ -38,9 +38,6 @@
 		});
 	}
 </script>
-<style>
-
-</style>
 </head>
 <body> 
 <div id="wrap">
@@ -118,8 +115,8 @@
 									</tr>
 								</tbody>
 							</table>
-							<div class="btn">
-								<div class="btnRight">
+							<div class="btn" style="height:150px;">
+								<div class="btnRight" style="height:100px;">
 									<input type="submit" onclick="javascript:goSave();" class="btns" value="등록" style="width:250px;height:50px;">
 								</div>
 							</div>
