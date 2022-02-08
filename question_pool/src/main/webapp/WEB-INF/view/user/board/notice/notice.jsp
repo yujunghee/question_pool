@@ -7,8 +7,6 @@
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <%@ include file="/WEB-INF/view/user/include/headHtml.jsp" %>
-<script type="text/javascript">
-</script>
 </head>
 <body> 
 <div id="boardWrap">
@@ -25,12 +23,6 @@
 					다양한 이벤트와 공지사항들을 확인해 보세요. <br>
 					시험일정 관련은 '시험일정'을 참고해 주시기 바랍니다.					
 				</h3><br>
-				<div class="btn">
-					<div class="writebtn">
-						<a class="wbtn" href="../testdate/testdate.do"><strong>시험일정 바로가기</strong> </a>
-					</div>
-				</div>
-				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->

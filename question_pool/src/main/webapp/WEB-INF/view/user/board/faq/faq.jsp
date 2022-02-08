@@ -46,12 +46,6 @@ function getA(faq_no){
 					[Ladder Up] 고객님들께서 자주 물으시는 질문과 답변을 모았습니다. <br> 
 					원하시는 내용이 없으면 'Q&A'를 이용하여 문의해주시기 바랍니다.						
 				</h3>
-				<div class="btn" style="margin: 20;">
-					<div class="writebtn">
-						<a class="wbtn" href="../qa/qa.do"><strong>Q&A 바로가기</strong> </a>
-					</div>
-				</div>
-				<div></div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
