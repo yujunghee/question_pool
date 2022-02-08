@@ -8,6 +8,15 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <style>
+.grade{
+	text-align:center;
+	line-height:100px;
+	border: solid;
+	border-style:double;
+	background-color: #F6F6F6;
+	height: 100px;
+}
+
 .submit {
   width: 180px;
   height: 55px;
@@ -69,6 +78,9 @@
 				var idx = $(this).parent().parent().find(".example").index(this);
 				$(this).parent().parent().find(".example").prop("checked",false);
 				$(this).parent().parent().find(".example").eq(idx).prop("checked",true);
+				
+				$(this).parent().parent().find(".examples").css("color","");
+				$(this).parent().css("color","#ff9900");
 			}
 		})
 	})
@@ -87,6 +99,12 @@
 					<div id="bbs">
 						<div id="question">
 							<form method="post" name="frm" id="frm" action="insertRandom.do?school_no=${school.school_no}" enctype="multipart/form-data" onsubmit="return conf();">
+							<c:set var="idx" value="0"/>
+							<c:if test="${userInfo.user_grade != 1}">
+								<div class="grade">
+									<h1 style="font-size:20px;]">결제 또는 일일체험권 이용 고객에게만 채점기능이 제공됩니다.</h1>
+								</div>
+							</c:if>
 							<c:set var="cnt" value="1"/>
 								<c:forEach var="qv" items="${qlist}">
 								<input type="hidden" class="question_no" name="question_no" value="${qv.question_no}">
@@ -101,9 +119,10 @@
 										<c:set var="cnt" value="${cnt+1 }"/>
 											<c:forEach var="ev" items="${qv.ex}" varStatus="status">
 												<div class="examples">
-													<input type="checkbox" class="example" name="example" value="${ex[status.index]}">&nbsp;
-														(${ev.example}) ${ev.example_content}
+													<input type="checkbox" class="example" id="chk${idx}" name="example" value="${ex[status.index]}">&nbsp;
+														<label for="chk${idx}">(${ev.example}) ${ev.example_content}</label>
 												</div>
+												<c:set var="idx" value="${idx+1 }"/>
 											</c:forEach>
 									</div>
 									<c:if test="${!empty qv.qv}">
@@ -129,8 +148,9 @@
 									</c:if>
 								<br><br>
 								</c:forEach>
-								
-								<input type="submit" class="submit" value="제출하기">
+								<c:if test="${userInfo.user_grade == 1}">
+									<input type="submit" class="submit" value="제출하기">
+								</c:if>
 							</form>
 						</div>
 					</div>

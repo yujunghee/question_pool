@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,7 +24,7 @@ public class PayController {
 	@Autowired
 	PayService payService;
 	
-	@RequestMapping("/admin/payment/pay.do")
+	@GetMapping("/admin/payment/pay.do")
 	public String payment(Model model,PayVo vo,HttpServletRequest req, HttpSession sess) throws Exception {
 		vo.setAdmin_no(((AdminVo)sess.getAttribute("adminInfo")).getAdmin_no());
 

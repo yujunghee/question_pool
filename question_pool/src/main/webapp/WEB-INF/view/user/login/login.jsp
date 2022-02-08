@@ -83,7 +83,7 @@ function CookieVal(cookieName) {
 	<form name="board" id="board" method="post" action="login.do" onsubmit="return loginCheck();">
 		<fieldset>
 			
-			<div class="bgBox">
+			<div class="bgBox" >
 				<div class="infoBox">
 					<dl>
 						<dt>

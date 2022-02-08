@@ -50,10 +50,10 @@
 </head>
 <body>
     <div class="wrap">
-        <form action="login.do" method="post" id="board1" name="board1" onsubmit="return searchEmail();"><!-- header에서 id="board"이미 사용중이라서 board2로 함 -->
+        <form action="login.do" method="post" id="board1" name="board1" onsubmit="return searchEmail();">
             <div class="sub">
                 <div class="size">
-                <div id = "imgdiv"><a href="/question_pool/user/index.do"><img src="../img/user/mainLogo.png"  height="15%" width="15%" style="margin-left: auto; margin-right: auto; display: block;"></a></div>
+                <div id = "imgdiv" style="text-align: center;"><a href="/question_pool/user/index.do"><img src="../img/user/mainLogo.png"  height="10%" width="10%" style="margin-left: auto; margin-right: auto;"></a></div>
                     <h3 class="sub_title">이메일 찾기</h3>
                     
                     <div class="member">
