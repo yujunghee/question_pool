@@ -239,7 +239,7 @@ $(function() {
 		</div>
 		<div class="linkBox">
 			<div id="gopay" onclick="location.href='/question_pool/user/payment/pay.do'">
-				<p>결제시 혜택 확인하러가기</p>
+				<p>결제혜택 확인하러가기</p>
 			</div>
 		</div>
 	</div>

@@ -314,6 +314,7 @@ $(document).ready(function(){
     });
 });
 
+
 //쿠키(아이디저 장)
 function loginProcess(){ 
 	if ($("#user_email").val() == '') {
@@ -335,7 +336,32 @@ function loginProcess(){
 	 }else{
 		 deleteCookie("Cookie_mail");
 	 }
-	 $("#loginForm").submit();
+	$.ajax({
+	      type : 'POST',
+	      url : 'login.do',
+	      data : {
+	         user_email : $("#user_email").val(),
+	         user_pwd : $("#user_pwd").val()
+	      },
+	      async : false,
+	      success : function(res) {
+	    	if (res.trim() == 'true') {   			 
+    	  		$.ajax({
+   				url : 'logoutView.do',
+   				async : false,
+   				success : function(res) {
+   					$(".topmenu").html(res);
+   					$(".mainLogin").hide();
+   					$(".loginTitle").hide();
+   					}
+  				})
+	    	} else {
+	    		alert("오류")
+	    	}
+	    	
+		   }	      
+	   })
+	   return false;
 };  
 $(function(){  
 	var mail = getCookie("Cookie_mail");
@@ -368,6 +394,8 @@ function deleteCookie(cookieName){
 	expireDate.setDate(expireDate.getDate() - 1);
 	document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString(); 
 }
+
+
 
 
 
@@ -449,14 +477,11 @@ function deleteCookie(cookieName){
 	<div id="header">
 		<div id = "imgdiv"><a href="/question_pool/user/index.do"><img src="../img/user/mainLogo.png" height="4%" width="4%" style="margin-left: 20px; margin-right: auto;"></a></div>
 		<h1 style="margin-left: 80px; margin-right: auto;"><a href="<%=userUtil.Property.contextPath%>/user/index.do">Ladder Up</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
-		<ul class="topmenu">
+		<ul class="topmenu">		
 			<c:if test="${!empty userInfo }">
-			<li class="login"><a href="/question_pool/user/logout.do">로그아웃</a></li>
-			<li class="mypage"><a href="javascript:;" onclick="clickMenu('main2', 'Mypage', '/user/mypage/index.do', false)" >마이페이지 (${userInfo.user_email})</a></li> 
-			</c:if>			
-			
-	
-			
+				<li class="login"><a href="/question_pool/user/logout.do">로그아웃</a></li>
+				<li class="mypage"><a href="javascript:;" onclick="clickMenu('main2', 'Mypage', '/user/mypage/index.do', false)" >마이페이지 (${userInfo.user_email})</a></li>
+			</c:if>	
 		</ul>
 	</div>
 	<!--//header-->
@@ -493,8 +518,8 @@ function deleteCookie(cookieName){
 			<div class="loginTitle" id="loginTitle">
 				<h1><span>LOG IN</span></h1>	
 			</div>
-			<div class="mainLogin">  
-	<form name=loginForm id="loginForm" method="post" action="login.do" onsubmit="return loginCheck();" style="width:100%;higth:100%">
+	<div class="mainLogin">  
+	<form name=loginForm id="loginForm" method="post" action="" onclick="" style="width:100%;higth:100%" onsubmit="return false;">
 		<fieldset> 
 			
 			<div class="bgBox" style="text-align: center;">
@@ -542,7 +567,7 @@ function deleteCookie(cookieName){
 					<dt id="main" class="gnb_menu">Main</dt>
 					<dd class="gnb_submenu">
 						<ul>
-							<li id="main1_submenu" onclick="clickMenu('main1', '메인', '/main/index.do', false)">Main</li>
+							<li id="main1_submenu" onclick="clickMenu('main1', '메인', '/user/main/index.do', false)">Main</li>
 						</ul>
 					</dd>
 					<dt id="front" class="gnb_menu">문제풀기</dt>
@@ -590,7 +615,7 @@ function deleteCookie(cookieName){
                 <a href=""><img src="/question_pool/img/facebook.png"></a>
                 <a href=""><img src="/question_pool/img/twitter.png"></a>
                 <a href=""><img src="/question_pool/img/youtube.png"></a>
-            </div>
+            </div>						
 		</div>
 		<!--//menuWrap-->
 		<div id="contentsWrap">
