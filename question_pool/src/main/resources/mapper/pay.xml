@@ -27,9 +27,15 @@
 		SET payment.refund = 4, payment.admin_no = #{admin_no}  WHERE user.user_no = #{user_no} AND payment.refund = 2	
 	</update>
 	
+	 
+	 
 	 <select id="payCount" resultType="int" parameterType="payment.PayVo">
 	 	SELECT COUNT(*) FROM payment
+	 	<if test="refund != 0">
+			where refund = #{refund} 
+		</if>
 	 </select>
+	 
 
 
 
