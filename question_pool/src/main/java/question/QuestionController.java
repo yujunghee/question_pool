@@ -461,6 +461,7 @@ public class QuestionController {
 		String[] answers = req.getParameterValues("example");
 
 		int r=0;
+		
 		for(int i=0; i<qno.length; i++) {
 			if(!("").equals(answers[i])) {
 				rv.setQuestion_no(Integer.parseInt(qno[i]));

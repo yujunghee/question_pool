@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,12 +59,13 @@ public class UserController {
 	
 	@PostMapping("/user/login.do")
 	public String userloginprocess(UserVo vo, HttpSession sess, Model model) {
-		if(userservice.login(vo, sess)) {
-			return "redirect:index.do";
-		}else {
-			model.addAttribute("msg","이메일, 비밀번호를 확인해주세요");
-		return "user/include/return";
-		}
+		model.addAttribute("result",userservice.login(vo, sess));
+		return "user/include/result";
+	}
+	
+	@RequestMapping("/user/logoutView.do")
+	public String logoutView() {
+		return "user/login/logoutView";		
 	}
 	
 	@GetMapping("/user/logout.do")

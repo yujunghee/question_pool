@@ -314,6 +314,7 @@ $(document).ready(function(){
     });
 });
 
+
 //쿠키(아이디저 장)
 function loginProcess(){ 
 	if ($("#user_email").val() == '') {
@@ -335,7 +336,32 @@ function loginProcess(){
 	 }else{
 		 deleteCookie("Cookie_mail");
 	 }
-	 $("#loginForm").submit();
+	$.ajax({
+	      type : 'POST',
+	      url : 'login.do',
+	      data : {
+	         user_email : $("#user_email").val(),
+	         user_pwd : $("#user_pwd").val()
+	      },
+	      async : false,
+	      success : function(res) {
+	    	if (res.trim() == 'true') {   			 
+    	  		$.ajax({
+   				url : 'logoutView.do',
+   				async : false,
+   				success : function(res) {
+   					$(".topmenu").html(res);
+   					$(".mainLogin").hide();
+   					$(".loginTitle").hide();
+   					}
+  				})
+	    	} else {
+	    		alert("오류")
+	    	}
+	    	
+		   }	      
+	   })
+	   return false;
 };  
 $(function(){  
 	var mail = getCookie("Cookie_mail");
@@ -371,8 +397,29 @@ function deleteCookie(cookieName){
 
 
 
+
+
 </script>
 <style>
+.sns_area {
+	margin-left: 20px;
+}
+.sns_area a {
+	margin-left: 5px;
+}	
+.sns_area img{
+	height: 20px;
+}
+.quickmenu {
+    position:absolute;
+    top:126px;
+    z-index:9998;
+    top: 189px;
+    left: 1451.5px;
+    font-family: 'Noto Sans KR', sans-serif;
+    box-sizing: border-box;
+}
+    .quickmenu {position:absolute;width:90px;top:50%;margin-top:-50px;right:10px;background:#F6F6F6;}
 	.sns_area {
 		margin-left: 20px;
 	}
@@ -430,14 +477,11 @@ function deleteCookie(cookieName){
 	<div id="header">
 		<div id = "imgdiv"><a href="/question_pool/user/index.do"><img src="../img/user/mainLogo.png" height="4%" width="4%" style="margin-left: 20px; margin-right: auto;"></a></div>
 		<h1 style="margin-left: 80px; margin-right: auto;"><a href="<%=userUtil.Property.contextPath%>/user/index.do">Ladder Up</a><a href="javascript:;" onclick="test()">&nbsp;&nbsp;&nbsp;</a></h1>
-		<ul class="topmenu">
+		<ul class="topmenu">		
 			<c:if test="${!empty userInfo }">
-			<li class="login"><a href="/question_pool/user/logout.do">로그아웃</a></li>
-			<li class="mypage"><a href="javascript:;" onclick="clickMenu('main2', 'Mypage', '/user/mypage/index.do', false)" >마이페이지 (${userInfo.user_email})</a></li> 
-			</c:if>			
-			
-	
-			
+				<li class="login"><a href="/question_pool/user/logout.do">로그아웃</a></li>
+				<li class="mypage"><a href="javascript:;" onclick="clickMenu('main2', 'Mypage', '/user/mypage/index.do', false)" >마이페이지 (${userInfo.user_email})</a></li>
+			</c:if>	
 		</ul>
 	</div>
 	<!--//header-->
@@ -474,8 +518,8 @@ function deleteCookie(cookieName){
 			<div class="loginTitle" id="loginTitle">
 				<h1><span>LOG IN</span></h1>	
 			</div>
-			<div class="mainLogin">  
-	<form name=loginForm id="loginForm" method="post" action="login.do" onsubmit="return loginCheck();" style="width:100%;higth:100%">
+	<div class="mainLogin">  
+	<form name=loginForm id="loginForm" method="post" action="" onclick="" style="width:100%;higth:100%" onsubmit="return false;">
 		<fieldset> 
 			
 			<div class="bgBox" style="text-align: center;">
@@ -523,7 +567,7 @@ function deleteCookie(cookieName){
 					<dt id="main" class="gnb_menu">Main</dt>
 					<dd class="gnb_submenu">
 						<ul>
-							<li id="main1_submenu" onclick="clickMenu('main1', '메인', '/main/index.do', false)">Main</li>
+							<li id="main1_submenu" onclick="clickMenu('main1', '메인', '/user/main/index.do', false)">Main</li>
 						</ul>
 					</dd>
 					<dt id="front" class="gnb_menu">문제풀기</dt>
@@ -571,7 +615,7 @@ function deleteCookie(cookieName){
                 <a href=""><img src="/question_pool/img/facebook.png"></a>
                 <a href=""><img src="/question_pool/img/twitter.png"></a>
                 <a href=""><img src="/question_pool/img/youtube.png"></a>
-            </div>
+            </div>						
 		</div>
 		<!--//menuWrap-->
 		<div id="contentsWrap">
@@ -600,15 +644,15 @@ function deleteCookie(cookieName){
 </div>
 <div class="quickmenu">
 		<ul>
-			<li><img src="../img/user/quick7.png" style="width: 90px;heigth:70px;"></li>
+			<li><img src="../img/user/quick_01.jpg" style="heigth:70px;"></li>
             <li id="project1_submenu" onclick="clickMenu('project1', '상품보기', '/user/payment/pay.do', false)">
-            <img src="../img/user/quick10.png" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
+            <img src="../img/user/quick12.png" style="height: 70px; cursor:pointer;"class="goTop">
             </li>
             <li id="front1_submenu" onclick="clickMenu('front1', '문제풀기', '/user/question/pool.do', false)">
-            <img src="../img/user/quick9.png" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
+            <img src="../img/user/quick11.png" style="height: 70px; cursor:pointer;"class="goTop">
             </li>
-            <li id="front2_submenu" onclick="clickMenu('front2', '랜덤 모의고사', '/user/question/random.do', false)">
-            <img src="../img/user/quick8.png" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
+            <li id="front2_submenu" onclick="clickMenu('front2', '자유게시판', '/user/board/community/community.do', false)">
+            <img src="../img/user/quick13.png" style="height: 70px; cursor:pointer;"class="goTop">
             </li>
        </ul>
 </div> 
