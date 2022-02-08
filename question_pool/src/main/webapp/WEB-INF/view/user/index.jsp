@@ -458,7 +458,7 @@ function deleteCookie(cookieName){
 					<dl style="width:14.666%;">
 						<dt><a href="javascript:;">추가학습</a></dt>
 						<dd class="frist"><a href="javascript:;" onclick="clickMenu('back1', '오답노트', '/user/question/note.do', false)">오답노트</a></dd>
-						<dd><a href="javascript:;" onclick="clickMenu('back2', '단어장', '/user/question/study/word.do?user_no=${userInfo.user_no}">단어장</a></dd>
+						<dd><a href="javascript:;" onclick="clickMenu('back2', '단어장', '/user/question/study/word.do?user_no=${userInfo.user_no}', false)">단어장</a></dd>
 					</dl>
 					<dl style="width:15.666%;">
 						<dt><a href="javascript:;">커뮤니티</a></dt>
