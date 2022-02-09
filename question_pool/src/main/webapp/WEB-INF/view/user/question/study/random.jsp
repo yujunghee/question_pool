@@ -143,6 +143,7 @@
 															<input type="checkbox" class="example" id="chk${idx}" name="example" value="${ex[status.index]}">&nbsp;
 																<label for="chk${idx}">(${ev.example}) ${ev.example_content}</label>
 														</div>
+														<c:set var="idx" value="${idx+1 }"/>
 													</c:forEach>
 											</div>
 										</c:forEach>
