@@ -53,20 +53,16 @@
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/admin/*/*/*/*"/>
-			<mvc:mapping path="/admin/*/*/*"/>
-			<mvc:mapping path="/admin/*/*"/>
-			<mvc:mapping path="/admin/*"/>
+			<mvc:mapping path="/admin/**"/>
 			<mvc:exclude-mapping path="/admin/login.do"/>
 			<bean class="util.LoginInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
 	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/user/question/study/word.do"/>
-			<mvc:mapping path="/user/question/*"/>
-			<mvc:mapping path="/user/payment/*"/>
+		<mvc:interceptor>			
+			<mvc:mapping path="/user/question/**"/>
+			<mvc:mapping path="/user/payment/**"/>
 			<mvc:exclude-mapping path="/user/login.do"/>
 			<bean class="util.UserLoginInterceptor"/>
 		</mvc:interceptor>
