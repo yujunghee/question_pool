@@ -542,8 +542,15 @@ public class QuestionController {
 		return "admin/include/return2"; 
 	}
 	//단어장
+	@RequestMapping("/user/question/study/word2.do")
+	public String word(UserVo uv, HttpSession sess) {
+		uv.setUser_no(((UserVo)sess.getAttribute("userInfo")).getUser_no());
+		return "user/question/study/word2";
+	}
+	
 	@RequestMapping("/user/question/study/word.do")
-	public String word(AnsweredQuestionVo qv, Model model) {
+	public String word(AnsweredQuestionVo qv, Model model, HttpSession sess, UserVo uv) {
+		uv.setUser_no(((UserVo)sess.getAttribute("userInfo")).getUser_no());
 		List<AnsweredQuestionVo> list = questionService.viewwords(qv);
 		model.addAttribute("list",list);
 		return "user/question/study/word";
