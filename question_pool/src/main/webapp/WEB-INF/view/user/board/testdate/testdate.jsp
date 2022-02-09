@@ -22,12 +22,7 @@
 					[Ladder Up]에서 알려 드립니다. <br> 
 					각 대학들의 시험일정을 확인해 보세요. <br>
 					그외 공지사항은 '공지사항'을 참고해 주시기 바랍니다.					
-				</h3><br>				
-				<div class="btn">
-					<div class="writebtn">
-						<a class="wbtn" href="../notice/notice.do"><strong>공지사항 바로가기</strong> </a>
-					</div>
-				</div>
+				</h3><br>	
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->

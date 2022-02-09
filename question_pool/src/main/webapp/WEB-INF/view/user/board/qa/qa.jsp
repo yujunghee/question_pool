@@ -25,12 +25,7 @@ function division(){
 				</div>
 				<h3>
 					[Ladder Up] 고객님의 의견 수렴과 궁금하신 사항을 질문하는 공간입니다. <br> 등록 전에 'FAQ'를 참고해 주시기 바랍니다.						
-				</h3><br>
-				<div class="btn">
-					<div class="writebtn">
-						<a class="wbtn" href="../faq/faq.do"><strong>FAQ 바로가기</strong> </a>
-					</div>
-				</div>
+				</h3>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->

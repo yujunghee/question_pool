@@ -70,7 +70,8 @@
 		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no where exam.school_no = #{school_no}
 	</select>
 	<select id="selectsemester" resultType="question.QuestionVo" parameterType="question.QuestionVo">
-		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no where exam.year = #{year} and exam.school_no = #{school_no}
+		select exam.school_no, year, semester,exam_no from exam join school on exam.school_no = school.school_no
+		 where exam.year = #{year} and exam.school_no = #{school_no}
 	</select>
 	<select id="showexam" parameterType="question.QuestionVo" resultType="question.QuestionVo">
 		select school_name, exam.semester, exam_no, year from exam join school on school.school_no=exam.school_no where exam_no = #{exam_no}

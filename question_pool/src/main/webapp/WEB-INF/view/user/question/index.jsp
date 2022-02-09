@@ -58,6 +58,7 @@
 	padding-bottom: 10px;
 	font-size: 15px;
 	font-weight: bold;
+	width: 700px;
 }
 </style>
 <script>
@@ -115,7 +116,7 @@
 									<c:set var="string2" value="${fn:replace(string1,'$','</u>')}"/>
 									
 									<div class="subcon">
-										<div class="qcon">${status.count}. ${string2}</div>
+										<div class="qcon" style="width:800px">${status.count}. ${string2}</div>
 											<c:forEach var="ev" items="${qv.ex}" varStatus="status">
 												<div class="examples">
 													<input type="checkbox" id="chk${idx}" class="example" name="example" value="${ex[status.index]}">&nbsp;

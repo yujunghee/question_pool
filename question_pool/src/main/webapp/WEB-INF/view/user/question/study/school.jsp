@@ -106,6 +106,15 @@ h2::after {
       margin-right: 0.5em;
     }
 </style>
+<script>
+function check_submit() {
+ if(school.school_no.value ==""){
+ alert("학교를 선택하시오");
+ school.school_no.focus();
+ return false;
+ }
+}
+</script>
 </head>
 <body>
 	<div id="wrap">
@@ -114,7 +123,7 @@ h2::after {
 		<div id="canvas">
 			<!-- 학교/연도/회차 선택 페이지 -->
 			<form action="randomIndex.do" enctype="multipart/form-data"
-				style="text-align: center;">
+				style="text-align: center;" name="school" onsubmit="return check_submit();">
 				<div style="text-align: center; padding: 100px 0 0 0;'">
 					<h4 style="font-size: 30px;">학교선택</h4>
 				<h3>학교를 선택하시면 학교 기출문제중 년도와 상관없이 랜덤으로 문자가 제공됩니다.</h3>

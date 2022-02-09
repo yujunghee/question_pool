@@ -401,6 +401,25 @@ function deleteCookie(cookieName){
 
 </script>
 <style>
+.sns_area {
+	margin-left: 20px;
+}
+.sns_area a {
+	margin-left: 5px;
+}	
+.sns_area img{
+	height: 20px;
+}
+.quickmenu {
+    position:absolute;
+    top:126px;
+    z-index:9998;
+    top: 189px;
+    left: 1451.5px;
+    font-family: 'Noto Sans KR', sans-serif;
+    box-sizing: border-box;
+}
+    .quickmenu {position:absolute;width:90px;top:50%;margin-top:-50px;right:10px;background:#F6F6F6;}
 	.sns_area {
 		margin-left: 20px;
 	}
@@ -483,7 +502,11 @@ function deleteCookie(cookieName){
 					<dl style="width:14.666%;">
 						<dt><a href="javascript:;">추가학습</a></dt>
 						<dd class="frist"><a href="javascript:;" onclick="clickMenu('back1', '오답노트', '/user/question/note.do', false)">오답노트</a></dd>
+<<<<<<< HEAD
 						<dd><a href="javascript:;" onclick="clickMenu('back2', '단어장', '/user/question/study/word.do, false">단어장</a></dd>
+=======
+						<dd><a href="javascript:;" onclick="clickMenu('back2', '단어장', '/user/question/study/word.do?user_no=${userInfo.user_no}', false)">단어장</a></dd>
+>>>>>>> branch 'master' of https://github.com/yujunghee/question_pool.git
 					</dl>
 					<dl style="width:15.666%;">
 						<dt><a href="javascript:;">커뮤니티</a></dt>
@@ -625,15 +648,15 @@ function deleteCookie(cookieName){
 </div>
 <div class="quickmenu">
 		<ul>
-			<li><img src="../img/user/quick7.png" style="width: 90px;heigth:70px;"></li>
+			<li><img src="../img/user/quick_01.jpg" style="heigth:70px;"></li>
             <li id="project1_submenu" onclick="clickMenu('project1', '상품보기', '/user/payment/pay.do', false)">
-            <img src="../img/user/quick10.png" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
+            <img src="../img/user/quick12.png" style="height: 70px; cursor:pointer;"class="goTop">
             </li>
             <li id="front1_submenu" onclick="clickMenu('front1', '문제풀기', '/user/question/pool.do', false)">
-            <img src="../img/user/quick9.png" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
+            <img src="../img/user/quick11.png" style="height: 70px; cursor:pointer;"class="goTop">
             </li>
-            <li id="front2_submenu" onclick="clickMenu('front2', '랜덤 모의고사', '/user/question/random.do', false)">
-            <img src="../img/user/quick8.png" style="width: 90px; height: 70px; cursor:pointer;"class="goTop">
+            <li id="front2_submenu" onclick="clickMenu('front2', '자유게시판', '/user/board/community/community.do', false)">
+            <img src="../img/user/quick13.png" style="height: 70px; cursor:pointer;"class="goTop">
             </li>
        </ul>
 </div> 

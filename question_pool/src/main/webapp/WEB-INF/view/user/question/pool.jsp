@@ -100,6 +100,11 @@ h2::after {
 </head>
 <script>
 function chk(){
+	if(school_no.value ==""){
+		 alert("학교와 년도 그리고 학기를 선택하시오");
+		 school_no.focus();
+		 return false;
+		 }
 			$.ajax({
 				url : 'showmetheexam.do',
 				data : {
@@ -142,12 +147,7 @@ function chk(){
 </script>
 <body>
 	<div id="wrap">
-			<h2> 문제 풀이 </h2>
-				<div class="btn" style="text-align:right; padding: 0 90px 0 0;">
-					<div class="writebtn">
-						<a class="wbtn" href="random.do"><strong>랜덤모의고사 바로가기</strong> </a>
-					</div>
-				</div>
+			<h2> 문제 풀기 </h2>
 		<!-- canvas -->
 		<div id="canvas" style="text-align: center; padding: 100px 0 0 100px;'">
 		<table>
@@ -172,7 +172,7 @@ function chk(){
 			</tr>
 			<tr>
 				<td colspan="3">
-				<form name="frm" id="frm" action="" onclick="return chk();" enctype="multipart/form-data">
+				<form name="frm" id="frm"  onclick="return chk();" enctype="multipart/form-data">
 				<br/>
 				<br/>
 				<input type="button" value="문제 검색->" class="w-btn-outline w-btn-indigo-outline">
