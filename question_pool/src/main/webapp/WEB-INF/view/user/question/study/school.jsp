@@ -126,7 +126,7 @@ function check_submit() {
 				style="text-align: center;" name="school" onsubmit="return check_submit();">
 				<div style="text-align: center; padding: 100px 0 0 0;'">
 					<h4 style="font-size: 30px;">학교선택</h4>
-				<h3>학교를 선택하시면 학교 기출문제중 년도와 상관없이 랜덤으로 문자가 제공됩니다.</h3>
+				<h3>학교를 선택하시면 학교 기출문제중 년도와 상관없이 랜덤으로 문제가 제공됩니다.</h3>
 				<br>
 					<select name="school_no" id="school_no"
 						style="width: 200px; height: 40px; font-size:20px">
