@@ -25,7 +25,7 @@
 	<!-- DBCP 빈등록 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://54.180.80.62:3306/question_pool"/>
+		<property name="url" value="jdbc:mysql://3.36.132.70:3306/question_pool"/>
 		<property name="username" value="root"/>
 		<property name="password" value="root1234"/>
 	</bean>
